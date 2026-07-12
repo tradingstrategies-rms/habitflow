@@ -43,9 +43,11 @@ final networkProvider = Provider<NetworkService>((ref) => NoOpNetworkService());
 final appConfigProvider = Provider<AppConfig>((ref) {
   return const AppConfig(
     appName: 'HabitFlow',
+    packageName: 'com.habitflow.app',
     version: '1.0.0',
     buildNumber: '1',
     environment: Environment.development,
+    apiBaseUrl: 'https://api.habitflow.com',
     apiTimeout: Duration(seconds: 30),
   );
 });

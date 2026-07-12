@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// [HFBottomNavigation] is the primary navigation shell for HabitFlow.
 /// 
-/// It implements the Material 3 Navigation Bar pattern.
+/// It implements the Material 3 Navigation Bar pattern with exactly five tabs.
 /// 
 /// ### Example Usage:
 /// ```dart
@@ -44,17 +44,17 @@ class HFBottomNavigation extends StatelessWidget {
         NavigationDestination(
           icon: Icon(Icons.emoji_events_outlined),
           selectedIcon: Icon(Icons.emoji_events_rounded),
+          label: 'Goals',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.card_giftcard_outlined),
+          selectedIcon: Icon(Icons.card_giftcard_rounded),
           label: 'Rewards',
         ),
         NavigationDestination(
           icon: Icon(Icons.family_restroom_outlined),
           selectedIcon: Icon(Icons.family_restroom_rounded),
           label: 'Family',
-        ),
-        NavigationDestination(
-          icon: Icon(Icons.person_outline_rounded),
-          selectedIcon: Icon(Icons.person_rounded),
-          label: 'Profile',
         ),
       ],
     );

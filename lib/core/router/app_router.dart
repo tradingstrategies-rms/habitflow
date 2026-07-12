@@ -126,6 +126,12 @@ class AppShell extends StatelessWidget {
         title: 'HabitFlow',
         actions: [
           HFIconButton(
+            icon: Icons.person_outline_rounded,
+            onPressed: () {
+              // TODO: Navigate to Profile
+            },
+          ),
+          HFIconButton(
             icon: Icons.settings_outlined,
             onPressed: () => context.pushNamed(RouteNames.settings),
           ),
