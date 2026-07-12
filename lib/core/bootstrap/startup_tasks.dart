@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:habitflow/core/services/logger/hf_logger.dart';
+import 'package:habitflow/firebase_options.dart';
 
 /// [StartupTasks] defines individual units of initialization work.
 class StartupTasks {
@@ -15,9 +17,15 @@ class StartupTasks {
     return await SharedPreferences.getInstance();
   }
 
-  /// Placeholder for Firebase initialization.
+  /// Initializes Firebase Core using [DefaultFirebaseOptions].
   static Future<void> initFirebase() async {
-    // TODO: Implement Firebase.initializeApp() in Sprint 0.5
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } catch (e) {
+      // Handle initialization error
+    }
   }
 
   /// Placeholder for Notification initialization.

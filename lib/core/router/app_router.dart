@@ -6,9 +6,11 @@ import 'package:habitflow/core/router/route_paths.dart';
 import 'package:habitflow/core/router/route_guards.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 
-// Screens
-import 'package:habitflow/features/splash/presentation/splash_screen.dart';
-import 'package:habitflow/features/authentication/presentation/login_screen.dart';
+// Modular Routes
+import 'routes/splash_routes.dart';
+import 'routes/auth_routes.dart';
+
+// Feature Screens
 import 'package:habitflow/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:habitflow/features/habits/presentation/habits_screen.dart';
 import 'package:habitflow/features/goals/presentation/goals_screen.dart';
@@ -26,16 +28,8 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: RoutePaths.splash,
     debugLogDiagnostics: true,
     routes: [
-      GoRoute(
-        path: RoutePaths.splash,
-        name: RouteNames.splash,
-        builder: (context, state) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: RoutePaths.login,
-        name: RouteNames.login,
-        builder: (context, state) => const LoginScreen(),
-      ),
+      ...splashRoutes,
+      ...authRoutes,
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {

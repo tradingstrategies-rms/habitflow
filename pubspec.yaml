@@ -48,6 +48,7 @@ dependencies:
   firebase_messaging: ^15.0.3
   firebase_analytics: ^11.1.0
   firebase_crashlytics: ^4.0.3
+  firebase_remote_config: ^5.0.0
 
   # Local Storage
   path_provider: ^2.1.3

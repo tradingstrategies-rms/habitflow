@@ -1,8 +1,6 @@
 import '../environment/environment.dart';
 
 /// [AppConfig] holds the configuration settings for the HabitFlow application.
-/// 
-/// Values vary depending on the current [Environment].
 class AppConfig {
   const AppConfig({
     required this.appName,
@@ -22,51 +20,57 @@ class AppConfig {
     this.termsOfServiceUrl = 'https://habitflow.com/terms',
   });
 
-  /// The user-facing name of the application.
+  /// Factory to create environment-specific configurations.
+  factory AppConfig.fromEnvironment(Environment env) {
+    switch (env) {
+      case Environment.development:
+        return AppConfig(
+          appName: 'HabitFlow (Dev)',
+          packageName: 'com.habitflow.app.dev',
+          version: '1.0.0',
+          buildNumber: '1',
+          environment: env,
+          apiBaseUrl: 'https://dev.api.habitflow.com',
+          apiTimeout: const Duration(seconds: 30),
+        );
+      case Environment.staging:
+        return AppConfig(
+          appName: 'HabitFlow (Staging)',
+          packageName: 'com.habitflow.app.staging',
+          version: '1.0.0',
+          buildNumber: '1',
+          environment: env,
+          apiBaseUrl: 'https://staging.api.habitflow.com',
+          apiTimeout: const Duration(seconds: 30),
+        );
+      case Environment.production:
+        return AppConfig(
+          appName: 'HabitFlow',
+          packageName: 'com.habitflow.app',
+          version: '1.0.0',
+          buildNumber: '1',
+          environment: env,
+          apiBaseUrl: 'https://api.habitflow.com',
+          apiTimeout: const Duration(seconds: 30),
+        );
+    }
+  }
+
   final String appName;
-
-  /// The unique package identifier (e.g., com.habitflow.app).
   final String packageName;
-
-  /// The semantic version string (e.g., 1.0.0).
   final String version;
-
-  /// The platform-specific build number.
   final String buildNumber;
-
-  /// The current runtime environment (Dev, Staging, Prod).
   final Environment environment;
-
-  /// The base URL for API communications.
   final String apiBaseUrl;
-
-  /// Default timeout for network requests.
   final Duration apiTimeout;
-
-  /// Flag for debug logging.
   final bool enableLogging;
-
-  /// Flag for tracking user behavior.
   final bool enableAnalytics;
-
-  /// Flag for error reporting.
   final bool enableCrashReporting;
-
-  /// Flag for push notification services.
   final bool enablePushNotifications;
-
-  /// Flag for performance monitoring.
   final bool enablePerformanceMonitoring;
-
-  /// Official support contact email.
   final String supportEmail;
-
-  /// Legal URL for privacy documentation.
   final String privacyPolicyUrl;
-
-  /// Legal URL for terms of service.
   final String termsOfServiceUrl;
 
-  /// Returns true if the app is running in the production environment.
   bool get isProduction => environment == Environment.production;
 }

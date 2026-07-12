@@ -2,16 +2,32 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:habitflow/core/router/route_paths.dart';
+
 /// [AuthGuard] protects routes that require a logged-in user.
 class AuthGuard {
   static FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+    // List of public routes that don't require authentication
+    final publicRoutes = [
+      RoutePaths.splash,
+      RoutePaths.welcome,
+      RoutePaths.login,
+      RoutePaths.register,
+      RoutePaths.forgotPassword,
+      RoutePaths.emailVerification,
+    ];
+
+    if (publicRoutes.contains(state.uri.path)) {
+      return null;
+    }
+
     // TODO: Implement actual auth logic
-    final bool isAuthenticated = DateTime.now().millisecond % 2 == 0; 
+    const bool isAuthenticated = false; 
     
     if (!isAuthenticated) {
-      // return RoutePaths.login;
+      return RoutePaths.welcome;
     }
-    return null;
+    return null; // ignore: dead_code
   }
 }
 

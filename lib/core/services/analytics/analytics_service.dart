@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 /// [AnalyticsService] defines the interface for logging events and tracking user behavior.
 abstract class AnalyticsService {
   /// Logs a screen view.
@@ -13,10 +15,8 @@ abstract class AnalyticsService {
   Future<void> setProperty(String key, String value);
 }
 
-/// [NoOpAnalyticsService] is a placeholder implementation that does nothing.
+/// [NoOpAnalyticsService] is a placeholder implementation.
 class NoOpAnalyticsService implements AnalyticsService {
-  // TODO: Implement FirebaseAnalyticsService in Sprint 0 - Step 5
-  
   @override
   Future<void> logScreen(String screenName) async {}
 
@@ -28,4 +28,34 @@ class NoOpAnalyticsService implements AnalyticsService {
 
   @override
   Future<void> setProperty(String key, String value) async {}
+}
+
+/// [FirebaseAnalyticsService] is the Firebase implementation of [AnalyticsService].
+class FirebaseAnalyticsService implements AnalyticsService {
+  FirebaseAnalyticsService({FirebaseAnalytics? analytics}) : _analytics = analytics ?? FirebaseAnalytics.instance;
+
+  final FirebaseAnalytics _analytics;
+
+  @override
+  Future<void> logScreen(String screenName) async {
+    await _analytics.logScreenView(screenName: screenName);
+  }
+
+  @override
+  Future<void> logEvent(String eventName, {Map<String, dynamic>? parameters}) async {
+    await _analytics.logEvent(
+      name: eventName, 
+      parameters: parameters?.map((key, value) => MapEntry(key, value as Object)),
+    );
+  }
+
+  @override
+  Future<void> setUser(String userId) async {
+    await _analytics.setUserId(id: userId);
+  }
+
+  @override
+  Future<void> setProperty(String key, String value) async {
+    await _analytics.setUserProperty(name: key, value: value);
+  }
 }

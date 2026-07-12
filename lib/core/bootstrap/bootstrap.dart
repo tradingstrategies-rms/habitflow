@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'application_initializer.dart';
 
 /// [Bootstrap] is the entry point for application startup.
@@ -8,7 +9,10 @@ class Bootstrap {
   static ApplicationInitializer get initializer => _initializer;
 
   /// Initializes the application and all core services.
-  static Future<void> initialize() async {
-    await _initializer.initialize();
+  /// Returns a [ProviderContainer] with initialized services.
+  static Future<ProviderContainer> initialize() async {
+    final container = ProviderContainer();
+    await _initializer.initialize(container);
+    return container;
   }
 }

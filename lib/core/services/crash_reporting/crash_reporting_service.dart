@@ -1,3 +1,5 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
 /// [CrashReportingService] defines the interface for reporting application errors and crashes.
 abstract class CrashReportingService {
   /// Records a non-fatal error.
@@ -12,8 +14,6 @@ abstract class CrashReportingService {
 
 /// [NoOpCrashReportingService] is a placeholder implementation.
 class NoOpCrashReportingService implements CrashReportingService {
-  // TODO: Implement FirebaseCrashlyticsService in Sprint 0 - Step 5
-  
   @override
   Future<void> recordError(dynamic exception, StackTrace? stackTrace, {dynamic reason}) async {}
 
@@ -22,4 +22,26 @@ class NoOpCrashReportingService implements CrashReportingService {
 
   @override
   Future<void> setUser(String userId) async {}
+}
+
+/// [FirebaseCrashReportingService] is the Firebase Crashlytics implementation.
+class FirebaseCrashReportingService implements CrashReportingService {
+  FirebaseCrashReportingService({FirebaseCrashlytics? crashlytics}) : _crashlytics = crashlytics ?? FirebaseCrashlytics.instance;
+
+  final FirebaseCrashlytics _crashlytics;
+
+  @override
+  Future<void> recordError(dynamic exception, StackTrace? stackTrace, {dynamic reason}) async {
+    await _crashlytics.recordError(exception, stackTrace, reason: reason);
+  }
+
+  @override
+  Future<void> log(String message) async {
+    await _crashlytics.log(message);
+  }
+
+  @override
+  Future<void> setUser(String userId) async {
+    await _crashlytics.setUserIdentifier(userId);
+  }
 }

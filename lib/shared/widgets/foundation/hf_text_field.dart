@@ -4,17 +4,6 @@ import 'package:habitflow/core/theme/hf_typography.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
 
 /// [HFTextField] is the standard text input component for HabitFlow.
-/// 
-/// It integrates with the Material 3 [InputDecorationTheme] defined in the theme.
-/// 
-/// ### Example Usage:
-/// ```dart
-/// HFTextField(
-///   label: 'Email Address',
-///   hintText: 'user@example.com',
-///   keyboardType: TextInputType.emailAddress,
-/// )
-/// ```
 class HFTextField extends StatelessWidget {
   /// Creates an [HFTextField].
   const HFTextField({
@@ -25,45 +14,30 @@ class HFTextField extends StatelessWidget {
     this.errorText,
     this.obscureText = false,
     this.keyboardType,
+    this.textInputAction,
+    this.focusNode,
     this.prefixIcon,
     this.suffixIcon,
     this.onChanged,
     this.onSubmitted,
     this.semanticsLabel,
+    this.autofocus = false,
   });
 
-  /// The controller for the text being edited.
   final TextEditingController? controller;
-
-  /// Text that hints what can be entered into the text field.
   final String? hintText;
-
-  /// Optional label displayed above the text field.
   final String? label;
-
-  /// Text that appears below the text field if there is an error.
   final String? errorText;
-
-  /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
-
-  /// The type of keyboard to use for editing the text.
   final TextInputType? keyboardType;
-
-  /// An icon that appears before the editable part of the text field.
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
   final Widget? prefixIcon;
-
-  /// An icon that appears after the editable part of the text field.
   final Widget? suffixIcon;
-
-  /// Callback when the text changes.
   final ValueChanged<String>? onChanged;
-
-  /// Callback when the user submits the text (e.g., by pressing 'Enter').
   final ValueChanged<String>? onSubmitted;
-  
-  /// Optional accessibility label for the input.
   final String? semanticsLabel;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +64,19 @@ class HFTextField extends StatelessWidget {
             controller: controller,
             obscureText: obscureText,
             keyboardType: keyboardType,
+            textInputAction: textInputAction,
+            focusNode: focusNode,
+            autofocus: autofocus,
             onChanged: onChanged,
             onSubmitted: onSubmitted,
             style: theme.textTheme.bodyLarge,
             decoration: InputDecoration(
               hintText: hintText,
               errorText: errorText,
+              // Force error text space reservation to avoid jumps
+              helperText: errorText == null ? '' : null,
+              helperStyle: const TextStyle(height: 0.8),
+              errorStyle: const TextStyle(height: 0.8),
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
             ),
