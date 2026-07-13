@@ -6,10 +6,18 @@ class AnalyticsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: HFTopAppBar(title: 'Analytics'),
+    return Scaffold(
+      appBar: const HFTopAppBar(title: 'Analytics'),
       body: Center(
-        child: HFStatCard(label: 'Total Habits Completed', value: '452'),
+        child: HFEmptyState(
+          title: 'Insights',
+          message: 'Analyze your family\'s progress over time.',
+          icon: Icons.bar_chart_rounded,
+          actionLabel: 'View Detailed Report',
+          onActionPressed: () {
+            // TODO: Navigate to detailed analytics in Sprint 2
+          },
+        ),
       ),
     );
   }

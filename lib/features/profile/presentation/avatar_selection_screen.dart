@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habitflow/core/theme/hf_durations.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 
@@ -62,6 +63,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(20),
+              physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 16,
@@ -74,7 +76,9 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
 
                 return GestureDetector(
                   onTap: () => setState(() => _selectedAvatarUrl = url),
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: HFDurations.fast,
+                    curve: Curves.easeInOut,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
@@ -89,7 +93,15 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                       borderRadius: BorderRadius.circular(21),
                       child: Stack(
                         children: [
-                          Image.network(url, fit: BoxFit.cover),
+                          Image.network(
+                            url, 
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return const Center(child: HFLoadingIndicator());
+                            },
+                            errorBuilder: (context, error, stackTrace) => const Center(child: Icon(Icons.error_outline_rounded)),
+                          ),
                           if (isSelected)
                             Container(
                               color: theme.colorScheme.primary.withAlpha(HFOpacity.alpha10),
@@ -125,7 +137,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
             label: 'Save Avatar',
             onPressed: _selectedAvatarUrl != null 
                 ? () => context.pop(_selectedAvatarUrl) 
-                : () {},
+                : null,
           ),
         ),
       ),

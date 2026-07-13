@@ -13,6 +13,7 @@ class HFPasswordField extends StatefulWidget {
     this.errorText,
     this.onChanged,
     this.semanticsLabel,
+    this.enabled = true,
   });
 
   final TextEditingController? controller;
@@ -23,6 +24,7 @@ class HFPasswordField extends StatefulWidget {
   final String? errorText;
   final ValueChanged<String>? onChanged;
   final String? semanticsLabel;
+  final bool enabled;
 
   @override
   State<HFPasswordField> createState() => _HFPasswordFieldState();
@@ -38,6 +40,7 @@ class _HFPasswordFieldState extends State<HFPasswordField> {
       label: widget.label,
       hintText: widget.hintText,
       obscureText: _obscureText,
+      enabled: widget.enabled,
       keyboardType: TextInputType.visiblePassword,
       textInputAction: widget.textInputAction,
       onSubmitted: widget.onSubmitted,
@@ -49,7 +52,9 @@ class _HFPasswordFieldState extends State<HFPasswordField> {
         icon: Icon(
           _obscureText ? Icons.visibility_outlined : Icons.visibility_off_outlined,
         ),
-        onPressed: () => setState(() => _obscureText = !_obscureText),
+        onPressed: widget.enabled 
+            ? () => setState(() => _obscureText = !_obscureText)
+            : null,
         tooltip: _obscureText ? 'Show password' : 'Hide password',
       ),
     );

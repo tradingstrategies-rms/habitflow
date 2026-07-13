@@ -6,13 +6,17 @@ class HabitsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: const HFTopAppBar(title: 'Habits'),
       body: Center(
         child: HFEmptyState(
           title: 'No Habits',
-          message: 'Start tracking your daily progress.',
+          message: 'Start tracking your daily progress by adding your first habit.',
           icon: Icons.check_circle_outline,
           actionLabel: 'Add Habit',
+          onActionPressed: () {
+            // TODO: Navigate to Add Habit screen in Sprint 2
+          },
         ),
       ),
     );

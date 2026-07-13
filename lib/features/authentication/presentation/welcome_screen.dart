@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
+import 'package:habitflow/core/theme/theme_extensions.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'widgets/auth_scaffold.dart';
@@ -90,7 +91,10 @@ class WelcomeScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.stars_rounded, color: Colors.orange),
+                        Icon(
+                          Icons.stars_rounded, 
+                          color: theme.extension<HFThemeExtension>()?.rewardColor ?? Colors.orange,
+                        ),
                         const SizedBox(height: 8),
                         Text(
                           '1,240',
@@ -108,19 +112,26 @@ class WelcomeScreen extends ConsumerWidget {
             // Action Cluster
             HFButton(
               label: 'Get Started',
-              onPressed: () => context.pushNamed(RouteNames.register),
+              onPressed: authState.isLoading 
+                  ? null 
+                  : () => context.pushNamed(RouteNames.register),
               icon: Icons.arrow_forward_rounded,
+              isLoading: authState.isLoading,
             ),
             const SizedBox(height: 16),
             HFButton(
               label: 'Login',
-              onPressed: () => context.pushNamed(RouteNames.login),
+              onPressed: authState.isLoading 
+                  ? null 
+                  : () => context.pushNamed(RouteNames.login),
               variant: HFButtonVariant.secondary,
             ),
             const SizedBox(height: 16),
             HFButton(
               label: 'Continue as Guest',
-              onPressed: () => ref.read(authControllerProvider.notifier).loginAnonymously(),
+              onPressed: authState.isLoading 
+                  ? null 
+                  : () => ref.read(authControllerProvider.notifier).loginAnonymously(),
               variant: HFButtonVariant.text,
             ),
           ],

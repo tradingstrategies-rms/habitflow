@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/utils/validators.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
+import 'package:habitflow/features/authentication/domain/auth_failures.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/auth_header.dart';
@@ -49,7 +50,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
     ref.listen(authControllerProvider, (previous, next) {
       next.whenOrNull(
         error: (error, stack) {
-          HFFeedback.showSnackBar(context, error.toString(), isError: true);
+          final message = error is AuthFailure ? error.message : error.toString();
+          HFFeedback.showSnackBar(context, message, isError: true);
         },
       );
     });
@@ -61,7 +63,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           title: '',
           leading: HFIconButton(
             icon: Icons.arrow_back_rounded,
-            onPressed: () => context.pop(),
+            onPressed: authState.isLoading ? null : () => context.pop(),
           ),
         ),
         body: Column(
@@ -83,6 +85,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.done,
                     errorText: _emailError,
+                    enabled: !authState.isLoading,
                     onChanged: (_) => setState(() => _emailError = null),
                     onSubmitted: (_) => _resetPassword(),
                     autofocus: true,
@@ -91,6 +94,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                   HFButton(
                     label: 'Reset Password',
                     onPressed: _resetPassword,
+                    isLoading: authState.isLoading,
                     icon: Icons.send_rounded,
                   ),
                 ],
@@ -98,7 +102,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
             ),
             const SizedBox(height: 32),
             TextButton.icon(
-              onPressed: () => context.pop(),
+              onPressed: authState.isLoading ? null : () => context.pop(),
               icon: const Icon(Icons.arrow_back_rounded, size: 18),
               label: const Text('Back to login'),
             ),
@@ -117,7 +121,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
+                  onPressed: authState.isLoading ? null : () {
                     // TODO: Contact support
                   },
                   child: const Text('Contact Support'),

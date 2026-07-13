@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/utils/validators.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
+import 'package:habitflow/features/authentication/domain/auth_failures.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/auth_header.dart';
@@ -56,7 +57,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     ref.listen(authControllerProvider, (previous, next) {
       next.whenOrNull(
         error: (error, stack) {
-          HFFeedback.showSnackBar(context, error.toString(), isError: true);
+          final message = error is AuthFailure ? error.message : error.toString();
+          HFFeedback.showSnackBar(context, message, isError: true);
         },
       );
     });
@@ -84,6 +86,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       errorText: _emailError,
+                      enabled: !authState.isLoading,
                       onChanged: (_) => setState(() => _emailError = null),
                       autofocus: true,
                     ),
@@ -95,11 +98,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           controller: _passwordController,
                           textInputAction: TextInputAction.done,
                           errorText: _passwordError,
+                          enabled: !authState.isLoading,
                           onChanged: (_) => setState(() => _passwordError = null),
                           onSubmitted: (_) => _login(),
                         ),
                         TextButton(
-                          onPressed: () => context.pushNamed(RouteNames.forgotPassword),
+                          onPressed: authState.isLoading 
+                              ? null 
+                              : () => context.pushNamed(RouteNames.forgotPassword),
                           child: const Text('Forgot Password?'),
                         ),
                       ],
@@ -108,6 +114,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     HFButton(
                       label: 'Login',
                       onPressed: _login,
+                      isLoading: authState.isLoading,
                       icon: Icons.arrow_forward_rounded,
                     ),
                     const SizedBox(height: 24),
@@ -124,13 +131,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     const SizedBox(height: 24),
                   HFSocialLoginButton(
                     label: 'Continue with Google',
-                    onPressed: () => ref.read(authControllerProvider.notifier).loginWithGoogle(),
+                    onPressed: authState.isLoading 
+                        ? null 
+                        : () => ref.read(authControllerProvider.notifier).loginWithGoogle(),
                   ),
                   const SizedBox(height: 12),
                   HFSocialLoginButton(
                     label: 'Continue with Apple',
                     icon: Icons.apple_rounded,
-                    onPressed: () => ref.read(authControllerProvider.notifier).loginWithApple(),
+                    onPressed: authState.isLoading 
+                        ? null 
+                        : () => ref.read(authControllerProvider.notifier).loginWithApple(),
                   ),
                 ],
               ),
@@ -146,7 +157,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => context.pushNamed(RouteNames.register),
+                    onPressed: authState.isLoading 
+                        ? null 
+                        : () => context.pushNamed(RouteNames.register),
                     child: const Text('Register', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ],

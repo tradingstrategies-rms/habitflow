@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/utils/validators.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
+import 'package:habitflow/features/authentication/domain/auth_failures.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/hf_social_login_button.dart';
@@ -66,7 +67,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     ref.listen(authControllerProvider, (previous, next) {
       next.whenOrNull(
         error: (error, stack) {
-          HFFeedback.showSnackBar(context, error.toString(), isError: true);
+          final message = error is AuthFailure ? error.message : error.toString();
+          HFFeedback.showSnackBar(context, message, isError: true);
         },
       );
     });
@@ -106,6 +108,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               prefixIcon: const Icon(Icons.person_outline_rounded),
               textInputAction: TextInputAction.next,
               errorText: _nameError,
+              enabled: !authState.isLoading,
               onChanged: (_) => setState(() => _nameError = null),
               autofocus: true,
             ),
@@ -118,6 +121,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               errorText: _emailError,
+              enabled: !authState.isLoading,
               onChanged: (_) => setState(() => _emailError = null),
             ),
             const SizedBox(height: 16),
@@ -125,6 +129,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               controller: _passwordController,
               textInputAction: TextInputAction.next,
               errorText: _passwordError,
+              enabled: !authState.isLoading,
               onChanged: (_) => setState(() => _passwordError = null),
             ),
             const SizedBox(height: 16),
@@ -134,6 +139,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               hintText: 'Re-enter password',
               textInputAction: TextInputAction.done,
               errorText: _confirmPasswordError,
+              enabled: !authState.isLoading,
               onChanged: (_) => setState(() => _confirmPasswordError = null),
               onSubmitted: (_) => _register(),
             ),
@@ -141,6 +147,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             HFButton(
               label: 'Create Account',
               onPressed: _register,
+              isLoading: authState.isLoading,
             ),
             const SizedBox(height: 24),
             const Row(
@@ -156,13 +163,17 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             const SizedBox(height: 24),
             HFSocialLoginButton(
               label: 'Register with Google',
-              onPressed: () => ref.read(authControllerProvider.notifier).loginWithGoogle(),
+              onPressed: authState.isLoading 
+                  ? null 
+                  : () => ref.read(authControllerProvider.notifier).loginWithGoogle(),
             ),
             const SizedBox(height: 12),
             HFSocialLoginButton(
               label: 'Register with Apple',
               icon: Icons.apple_rounded,
-              onPressed: () => ref.read(authControllerProvider.notifier).loginWithApple(),
+              onPressed: authState.isLoading 
+                  ? null 
+                  : () => ref.read(authControllerProvider.notifier).loginWithApple(),
             ),
             const SizedBox(height: 32),
             Text(
@@ -183,7 +194,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => context.pop(),
+                  onPressed: authState.isLoading ? null : () => context.pop(),
                   child: const Text('Sign In', style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ],

@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_initializing_formals
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -6,18 +7,23 @@ import 'auth_service.dart';
 
 /// [FirebaseAuthService] is the Firebase implementation of [AuthService].
 class FirebaseAuthService implements AuthService {
-  FirebaseAuthService(this._auth, this._googleSignIn);
+  FirebaseAuthService({FirebaseAuth? auth, GoogleSignIn? googleSignIn}) 
+      : _auth = auth,
+        _googleSignIn = googleSignIn;
 
-  final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
+  final FirebaseAuth? _auth;
+  final GoogleSignIn? _googleSignIn;
+  
+  FirebaseAuth get _authInstance => _auth ?? FirebaseAuth.instance;
+  GoogleSignIn get _googleSignInInstance => _googleSignIn ?? GoogleSignIn();
 
   @override
   Stream<String?> get authStateChanges => 
-      _auth.authStateChanges().map((user) => user?.uid);
+      _authInstance.authStateChanges().map((user) => user?.uid);
 
   @override
   Future<String?> signInWithEmail(String email, String password) async {
-    final userCredential = await _auth.signInWithEmailAndPassword(
+    final userCredential = await _authInstance.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -26,7 +32,7 @@ class FirebaseAuthService implements AuthService {
 
   @override
   Future<String?> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAccount? googleUser = await _googleSignInInstance.signIn();
     if (googleUser == null) return null;
 
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -35,7 +41,7 @@ class FirebaseAuthService implements AuthService {
       idToken: googleAuth.idToken,
     );
 
-    final userCredential = await _auth.signInWithCredential(credential);
+    final userCredential = await _authInstance.signInWithCredential(credential);
     return userCredential.user?.uid;
   }
 
@@ -53,19 +59,19 @@ class FirebaseAuthService implements AuthService {
       accessToken: appleCredential.authorizationCode,
     );
 
-    final userCredential = await _auth.signInWithCredential(credential);
+    final userCredential = await _authInstance.signInWithCredential(credential);
     return userCredential.user?.uid;
   }
 
   @override
   Future<String?> signInAnonymously() async {
-    final userCredential = await _auth.signInAnonymously();
+    final userCredential = await _authInstance.signInAnonymously();
     return userCredential.user?.uid;
   }
 
   @override
   Future<String?> signUpWithEmail(String email, String password) async {
-    final userCredential = await _auth.createUserWithEmailAndPassword(
+    final userCredential = await _authInstance.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -75,24 +81,24 @@ class FirebaseAuthService implements AuthService {
   @override
   Future<void> signOut() async {
     await Future.wait([
-      _auth.signOut(),
-      _googleSignIn.signOut(),
+      _authInstance.signOut(),
+      _googleSignInInstance.signOut(),
     ]);
   }
 
   @override
   Future<void> reload() async {
-    await _auth.currentUser?.reload();
+    await _authInstance.currentUser?.reload();
   }
 
   @override
   Future<void> deleteAccount() async {
-    await _auth.currentUser?.delete();
+    await _authInstance.currentUser?.delete();
   }
 
   @override
   Future<void> reauthenticate(String email, String password) async {
-    final user = _auth.currentUser;
+    final user = _authInstance.currentUser;
     if (user != null && user.email != null) {
       final credential = EmailAuthProvider.credential(email: email, password: password);
       await user.reauthenticateWithCredential(credential);
@@ -101,20 +107,20 @@ class FirebaseAuthService implements AuthService {
 
   @override
   Future<void> sendPasswordResetEmail(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
+    await _authInstance.sendPasswordResetEmail(email: email);
   }
 
   @override
   Future<void> sendEmailVerification() async {
-    await _auth.currentUser?.sendEmailVerification();
+    await _authInstance.currentUser?.sendEmailVerification();
   }
 
   @override
-  String? get currentUserId => _auth.currentUser?.uid;
+  String? get currentUserId => _authInstance.currentUser?.uid;
 
   @override
   HFUser? get currentUser {
-    final user = _auth.currentUser;
+    final user = _authInstance.currentUser;
     if (user == null) return null;
     return HFUser(
       uid: user.uid,
@@ -126,5 +132,5 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  bool get isLoggedIn => _auth.currentUser != null;
+  bool get isLoggedIn => _authInstance.currentUser != null;
 }

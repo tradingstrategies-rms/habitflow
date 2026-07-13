@@ -104,10 +104,17 @@ class HFButton extends StatelessWidget {
     );
 
     Widget child = isLoading
-        ? const SizedBox(
+        ? SizedBox(
             height: 20,
             width: 20,
-            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+            child: CircularProgressIndicator(
+              strokeWidth: 2, 
+              valueColor: AlwaysStoppedAnimation<Color>(
+                variant == HFButtonVariant.secondary || variant == HFButtonVariant.text
+                    ? theme.colorScheme.primary
+                    : theme.colorScheme.onPrimary,
+              ),
+            ),
           )
         : Row(
             mainAxisSize: MainAxisSize.min,

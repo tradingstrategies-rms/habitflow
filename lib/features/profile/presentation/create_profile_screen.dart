@@ -58,6 +58,11 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
     final uid = authState.value;
     if (uid == null) return;
 
+    if (_firstNameController.text.isEmpty || _displayNameController.text.isEmpty) {
+      HFFeedback.showSnackBar(context, 'Please fill in all required fields', isError: true);
+      return;
+    }
+
     final profile = UserProfile(
       uid: uid,
       firstName: _firstNameController.text,
@@ -82,6 +87,14 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
     final theme = Theme.of(context);
     final profileState = ref.watch(profileControllerProvider);
 
+    ref.listen(profileControllerProvider, (previous, next) {
+      next.whenOrNull(
+        error: (error, stack) {
+          HFFeedback.showSnackBar(context, error.toString(), isError: true);
+        },
+      );
+    });
+
     return HFLoadingOverlay(
       isLoading: profileState.isLoading,
       child: Scaffold(
@@ -90,7 +103,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
           centerTitle: true,
           leading: HFIconButton(
             icon: Icons.arrow_back_rounded,
-            onPressed: () => context.pop(),
+            onPressed: profileState.isLoading ? null : () => context.pop(),
           ),
         ),
         body: SingleChildScrollView(
@@ -99,7 +112,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
             children: [
               // Avatar Section
               GestureDetector(
-                onTap: () async {
+                onTap: profileState.isLoading ? null : () async {
                   final newUrl = await context.pushNamed(RouteNames.avatarSelection);
                   if (newUrl != null && newUrl is String) {
                     setState(() => _photoUrl = newUrl);
@@ -144,7 +157,9 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               // Form
               FamilyRoleSelector(
                 selectedRole: _selectedRole,
-                onRoleChanged: (role) => setState(() => _selectedRole = role),
+                onRoleChanged: profileState.isLoading 
+                    ? (_) {} 
+                    : (role) => setState(() => _selectedRole = role),
               ),
               const SizedBox(height: 24),
               Row(
@@ -155,6 +170,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                       label: 'FIRST NAME',
                       hintText: 'First name',
                       textInputAction: TextInputAction.next,
+                      enabled: !profileState.isLoading,
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -164,6 +180,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                       label: 'LAST NAME',
                       hintText: 'Last name',
                       textInputAction: TextInputAction.next,
+                      enabled: !profileState.isLoading,
                     ),
                   ),
                 ],
@@ -175,16 +192,18 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                 hintText: 'How should we call you?',
                 prefixIcon: const Icon(Icons.alternate_email_rounded),
                 textInputAction: TextInputAction.next,
+                enabled: !profileState.isLoading,
               ),
               const SizedBox(height: 24),
               GestureDetector(
-                onTap: _selectBirthday,
+                onTap: profileState.isLoading ? null : _selectBirthday,
                 child: AbsorbPointer(
                   child: HFTextField(
                     controller: _birthdayController,
                     label: 'DATE OF BIRTH',
                     hintText: 'Select date',
                     prefixIcon: const Icon(Icons.calendar_today_rounded),
+                    enabled: !profileState.isLoading,
                   ),
                 ),
               ),
@@ -196,6 +215,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               HFButton(
                 label: 'Continue',
                 onPressed: _saveProfile,
+                isLoading: profileState.isLoading,
               ),
               const SizedBox(height: 48),
             ],

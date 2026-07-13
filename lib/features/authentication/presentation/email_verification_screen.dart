@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
+import 'package:habitflow/features/authentication/domain/auth_failures.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/otp_input.dart';
@@ -31,7 +32,8 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
     ref.listen(authControllerProvider, (previous, next) {
       next.whenOrNull(
         error: (error, stack) {
-          HFFeedback.showSnackBar(context, error.toString(), isError: true);
+          final message = error is AuthFailure ? error.message : error.toString();
+          HFFeedback.showSnackBar(context, message, isError: true);
         },
       );
     });
@@ -44,7 +46,7 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
           centerTitle: true,
           leading: HFIconButton(
             icon: Icons.arrow_back_rounded,
-            onPressed: () => context.pop(),
+            onPressed: authState.isLoading ? null : () => context.pop(),
           ),
         ),
         body: Column(
@@ -103,9 +105,10 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
                   const SizedBox(height: 32),
                   HFButton(
                     label: 'Verify',
-                    onPressed: () {
+                    onPressed: authState.isLoading ? null : () {
                       // TODO: Perform verification
                     },
+                    isLoading: authState.isLoading,
                     icon: Icons.check_circle_rounded,
                   ),
                   const SizedBox(height: 32),
@@ -117,7 +120,7 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
                     ),
                   ),
                   TextButton.icon(
-                    onPressed: _resendCode,
+                    onPressed: authState.isLoading ? null : _resendCode,
                     icon: const Icon(Icons.refresh_rounded, size: 18),
                     label: const Text('Resend Code'),
                   ),

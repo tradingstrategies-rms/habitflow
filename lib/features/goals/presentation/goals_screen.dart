@@ -6,13 +6,17 @@ class GoalsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: const HFTopAppBar(title: 'Goals'),
       body: Center(
-        child: HFGoalCard(
-          title: 'Reading',
-          currentValue: 10,
-          targetValue: 20,
-          unit: 'Books',
+        child: HFEmptyState(
+          title: 'No Goals',
+          message: 'Define what you want to achieve with your family.',
+          icon: Icons.flag_outlined,
+          actionLabel: 'Create Goal',
+          onActionPressed: () {
+            // TODO: Navigate to Create Goal screen in Sprint 2
+          },
         ),
       ),
     );

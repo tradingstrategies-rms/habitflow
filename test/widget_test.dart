@@ -7,8 +7,6 @@ import 'package:habitflow/core/theme/theme_controller.dart';
 import 'package:habitflow/core/providers/core_providers.dart';
 import 'package:habitflow/core/services/auth/auth_service.dart';
 import 'package:habitflow/core/services/database/database_service.dart';
-import 'package:habitflow/features/authentication/data/auth_providers.dart';
-import 'package:habitflow/features/profile/data/profile_providers.dart';
 
 void main() {
   testWidgets('App navigation and branding smoke test', (WidgetTester tester) async {

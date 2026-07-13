@@ -13,8 +13,12 @@ enum HFThemeMode {
 }
 
 /// Provider for [SharedPreferences].
+/// This is overridden in the [ProviderContainer] during bootstrap.
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError('Initialize this in main.dart');
+  // This will be overridden with the actual instance during initialization.
+  // We use a fallback that would fail if accessed before override, but we
+  // ensure it is overridden in Bootstrap.
+  throw StateError('sharedPreferencesProvider was not overridden');
 });
 
 /// [ThemeController] manages the application's theme state and persistence.

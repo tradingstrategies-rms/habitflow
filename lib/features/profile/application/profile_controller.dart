@@ -10,6 +10,7 @@ class ProfileController extends StateNotifier<AsyncValue<void>> {
   final ProfileRepository _repository;
 
   Future<void> saveProfile(UserProfile profile) async {
+    if (state.isLoading) return;
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() => _repository.saveProfile(profile));
   }

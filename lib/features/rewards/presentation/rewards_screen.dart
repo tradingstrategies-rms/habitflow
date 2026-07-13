@@ -6,12 +6,17 @@ class RewardsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: const HFTopAppBar(title: 'Rewards'),
       body: Center(
-        child: HFRewardCard(
-          title: 'Movie Ticket',
-          cost: 100,
-          isLocked: false,
+        child: HFEmptyState(
+          title: 'No Rewards',
+          message: 'Set up rewards to motivate your family members.',
+          icon: Icons.card_giftcard_outlined,
+          actionLabel: 'Add Reward',
+          onActionPressed: () {
+            // TODO: Navigate to Add Reward screen in Sprint 2
+          },
         ),
       ),
     );

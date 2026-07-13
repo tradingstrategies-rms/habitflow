@@ -19,13 +19,9 @@ class StartupTasks {
 
   /// Initializes Firebase Core using [DefaultFirebaseOptions].
   static Future<void> initFirebase() async {
-    try {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-    } catch (e) {
-      // Handle initialization error
-    }
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
 
   /// Placeholder for Notification initialization.

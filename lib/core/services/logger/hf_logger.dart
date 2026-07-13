@@ -6,13 +6,16 @@ import 'package:habitflow/core/services/crash_reporting/crash_reporting_service.
 /// [HFLogger] is the centralized logging service for HabitFlow.
 class HFLogger {
   HFLogger({
-    AnalyticsService? analytics,
-    CrashReportingService? crashReporting,
-  })  : _analytics = analytics,
-        _crashReporting = crashReporting;
+    AnalyticsService Function()? analytics,
+    CrashReportingService Function()? crashReporting,
+  })  : _analyticsGetter = analytics,
+        _crashReportingGetter = crashReporting;
 
-  final AnalyticsService? _analytics;
-  final CrashReportingService? _crashReporting;
+  final AnalyticsService Function()? _analyticsGetter;
+  final CrashReportingService Function()? _crashReportingGetter;
+
+  AnalyticsService? get _analytics => _analyticsGetter?.call();
+  CrashReportingService? get _crashReporting => _crashReportingGetter?.call();
 
   /// Logs a debug message.
   void debug(String message, [Object? error, StackTrace? stackTrace]) {

@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_initializing_formals
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 /// [NotificationService] defines the interface for local and push notifications.
@@ -54,9 +55,12 @@ class NoOpNotificationService implements NotificationService {
 
 /// [FirebaseNotificationService] handles push notifications via Firebase Messaging.
 class FirebaseNotificationService implements NotificationService {
-  FirebaseNotificationService({FirebaseMessaging? messaging}) : _messaging = messaging ?? FirebaseMessaging.instance;
+  FirebaseNotificationService({FirebaseMessaging? messaging}) : _messaging = messaging;
 
-  final FirebaseMessaging _messaging;
+  final FirebaseMessaging? _messaging;
+  
+  /// Lazily obtains the [FirebaseMessaging] instance.
+  FirebaseMessaging get _instance => _messaging ?? FirebaseMessaging.instance;
 
   @override
   Future<void> initialize() async {
@@ -87,12 +91,12 @@ class FirebaseNotificationService implements NotificationService {
 
   @override
   Future<bool> requestPermission() async {
-    final settings = await _messaging.requestPermission();
+    final settings = await _instance.requestPermission();
     return settings.authorizationStatus == AuthorizationStatus.authorized;
   }
 
   @override
   Future<String?> getToken() async {
-    return await _messaging.getToken();
+    return await _instance.getToken();
   }
 }
