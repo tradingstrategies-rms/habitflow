@@ -3,12 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/router/route_paths.dart';
-import 'package:habitflow/core/router/route_guards.dart';
+import 'package:habitflow/features/authentication/data/auth_providers.dart';
+import 'package:habitflow/features/authentication/application/auth_controller.dart';
+import 'package:habitflow/features/profile/data/profile_providers.dart';
+import 'package:habitflow/features/splash/presentation/splash_providers.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 
 // Modular Routes
 import 'routes/splash_routes.dart';
 import 'routes/auth_routes.dart';
+import 'routes/profile_routes.dart';
 
 // Feature Screens
 import 'package:habitflow/features/dashboard/presentation/dashboard_screen.dart';
@@ -22,7 +26,20 @@ import 'package:habitflow/features/settings/presentation/settings_screen.dart';
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
+/// A list of routes that are accessible without authentication.
+final _authRoutes = [
+  RoutePaths.welcome,
+  RoutePaths.login,
+  RoutePaths.register,
+  RoutePaths.forgotPassword,
+  RoutePaths.emailVerification,
+];
+
 final routerProvider = Provider<GoRouter>((ref) {
+  final authState = ref.watch(authStateProvider);
+  final profileState = ref.watch(userProfileProvider);
+  final isSplashTimeReached = ref.watch(splashMinTimeReachedProvider);
+
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: RoutePaths.splash,
@@ -30,6 +47,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       ...splashRoutes,
       ...authRoutes,
+      ...profileRoutes,
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
@@ -76,11 +94,64 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const SettingsScreen(),
       ),
     ],
-    redirect: AuthGuard.redirect,
+    redirect: (context, state) {
+      final bool onSplash = state.uri.path == RoutePaths.splash;
+
+      // 1. If we are on Splash, wait for minimum branding time AND initial auth load
+      if (onSplash) {
+        if (!isSplashTimeReached || authState.isLoading) {
+          return null;
+        }
+      }
+
+      final bool isAuthenticated = authState.value != null;
+      final bool isAuthRoute = _authRoutes.contains(state.uri.path);
+
+      // 2. Handle Unauthenticated Users
+      if (!isAuthenticated) {
+        // If not authenticated and trying to access a private route, redirect to Welcome
+        if (!isAuthRoute && !onSplash) {
+          return RoutePaths.welcome;
+        }
+        
+        // If we just finished splash and not authenticated -> Welcome
+        if (onSplash && isSplashTimeReached && !authState.isLoading) {
+          return RoutePaths.welcome;
+        }
+        
+        return null; // Stay on welcome/login/register
+      }
+
+      // 3. Handle Authenticated Users
+      
+      // If we are still loading profile, wait (e.g. if we just logged in)
+      if (profileState.isLoading) {
+        return null;
+      }
+
+      final bool hasProfile = profileState.value != null;
+      final bool isCreatingProfile = state.uri.path == RoutePaths.createProfile || 
+                                   state.uri.path == RoutePaths.avatarSelection;
+
+      // Force profile completion if missing
+      if (!hasProfile) {
+        if (!isCreatingProfile) {
+          return RoutePaths.createProfile;
+        }
+        return null; // Already on profile creation
+      }
+
+      // If user has profile but is on an auth or onboarding route, send to Dashboard
+      if (isAuthRoute || isCreatingProfile || onSplash) {
+        return RoutePaths.dashboard;
+      }
+
+      return null;
+    },
   );
 });
 
-class AppShell extends StatelessWidget {
+class AppShell extends ConsumerWidget {
   const AppShell({super.key, required this.child});
   final Widget child;
 
@@ -114,16 +185,18 @@ class AppShell extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: HFTopAppBar(
         title: 'HabitFlow',
         actions: [
           HFIconButton(
+            icon: Icons.logout_rounded,
+            onPressed: () => ref.read(authControllerProvider.notifier).logout(),
+          ),
+          HFIconButton(
             icon: Icons.person_outline_rounded,
-            onPressed: () {
-              // TODO: Navigate to Profile
-            },
+            onPressed: () => context.pushNamed(RouteNames.editProfile),
           ),
           HFIconButton(
             icon: Icons.settings_outlined,

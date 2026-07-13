@@ -25,6 +25,15 @@ abstract class AuthService {
   /// Signs in with email and password.
   Future<String?> signInWithEmail(String email, String password);
 
+  /// Signs in with Google.
+  Future<String?> signInWithGoogle();
+
+  /// Signs in with Apple.
+  Future<String?> signInWithApple();
+
+  /// Signs in anonymously.
+  Future<String?> signInAnonymously();
+
   /// Signs up with email and password.
   Future<String?> signUpWithEmail(String email, String password);
 
@@ -39,6 +48,9 @@ abstract class AuthService {
 
   /// Reauthenticates the user with email and password.
   Future<void> reauthenticate(String email, String password);
+
+  /// Sends a password reset email.
+  Future<void> sendPasswordResetEmail(String email);
 
   /// Sends an email verification to the current user.
   Future<void> sendEmailVerification();
@@ -62,6 +74,15 @@ class NoOpAuthService implements AuthService {
   Future<String?> signInWithEmail(String email, String password) async => null;
 
   @override
+  Future<String?> signInWithGoogle() async => null;
+
+  @override
+  Future<String?> signInWithApple() async => null;
+
+  @override
+  Future<String?> signInAnonymously() async => null;
+
+  @override
   Future<String?> signUpWithEmail(String email, String password) async => null;
 
   @override
@@ -75,6 +96,9 @@ class NoOpAuthService implements AuthService {
 
   @override
   Future<void> reauthenticate(String email, String password) async {}
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {}
 
   @override
   Future<void> sendEmailVerification() async {}

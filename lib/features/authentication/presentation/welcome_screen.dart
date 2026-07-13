@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
+import 'package:habitflow/features/authentication/application/auth_controller.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'widgets/auth_scaffold.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends ConsumerWidget {
   const WelcomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     // Placeholder for loading state
-    const bool isLoading = false;
+    final authState = ref.watch(authControllerProvider);
 
     return HFLoadingOverlay(
-      isLoading: isLoading,
+      isLoading: authState.isLoading,
       child: AuthScaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -104,18 +108,20 @@ class WelcomeScreen extends StatelessWidget {
             // Action Cluster
             HFButton(
               label: 'Get Started',
-              onPressed: () {
-                // TODO: Navigate to Register
-              },
+              onPressed: () => context.pushNamed(RouteNames.register),
               icon: Icons.arrow_forward_rounded,
             ),
             const SizedBox(height: 16),
             HFButton(
               label: 'Login',
-              onPressed: () {
-                // TODO: Navigate to Login
-              },
+              onPressed: () => context.pushNamed(RouteNames.login),
               variant: HFButtonVariant.secondary,
+            ),
+            const SizedBox(height: 16),
+            HFButton(
+              label: 'Continue as Guest',
+              onPressed: () => ref.read(authControllerProvider.notifier).loginAnonymously(),
+              variant: HFButtonVariant.text,
             ),
           ],
         ),

@@ -21,9 +21,11 @@
         "flutter_riverpod",
         "go_router",
         "google_fonts",
+        "google_sign_in",
         "intl",
         "path_provider",
         "shared_preferences",
+        "sign_in_with_apple",
         "uuid"
       ],
       "devDependencies": [
@@ -155,6 +157,17 @@
         "path_provider_linux",
         "path_provider_platform_interface",
         "path_provider_windows"
+      ]
+    },
+    {
+      "name": "firebase_remote_config",
+      "version": "5.5.0",
+      "dependencies": [
+        "firebase_core",
+        "firebase_core_platform_interface",
+        "firebase_remote_config_platform_interface",
+        "firebase_remote_config_web",
+        "flutter"
       ]
     },
     {
@@ -799,11 +812,22 @@
       ]
     },
     {
-      "name": "firebase_crashlytics_platform_interface",
-      "version": "3.8.10",
+      "name": "firebase_remote_config_web",
+      "version": "1.8.9",
       "dependencies": [
         "_flutterfire_internals",
-        "collection",
+        "firebase_core",
+        "firebase_core_web",
+        "firebase_remote_config_platform_interface",
+        "flutter",
+        "flutter_web_plugins"
+      ]
+    },
+    {
+      "name": "firebase_remote_config_platform_interface",
+      "version": "2.0.0",
+      "dependencies": [
+        "_flutterfire_internals",
         "firebase_core",
         "flutter",
         "meta",
@@ -817,6 +841,18 @@
         "collection",
         "flutter",
         "flutter_test",
+        "meta",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "firebase_crashlytics_platform_interface",
+      "version": "3.8.10",
+      "dependencies": [
+        "_flutterfire_internals",
+        "collection",
+        "firebase_core",
+        "flutter",
         "meta",
         "plugin_platform_interface"
       ]
@@ -1237,37 +1273,86 @@
       ]
     },
     {
-      "name": "firebase_remote_config",
-      "version": "5.5.0",
+      "name": "google_sign_in",
+      "version": "6.3.0",
       "dependencies": [
-        "firebase_core",
-        "firebase_core_platform_interface",
-        "firebase_remote_config_platform_interface",
-        "firebase_remote_config_web",
-        "flutter"
+        "flutter",
+        "google_sign_in_android",
+        "google_sign_in_ios",
+        "google_sign_in_platform_interface",
+        "google_sign_in_web"
       ]
     },
     {
-      "name": "firebase_remote_config_platform_interface",
-      "version": "2.0.0",
+      "name": "google_sign_in_web",
+      "version": "0.12.4+4",
       "dependencies": [
-        "_flutterfire_internals",
-        "firebase_core",
+        "flutter",
+        "flutter_web_plugins",
+        "google_identity_services_web",
+        "google_sign_in_platform_interface",
+        "http",
+        "web"
+      ]
+    },
+    {
+      "name": "google_sign_in_platform_interface",
+      "version": "2.5.0",
+      "dependencies": [
+        "flutter",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "google_sign_in_ios",
+      "version": "5.9.0",
+      "dependencies": [
+        "flutter",
+        "google_sign_in_platform_interface"
+      ]
+    },
+    {
+      "name": "google_sign_in_android",
+      "version": "6.2.1",
+      "dependencies": [
+        "flutter",
+        "google_sign_in_platform_interface"
+      ]
+    },
+    {
+      "name": "sign_in_with_apple",
+      "version": "6.1.4",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "sign_in_with_apple_platform_interface",
+        "sign_in_with_apple_web"
+      ]
+    },
+    {
+      "name": "sign_in_with_apple_web",
+      "version": "2.1.1",
+      "dependencies": [
+        "flutter",
+        "flutter_web_plugins",
+        "sign_in_with_apple_platform_interface"
+      ]
+    },
+    {
+      "name": "sign_in_with_apple_platform_interface",
+      "version": "1.1.0",
+      "dependencies": [
         "flutter",
         "meta",
         "plugin_platform_interface"
       ]
     },
     {
-      "name": "firebase_remote_config_web",
-      "version": "1.8.9",
+      "name": "google_identity_services_web",
+      "version": "0.3.3+1",
       "dependencies": [
-        "_flutterfire_internals",
-        "firebase_core",
-        "firebase_core_web",
-        "firebase_remote_config_platform_interface",
-        "flutter",
-        "flutter_web_plugins"
+        "meta",
+        "web"
       ]
     }
   ],

@@ -13,4 +13,7 @@ class RouteNames {
   static const String family = 'family';
   static const String analytics = 'analytics';
   static const String settings = 'settings';
+  static const String createProfile = 'createProfile';
+  static const String editProfile = 'editProfile';
+  static const String avatarSelection = 'avatarSelection';
 }

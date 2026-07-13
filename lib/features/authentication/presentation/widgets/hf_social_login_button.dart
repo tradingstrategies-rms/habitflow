@@ -8,11 +8,13 @@ class HFSocialLoginButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.isLoading = false,
+    this.icon = Icons.g_mobiledata_rounded,
   });
 
   final String label;
   final VoidCallback onPressed;
   final bool isLoading;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,7 @@ class HFSocialLoginButton extends StatelessWidget {
       onPressed: onPressed,
       variant: HFButtonVariant.secondary,
       isLoading: isLoading,
-      // Using a generic placeholder for Google icon since we don't have the SVG yet
-      icon: Icons.g_mobiledata_rounded, 
+      icon: icon,
     );
   }
 }

@@ -1,4 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:habitflow/core/services/logger/hf_logger.dart';
 import 'package:habitflow/core/services/storage/storage_service.dart';
@@ -36,37 +44,40 @@ final storageProvider = Provider<StorageService>((ref) {
 
 /// Provider for [AuthService].
 final authServiceProvider = Provider<AuthService>((ref) {
-  return FirebaseAuthService();
+  return FirebaseAuthService(FirebaseAuth.instance, GoogleSignIn());
 });
 
 /// Provider for [DatabaseService].
 final databaseServiceProvider = Provider<DatabaseService>((ref) {
-  return FirestoreService();
+  final firestore = FirebaseFirestore.instance;
+  // Enable offline persistence
+  firestore.settings = const Settings(persistenceEnabled: true);
+  return FirestoreService(firestore: firestore);
 });
 
 /// Provider for [CloudStorageService].
 final cloudStorageServiceProvider = Provider<CloudStorageService>((ref) {
-  return FirebaseStorageService();
+  return FirebaseStorageService(storage: FirebaseStorage.instance);
 });
 
 /// Provider for [AnalyticsService].
 final analyticsServiceProvider = Provider<AnalyticsService>((ref) {
-  return FirebaseAnalyticsService();
+  return FirebaseAnalyticsService(analytics: FirebaseAnalytics.instance);
 });
 
 /// Provider for [CrashReportingService].
 final crashReportingServiceProvider = Provider<CrashReportingService>((ref) {
-  return FirebaseCrashReportingService();
+  return FirebaseCrashReportingService(crashlytics: FirebaseCrashlytics.instance);
 });
 
 /// Provider for [NotificationService].
 final notificationServiceProvider = Provider<NotificationService>((ref) {
-  return FirebaseNotificationService();
+  return FirebaseNotificationService(messaging: FirebaseMessaging.instance);
 });
 
 /// Provider for [RemoteConfigService].
 final remoteConfigServiceProvider = Provider<RemoteConfigService>((ref) {
-  return FirebaseRemoteConfigService();
+  return FirebaseRemoteConfigService(remoteConfig: FirebaseRemoteConfig.instance);
 });
 
 /// Provider for [ConnectivityService].

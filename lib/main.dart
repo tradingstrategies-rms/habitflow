@@ -4,7 +4,8 @@ import 'package:habitflow/app/habit_flow_app.dart';
 import 'package:habitflow/core/bootstrap/bootstrap.dart';
 
 void main() async {
-  // Centralized app initialization
+  WidgetsFlutterBinding.ensureInitialized();
+
   final container = await Bootstrap.initialize();
 
   runApp(

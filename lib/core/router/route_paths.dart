@@ -13,4 +13,7 @@ class RoutePaths {
   static const String family = '/family';
   static const String analytics = '/analytics';
   static const String settings = '/settings';
+  static const String createProfile = '/create-profile';
+  static const String editProfile = '/edit-profile';
+  static const String avatarSelection = '/avatar-selection';
 }
