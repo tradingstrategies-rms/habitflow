@@ -26,6 +26,7 @@ class HFTextField extends StatelessWidget {
     this.maxLines = 1,
     this.maxLength,
     this.onTap,
+    this.validator,
   });
 
   final TextEditingController? controller;
@@ -46,6 +47,7 @@ class HFTextField extends StatelessWidget {
   final int? maxLines;
   final int? maxLength;
   final VoidCallback? onTap;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,7 @@ class HFTextField extends StatelessWidget {
             ),
             const SizedBox(height: HFSpacing.s),
           ],
-          TextField(
+          TextFormField(
             controller: controller,
             obscureText: obscureText,
             keyboardType: keyboardType,
@@ -80,10 +82,11 @@ class HFTextField extends StatelessWidget {
             autofocus: autofocus,
             enabled: enabled,
             onChanged: onChanged,
-            onSubmitted: onSubmitted,
+            onFieldSubmitted: onSubmitted,
             onTap: onTap,
             maxLines: maxLines,
             maxLength: maxLength,
+            validator: validator,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: enabled ? null : theme.colorScheme.onSurface.withAlpha(HFOpacity.alpha40),
             ),

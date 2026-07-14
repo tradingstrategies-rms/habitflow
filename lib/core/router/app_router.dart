@@ -23,10 +23,13 @@ import 'package:habitflow/features/family/presentation/family_screen.dart';
 import 'package:habitflow/features/analytics/presentation/analytics_screen.dart';
 import 'package:habitflow/features/settings/presentation/settings_screen.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+final GlobalKey<NavigatorState> _rootNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'root');
 
-/// A list of routes that are accessible without authentication.
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shell');
+
+/// Routes accessible without authentication.
 final _authRoutes = [
   RoutePaths.welcome,
   RoutePaths.login,
@@ -35,8 +38,7 @@ final _authRoutes = [
   RoutePaths.emailVerification,
 ];
 
-/// [RouterRefreshNotifier] listens to authentication and profile changes
-/// to trigger GoRouter redirects without recreating the GoRouter instance.
+/// Refreshes router when auth/profile/splash state changes.
 class RouterRefreshNotifier extends ChangeNotifier {
   RouterRefreshNotifier(Ref ref) {
     ref.listen(authStateProvider, (_, __) => notifyListeners());
@@ -45,7 +47,8 @@ class RouterRefreshNotifier extends ChangeNotifier {
   }
 }
 
-final routerRefreshNotifierProvider = Provider((ref) => RouterRefreshNotifier(ref));
+final routerRefreshNotifierProvider =
+    Provider((ref) => RouterRefreshNotifier(ref));
 
 final routerProvider = Provider<GoRouter>((ref) {
   final refreshNotifier = ref.watch(routerRefreshNotifierProvider);
@@ -55,10 +58,12 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: RoutePaths.splash,
     refreshListenable: refreshNotifier,
     debugLogDiagnostics: true,
+
     routes: [
       ...splashRoutes,
       ...authRoutes,
       ...profileRoutes,
+
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
@@ -68,36 +73,43 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: RoutePaths.dashboard,
             name: RouteNames.dashboard,
-            pageBuilder: (context, state) => const NoTransitionPage(child: DashboardScreen()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: DashboardScreen()),
           ),
           GoRoute(
             path: RoutePaths.habits,
             name: RouteNames.habits,
-            pageBuilder: (context, state) => const NoTransitionPage(child: HabitsScreen()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: HabitsScreen()),
           ),
           GoRoute(
             path: RoutePaths.goals,
             name: RouteNames.goals,
-            pageBuilder: (context, state) => const NoTransitionPage(child: GoalsScreen()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: GoalsScreen()),
           ),
           GoRoute(
             path: RoutePaths.rewards,
             name: RouteNames.rewards,
-            pageBuilder: (context, state) => const NoTransitionPage(child: RewardsScreen()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: RewardsScreen()),
           ),
           GoRoute(
             path: RoutePaths.family,
             name: RouteNames.family,
-            pageBuilder: (context, state) => const NoTransitionPage(child: FamilyScreen()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: FamilyScreen()),
           ),
         ],
       ),
+
       GoRoute(
         path: RoutePaths.analytics,
         name: RouteNames.analytics,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const AnalyticsScreen(),
       ),
+
       GoRoute(
         path: RoutePaths.settings,
         name: RouteNames.settings,
@@ -105,125 +117,227 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const SettingsScreen(),
       ),
     ],
+
+
     redirect: (context, state) {
       final authState = ref.read(authStateProvider);
       final profileState = ref.read(userProfileProvider);
-      final isSplashTimeReached = ref.read(splashMinTimeReachedProvider);
+      final isSplashTimeReached =
+          ref.read(splashMinTimeReachedProvider);
 
-      final bool onSplash = state.uri.path == RoutePaths.splash;
+      final bool onSplash =
+          state.uri.path == RoutePaths.splash;
 
-      // 1. If we are on Splash, wait for minimum branding time AND initial auth load
+
+      // 1. Splash handling
       if (onSplash) {
         if (!isSplashTimeReached || authState.isLoading) {
           return null;
         }
       }
 
-      final bool isAuthenticated = authState.value != null;
-      final bool isAuthRoute = _authRoutes.contains(state.uri.path);
 
-      // 2. Handle Unauthenticated Users
+      final bool isAuthenticated =
+          authState.value != null;
+
+      final bool isAuthRoute =
+          _authRoutes.contains(state.uri.path);
+
+
+
+      // 2. Unauthenticated users
       if (!isAuthenticated) {
-        // If not authenticated and trying to access a private route, redirect to Welcome
+
         if (!isAuthRoute && !onSplash) {
           return RoutePaths.welcome;
         }
-        
-        // If we just finished splash and not authenticated -> Welcome
-        if (onSplash && isSplashTimeReached && !authState.isLoading) {
+
+        if (onSplash &&
+            isSplashTimeReached &&
+            !authState.isLoading) {
           return RoutePaths.welcome;
         }
-        
-        return null; // Stay on welcome/login/register
+
+        return null;
       }
 
-      // 3. Handle Authenticated Users
-      
-      // If we are still loading profile, wait (e.g. if we just logged in)
+
+
+      // 3. Authenticated users
+
+      // Wait for profile loading
       if (profileState.isLoading) {
         return null;
       }
 
-      final bool hasProfile = profileState.value != null;
-      final bool isCreatingProfile = state.uri.path == RoutePaths.createProfile || 
-                                   state.uri.path == RoutePaths.avatarSelection;
 
-      // Force profile completion if missing
+      final bool hasProfile =
+          profileState.value != null;
+
+
+      // IMPORTANT:
+      // AvatarSelection is NOT considered onboarding anymore.
+      // It is also used from Edit Profile flow.
+      final bool isCreatingProfile =
+          state.uri.path == RoutePaths.createProfile;
+
+      final bool isAvatarSelection =
+          state.uri.path == RoutePaths.avatarSelection;
+
+
+
+      // 4. User has no profile
+      // Force profile creation flow
       if (!hasProfile) {
-        if (!isCreatingProfile) {
+
+        if (!isCreatingProfile &&
+            !isAvatarSelection) {
           return RoutePaths.createProfile;
         }
-        return null; // Already on profile creation
+
+        return null;
       }
 
-      // If user has profile but is on an auth or onboarding route, send to Dashboard
-      if (isAuthRoute || isCreatingProfile || onSplash) {
+
+
+      // 5. Existing user
+      // Do not redirect AvatarSelection.
+      // It is a valid profile editing route.
+      if (isAuthRoute ||
+          isCreatingProfile ||
+          onSplash) {
         return RoutePaths.dashboard;
       }
+
 
       return null;
     },
   );
 });
 
+
 class AppShell extends ConsumerWidget {
-  const AppShell({super.key, required this.child});
+
+  const AppShell({
+    super.key,
+    required this.child,
+  });
+
   final Widget child;
 
+
+
   int _getCurrentIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).uri.path;
-    if (location.startsWith(RoutePaths.habits)) return 1;
-    if (location.startsWith(RoutePaths.goals)) return 2;
-    if (location.startsWith(RoutePaths.rewards)) return 3;
-    if (location.startsWith(RoutePaths.family)) return 4;
+
+    final String location =
+        GoRouterState.of(context).uri.path;
+
+
+    if (location.startsWith(RoutePaths.habits)) {
+      return 1;
+    }
+
+    if (location.startsWith(RoutePaths.goals)) {
+      return 2;
+    }
+
+    if (location.startsWith(RoutePaths.rewards)) {
+      return 3;
+    }
+
+    if (location.startsWith(RoutePaths.family)) {
+      return 4;
+    }
+
     return 0;
   }
 
-  void _onItemTapped(int index, BuildContext context) {
+
+
+  void _onItemTapped(
+      int index,
+      BuildContext context) {
+
     switch (index) {
+
       case 0:
         context.goNamed(RouteNames.dashboard);
         break;
+
       case 1:
         context.goNamed(RouteNames.habits);
         break;
+
       case 2:
         context.goNamed(RouteNames.goals);
         break;
+
       case 3:
         context.goNamed(RouteNames.rewards);
         break;
+
       case 4:
         context.goNamed(RouteNames.family);
         break;
     }
   }
 
+
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(
+      BuildContext context,
+      WidgetRef ref) {
+
     return Scaffold(
+
       appBar: HFTopAppBar(
         title: 'HabitFlow',
+
         actions: [
+
           HFIconButton(
             icon: Icons.logout_rounded,
-            onPressed: () => ref.read(authControllerProvider.notifier).logout(),
+            onPressed: () =>
+                ref
+                .read(authControllerProvider.notifier)
+                .logout(),
           ),
+
+
           HFIconButton(
             icon: Icons.person_outline_rounded,
-            onPressed: () => context.goNamed(RouteNames.editProfile),
+            onPressed: () =>
+                context.pushNamed(
+                    RouteNames.editProfile),
           ),
+
+
           HFIconButton(
             icon: Icons.settings_outlined,
-            onPressed: () => context.pushNamed(RouteNames.settings),
+            onPressed: () =>
+                context.pushNamed(
+                    RouteNames.settings),
           ),
+
         ],
       ),
+
+
       body: child,
-      bottomNavigationBar: HFBottomNavigation(
-        currentIndex: _getCurrentIndex(context),
-        onDestinationSelected: (index) => _onItemTapped(index, context),
-      ),
+
+
+      bottomNavigationBar:
+          HFBottomNavigation(
+            currentIndex:
+                _getCurrentIndex(context),
+
+            onDestinationSelected:
+                (index) =>
+                    _onItemTapped(
+                        index,
+                        context),
+          ),
     );
   }
 }

@@ -13,6 +13,7 @@ class UserProfile {
     required this.timezone,
     required this.familyRole,
     this.photoUrl,
+    this.avatarId,
   });
 
   final String uid;
@@ -25,6 +26,7 @@ class UserProfile {
   final String timezone;
   final FamilyRole familyRole;
   final String? photoUrl;
+  final String? avatarId;
 
   /// Creates a [UserProfile] from a JSON map.
   factory UserProfile.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class UserProfile {
       timezone: json['timezone'] as String? ?? 'UTC',
       familyRole: FamilyRole.fromString(json['familyRole'] as String?),
       photoUrl: json['photoUrl'] as String?,
+      avatarId: json['avatarId'] as String?,
     );
   }
 
@@ -57,6 +60,7 @@ class UserProfile {
       'timezone': timezone,
       'familyRole': familyRole.name,
       'photoUrl': photoUrl,
+      'avatarId': avatarId,
     };
   }
 
@@ -71,6 +75,7 @@ class UserProfile {
     String? timezone,
     FamilyRole? familyRole,
     String? photoUrl,
+    String? avatarId,
   }) {
     return UserProfile(
       uid: uid,
@@ -83,6 +88,7 @@ class UserProfile {
       timezone: timezone ?? this.timezone,
       familyRole: familyRole ?? this.familyRole,
       photoUrl: photoUrl ?? this.photoUrl,
+      avatarId: avatarId ?? this.avatarId,
     );
   }
 }

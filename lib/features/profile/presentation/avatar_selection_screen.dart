@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habitflow/core/router/route_names.dart';
+import 'package:habitflow/core/theme/avatar_theme.dart';
 import 'package:habitflow/core/theme/hf_durations.dart';
-import 'package:habitflow/core/theme/hf_opacity.dart';
+import 'package:habitflow/core/theme/hf_spacing.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
+
+class AvatarItem {
+  final String id;
+  final String url; // Using 'url' for compatibility, stores local path for now
+  final String category;
+  final String? name;
+
+  const AvatarItem({
+    required this.id,
+    required this.url,
+    required this.category,
+    this.name,
+  });
+}
 
 class AvatarSelectionScreen extends StatefulWidget {
   const AvatarSelectionScreen({super.key});
@@ -12,132 +29,182 @@ class AvatarSelectionScreen extends StatefulWidget {
 }
 
 class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
-  String? _selectedAvatarUrl;
+  String? _selectedAvatarId;
+  String _selectedCategory = 'Adults';
 
-  final List<String> _categories = ['Kids', 'Adults', 'Animals', 'Abstract'];
-  String _selectedCategory = 'Kids';
+  final List<String> _categories = ['Adults', 'Kids', 'Pets'];
 
-  final List<String> _avatars = List.generate(12, (index) => 'https://i.pravatar.cc/150?u=$index');
+  late final List<AvatarItem> _avatars;
+
+  @override
+  void initState() {
+    super.initState();
+    _avatars = _loadAvatars();
+  }
+
+  List<AvatarItem> _loadAvatars() {
+    return [
+      const AvatarItem(id: 'male_01', url: 'assets/avatars/adults/male_01.svg', category: 'Adults', name: 'James'),
+      const AvatarItem(id: 'female_01', url: 'assets/avatars/adults/female_01.svg', category: 'Adults', name: 'Sarah'),
+      const AvatarItem(id: 'male_02', url: 'assets/avatars/adults/male_02.svg', category: 'Adults', name: 'Marcus'),
+      const AvatarItem(id: 'female_02', url: 'assets/avatars/adults/female_02.svg', category: 'Adults', name: 'Elena'),
+      const AvatarItem(id: 'male_03', url: 'assets/avatars/adults/male_03.svg', category: 'Adults', name: 'David'),
+      const AvatarItem(id: 'female_03', url: 'assets/avatars/adults/female_03.svg', category: 'Adults', name: 'Aisha'),
+    ];
+  }
+
+  List<AvatarItem> get _filteredAvatars {
+    return _avatars.where((a) => a.category == _selectedCategory).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final avatarTheme = theme.extension<AvatarTheme>() ?? AvatarTheme.organic();
+    final avatars = _filteredAvatars;
 
     return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
       appBar: HFTopAppBar(
-        title: 'Choose Avatar',
+        title: 'Choose Your Avatar',
         centerTitle: true,
         leading: HFIconButton(
           icon: Icons.arrow_back_rounded,
           onPressed: () => context.pop(),
         ),
-        actions: [
-          HFIconButton(
-            icon: Icons.close_rounded,
-            onPressed: () => context.pop(),
-          ),
-        ],
       ),
       body: Column(
         children: [
-          // Category Tabs
+          const SizedBox(height: HFSpacing.m),
+          // Category Chips
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: HFSpacing.l),
             child: Row(
               children: _categories.map((category) {
                 final isSelected = _selectedCategory == category;
+                final isEnabled = category != 'Pets';
+                
                 return Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: HFChip(
-                    label: category,
-                    isSelected: isSelected,
-                    onTap: () => setState(() => _selectedCategory = category),
+                  padding: const EdgeInsets.only(right: HFSpacing.s),
+                  child: Opacity(
+                    opacity: isEnabled ? 1.0 : 0.4,
+                    child: HFChip(
+                      label: category,
+                      isSelected: isSelected,
+                      onTap: isEnabled ? () {
+                        setState(() {
+                          _selectedCategory = category;
+                          _selectedAvatarId = null;
+                        });
+                      } : null,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
                 );
               }).toList(),
             ),
           ),
-          
+
+          const SizedBox(height: HFSpacing.l),
+
           // Avatar Grid
           Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(20),
-              physics: const BouncingScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-              ),
-              itemCount: _avatars.length,
-              itemBuilder: (context, index) {
-                final url = _avatars[index];
-                final isSelected = _selectedAvatarUrl == url;
-
-                return GestureDetector(
-                  onTap: () => setState(() => _selectedAvatarUrl = url),
-                  child: AnimatedContainer(
-                    duration: HFDurations.fast,
-                    curve: Curves.easeInOut,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: isSelected ? theme.colorScheme.primary : Colors.transparent,
-                        width: 3,
-                      ),
-                      boxShadow: isSelected 
-                        ? [BoxShadow(color: theme.colorScheme.primary.withAlpha(HFOpacity.alpha20), blurRadius: 15)] 
-                        : null,
+            child: avatars.isEmpty
+                ? const HFEmptyState(
+                    title: 'Coming Soon',
+                    message: 'More avatars are being designed!',
+                    icon: Icons.auto_awesome_rounded,
+                  )
+                : GridView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: HFSpacing.l),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: HFSpacing.m,
+                      crossAxisSpacing: HFSpacing.m,
+                      childAspectRatio: 1.0,
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(21),
-                      child: Stack(
-                        children: [
-                          Image.network(
-                            url, 
-                            fit: BoxFit.cover,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return const Center(child: HFLoadingIndicator());
-                            },
-                            errorBuilder: (context, error, stackTrace) => const Center(child: Icon(Icons.error_outline_rounded)),
-                          ),
-                          if (isSelected)
-                            Container(
-                              color: theme.colorScheme.primary.withAlpha(HFOpacity.alpha10),
-                              child: Center(
-                                child: Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                    color: theme.colorScheme.primary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(Icons.check, size: 20, color: Colors.white),
-                                ),
+                    itemCount: avatars.length,
+                    itemBuilder: (context, index) {
+                      final avatar = avatars[index];
+                      final isSelected = _selectedAvatarId == avatar.id;
+
+                      return GestureDetector(
+                        onTap: () => setState(() => _selectedAvatarId = avatar.id),
+                        child: AnimatedScale(
+                          scale: isSelected ? 1.05 : 1.0,
+                          duration: HFDurations.fast,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: isSelected ? Colors.transparent : avatarTheme.background,
+                              borderRadius: BorderRadius.circular(avatarTheme.radius),
+                              boxShadow: isSelected ? avatarTheme.shadows : [],
+                              gradient: isSelected ? avatarTheme.primaryGradient : null,
+                              border: Border.all(
+                                color: isSelected ? Colors.transparent : avatarTheme.strokeColor,
+                                width: AvatarSpacing.strokeWidth,
                               ),
                             ),
-                        ],
-                      ),
-                    ),
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(AvatarSpacing.innerPadding),
+                                    child: Hero(
+                                      tag: 'avatar_${avatar.id}',
+                                      child: SvgPicture.asset(
+                                        avatar.url,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                if (isSelected)
+                                  Positioned(
+                                    top: 4,
+                                    right: 4,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(2),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        size: 18,
+                                        color: AvatarColors.forest,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          boxShadow: [BoxShadow(color: Colors.black.withAlpha(HFOpacity.alpha05), blurRadius: 10, offset: const Offset(0, -5))],
-        ),
-        child: SafeArea(
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(HFSpacing.l),
           child: HFButton(
-            label: 'Save Avatar',
-            onPressed: _selectedAvatarUrl != null 
-                ? () => context.pop(_selectedAvatarUrl) 
-                : null,
+            label: _selectedAvatarId != null ? 'Confirm Selection' : 'Skip',
+            onPressed: () {
+              AvatarItem? selected;
+              if (_selectedAvatarId != null) {
+                selected = _avatars.firstWhere((a) => a.id == _selectedAvatarId);
+              }
+
+              final bool isOnboarding = GoRouterState.of(context).extra == 'onboarding';
+
+              if (isOnboarding) {
+                context.goNamed(RouteNames.dashboard);
+              } else {
+                context.pop(selected);
+              }
+            },
           ),
         ),
       ),

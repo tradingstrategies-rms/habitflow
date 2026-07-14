@@ -1,7 +1,9 @@
 /// [FamilyRole] defines the role of a user within a family.
 enum FamilyRole {
   parent('Parent'),
-  child('Child');
+  child('Child'),
+  guardian('Guardian'),
+  other('Other');
 
   const FamilyRole(this.label);
   final String label;

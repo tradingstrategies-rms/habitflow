@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /// [HFAvatar] displays a profile image or user initials.
 /// 
@@ -21,7 +22,7 @@ class HFAvatar extends StatelessWidget {
     this.semanticsLabel,
   });
 
-  /// The URL of the profile image.
+  /// The URL or local path of the profile image.
   final String? imageUrl;
 
   /// Initials to show if the image is missing or fails to load.
@@ -53,16 +54,45 @@ class HFAvatar extends StatelessWidget {
           color: theme.colorScheme.primaryContainer,
         ),
         child: ClipOval(
-          child: imageUrl != null
-              ? Image.network(
-                  imageUrl!,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => _buildInitials(theme),
-                )
-              : _buildInitials(theme),
+          child: _buildImage(theme),
         ),
       ),
     );
+  }
+
+  Widget _buildImage(ThemeData theme) {
+    if (imageUrl == null || imageUrl!.isEmpty) return _buildInitials(theme);
+
+    if (imageUrl!.endsWith('.svg')) {
+      if (imageUrl!.startsWith('assets/')) {
+        return SvgPicture.asset(
+          imageUrl!,
+          fit: BoxFit.cover,
+        );
+      }
+      return SvgPicture.network(
+        imageUrl!,
+        fit: BoxFit.cover,
+      );
+    }
+
+    if (imageUrl!.startsWith('http')) {
+      return Image.network(
+        imageUrl!,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => _buildInitials(theme),
+      );
+    }
+
+    if (imageUrl!.startsWith('assets/')) {
+      return Image.asset(
+        imageUrl!,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => _buildInitials(theme),
+      );
+    }
+
+    return _buildInitials(theme);
   }
 
   Widget _buildInitials(ThemeData theme) {

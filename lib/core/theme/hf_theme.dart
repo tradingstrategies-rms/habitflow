@@ -5,6 +5,7 @@ import 'package:habitflow/core/theme/hf_radius.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
 import 'package:habitflow/core/theme/hf_typography.dart';
 import 'package:habitflow/core/theme/theme_extensions.dart';
+import 'package:habitflow/core/theme/avatar_theme.dart';
 
 /// [HFTheme] is the entry point for the HabitFlow theme system.
 class HFTheme {
@@ -129,7 +130,10 @@ class HFTheme {
           vertical: HFSpacing.m,
         ),
       ),
-      extensions: const [_sharedExtension],
+      extensions: [
+        _sharedExtension,
+        AvatarTheme.organic(),
+      ],
     );
   }
 
@@ -172,7 +176,10 @@ class HFTheme {
           elevation: 4,
         ),
       ),
-      extensions: const [_sharedExtension],
+      extensions: [
+        _sharedExtension,
+        AvatarTheme.organic(),
+      ],
     );
   }
 }
