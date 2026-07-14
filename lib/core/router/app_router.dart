@@ -35,14 +35,25 @@ final _authRoutes = [
   RoutePaths.emailVerification,
 ];
 
+/// [RouterRefreshNotifier] listens to authentication and profile changes
+/// to trigger GoRouter redirects without recreating the GoRouter instance.
+class RouterRefreshNotifier extends ChangeNotifier {
+  RouterRefreshNotifier(Ref ref) {
+    ref.listen(authStateProvider, (_, __) => notifyListeners());
+    ref.listen(userProfileProvider, (_, __) => notifyListeners());
+    ref.listen(splashMinTimeReachedProvider, (_, __) => notifyListeners());
+  }
+}
+
+final routerRefreshNotifierProvider = Provider((ref) => RouterRefreshNotifier(ref));
+
 final routerProvider = Provider<GoRouter>((ref) {
-  final authState = ref.watch(authStateProvider);
-  final profileState = ref.watch(userProfileProvider);
-  final isSplashTimeReached = ref.watch(splashMinTimeReachedProvider);
+  final refreshNotifier = ref.watch(routerRefreshNotifierProvider);
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: RoutePaths.splash,
+    refreshListenable: refreshNotifier,
     debugLogDiagnostics: true,
     routes: [
       ...splashRoutes,
@@ -95,6 +106,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
     redirect: (context, state) {
+      final authState = ref.read(authStateProvider);
+      final profileState = ref.read(userProfileProvider);
+      final isSplashTimeReached = ref.read(splashMinTimeReachedProvider);
+
       final bool onSplash = state.uri.path == RoutePaths.splash;
 
       // 1. If we are on Splash, wait for minimum branding time AND initial auth load
@@ -196,7 +211,7 @@ class AppShell extends ConsumerWidget {
           ),
           HFIconButton(
             icon: Icons.person_outline_rounded,
-            onPressed: () => context.pushNamed(RouteNames.editProfile),
+            onPressed: () => context.goNamed(RouteNames.editProfile),
           ),
           HFIconButton(
             icon: Icons.settings_outlined,

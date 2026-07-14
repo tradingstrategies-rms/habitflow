@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/core/theme/hf_radius.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
 
 /// Supported variants for [HFButton].
@@ -94,11 +93,17 @@ class HFButton extends StatelessWidget {
 
     style = style.copyWith(
       minimumSize: WidgetStateProperty.all(
-        Size(fullWidth ? double.infinity : 0, 48),
+        Size(fullWidth ? double.infinity : 0, 56),
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(HFRadius.button),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      textStyle: WidgetStateProperty.all(
+        const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
         ),
       ),
     );

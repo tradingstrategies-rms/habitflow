@@ -35,6 +35,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _login() async {
+    debugPrint("[LOGIN] Button pressed");
     setState(() {
       _emailError = Validators.validateEmail(_emailController.text);
       _passwordError = Validators.validatePassword(_passwordController.text);
@@ -133,7 +134,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     label: 'Continue with Google',
                     onPressed: authState.isLoading 
                         ? null 
-                        : () => ref.read(authControllerProvider.notifier).loginWithGoogle(),
+                        : () {
+                            debugPrint("[GOOGLE] Button pressed");
+                            ref.read(authControllerProvider.notifier).loginWithGoogle();
+                          },
                   ),
                   const SizedBox(height: 12),
                   HFSocialLoginButton(

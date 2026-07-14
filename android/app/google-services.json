@@ -12,7 +12,12 @@
           "package_name": "com.example.habitflow"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "254978220996-3fs2qqttoec0hq18d8qk61qgjq217v1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD0LKEgPWopGGYTtm8OUXH9M6iyjkiUJ7k"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254978220996-3fs2qqttoec0hq18d8qk61qgjq217v1i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "254978220996-cipt8tlc4kegebnj6v9nautr87v2du6c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.habitflow"
+              }
+            }
+          ]
         }
       }
     }

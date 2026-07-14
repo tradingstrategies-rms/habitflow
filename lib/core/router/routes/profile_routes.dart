@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/router/route_paths.dart';
@@ -9,16 +10,25 @@ final profileRoutes = [
   GoRoute(
     path: RoutePaths.createProfile,
     name: RouteNames.createProfile,
-    builder: (context, state) => const CreateProfileScreen(),
+    pageBuilder: (context, state) => MaterialPage(
+      key: state.pageKey,
+      child: const CreateProfileScreen(),
+    ),
   ),
   GoRoute(
     path: RoutePaths.editProfile,
     name: RouteNames.editProfile,
-    builder: (context, state) => const EditProfileScreen(),
+    pageBuilder: (context, state) => MaterialPage(
+      key: state.pageKey,
+      child: const EditProfileScreen(),
+    ),
   ),
   GoRoute(
     path: RoutePaths.avatarSelection,
     name: RouteNames.avatarSelection,
-    builder: (context, state) => const AvatarSelectionScreen(),
+    pageBuilder: (context, state) => MaterialPage(
+      key: state.pageKey,
+      child: const AvatarSelectionScreen(),
+    ),
   ),
 ];

@@ -37,6 +37,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   }
 
   Future<void> _register() async {
+    debugPrint("[REGISTER] Button pressed");
     setState(() {
       _nameError = Validators.validateName(_nameController.text);
       _emailError = Validators.validateEmail(_emailController.text);
@@ -165,7 +166,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               label: 'Register with Google',
               onPressed: authState.isLoading 
                   ? null 
-                  : () => ref.read(authControllerProvider.notifier).loginWithGoogle(),
+                  : () {
+                      debugPrint("[GOOGLE] Button pressed");
+                      ref.read(authControllerProvider.notifier).loginWithGoogle();
+                    },
             ),
             const SizedBox(height: 12),
             HFSocialLoginButton(

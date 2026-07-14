@@ -110,6 +110,18 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
+              Image.asset('assets/images/branding/logo.png', width: 64, height: 64),
+              const SizedBox(height: 24),
+              Text(
+                'Create Profile',
+                style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Let\'s set up your profile to start your journey.',
+                style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+              ),
+              const SizedBox(height: 40),
               // Avatar Section
               GestureDetector(
                 onTap: profileState.isLoading ? null : () async {
@@ -211,7 +223,9 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               
               const HFSectionHeader(title: 'Location & Settings'),
               const SizedBox(height: 16),
-
+              // TODO: Implement country, language, timezone dropdowns as per stitch
+              
+              const SizedBox(height: 24),
               HFButton(
                 label: 'Continue',
                 onPressed: _saveProfile,
