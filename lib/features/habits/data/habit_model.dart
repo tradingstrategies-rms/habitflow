@@ -21,6 +21,7 @@ class HabitModel {
     required this.icon,
     required this.schedule,
     this.reminders,
+    required this.isArchived,
   });
 
   factory HabitModel.fromJson(Map<String, dynamic> json) {
@@ -42,6 +43,7 @@ class HabitModel {
         enabled: r['enabled'] as bool,
         time: DateTime.parse(r['time'] as String),
       )).toList(),
+      isArchived: json['isArchived'] as bool? ?? false,
     );
   }
 
@@ -64,6 +66,7 @@ class HabitModel {
         'enabled': r.enabled,
         'time': r.time.toIso8601String(),
       }).toList(),
+      'isArchived': isArchived,
     };
   }
 
@@ -77,4 +80,5 @@ class HabitModel {
   final HabitIcon icon;
   final HabitSchedule schedule;
   final List<HabitReminder>? reminders;
+  final bool isArchived;
 }

@@ -15,21 +15,23 @@ class HabitMapper {
       icon: model.icon,
       schedule: model.schedule,
       reminders: model.reminders,
+      isArchived: model.isArchived,
     );
   }
 
-  static HabitModel fromDomain(Habit Habit) {
+  static HabitModel fromDomain(Habit habit) {
     return HabitModel(
-      id: Habit.id,
-      title: Habit.title,
-      description: Habit.description,
-      frequency: Habit.frequency,
-      category: Habit.category,
-      difficulty: Habit.difficulty,
-      color: Habit.color,
-      icon: Habit.icon,
-      schedule: Habit.schedule,
-      reminders: Habit.reminders,
+      id: habit.id,
+      title: habit.title,
+      description: habit.description,
+      frequency: habit.frequency,
+      category: habit.category,
+      difficulty: habit.difficulty,
+      color: habit.color,
+      icon: habit.icon,
+      schedule: habit.schedule,
+      reminders: habit.reminders,
+      isArchived: habit.isArchived,
     );
   }
 }

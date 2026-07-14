@@ -20,6 +20,7 @@ class Habit {
     required this.icon,
     required this.schedule,
     this.reminders,
+    this.isArchived = false,
   });
 
   final HabitId id;
@@ -32,4 +33,5 @@ class Habit {
   final HabitIcon icon;
   final HabitSchedule schedule;
   final List<HabitReminder>? reminders;
+  final bool isArchived;
 }

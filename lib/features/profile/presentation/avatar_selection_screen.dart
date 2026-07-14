@@ -169,7 +169,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                                         color: Colors.white,
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.check_circle,
                                         size: 18,
                                         color: AvatarColors.forest,
