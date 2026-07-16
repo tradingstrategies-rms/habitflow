@@ -1,5 +1,5 @@
-# Known Bugs
+# Known Bugs & Technical Debt
 
-## Current Technical Debt
-- **Avatar Selection**: Optimize image loading for SVG assets in the avatar grid.
-- **Route Persistence**: Verify deep link handling during authentication flow.
+## Technical Debt
+- **Avatar Selection**: Optimize SVG asset loading in the avatar selection grid.
+- **Route Persistence**: Audit deep-link handling for authenticated sessions.

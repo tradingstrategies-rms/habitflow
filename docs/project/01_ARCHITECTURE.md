@@ -1,45 +1,25 @@
-# Architecture
+# HabitFlow Architecture
 
-Pattern
+Version: 1.1
+Status: Sprint 2 Completed
 
-Feature First
+## Overview
+HabitFlow uses **Clean Architecture** with a **Feature-First** structure.
 
-State
+## Layers
+1. **Presentation**: UI widgets, Screen components, and Riverpod StateNotifiers.
+2. **Application**: Business logic handlers (Controllers).
+3. **Domain**: Entities and Repository interfaces.
+4. **Infrastructure**: FirestoreService, StorageService, and concrete Repository implementations.
 
-Riverpod
+## Key Technologies
+- **DI/State**: Riverpod. All services injected via `core_providers.dart`.
+- **Navigation**: GoRouter (centralized in `app_router.dart`).
+- **Persistence**: 
+    - **Firestore**: User profiles and identity.
+    - **SharedPreferences**: Local habit tracking and app settings.
 
-Routing
-
-GoRouter
-
-Backend
-
-Firebase
-
-Repositories
-
-Controllers
-
-Widgets
-
-Rules
-
-No business logic inside Widgets.
-
-Repositories talk to Firebase.
-
-Controllers manage state.
-
-Widgets remain presentation only.
-
-Bootstrap.initialize()
-
-owns
-
-Firebase initialization
-
-SharedPreferences
-
-ProviderContainer
-
-ApplicationInitializer
+## Folder Structure
+- `/lib/core`: Global services (Auth, Database, Storage).
+- `/lib/features`: Feature-isolated modules (Auth, Profile, Habits, etc.).
+- `/lib/shared`: Common components.
