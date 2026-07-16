@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habitflow/core/router/route_paths.dart';
 import 'package:habitflow/core/utils/validators.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
 import 'package:habitflow/features/authentication/domain/auth_failures.dart';
@@ -37,7 +38,11 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           );
       if (mounted && !ref.read(authControllerProvider).hasError) {
         HFFeedback.showSnackBar(context, 'Reset link sent! Check your email.');
-        context.pop();
+        if (context.canPop()) {
+          context.pop();
+        } else {
+          context.go(RoutePaths.dashboard);
+        }
       }
     }
   }
@@ -63,7 +68,13 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           title: '',
           leading: HFIconButton(
             icon: Icons.arrow_back_rounded,
-            onPressed: authState.isLoading ? null : () => context.pop(),
+                        onPressed: authState.isLoading ? null : () {
+              if (context.canPop()) {
+                context.pop();
+              } else {
+                context.go(RoutePaths.dashboard);
+              }
+            },
           ),
         ),
         body: Column(
@@ -102,7 +113,13 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
             ),
             const SizedBox(height: 32),
             TextButton.icon(
-              onPressed: authState.isLoading ? null : () => context.pop(),
+              onPressed: authState.isLoading ? null : () {
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.go(RoutePaths.dashboard);
+                }
+              },
               icon: const Icon(Icons.arrow_back_rounded, size: 18),
               label: const Text('Back to login'),
             ),

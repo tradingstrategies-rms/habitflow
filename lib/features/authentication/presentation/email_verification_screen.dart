@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habitflow/core/router/route_paths.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
 import 'package:habitflow/features/authentication/domain/auth_failures.dart';
@@ -46,7 +47,13 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
           centerTitle: true,
           leading: HFIconButton(
             icon: Icons.arrow_back_rounded,
-            onPressed: authState.isLoading ? null : () => context.pop(),
+                        onPressed: authState.isLoading ? null : () {
+              if (context.canPop()) {
+                context.pop();
+              } else {
+                context.go(RoutePaths.dashboard);
+              }
+            },
           ),
         ),
         body: Column(

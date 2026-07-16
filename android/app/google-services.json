@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "254978220996-0c1vhccg680ip2hfdoc6bqk8enni6ejs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.habitflow",
+            "certificate_hash": "3afc2ddd2eff6cd6354aac452f5f25cf9a4058e5"
+          }
+        },
+        {
           "client_id": "254978220996-3fs2qqttoec0hq18d8qk61qgjq217v1i.apps.googleusercontent.com",
           "client_type": 3
         }

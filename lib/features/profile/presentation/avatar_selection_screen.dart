@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
+import 'package:habitflow/core/router/route_paths.dart';
 import 'package:habitflow/core/theme/avatar_theme.dart';
 import 'package:habitflow/core/theme/hf_durations.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
@@ -70,7 +71,13 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
         centerTitle: true,
         leading: HFIconButton(
           icon: Icons.arrow_back_rounded,
-          onPressed: () => context.pop(),
+                    onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(RoutePaths.dashboard);
+            }
+          },
         ),
       ),
       body: Column(
@@ -202,7 +209,11 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
               if (isOnboarding) {
                 context.goNamed(RouteNames.dashboard);
               } else {
-                context.pop(selected);
+                if (context.canPop()) {
+                  context.pop(selected);
+                } else {
+                  context.go(RoutePaths.dashboard);
+                }
               }
             },
           ),

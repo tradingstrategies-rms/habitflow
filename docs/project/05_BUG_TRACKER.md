@@ -1,39 +1,5 @@
 # Known Bugs
 
-Current
-
-Duplicate Page Key
-
-Occurs
-
-Edit Profile
-
-↓
-
-Tap Pencil
-
-↓
-
-Avatar Selection
-
-Crash
-
-Status
-
-Open
-
-Authentication
-
-Resolved
-
-Firestore
-
-Resolved
-
-Bootstrap
-
-Resolved
-
-Provider Override
-
-Resolved
+## Current Technical Debt
+- **Avatar Selection**: Optimize image loading for SVG assets in the avatar grid.
+- **Route Persistence**: Verify deep link handling during authentication flow.

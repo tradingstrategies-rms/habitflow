@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
+import 'package:habitflow/core/router/route_paths.dart';
 import 'package:habitflow/features/authentication/data/auth_providers.dart';
 import 'package:habitflow/features/profile/application/profile_controller.dart';
 import 'package:habitflow/features/profile/domain/family_role.dart';
@@ -116,7 +117,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
           centerTitle: true,
           leading: HFIconButton(
             icon: Icons.arrow_back_rounded,
-            onPressed: () => context.pop(),
+            onPressed: () => context.go(RoutePaths.dashboard),
           ),
         ),
         body: SingleChildScrollView(

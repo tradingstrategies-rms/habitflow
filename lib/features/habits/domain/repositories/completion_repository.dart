@@ -6,5 +6,6 @@ abstract class CompletionRepository {
   Future<void> markComplete(HabitId habitId, DateTime date);
   Future<void> undoCompletion(HabitId habitId, DateTime date);
   Future<List<HabitCompletion>> getCompletionHistory(HabitId habitId);
+  Future<List<HabitCompletion>> getAllCompletions();
   Future<CompletionSummary> getCompletionSummary(HabitId habitId);
 }

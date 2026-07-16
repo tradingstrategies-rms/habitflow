@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
+import 'package:habitflow/core/router/route_paths.dart';
 import 'package:habitflow/features/profile/application/profile_controller.dart';
 import 'package:habitflow/features/profile/data/profile_providers.dart';
 import 'package:habitflow/features/profile/domain/family_role.dart';
@@ -124,7 +125,11 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     await ref.read(profileControllerProvider.notifier).saveProfile(updatedProfile);
     if (mounted && !ref.read(profileControllerProvider).hasError) {
       HFFeedback.showSnackBar(context, 'Profile updated successfully');
-      context.pop();
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go(RoutePaths.dashboard);
+      }
     }
   }
 
@@ -145,7 +150,11 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
             if (didPop) return;
             final shouldPop = await _onWillPop();
             if (shouldPop && context.mounted) {
-              context.pop();
+              if (context.canPop()) {
+                context.pop();
+              } else {
+                context.go(RoutePaths.dashboard);
+              }
             }
           },
           child: HFLoadingOverlay(
@@ -158,7 +167,13 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   icon: Icons.arrow_back_rounded,
                   onPressed: () async {
                     final shouldPop = await _onWillPop();
-                    if (shouldPop && context.mounted) context.pop();
+                    if (shouldPop && context.mounted) {
+                      if (context.canPop()) {
+                        context.pop();
+                      } else {
+                        context.go(RoutePaths.dashboard);
+                      }
+                    }
                   },
                 ),
               ),

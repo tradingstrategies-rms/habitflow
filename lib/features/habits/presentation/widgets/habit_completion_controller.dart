@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/use_cases/completion/mark_habit_complete.dart';
 import '../../data/habit_providers.dart';
@@ -12,14 +13,18 @@ class CompletionController extends StateNotifier<AsyncValue<void>> {
   final Ref ref;
 
   Future<void> toggleCompletion(HabitId habitId, bool isCompleted) async {
+    debugPrint("toggleCompletion called");
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       if (!isCompleted) {
+        debugPrint("Complete");
         await markHabitComplete(habitId, DateTime.now());
+      } else {
+        debugPrint("Undo");
+        await ref.read(completionRepositoryProvider).undoCompletion(habitId, DateTime.now());
       }
-      // Note: Undo logic was requested only if available.
     });
-    ref.read(allHabitsProvider.notifier).refresh();
+    ref.read(todaysCompletionsProvider.notifier).refresh();
   }
 }
 

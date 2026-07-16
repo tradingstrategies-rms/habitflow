@@ -27,6 +27,7 @@ class HabitCard extends ConsumerWidget {
           trailing: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () {
+              debugPrint("Completion tapped");
               ref.read(completionControllerProvider.notifier).toggleCompletion(habit.id, isCompleted);
             },
             child: Padding(

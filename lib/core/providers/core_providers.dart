@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habitflow/core/services/logger/hf_logger.dart';
+import 'package:habitflow/core/services/database/firestore_service.dart';
 import 'package:habitflow/core/services/storage/storage_service.dart';
 import 'package:habitflow/core/services/storage/shared_preferences_storage.dart';
 import 'package:habitflow/core/services/storage/cloud_storage_service.dart';
@@ -13,7 +14,6 @@ import 'package:habitflow/core/services/network/network_service.dart';
 import 'package:habitflow/core/services/auth/auth_service.dart';
 import 'package:habitflow/core/services/auth/firebase_auth_service.dart';
 import 'package:habitflow/core/services/database/database_service.dart';
-import 'package:habitflow/core/services/database/firestore_service.dart';
 import 'package:habitflow/core/services/remote_config/remote_config_service.dart';
 import 'package:habitflow/core/services/remote_config/firebase_remote_config_service.dart';
 import 'package:habitflow/core/services/config/app_config.dart';

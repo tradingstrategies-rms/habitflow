@@ -45,6 +45,11 @@ class CompletionRepositoryImpl implements CompletionRepository {
   }
 
   @override
+  Future<List<HabitCompletion>> getAllCompletions() async {
+    return await _load();
+  }
+
+  @override
   Future<CompletionSummary> getCompletionSummary(HabitId habitId) async {
     final history = await getCompletionHistory(habitId);
     final currentStreak = StreakCalculator.calculateCurrentStreak(history, DateTime.now());

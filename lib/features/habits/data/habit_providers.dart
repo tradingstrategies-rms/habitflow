@@ -35,3 +35,27 @@ class AllHabitsNotifier extends StateNotifier<AsyncValue<List<Habit>>> {
     state = await AsyncValue.guard(() async => await _repository.getAllHabits().first);
   }
 }
+
+final todaysCompletionsProvider = StateNotifierProvider<TodaysCompletionsNotifier, Set<String>>((ref) {
+  return TodaysCompletionsNotifier(ref.watch(completionRepositoryProvider));
+});
+
+class TodaysCompletionsNotifier extends StateNotifier<Set<String>> {
+  TodaysCompletionsNotifier(this._repository) : super({}) {
+    refresh();
+  }
+
+  final CompletionRepository _repository;
+
+  Future<void> refresh() async {
+    final now = DateTime.now();
+    final allCompletions = await _repository.getAllCompletions();
+    state = allCompletions
+        .where((c) => 
+            c.date.year == now.year && 
+            c.date.month == now.month && 
+            c.date.day == now.day)
+        .map((c) => c.habitId.value)
+        .toSet();
+  }
+}

@@ -15,6 +15,7 @@ class HabitsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final habitsAsync = ref.watch(allHabitsProvider);
+    final todaysCompletions = ref.watch(todaysCompletionsProvider);
     
     return Scaffold(
       appBar: HFTopAppBar(
@@ -47,8 +48,10 @@ class HabitsScreen extends ConsumerWidget {
                 itemCount: sorted.length,
                 itemBuilder: (context, index) {
                   final habit = sorted[index];
+                  final isCompleted = todaysCompletions.contains(habit.id.value);
                   return HabitCard(
                     habit: habit,
+                    isCompleted: isCompleted,
                     onTap: () => _navigateToEdit(context, habit: habit),
                     onDismissed: (_) => ref.read(habitControllerProvider.notifier).deleteHabit(habit.id),
                   );

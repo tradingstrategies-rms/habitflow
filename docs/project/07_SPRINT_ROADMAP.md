@@ -1,41 +1,19 @@
 # Sprint Roadmap
 
-Sprint 1
+Sprint 1: Bootstrap & Architecture - Completed
 
-Completed
+Sprint 2: Identity & Profile Persistence - Completed
 
-Sprint 2
+Sprint 3: Habit Engine & Storage - Next
 
-Habits
+Sprint 4: Goals
 
-Scheduler
+Sprint 5: Rewards
 
-Notifications
+Sprint 6: Family
 
-Streaks
+Sprint 7: Analytics
 
-XP
+Sprint 8: AI
 
-Sprint 3
-
-Goals
-
-Sprint 4
-
-Rewards
-
-Sprint 5
-
-Family
-
-Sprint 6
-
-Analytics
-
-Sprint 7
-
-AI
-
-Sprint 8
-
-Production
+Sprint 9: Production
