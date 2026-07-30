@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Habit History - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#faf9f8",
+                    "surface": "#FFFFFF",
+                    "primary-fixed": "#6ffbbe",
+                    "secondary-container": "#6df5e1",
+                    "on-tertiary-container": "#523200",
+                    "primary-container": "#10b981",
+                    "on-background": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e9e8e7",
+                    "kids-primary": "#00D991",
+                    "outline-variant": "#bbcabf",
+                    "surface-container": "#eeeeed",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "secondary-fixed": "#71f8e4",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-secondary-fixed-variant": "#005048",
+                    "surface-variant": "#e3e2e1",
+                    "surface-dim": "#dadad9",
+                    "primary": "#006c49",
+                    "success": "#22C55E",
+                    "on-primary-fixed": "#002113",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-secondary-container": "#006f64",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#006c49",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "error": "#ba1a1a",
+                    "danger": "#EF4444",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#e29100",
+                    "surface-bright": "#faf9f8",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#006b5f",
+                    "on-primary-container": "#00422b",
+                    "tertiary": "#855300",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "on-tertiary-fixed": "#2a1700",
+                    "kids-accent": "#FFC107",
+                    "background-dark": "#1F2937",
+                    "primary-fixed-dim": "#4edea3",
+                    "outline": "#6c7a71",
+                    "on-surface": "#1a1c1c",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "20px",
+                    "chip-padding": "12px",
+                    "touch-target-min": "48px",
+                    "button-padding": "16px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top Navigation Anchor (Suppressing BottomNav for sub-page context as per mandate) -->
+<header class="bg-surface sticky top-0 z-50 w-full shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-variant/20 transition-colors" onclick="window.history.back()">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Habit History</h1>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface">filter_list</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-6 max-w-2xl mx-auto">
+<!-- View Toggle -->
+<div class="bg-surface-container p-1 rounded-full flex w-full">
+<button class="flex-1 py-2 text-center rounded-full font-label-sm text-label-sm bg-surface shadow-sm text-primary transition-all duration-200" id="monthToggle">Month</button>
+<button class="flex-1 py-2 text-center rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/10 transition-all duration-200" id="weekToggle">Week</button>
+</div>
+<!-- Monthly Calendar Card -->
+<section class="bg-surface rounded-[20px] p-card-padding shadow-sm border border-surface-container">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface">October 2023</h2>
+<div class="flex gap-2">
+<button class="p-1 rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<!-- Days Headers -->
+<div class="calendar-grid mb-4">
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">S</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">M</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">T</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">W</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">T</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">F</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">S</div>
+</div>
+<!-- Actual Calendar Grid -->
+<div class="calendar-grid">
+<!-- Spacers for start of month -->
+<div class="h-10"></div>
+<!-- Habit Days -->
+<!-- Day 1-31 (Simplified Rendering) -->
+<script>
+                    const grid = document.currentScript.parentElement;
+                    const stats = [1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 30, 31];
+                    for(let i=1; i<=31; i++) {
+                        const day = document.createElement('div');
+                        day.className = `h-10 flex items-center justify-center rounded-full font-body-numbers text-body-numbers relative transition-transform active:scale-90 cursor-pointer`;
+                        const isDone = stats.includes(i);
+                        day.innerHTML = `
+                            <span class="z-10 ${isDone ? 'text-on-primary font-bold' : 'text-on-surface'}">${i}</span>
+                            ${isDone ? '<div class="absolute inset-0 bg-primary-container rounded-full scale-90"></div>' : ''}
+                        `;
+                        grid.appendChild(day);
+                    }
+                </script>
+</div>
+</section>
+<!-- Summary Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-primary-container/10 border border-primary-container/20 p-card-padding rounded-[20px] col-span-2 sm:col-span-1">
+<p class="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-wider">Completion Rate</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-primary">82%</span>
+<span class="font-caption text-caption text-success flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 4%
+                    </span>
+</div>
+</div>
+<div class="bg-surface border border-surface-container p-card-padding rounded-[20px] flex flex-col justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Current Streak</p>
+<p class="font-headline-md text-headline-md text-on-surface">12 Days</p>
+</div>
+<span class="material-symbols-outlined text-kids-accent self-end" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="bg-surface border border-surface-container p-card-padding rounded-[20px]">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Logs</p>
+<p class="font-headline-md text-headline-md text-on-surface">25</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2">Days this month</p>
+</div>
+<div class="bg-tertiary-container/10 border border-tertiary-container/20 p-card-padding rounded-[20px] flex items-center justify-between col-span-2">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-tertiary-container font-bold">New Badge Unlocked!</p>
+<p class="font-caption text-caption text-on-tertiary-container/80">30 Days Consistent Walker</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-container">chevron_right</span>
+</div>
+</section>
+<!-- Past Completions List -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Timeline</h3>
+<button class="text-primary font-label-sm text-label-sm">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Log Entry 1 -->
+<div class="bg-surface border border-surface-container rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">October 28, 2023</p>
+<p class="font-caption text-caption text-on-surface-variant">Completed at 08:30 AM</p>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<!-- Log Entry 2 -->
+<div class="bg-surface border border-surface-container rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">October 27, 2023</p>
+<p class="font-caption text-caption text-on-surface-variant">Completed at 07:15 AM</p>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<!-- Log Entry 3 -->
+<div class="bg-surface border border-surface-container rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/5 transition-colors cursor-pointer group opacity-60">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">cancel</span>
+</div>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">October 26, 2023</p>
+<p class="font-caption text-caption text-error">Missed - Sick day</p>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Decorative Growth Graphic -->
+<div class="relative w-full aspect-video rounded-[20px] overflow-hidden bg-surface-container-low flex flex-col items-center justify-center p-8 text-center group border border-surface-container">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="A serene landscape with a minimalist digital oak tree growing progressively from a sapling to a lush, stylized tree with emerald leaves, representing personal growth and habit consistency. Soft golden hour lighting illuminates the scene, creating a sense of calm and accomplishment in a premium digital art style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyiRNEIlRNyvL8Kuo7nY2-2pUWnPsBc7ABWGtp0MGLBVzJ7KerNeMMOn83v_32Aq2DcLwLb88pXeAACVOA03ws3L491oRxRxJHNn55UR5RV5u-Gi9sbxZX6aXjatU9BxWwHwTCASS4oFWyAQngDKrsKdx-Q4HfPPv5sDWQd3KTsxJlWIuB8orlDEVbL9CNRV-R4OaJ5MashHwBSVx3eb3Jnvdrc7TG--KAy5JaRai1_1h6f30q8mnp')"></div>
+<div class="relative z-10 space-y-2">
+<p class="font-headline-sm text-headline-sm text-primary">Rooted in Consistency</p>
+<p class="font-caption text-caption text-on-surface-variant px-4">Your dedication this month has added 4 new branches to your Growth Tree!</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Mock (Only Home is "Active" conceptually, though we hide the shell for focused task screens typically, we keep it here for context as it's a primary dashboard sub-page) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)] md:hidden">
+<div class="flex justify-around items-center h-20 w-full px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</div>
+</nav>
+<script>
+        // Toggle Logic
+        const mToggle = document.getElementById('monthToggle');
+        const wToggle = document.getElementById('weekToggle');
+
+        mToggle.addEventListener('click', () => {
+            mToggle.className = 'flex-1 py-2 text-center rounded-full font-label-sm text-label-sm bg-surface shadow-sm text-primary transition-all duration-200';
+            wToggle.className = 'flex-1 py-2 text-center rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/10 transition-all duration-200';
+        });
+
+        wToggle.addEventListener('click', () => {
+            wToggle.className = 'flex-1 py-2 text-center rounded-full font-label-sm text-label-sm bg-surface shadow-sm text-primary transition-all duration-200';
+            mToggle.className = 'flex-1 py-2 text-center rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/10 transition-all duration-200';
+        });
+    </script>
+</body></html>

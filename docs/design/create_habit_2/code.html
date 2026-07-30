@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Create New Habit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "inverse-surface": "#2f3130",
+                    "on-surface-variant": "#3c4a42",
+                    "on-primary-container": "#00422b",
+                    "surface-container": "#eeeeed",
+                    "danger": "#EF4444",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary-container": "#523200",
+                    "kids-primary": "#00D991",
+                    "success": "#22C55E",
+                    "surface": "#FFFFFF",
+                    "surface-dim": "#dadad9",
+                    "kids-accent": "#FFC107",
+                    "on-background": "#1a1c1c",
+                    "inverse-primary": "#4edea3",
+                    "on-error": "#ffffff",
+                    "primary": "#006c49",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-secondary-fixed": "#00201c",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "warning": "#F97316",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#002113",
+                    "background": "#faf9f8",
+                    "secondary-container": "#6df5e1",
+                    "secondary": "#006b5f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e3e2e1",
+                    "on-secondary-container": "#006f64",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-bright": "#faf9f8",
+                    "outline": "#6c7a71",
+                    "surface-tint": "#006c49",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "secondary-fixed": "#71f8e4",
+                    "background-dark": "#1F2937",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed": "#2a1700",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary": "#855300",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-primary-fixed-variant": "#005236",
+                    "primary-fixed": "#6ffbbe",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "tertiary-container": "#e29100",
+                    "primary-container": "#10b981"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.25rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target-min": "48px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "chip-padding": "12px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .segmented-control-bg {
+            background-color: #f4f3f2;
+            border-radius: 9999px;
+            padding: 4px;
+        }
+        .active-segment {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background-dark flex justify-between items-center h-16 px-4">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform" data-icon="arrow_back">
+                arrow_back
+            </button>
+<h1 class="font-headline-sm text-headline-sm font-semibold text-primary dark:text-primary-fixed-dim">New Habit</h1>
+</div>
+<button class="text-on-surface-variant/40 font-semibold px-4 py-2 pointer-events-none" disabled="">
+            Save
+        </button>
+</header>
+<!-- Content Area -->
+<main class="flex-1 overflow-y-auto px-margin-mobile pb-32 space-y-8 pt-4">
+<!-- Habit Name Section -->
+<section class="space-y-2">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Habit Name</label>
+<div class="relative">
+<input class="w-full bg-white border-2 border-outline-variant rounded-2xl p-card-padding text-body-lg font-body-lg focus:border-primary focus:ring-0 transition-all placeholder:text-outline-variant" placeholder="What habit would you like to build?" type="text"/>
+</div>
+</section>
+<!-- Description Section -->
+<section class="space-y-2">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Description (Optional)</label>
+<textarea class="w-full bg-white border-2 border-outline-variant rounded-2xl p-card-padding text-body-lg font-body-lg focus:border-primary focus:ring-0 transition-all placeholder:text-outline-variant resize-none" placeholder="Add some context or motivation..." rows="3"></textarea>
+</section>
+<!-- Category Section -->
+<section class="space-y-3">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Category</label>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile">
+<button class="whitespace-nowrap px-chip-padding py-2 rounded-full border-1.5 border-outline-variant bg-primary text-on-primary font-medium transition-all active:scale-95">Health</button>
+<button class="whitespace-nowrap px-chip-padding py-2 rounded-full border-1.5 border-outline-variant bg-surface text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-all active:scale-95">Fitness</button>
+<button class="whitespace-nowrap px-chip-padding py-2 rounded-full border-1.5 border-outline-variant bg-surface text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-all active:scale-95">Mindfulness</button>
+<button class="whitespace-nowrap px-chip-padding py-2 rounded-full border-1.5 border-outline-variant bg-surface text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-all active:scale-95">Learning</button>
+<button class="whitespace-nowrap px-chip-padding py-2 rounded-full border-1.5 border-outline-variant bg-surface text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-all active:scale-95">Productivity</button>
+<button class="whitespace-nowrap px-chip-padding py-2 rounded-full border-1.5 border-outline-variant bg-surface text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-all active:scale-95">Finance</button>
+</div>
+</section>
+<!-- Frequency Section -->
+<section class="space-y-3">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Frequency</label>
+<div class="segmented-control-bg flex w-full">
+<button class="flex-1 py-2 active-segment rounded-full font-medium text-primary text-sm transition-all duration-200">Daily</button>
+<button class="flex-1 py-2 text-on-surface-variant font-medium text-sm transition-all duration-200">Weekly</button>
+<button class="flex-1 py-2 text-on-surface-variant font-medium text-sm transition-all duration-200">Monthly</button>
+<button class="flex-1 py-2 text-on-surface-variant font-medium text-sm transition-all duration-200">Custom</button>
+</div>
+</section>
+<!-- Target Section -->
+<section class="space-y-2">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Daily Target</label>
+<div class="flex items-center gap-3">
+<input class="w-24 bg-white border-2 border-outline-variant rounded-2xl p-card-padding text-center text-body-numbers font-body-numbers focus:border-primary focus:ring-0" placeholder="8" type="number"/>
+<input class="flex-1 bg-white border-2 border-outline-variant rounded-2xl p-card-padding text-body-lg font-body-lg focus:border-primary focus:ring-0" placeholder="Glasses, Minutes, etc." type="text"/>
+</div>
+</section>
+<!-- Visual Preferences (Color & Icon) -->
+<div class="grid grid-cols-1 gap-8">
+<!-- Color Row -->
+<section class="space-y-3">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Theme Color</label>
+<div class="flex justify-between items-center bg-white p-card-padding rounded-3xl border border-outline-variant/30">
+<button class="w-10 h-10 rounded-full bg-primary ring-4 ring-primary-container transition-transform active:scale-90"></button>
+<button class="w-10 h-10 rounded-full bg-blue-500 transition-transform active:scale-90"></button>
+<button class="w-10 h-10 rounded-full bg-orange-500 transition-transform active:scale-90"></button>
+<button class="w-10 h-10 rounded-full bg-purple-500 transition-transform active:scale-90"></button>
+<button class="w-10 h-10 rounded-full bg-teal-500 transition-transform active:scale-90"></button>
+<button class="w-10 h-10 rounded-full bg-red-500 transition-transform active:scale-90"></button>
+</div>
+</section>
+<!-- Icon Grid -->
+<section class="space-y-3">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-widest ml-1">Icon Selector</label>
+<div class="grid grid-cols-5 gap-4 bg-white p-card-padding rounded-3xl border border-outline-variant/30">
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-primary-container text-on-primary-container material-symbols-outlined" data-icon="water_drop">water_drop</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="book_2">book_2</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="directions_run">directions_run</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="self_improvement">self_improvement</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="payments">payments</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="bedtime">bedtime</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="family_restroom">family_restroom</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="fitness_center">fitness_center</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="restaurant">restaurant</div>
+<div class="flex items-center justify-center w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant material-symbols-outlined" data-icon="add_circle">add_circle</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky Bottom Button -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-gradient-to-t from-background via-background/95 to-transparent pt-8">
+<button class="w-full h-14 bg-outline-variant text-white rounded-2xl font-semibold opacity-50 cursor-not-allowed active:scale-95 transition-all shadow-lg" disabled="">
+            Create Habit
+        </button>
+</div>
+<script>
+        // Simple Interaction logic for demo
+        document.querySelectorAll('button:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Visual feedback only for demo
+                const isSegment = e.target.parentElement.classList.contains('segmented-control-bg');
+                if(isSegment) {
+                    e.target.parentElement.querySelectorAll('button').forEach(b => {
+                        b.classList.remove('active-segment', 'text-primary');
+                        b.classList.add('text-on-surface-variant');
+                    });
+                    e.target.classList.add('active-segment', 'text-primary');
+                    e.target.classList.remove('text-on-surface-variant');
+                }
+            });
+        });
+
+        // Input validation listener to enable button (simplified)
+        const nameInput = document.querySelector('input[type="text"]');
+        const submitBtn = document.querySelector('.fixed button');
+        const saveBtn = document.querySelector('header button:last-child');
+
+        nameInput.addEventListener('input', (e) => {
+            if(e.target.value.trim().length > 0) {
+                submitBtn.classList.remove('bg-outline-variant', 'opacity-50', 'cursor-not-allowed');
+                submitBtn.classList.add('bg-primary');
+                submitBtn.disabled = false;
+                
+                saveBtn.classList.remove('text-on-surface-variant/40', 'pointer-events-none');
+                saveBtn.classList.add('text-primary');
+                saveBtn.disabled = false;
+            } else {
+                submitBtn.classList.add('bg-outline-variant', 'opacity-50', 'cursor-not-allowed');
+                submitBtn.classList.remove('bg-primary');
+                submitBtn.disabled = true;
+
+                saveBtn.classList.add('text-on-surface-variant/40', 'pointer-events-none');
+                saveBtn.classList.remove('text-primary');
+                saveBtn.disabled = true;
+            }
+        });
+    </script>
+</body></html>

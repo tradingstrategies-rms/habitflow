@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parent PIN Management - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#71f8e4",
+                    "surface-tint": "#006c49",
+                    "surface-container-high": "#e9e8e7",
+                    "kids-accent": "#FFC107",
+                    "danger": "#EF4444",
+                    "on-secondary-fixed-variant": "#005048",
+                    "background": "#faf9f8",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-surface": "#1a1c1c",
+                    "on-primary-fixed": "#002113",
+                    "surface-dim": "#dadad9",
+                    "on-primary-container": "#00422b",
+                    "background-dark": "#1F2937",
+                    "secondary-container": "#6df5e1",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary": "#855300",
+                    "kids-primary": "#00D991",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-low": "#f4f3f2",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#6ffbbe",
+                    "outline-variant": "#bbcabf",
+                    "inverse-surface": "#2f3130",
+                    "on-primary": "#ffffff",
+                    "primary": "#006c49",
+                    "tertiary-container": "#e29100",
+                    "primary-fixed-dim": "#4edea3",
+                    "warning": "#F97316",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-bright": "#faf9f8",
+                    "surface-variant": "#e3e2e1",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "surface-container": "#eeeeed",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-container": "#006f64",
+                    "error-container": "#ffdad6",
+                    "surface": "#FFFFFF",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-error": "#ffffff",
+                    "primary-container": "#10b981",
+                    "error": "#ba1a1a",
+                    "success": "#22C55E",
+                    "inverse-primary": "#4edea3",
+                    "secondary": "#006b5f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-tertiary-container": "#523200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "card-padding": "20px",
+                    "chip-padding": "12px",
+                    "base": "8px",
+                    "button-padding": "16px",
+                    "touch-target-min": "48px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .toggle-switch:checked + .toggle-bg { background-color: #006c49; }
+        .toggle-switch:checked + .toggle-bg .toggle-dot { transform: translateX(1.5rem); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface-container-low dark:bg-surface-container-highest">
+<div class="flex items-center justify-between px-gutter h-touch-target-min w-full max-w-7xl mx-auto">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Parent PIN</h1>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a friendly parent with a warm smile, softly lit with natural morning light. The background is a clean, minimalist home office with soft-focus plants and neutral wood textures, maintaining the HabitFlow brand's organic and premium vitality aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGaPt0ZsQicM1jL2AQN1EsA-qggpLmhop2KJeQA0yjhGEUyXnl1PsVJuNFsHpD668lC2V7LBSgW7pM5kfrqFYQ2fhMHFaxBgAQhSiyJhkga4c5yETVAcz-ePnFOh5rsyHYWbcAt-ltNiGOOUTrPPt0SODcCVW5FhUDO77Jg4AwDnALH7pvnnHqgUbEvrHs4A5CITCJn3RJI33Un-imoSbO89TQ83ImSS2-ldp_y0xTKvs6vIxOk7Hh"/>
+</div>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-margin-mobile mt-8 space-y-6">
+<!-- Header Text -->
+<div class="space-y-1">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Security Settings</h2>
+<p class="font-caption text-caption text-on-surface-variant">Manage your parental access and security preferences.</p>
+</div>
+<!-- Master Toggle Card -->
+<div class="glass-card rounded-xl p-card-padding shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">PIN Protection</h3>
+<p class="font-caption text-caption text-on-surface-variant">Enable for high-security areas</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-outline-variant rounded-full p-1 transition-colors duration-300">
+<div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300"></div>
+</div>
+</label>
+</div>
+<!-- Action Section: Change PIN -->
+<div class="glass-card rounded-xl p-card-padding shadow-sm space-y-4">
+<div class="flex flex-col gap-1">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Parental Code</h3>
+<p class="font-caption text-caption text-on-surface-variant">Your 4-digit secret PIN used for all parent-only sections.</p>
+</div>
+<button class="w-full h-touch-target-min bg-primary text-on-primary font-body-lg text-body-lg font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">password</span>
+                Change Parent PIN
+            </button>
+</div>
+<!-- Requirements Checklist -->
+<div class="glass-card rounded-xl overflow-hidden shadow-sm">
+<div class="p-card-padding bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Require PIN for:</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<label class="flex items-center justify-between p-card-padding hover:bg-surface-variant/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">rule</span>
+<span class="font-body-lg text-body-lg text-on-surface">Habit Approvals</span>
+</div>
+<input checked="" class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-card-padding hover:bg-surface-variant/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">redeem</span>
+<span class="font-body-lg text-body-lg text-on-surface">Reward Redemption</span>
+</div>
+<input checked="" class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-card-padding hover:bg-surface-variant/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">settings_account_box</span>
+<span class="font-body-lg text-body-lg text-on-surface">Account Settings</span>
+</div>
+<input checked="" class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-card-padding hover:bg-surface-variant/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">payments</span>
+<span class="font-body-lg text-body-lg text-on-surface">In-app Purchases</span>
+</div>
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Biometrics Card -->
+<div class="glass-card rounded-xl p-card-padding shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">face</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Biometric Unlock</h3>
+<p class="font-caption text-caption text-on-surface-variant">Use FaceID or Fingerprint</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-outline-variant rounded-full p-1 transition-colors duration-300">
+<div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300"></div>
+</div>
+</label>
+</div>
+<!-- Security Notice -->
+<div class="bg-surface-container-low rounded-xl p-card-padding flex gap-3 border border-outline-variant">
+<span class="material-symbols-outlined text-warning">info</span>
+<p class="font-caption text-caption text-on-surface-variant">Your PIN is only stored locally on this device for maximum privacy. If forgotten, you will need to verify your account via email.</p>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Destination: Settings) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim z-50 rounded-t-xl shadow-sm">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions for toggles
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const parent = e.target.closest('label').querySelector('.toggle-bg');
+                if (e.target.checked) {
+                    parent.style.backgroundColor = '#006c49';
+                } else {
+                    parent.style.backgroundColor = '#bbcabf';
+                }
+            });
+        });
+
+        // Hover effect for checklist items
+        document.querySelectorAll('label.flex.items-center.justify-between').forEach(item => {
+            item.addEventListener('mousedown', () => {
+                item.style.transform = 'scale(0.98)';
+            });
+            item.addEventListener('mouseup', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

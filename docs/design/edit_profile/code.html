@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Edit Profile - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#FFFFFF",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "surface-bright": "#faf9f8",
+                        "primary": "#006c49",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "outline": "#6c7a71",
+                        "surface-tint": "#006c49",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-variant": "#e3e2e1",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-container": "#006f64",
+                        "kids-primary": "#00D991",
+                        "success": "#22C55E",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#71f8e4",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-container": "#523200",
+                        "inverse-primary": "#4edea3",
+                        "on-background": "#1a1c1c",
+                        "surface-dim": "#dadad9",
+                        "on-surface-variant": "#3c4a42",
+                        "background-dark": "#1F2937",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#00422b",
+                        "surface-container-high": "#e9e8e7",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary": "#006b5f",
+                        "tertiary-container": "#e29100",
+                        "inverse-on-surface": "#f1f0f0",
+                        "danger": "#EF4444",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed-variant": "#005236",
+                        "background": "#faf9f8",
+                        "warning": "#F97316",
+                        "tertiary": "#855300",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#6ffbbe",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "surface-container-low": "#f4f3f2",
+                        "kids-accent": "#FFC107",
+                        "on-tertiary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "touch-target-min": "48px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "20px",
+                        "chip-padding": "12px",
+                        "button-padding": "16px",
+                        "base": "8px",
+                        "card-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "body-numbers": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .focus-ring:focus-within {
+            box-shadow: 0 0 0 2px #10b981;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-touch-target-min h-touch-target-min hover:bg-surface-container-low transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-on-surface">Edit Profile</h1>
+</div>
+<button class="font-label-sm text-label-sm text-primary px-4 py-2 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+            Cancel
+        </button>
+</header>
+<main class="w-full max-w-2xl px-margin-mobile md:px-margin-desktop py-8 flex-1">
+<!-- Profile Header Section -->
+<section class="flex flex-col items-center mb-10">
+<div class="relative group">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-surface shadow-sm overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A premium close-up portrait of a friendly, professional young parent in a soft-lit, modern home office setting. The style is minimalist with organic green accents, featuring high-key lighting and a clean, shallow depth of field. The mood is warm, reliable, and approachable, aligned with a high-end wellness and habit-tracking application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-KTyzJnzo830ad8a9fTJ09N0B2CwH5TbCxidMk41corwEc6BVBke5ELVqchYH8BgUh75Zbbp4fNV2bKCa-q9ekCC85tbE2GVtliLgOXePoDevW79y7MS8SIgOmldGgjvGhPMoBqbRL9ja2MwqmJHezdLT_XWvlXFgbmc0iCCz3hofJboZ1GPgSKIbwVphSmPyoFzzPgyAfMpoCXcu8tXH-YukibZB0LPVbq_5Jrw5E8ipawyDk17v"/>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:bg-on-primary-fixed-variant transition-transform active:scale-90 duration-150">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</button>
+</div>
+<button class="mt-4 font-label-sm text-label-sm text-primary hover:text-on-primary-fixed-variant transition-colors">
+                Change Avatar
+            </button>
+</section>
+<!-- Form Fields -->
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- First Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="first-name">First Name</label>
+<div class="relative flex items-center group">
+<input class="w-full bg-surface border-1.5 border-outline-variant rounded-xl px-4 py-3.5 font-body-lg text-body-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all group-hover:border-outline" id="first-name" type="text" value="Alex"/>
+</div>
+</div>
+<!-- Last Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="last-name">Last Name</label>
+<div class="relative flex items-center group">
+<input class="w-full bg-surface border-1.5 border-outline-variant rounded-xl px-4 py-3.5 font-body-lg text-body-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all group-hover:border-outline" id="last-name" type="text" value="Henderson"/>
+</div>
+</div>
+</div>
+<!-- Display Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="display-name">Display Name</label>
+<div class="relative flex items-center group">
+<input class="w-full bg-surface border-1.5 border-outline-variant rounded-xl px-4 py-3.5 font-body-lg text-body-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all group-hover:border-outline" id="display-name" type="text" value="AlexH_Habits"/>
+<span class="absolute right-4 text-outline material-symbols-outlined text-[20px]">alternate_email</span>
+</div>
+<p class="font-caption text-caption text-outline ml-1">This is how other family members will see you.</p>
+</div>
+<!-- Bio -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="bio">Bio</label>
+<div class="relative flex items-center group">
+<textarea class="w-full bg-surface border-1.5 border-outline-variant rounded-xl px-4 py-3.5 font-body-lg text-body-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all group-hover:border-outline resize-none" id="bio" rows="3">Consistency is key! Building better habits for a healthier family life every single day. 🌿</textarea>
+</div>
+</div>
+<!-- Email (Read Only / Locked Style) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative flex items-center bg-surface-container-low border-1.5 border-outline-variant/30 rounded-xl px-4 py-3.5">
+<input class="w-full bg-transparent font-body-lg text-body-lg text-on-surface-variant outline-none border-none p-0 cursor-not-allowed" id="email" readonly="" type="email" value="alex.henderson@example.com"/>
+<span class="material-symbols-outlined text-outline text-[20px]">lock</span>
+</div>
+</div>
+<!-- Preferences / Settings toggle -->
+<div class="pt-4 border-t border-outline-variant/30 mt-8">
+<h2 class="font-headline-sm text-headline-sm-mobile text-on-surface mb-4">Account Security</h2>
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low rounded-xl transition-colors active:bg-surface-container-high" type="button">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">key</span>
+<div class="text-left">
+<p class="font-body-lg text-body-lg text-on-surface">Change Password</p>
+<p class="font-caption text-caption text-on-surface-variant">Last updated 3 months ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+</form>
+</main>
+<!-- Bottom Action Area -->
+<footer class="w-full max-w-2xl px-margin-mobile md:px-margin-desktop py-6 mb-safe">
+<button class="w-full bg-primary text-on-primary font-headline-sm py-4 rounded-xl shadow-lg hover:bg-on-primary-fixed-variant transition-all active:scale-[0.98] duration-150 flex items-center justify-center gap-2">
+            Save Changes
+        </button>
+<p class="mt-4 text-center font-caption text-caption text-on-surface-variant">
+            By saving, you agree to our <a class="text-primary font-medium underline underline-offset-2" href="#">Terms of Service</a>.
+        </p>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.classList.add('scale-[1.01]');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Simple feedback for the save button
+        const saveBtn = document.querySelector('button.bg-primary');
+        saveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const originalContent = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Updating...';
+            saveBtn.disabled = true;
+            saveBtn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Profile Saved';
+                saveBtn.classList.remove('bg-primary');
+                saveBtn.classList.add('bg-success');
+                
+                setTimeout(() => {
+                    saveBtn.innerHTML = originalContent;
+                    saveBtn.classList.remove('bg-success', 'opacity-80');
+                    saveBtn.classList.add('bg-primary');
+                    saveBtn.disabled = false;
+                }, 2000);
+            }, 1200);
+        });
+    </script>
+</body></html>

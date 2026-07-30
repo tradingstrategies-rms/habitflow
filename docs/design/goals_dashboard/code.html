@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Goals Dashboard | HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-tint": "#006c49",
+                    "on-primary-fixed": "#002113",
+                    "secondary-fixed": "#71f8e4",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary": "#ffffff",
+                    "background": "#faf9f8",
+                    "on-primary-container": "#00422b",
+                    "surface-bright": "#faf9f8",
+                    "tertiary": "#855300",
+                    "surface-variant": "#e3e2e1",
+                    "surface-container": "#eeeeed",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "warning": "#F97316",
+                    "on-secondary-fixed": "#00201c",
+                    "danger": "#EF4444",
+                    "on-surface-variant": "#3c4a42",
+                    "success": "#22C55E",
+                    "on-tertiary-fixed": "#2a1700",
+                    "secondary-container": "#6df5e1",
+                    "surface": "#FFFFFF",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#006f64",
+                    "outline": "#6c7a71",
+                    "on-primary-fixed-variant": "#005236",
+                    "inverse-surface": "#2f3130",
+                    "kids-accent": "#FFC107",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006b5f",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-dim": "#dadad9",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#10b981",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-container": "#523200",
+                    "tertiary-container": "#e29100",
+                    "primary-fixed": "#6ffbbe",
+                    "kids-primary": "#00D991",
+                    "primary-fixed-dim": "#4edea3",
+                    "inverse-primary": "#4edea3",
+                    "surface-container-high": "#e9e8e7",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-surface": "#1a1c1c",
+                    "background-dark": "#1F2937",
+                    "primary": "#006c49",
+                    "surface-container-low": "#f4f3f2",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e3e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "card-padding": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .progress-bar-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 bg-background flex justify-between items-center px-gutter h-14 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md">spa</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">HabitFlow</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</header>
+<main class="max-w-2xl mx-auto px-margin-mobile md:px-margin-desktop py-6 space-y-8">
+<!-- Section 3: Timeframe Tabs (Moved up for filtering context) -->
+<nav class="flex space-x-2 overflow-x-auto pb-2 -mx-2 px-2">
+<button class="px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm whitespace-nowrap shadow-sm transition-all">Monthly</button>
+<button class="px-6 py-2 rounded-full bg-surface text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap border border-outline-variant hover:bg-surface-container-low transition-all">Quarterly</button>
+<button class="px-6 py-2 rounded-full bg-surface text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap border border-outline-variant hover:bg-surface-container-low transition-all">Half-Yearly</button>
+<button class="px-6 py-2 rounded-full bg-surface text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap border border-outline-variant hover:bg-surface-container-low transition-all">Yearly</button>
+</nav>
+<!-- Section 1: Active Family Goal -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-1">
+<h2 class="font-headline-sm text-headline-sm">Family Goal</h2>
+<button class="text-primary font-label-sm text-label-sm flex items-center gap-1">
+                    Manage <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="relative overflow-hidden bg-primary text-on-primary rounded-[20px] p-card-padding shadow-lg min-h-[220px] flex flex-col justify-between">
+<!-- Decorative background -->
+<div class="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider opacity-80">Active Mission</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-1">Family Vacation Fund</h3>
+<p class="font-body-lg text-body-lg opacity-90">Saving for the Tokyo adventure</p>
+</div>
+<div class="relative z-10 mt-6">
+<div class="flex justify-between items-center mb-3">
+<span class="font-body-numbers text-body-numbers">50% Saved</span>
+<span class="font-body-numbers text-body-numbers">$2,500 / $5,000</span>
+</div>
+<div class="w-full h-3 bg-white/20 rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-white rounded-full" style="width: 50%;"></div>
+</div>
+<div class="flex gap-4 mt-6">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm opacity-70">Milestones</span>
+<div class="flex -space-x-2 mt-2">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-success flex items-center justify-center" title="Flights Booked">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] opacity-50">hotel</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] opacity-50">local_activity</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Personal Goals -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-1">
+<h2 class="font-headline-sm text-headline-sm">Personal Goals</h2>
+<button class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Goal Card 1 -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-[180px]">
+<div>
+<div class="flex justify-between items-start mb-3">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-full font-label-sm text-label-sm">Monthly</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Learn Guitar</h4>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span class="font-caption text-caption">Linked to "30min Practice" habit</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-primary font-bold">12/30 Days</span>
+<span class="text-on-surface-variant">40%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+</div>
+<!-- Goal Card 2 -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-[180px]">
+<div>
+<div class="flex justify-between items-start mb-3">
+<div class="w-12 h-12 rounded-2xl bg-kids-accent/10 flex items-center justify-center text-warning">
+<span class="material-symbols-outlined">extension</span>
+</div>
+<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-full font-label-sm text-label-sm">Quarterly</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Save for LEGO Set</h4>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span class="font-caption text-caption">Linked to "Chores" habit</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-warning font-bold">$75 / $120</span>
+<span class="text-on-surface-variant">62%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 62%;"></div>
+</div>
+</div>
+</div>
+<!-- Goal Card 3 (Empty State Style) -->
+<div class="border-2 border-dashed border-outline-variant rounded-[20px] p-card-padding flex flex-col items-center justify-center text-center space-y-2 h-[180px] bg-transparent hover:bg-surface-container-low/30 transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant/60">Start a New Goal</p>
+<p class="font-caption text-caption text-on-surface-variant/40 px-4">Dream big, start small. Connect habits to see growth.</p>
+</div>
+</div>
+</section>
+<!-- Aesthetic Growth Tree Section (Brand Context) -->
+<section class="mt-12 bg-white/50 border border-white p-card-padding rounded-[20px]">
+<div class="flex flex-col md:flex-row items-center gap-6">
+<div class="relative w-32 h-32 flex-shrink-0">
+<div class="absolute inset-0 bg-success/10 rounded-full animate-pulse"></div>
+<div class="absolute inset-2 bg-success/20 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-success text-[48px]" style="font-variation-settings: 'FILL' 1;">park</span>
+</div>
+</div>
+<div class="space-y-2 text-center md:text-left">
+<h3 class="font-headline-md text-headline-md text-primary">Family Vitality: Level 14</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">You've reached 85% of your collective monthly goals. Your family tree is thriving!</p>
+<div class="pt-2">
+<div class="flex gap-2 justify-center md:justify-start">
+<span class="px-3 py-1 bg-success/10 text-success rounded-full font-label-sm text-label-sm">+250 XP earned today</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm mt-1">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-label-sm text-label-sm mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm mt-1">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm mt-1">Family</span>
+</a>
+</nav>
+<!-- Quick Add FAB (Contextual for Goals) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<script>
+        // Micro-interaction for timeframe tabs
+        document.querySelectorAll('nav button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('nav button').forEach(b => {
+                    b.className = "px-6 py-2 rounded-full bg-surface text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap border border-outline-variant hover:bg-surface-container-low transition-all";
+                });
+                this.className = "px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm whitespace-nowrap shadow-sm transition-all";
+            });
+        });
+
+        // Simulating some progress bar animation on load
+        window.onload = () => {
+            const bars = document.querySelectorAll('.progress-bar-fill');
+            bars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        };
+    </script>
+</body></html>

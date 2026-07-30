@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Life Areas - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#6c7a71",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background-dark": "#1F2937",
+                    "secondary": "#006b5f",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-container": "#e29100",
+                    "on-tertiary-container": "#523200",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#4edea3",
+                    "danger": "#EF4444",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-dim": "#dadad9",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eeeeed",
+                    "success": "#22C55E",
+                    "on-primary-fixed-variant": "#005236",
+                    "warning": "#F97316",
+                    "primary-container": "#10b981",
+                    "on-primary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container-low": "#f4f3f2",
+                    "surface-tint": "#006c49",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "kids-primary": "#00D991",
+                    "primary-fixed": "#6ffbbe",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "surface-variant": "#e3e2e1",
+                    "background": "#faf9f8",
+                    "surface": "#FFFFFF",
+                    "secondary-fixed": "#71f8e4",
+                    "kids-accent": "#FFC107",
+                    "tertiary-fixed": "#ffddb8",
+                    "outline-variant": "#bbcabf",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-container": "#006f64",
+                    "tertiary": "#855300",
+                    "primary": "#006c49",
+                    "surface-bright": "#faf9f8",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "secondary-container": "#6df5e1",
+                    "on-primary-container": "#00422b",
+                    "on-tertiary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "chip-padding": "12px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.6s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top AppBar (from JSON) -->
+<header class="w-full top-0 sticky bg-background dark:bg-background-dark z-50">
+<div class="flex items-center justify-between px-margin-mobile h-14 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="spa">spa</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-kids-primary tracking-tight">HabitFlow</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-bold text-xs">JD</div>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 max-w-screen-xl mx-auto">
+<!-- Header Section -->
+<section class="mb-8">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface mb-2">Life Balance</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Visualizing your family's holistic growth across core dimensions.</p>
+</section>
+<!-- Growth Opportunity Banner (Asymmetric Layout) -->
+<section class="mb-10">
+<div class="relative overflow-hidden rounded-[20px] bg-tertiary-fixed text-on-tertiary-fixed p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="relative z-10 md:w-2/3">
+<span class="inline-block px-3 py-1 bg-on-tertiary-fixed text-tertiary-fixed rounded-full text-xs font-bold mb-3">GROWTH OPPORTUNITY</span>
+<h3 class="font-headline-lg text-headline-lg mb-2">Soul is at 64%</h3>
+<p class="font-body-lg text-body-lg opacity-90">Time for some quiet reflection? The family heart-sync is high, but your collective peace needs a boost this week.</p>
+<button class="mt-4 px-6 py-3 bg-tertiary text-on-tertiary rounded-xl font-bold flex items-center gap-2 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                        Explore Soul Activities
+                    </button>
+</div>
+<div class="relative w-48 h-48 flex items-center justify-center">
+
+<span class="material-symbols-outlined text-7xl text-tertiary opacity-40" data-icon="self_improvement">self_improvement</span>
+</div>
+</div>
+</section>
+<!-- Core Life Areas Bento Grid -->
+<section class="bento-grid mb-10">
+<!-- Mind Card -->
+<div class="glass-card rounded-[20px] p-card-padding flex flex-col h-full hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-2xl bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<span class="text-success font-bold text-xs">+12%</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Mind</h4>
+<p class="font-caption text-caption text-on-surface-variant mb-4">92% - Exceptional Focus</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium text-on-surface-variant">Consistency</span>
+<span class="text-xs font-bold text-primary">High</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+<!-- Body Card -->
+<div class="glass-card rounded-[20px] p-card-padding flex flex-col h-full hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+</div>
+<span class="text-warning font-bold text-xs">-2%</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Body</h4>
+<p class="font-caption text-caption text-on-surface-variant mb-4">78% - Steady Energy</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium text-on-surface-variant">Consistency</span>
+<span class="text-xs font-bold text-secondary">Moderate</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<!-- Heart Card -->
+<div class="glass-card rounded-[20px] p-card-padding flex flex-col h-full hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-2xl bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="text-success font-bold text-xs">+5%</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Heart</h4>
+<p class="font-caption text-caption text-on-surface-variant mb-4">88% - Strong Bonds</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium text-on-surface-variant">Consistency</span>
+<span class="text-xs font-bold text-error">High</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 88%"></div>
+</div>
+</div>
+</div>
+<!-- Soul Card -->
+<div class="glass-card rounded-[20px] p-card-padding border-2 border-tertiary/20 flex flex-col h-full hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" data-icon="wb_sunny">wb_sunny</span>
+</div>
+<span class="text-on-surface-variant font-bold text-xs">0%</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Soul</h4>
+<p class="font-caption text-caption text-on-surface-variant mb-4">64% - Needs Attention</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium text-on-surface-variant">Consistency</span>
+<span class="text-xs font-bold text-tertiary">Low</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full" style="width: 64%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Contributors List -->
+<section class="mb-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Top Contributors</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Mind Contributors -->
+<div class="bg-surface rounded-[24px] p-6 shadow-sm border border-outline-variant/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
+<h5 class="font-headline-sm text-headline-sm">Mind Leaders</h5>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a young girl with bright eyes and a thoughtful expression, set against a soft, sunlit organic background. The lighting is warm and airy, emphasizing a modern corporate yet family-friendly aesthetic with emerald green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-2tkjeONbgVP4h09PVFgc0xgiJFlQkHkXYzLVP_Az8USDkWVXYTV1oKAdofqA3C3tChiPKNok3ec_5PId2r_IGZ27a7VPmo0p78c6EVN37oa9cgBbHDnwXk56XYydoAoCZGAIVjfr7oA8tYBSp8q-w-ts_SWXMYz-wri6LpNkwhWIDAOTKipIXpoCDW4x4uL10AgsP6FzqbwN-w4zaoqU7mj0acOfwRjGmiBG_ImfZuTNFdmOxo88"/>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">Sophie (Kid)</p>
+<p class="text-xs text-on-surface-variant">15 Read Sessions</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-xs font-bold">1,240 pts</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a smiling father in a minimalist home office setting. The style is high-key, bright, and breathable with a palette of whites and soft grays, featuring sharp focus and a premium look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyIa0X3Gayl-2Ky-ZtI6qGNpa9kgGK7y99wbrUBVok_NXbCvuUcA5FV6_cJKnmeRD_MITyS2_gb8NoUmACN54JpSSaYoKhxn23IWk-zeMMpYGEpnt300_W0l7bsIcaW3yCdMgN_EAmnZUs0CmkiVV2cdGxDZkNtnrKjZQdmcbpNIktdboiQDgBFTP3Or_iJuDP48x9ygGjyBl3tX31SyXHfJc5PmizfloYbnU3V4fcYE1UR8J2bJrP"/>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">David (Dad)</p>
+<p class="text-xs text-on-surface-variant">8 Logic Puzzles</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-xs font-bold">890 pts</span>
+</div>
+</div>
+</div>
+<!-- Heart Contributors -->
+<div class="bg-surface rounded-[24px] p-6 shadow-sm border border-outline-variant/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-error" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<h5 class="font-headline-sm text-headline-sm">Heart Leaders</h5>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A warm, engaging portrait of a mother laughing in a brightly lit kitchen. The lighting is soft and natural, emphasizing a calm and nurturing atmosphere. The design follows a minimalist grid-based aesthetic with clean lines and organic textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1Esg5k1B14VTLeKfn8FIx9CYUmun6N44e5fUKukmPe1OArNiXggTvjTvVgKhoShowfBJT1tXV7k6E2ycXe0NJJFF5FOrBVSj4VpVBPAB0SOZFae5zDCH771WQmBWSiXDsPq6-YzgOda7Vjs0d2fokCjvHFjfv2cybvJjDF_GvhxTu9tOPhv-NWomv6eR8q9XFtTQFjw9dzq5KX1oVcGJ9Pd0jykRtiURwebI1o3t4wG-WuWrk0kyb"/>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">Sarah (Mom)</p>
+<p class="text-xs text-on-surface-variant">12 Family Meals Logged</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full text-xs font-bold">1,450 pts</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A playful and energetic portrait of a young boy wearing a green t-shirt, set in a minimalist park setting with soft green tones. High-end digital photography style with high vibrancy for a kids theme but maintaining a premium, non-cartoonish feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4zHJHA-dksUQ2p90n7iTzepcICxajbnUbyrLZHjmiEt4Hms9HtPwi6bPxUC4bZywJ6mnrcRSrEcp5huiwjExJrWfX3a9OUM7m__UXbt2fwubZ07Rj1ceb--0gzvNE1CAxDUDxILIOZ9LAA0xQBcHxvbL6HDWT6_AbgWxDoEvdETcbcDGL3Gip5ZdPT-Iki3hFxxYRX3dceTvaB2owKMFSrDnNbwa9J8bZP2ZFdNXznFP_xQDmacd-"/>
+<div>
+<p class="font-body-numbers text-body-numbers text-on-surface">Leo (Kid)</p>
+<p class="text-xs text-on-surface-variant">5 Acts of Kindness</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full text-xs font-bold">720 pts</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Balance Radar (Simulated Asymmetric Detail) -->
+<section class="mb-10 bg-white rounded-[24px] p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="md:w-1/2">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">The Vitality Map</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Your family's growth isn't just about points; it's about the shape of your week. This month, you've excelled in intellectual and emotional connection, while spiritual and physical recovery took a backseat.</p>
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold">Mental Clarity</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-xs font-bold">Bonding</span>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center">
+<div class="relative w-64 h-64 bg-surface-container-low rounded-full flex items-center justify-center">
+<div class="absolute inset-4 border-2 border-dashed border-outline-variant/30 rounded-full"></div>
+<div class="absolute inset-12 border-2 border-dashed border-outline-variant/30 rounded-full"></div>
+<!-- Asymmetric Growth Shape -->
+<svg class="w-full h-full p-2 drop-shadow-xl" viewbox="0 0 100 100">
+<path d="M50,10 L85,50 L50,90 L20,50 Z" fill="rgba(0, 108, 73, 0.2)" stroke="#006c49" stroke-width="2"></path>
+<circle cx="50" cy="10" fill="#006c49" r="4"></circle>
+<circle cx="85" cy="50" fill="#006c49" r="4"></circle>
+<circle cx="50" cy="90" fill="#006c49" r="4"></circle>
+<circle cx="20" cy="50" fill="#006c49" r="4"></circle>
+</svg>
+<div class="absolute top-2 text-[10px] font-bold text-on-surface-variant">MIND</div>
+<div class="absolute right-2 text-[10px] font-bold text-on-surface-variant">HEART</div>
+<div class="absolute bottom-2 text-[10px] font-bold text-on-surface-variant">BODY</div>
+<div class="absolute left-2 text-[10px] font-bold text-on-surface-variant">SOUL</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 pb-safe h-[72px] bg-surface dark:bg-inverse-surface shadow-lg z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="Check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm mt-1">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="ads_click">ads_click</span>
+<span class="font-label-sm text-label-sm mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-label-sm text-label-sm mt-1">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-4 py-1 active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm mt-1">Family</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for radar and progress rings
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

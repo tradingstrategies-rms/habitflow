@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HabitFlow Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "primary": "#006c49",
+                    "on-surface": "#1a1c1c",
+                    "surface-dim": "#dadad9",
+                    "surface-tint": "#006c49",
+                    "inverse-primary": "#4edea3",
+                    "surface-bright": "#faf9f8",
+                    "secondary-fixed": "#71f8e4",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-secondary-container": "#006f64",
+                    "kids-accent": "#FFC107",
+                    "primary-container": "#10b981",
+                    "surface": "#FFFFFF",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#523200",
+                    "kids-primary": "#00D991",
+                    "primary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "outline": "#6c7a71",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "tertiary": "#855300",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffddb8",
+                    "secondary-container": "#6df5e1",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-high": "#e9e8e7",
+                    "on-primary-fixed": "#002113",
+                    "on-background": "#1a1c1c",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-error": "#ffffff",
+                    "danger": "#EF4444",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary": "#006b5f",
+                    "outline-variant": "#bbcabf",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "success": "#22C55E",
+                    "surface-variant": "#e3e2e1",
+                    "background-dark": "#1F2937",
+                    "warning": "#F97316",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "primary-fixed-dim": "#4edea3",
+                    "surface-container": "#eeeeed",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "error": "#ba1a1a",
+                    "background": "#faf9f8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "chip-padding": "12px",
+                    "button-padding": "16px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "card-padding": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .organic-float {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Anchor (Shared Component) -->
+<nav class="bg-background dark:bg-on-surface flex justify-between items-center px-margin-mobile w-full h-16 fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container shadow-sm border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly user in their early 30s, soft natural lighting, clean white background, modern corporate headshot style, high clarity, warm and approachable expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyf2mGSO3NWgcd8OcAZvwYbwGj3KRb0QEXVt3hwqV02ZaM8ee6PnehfkJ9p489dUkBio8xgcLxRUkOVI_8J-VnBBgqnqQaocHymBhq9Q429Gd1tBlJLoUpTqFPXvr7y5_8QbvV1YH8QSLaw-IVo7yakn6miii6P9liWtLfl9ahXVJaRWpAtgqqLvF2zpItSkqJADVRMNLkgff0yGPznaCRTpGvVN21Ewz0q1jmJbD_Iv99T-2E2l_1"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">HabitFlow</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:opacity-80 transition-opacity p-2 rounded-full" data-icon="notifications">notifications</button>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-24 pb-32 px-margin-mobile max-w-2xl mx-auto w-full">
+<!-- Empty State Module -->
+<section class="flex flex-col items-center text-center">
+<header class="mb-12">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-primary mb-2 block">Intelligence</span>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">Habit Intelligence</h2>
+</header>
+<!-- Sprouting Illustration -->
+<div class="relative w-64 h-64 mb-8 organic-float flex items-center justify-center">
+<div class="absolute inset-0 bg-secondary-container/30 rounded-full blur-3xl scale-75"></div>
+<img class="relative z-10 w-48 h-48 drop-shadow-xl" data-alt="A minimal organic flat illustration of a tiny green seedling with two small heart-shaped leaves just emerging from smooth dark soil. Set against a warm cream background with soft sage green and emerald accents. Minimalist vector art style with clean lines and soft lighting, representing new beginnings and calm growth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZME-9H-o3l9Nd-FKmTrYtGXo_dJgeg0KKYe_0ff83J2ylGD9SRkfqzxBwZ_eMOozx9DoAJ6RheGBhJRixywh_WQRjAtMtaqfS1PKOurB9fOvcPLQUYk7GWuxDGsKWN6H2Tu8H3mEMZf3i0pkkkKcaFvcECsm_K8D5oYe-FWSvRiwbODHqpOX9jNv3GiMuGJIAM1WpevBkTvVoUaWiahbW9atUEDnut2jMnq9LJvwAf_Y-L_XFq2Sv"/>
+</div>
+<!-- Copy & Action -->
+<div class="space-y-4 max-w-sm mb-12">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Your Journey is Beginning</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant px-4">
+                    Complete a few more habits to unlock personalized insights and consistency scores. We're currently learning your patterns.
+                </p>
+<div class="pt-4">
+<button class="bg-primary text-on-primary font-headline-sm px-10 py-4 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all w-full md:w-auto">
+                        View Today's Habits
+                    </button>
+</div>
+</div>
+<!-- "What's Coming" Section -->
+<div class="w-full pt-8 border-t border-surface-variant">
+<h4 class="font-label-sm text-label-sm text-outline mb-6 uppercase tracking-wider">What's Coming</h4>
+<div class="grid grid-cols-2 gap-4 relative overflow-hidden">
+<!-- Blur Overlay for Preview -->
+<div class="absolute inset-0 z-10 backdrop-blur-[2px] bg-background/20 flex items-center justify-center pointer-events-none">
+<div class="bg-surface/80 px-4 py-2 rounded-full border border-outline-variant shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface">Unlock in 3 days</span>
+</div>
+</div>
+<!-- Blurred Card 1 -->
+<div class="glass-card p-card-padding rounded-2xl flex flex-col items-start text-left opacity-60">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div class="h-4 w-3/4 bg-surface-container rounded-full mb-2"></div>
+<div class="h-3 w-full bg-surface-container-low rounded-full"></div>
+</div>
+<!-- Blurred Card 2 -->
+<div class="glass-card p-card-padding rounded-2xl flex flex-col items-start text-left opacity-60">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary mb-3">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div class="h-4 w-3/4 bg-surface-container rounded-full mb-2"></div>
+<div class="h-3 w-full bg-surface-container-low rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (Shared Component) -->
+<footer class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface dark:bg-inverse-surface shadow-sm">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-100 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Habits -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-100 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<!-- Intelligence (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-5 py-1 scale-100 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-label-sm">Intelligence</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-100 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</footer>
+<!-- Interactive script for subtle hover effects on the illustration -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const illustration = document.querySelector('.organic-float');
+            if (illustration) {
+                illustration.addEventListener('mousemove', (e) => {
+                    const { left, top, width, height } = illustration.getBoundingClientRect();
+                    const x = (e.clientX - left) / width - 0.5;
+                    const y = (e.clientY - top) / height - 0.5;
+                    
+                    illustration.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-10px)`;
+                });
+                
+                illustration.addEventListener('mouseleave', () => {
+                    illustration.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)`;
+                });
+            }
+        });
+    </script>
+</body></html>

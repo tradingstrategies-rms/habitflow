@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>About HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#71f8e4",
+                        "surface-tint": "#006c49",
+                        "surface-container-high": "#e9e8e7",
+                        "kids-accent": "#FFC107",
+                        "danger": "#EF4444",
+                        "on-secondary-fixed-variant": "#005048",
+                        "background": "#faf9f8",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-surface-variant": "#3c4a42",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-fixed": "#002113",
+                        "surface-dim": "#dadad9",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#1F2937",
+                        "secondary-container": "#6df5e1",
+                        "outline": "#6c7a71",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary": "#855300",
+                        "kids-primary": "#00D991",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-low": "#f4f3f2",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#6ffbbe",
+                        "outline-variant": "#bbcabf",
+                        "inverse-surface": "#2f3130",
+                        "on-primary": "#ffffff",
+                        "primary": "#006c49",
+                        "tertiary-container": "#e29100",
+                        "primary-fixed-dim": "#4edea3",
+                        "warning": "#F97316",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#faf9f8",
+                        "surface-variant": "#e3e2e1",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f0f0",
+                        "on-secondary-container": "#006f64",
+                        "error-container": "#ffdad6",
+                        "surface": "#FFFFFF",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#ffffff",
+                        "primary-container": "#10b981",
+                        "error": "#ba1a1a",
+                        "success": "#22C55E",
+                        "inverse-primary": "#4edea3",
+                        "secondary": "#006b5f",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-tertiary-container": "#523200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "card-padding": "20px",
+                        "chip-padding": "12px",
+                        "base": "8px",
+                        "button-padding": "16px",
+                        "touch-target-min": "48px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-numbers": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "caption": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface-container-low dark:bg-surface-container-highest transition-all duration-300">
+<div class="flex items-center justify-between px-gutter h-touch-target-min w-full max-w-7xl mx-auto">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-high transition-colors active:scale-95 duration-200 p-2 rounded-full">
+                arrow_back
+            </button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim font-bold tracking-tight">HabitFlow</h1>
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly parent smiling warmly, set against a soft-focus minimalist domestic interior with clean lines and natural lighting. The color palette is composed of soft creams, emerald greens, and warm wood tones to match the HabitFlow design system. The image is bright, high-key, and exudes a sense of calm and reliable family leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnNm-yweA2EedJjNok6yUpQoaoXMPIQL4sZGG2g2_G6qSessiGzwKu2dQgLJOLp49FMO4TKSm0dDZAYC1iu4vvh2HMcIJ6WvUBS6Ql1GCHqrbDIx4DTFIgn1M_fvHOgdC3sggknFDmDyFLJEmzOKT9onWrFM6ZyH-ebvYGkE0YgYzt4mwpfNfbbfJUeX-aKJV6lkMB266v9QuZoDxuAZtumSxALTa_vgLU10Zy5AHr5xja0NSh6O2x"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow max-w-2xl mx-auto px-margin-mobile md:px-margin-desktop py-12 w-full">
+<!-- App Logo & Version -->
+<section class="flex flex-col items-center mb-16">
+<div class="relative w-32 h-32 mb-6 group">
+<div class="absolute inset-0 bg-primary opacity-10 rounded-[32px] blur-2xl group-hover:opacity-20 transition-opacity"></div>
+<div class="relative bg-white dark:bg-surface-dim rounded-[32px] shadow-sm border border-outline-variant flex items-center justify-center w-full h-full animate-float">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+</div>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface mb-1">HabitFlow</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Version 2.4.0 (Stable)</p>
+</section>
+<!-- Mission Statement -->
+<section class="mb-16 text-center">
+<div class="p-card-padding bg-surface-container-low rounded-xl border border-outline-variant/30">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 italic">"Cultivating better futures, one small ritual at a time."</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    At HabitFlow, we believe that personal growth isn't about massive leaps, but the gentle, consistent nurturing of positive behaviors. Our platform is designed to be the digital soil where your family's aspirations can take root and thrive in an environment of clarity and calm vitality.
+                </p>
+</div>
+</section>
+<!-- Legal & Links List -->
+<section class="space-y-4 mb-16">
+<a class="flex items-center justify-between p-card-padding bg-white border border-outline-variant/50 rounded-xl hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">gavel</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Terms of Service</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-card-padding bg-white border border-outline-variant/50 rounded-xl hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">shield</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Privacy Policy</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-card-padding bg-white border border-outline-variant/50 rounded-xl hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">code</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Open Source Licenses</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</a>
+</section>
+<!-- Social Icons -->
+<section class="flex flex-col items-center gap-8">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Connect With Us</p>
+<div class="flex gap-12">
+<a class="group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-3xl">public</span>
+</a>
+<a class="group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-3xl">alternate_email</span>
+</a>
+<a class="group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-3xl">chat</span>
+</a>
+</div>
+</section>
+<!-- Footer Credits -->
+<footer class="mt-24 text-center pb-24">
+<p class="font-caption text-caption text-outline mb-2">Designed with focus in Copenhagen</p>
+<p class="font-caption text-caption text-outline">© 2024 HabitFlow Inc. All rights reserved.</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</button>
+<!-- Active Tab: Settings (About is within Settings context) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for back button
+        document.querySelector('.material-symbols-outlined').addEventListener('click', () => {
+            window.history.back();
+        });
+
+        // Subtle parallax effect on logo for premium feel
+        document.addEventListener('mousemove', (e) => {
+            const logo = document.querySelector('.animate-float');
+            const rect = logo.getBoundingClientRect();
+            const x = (e.clientX - (rect.left + rect.width / 2)) / 30;
+            const y = (e.clientY - (rect.top + rect.height / 2)) / 30;
+            logo.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HabitFlow - My Habits</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "kids-primary": "#00D991",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "secondary-fixed": "#71f8e4",
+                    "on-secondary-container": "#006f64",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-background": "#1a1c1c",
+                    "success": "#22C55E",
+                    "on-surface-variant": "#3c4a42",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-tint": "#006c49",
+                    "surface-container": "#eeeeed",
+                    "on-primary-container": "#00422b",
+                    "danger": "#EF4444",
+                    "kids-accent": "#FFC107",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#006c49",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bbcabf",
+                    "on-surface": "#1a1c1c",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container-highest": "#e3e2e1",
+                    "inverse-primary": "#4edea3",
+                    "tertiary-container": "#e29100",
+                    "on-primary-fixed": "#002113",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-fixed": "#6ffbbe",
+                    "primary-container": "#10b981",
+                    "background-dark": "#1F2937",
+                    "on-tertiary-container": "#523200",
+                    "surface-dim": "#dadad9",
+                    "secondary-container": "#6df5e1",
+                    "primary-fixed-dim": "#4edea3",
+                    "surface-container-high": "#e9e8e7",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-bright": "#faf9f8",
+                    "surface": "#FFFFFF",
+                    "error-container": "#ffdad6",
+                    "secondary": "#006b5f",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error": "#ba1a1a",
+                    "tertiary": "#855300",
+                    "outline": "#6c7a71",
+                    "surface-variant": "#e3e2e1",
+                    "on-primary-fixed-variant": "#005236",
+                    "inverse-surface": "#2f3130",
+                    "warning": "#F97316"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "24px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "chip-padding": "12px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "card-padding": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .circular-progress {
+            --size: 48px;
+            --stroke-width: 4px;
+            width: var(--size);
+            height: var(--size);
+            transform: rotate(-90deg);
+        }
+        .circular-progress circle {
+            fill: none;
+            stroke-width: var(--stroke-width);
+            stroke-linecap: round;
+        }
+        .circular-progress .bg { stroke: #eeeeed; }
+        .circular-progress .fg { stroke: #006c49; transition: stroke-dashoffset 0.3s ease; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-background/95 backdrop-blur-md px-4 h-16 flex items-center justify-between">
+<h1 class="font-headline-md text-headline-md text-primary font-bold">My Habits</h1>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
+</button>
+</div>
+</header>
+<main class="px-5 space-y-6">
+<!-- Segmented Control -->
+<nav class="flex p-1 bg-surface-container-low rounded-2xl">
+<button class="flex-1 py-2 px-4 rounded-xl text-label-sm font-label-sm bg-surface shadow-sm text-primary transition-all">Today</button>
+<button class="flex-1 py-2 px-4 rounded-xl text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant/20 transition-all">Active</button>
+<button class="flex-1 py-2 px-4 rounded-xl text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant/20 transition-all">Archived</button>
+</nav>
+<!-- Habit Cards List -->
+<div class="space-y-4">
+<!-- Card 1: Drink Water -->
+<article class="bg-surface p-5 rounded-2xl shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block px-2 py-0.5 bg-primary-container text-on-primary-container text-[10px] font-bold rounded-md tracking-wider mb-2">HEALTH</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Drink Water</h2>
+<p class="text-caption font-caption text-on-surface-variant">Daily • 5 / 8 Glasses</p>
+</div>
+<div class="relative circular-progress">
+<svg viewbox="0 0 48 48">
+<circle class="bg" cx="24" cy="24" r="20"></circle>
+<circle class="fg" cx="24" cy="24" r="20" style="stroke-dasharray: 125.6; stroke-dashoffset: 47.1;"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold text-primary">62%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 text-warning">
+<span class="text-body-numbers font-body-numbers">🔥 18 Day Streak</span>
+</div>
+</article>
+<!-- Card 2: Meditation -->
+<article class="bg-surface p-5 rounded-2xl shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block px-2 py-0.5 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold rounded-md tracking-wider mb-2">MINDFULNESS</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Meditation</h2>
+<p class="text-caption font-caption text-on-surface-variant">Daily • 15 / 20 Minutes</p>
+</div>
+<div class="relative circular-progress">
+<svg viewbox="0 0 48 48">
+<circle class="bg" cx="24" cy="24" r="20"></circle>
+<circle class="fg" cx="24" cy="24" r="20" style="stroke-dasharray: 125.6; stroke-dashoffset: 31.4;"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold text-primary">75%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 text-warning">
+<span class="text-body-numbers font-body-numbers">🔥 42 Day Streak</span>
+</div>
+</article>
+<!-- Card 3: Workout -->
+<article class="bg-surface p-5 rounded-2xl shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-md tracking-wider mb-2">FITNESS</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Workout</h2>
+<p class="text-caption font-caption text-on-surface-variant">3x Weekly • 2 / 3 Sessions</p>
+</div>
+<div class="relative circular-progress">
+<svg viewbox="0 0 48 48">
+<circle class="bg" cx="24" cy="24" r="20"></circle>
+<circle class="fg" cx="24" cy="24" r="20" style="stroke-dasharray: 125.6; stroke-dashoffset: 41.8;"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold text-primary">66%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 text-warning">
+<span class="text-body-numbers font-body-numbers">🔥 12 Day Streak</span>
+</div>
+</article>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<footer class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-surface shadow-[0_-1px_10px_rgba(0,0,0,0.05)] pb-safe z-50">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 active:scale-90 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cached</span>
+<span class="text-label-sm font-label-sm mt-1">Habits</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">family_restroom</span>
+<span class="text-label-sm font-label-sm mt-1">Family</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-label-sm font-label-sm mt-1">Profile</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-sm font-label-sm mt-1">Settings</span>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions for demonstration
+        document.querySelectorAll('article').forEach(card => {
+            card.addEventListener('click', () => {
+                // Future expansion: open habit details
+                console.log('Habit details clicked');
+            });
+        });
+
+        document.querySelector('button.fixed').addEventListener('click', () => {
+            // Future expansion: create new habit
+            console.log('New Habit flow initiated');
+        });
+    </script>
+</body></html>

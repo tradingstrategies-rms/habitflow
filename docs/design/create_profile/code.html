@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Create Profile - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#FFFFFF",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#10b981",
+                    "outline-variant": "#bbcabf",
+                    "surface-bright": "#faf9f8",
+                    "primary": "#006c49",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "outline": "#6c7a71",
+                    "surface-tint": "#006c49",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-variant": "#e3e2e1",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary-fixed": "#002113",
+                    "on-secondary-container": "#006f64",
+                    "kids-primary": "#00D991",
+                    "success": "#22C55E",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary-container": "#523200",
+                    "inverse-primary": "#4edea3",
+                    "on-background": "#1a1c1c",
+                    "surface-dim": "#dadad9",
+                    "on-surface-variant": "#3c4a42",
+                    "background-dark": "#1F2937",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#00422b",
+                    "surface-container-high": "#e9e8e7",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary": "#006b5f",
+                    "tertiary-container": "#e29100",
+                    "inverse-on-surface": "#f1f0f0",
+                    "danger": "#EF4444",
+                    "secondary-container": "#6df5e1",
+                    "on-primary-fixed-variant": "#005236",
+                    "background": "#faf9f8",
+                    "warning": "#F97316",
+                    "tertiary": "#855300",
+                    "on-surface": "#1a1c1c",
+                    "primary-fixed": "#6ffbbe",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeed",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005048",
+                    "surface-container-low": "#f4f3f2",
+                    "kids-accent": "#FFC107",
+                    "on-tertiary-fixed-variant": "#653e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "touch-target-min": "48px",
+                    "margin-desktop": "32px",
+                    "margin-mobile": "20px",
+                    "chip-padding": "12px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "card-padding": "20px"
+            },
+            "fontFamily": {
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f8;
+            color: #1a1c1c;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .input-focus-ring:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            outline: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e3e2e1;
+            border-radius: 10px;
+        }
+        /* Mobile-first constraints */
+        .content-canvas {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen pb-24">
+<!-- TopAppBar - Mapped from JSON Structure -->
+<header class="w-full top-0 sticky bg-surface z-50 transition-colors duration-150">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-on-surface">Create Profile</h1>
+<div class="w-10"></div> <!-- Spacer for center alignment -->
+</div>
+</header>
+<main class="content-canvas px-margin-mobile pt-8 space-y-10">
+<!-- Avatar Section -->
+<section class="flex flex-col items-center justify-center gap-4">
+<div class="relative group cursor-pointer active:scale-95 transition-transform">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border-4 border-surface shadow-sm">
+<span class="material-symbols-outlined text-outline-variant text-5xl">person</span>
+<!-- Hidden background to show potential upload state -->
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">add_a_photo</span>
+</div>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center shadow-md border-2 border-surface active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</button>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Add Photo</p>
+</section>
+<!-- Form Fields -->
+<form class="space-y-6">
+<!-- Family Role Selection -->
+<div class="space-y-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1">FAMILY ROLE</label>
+<div class="grid grid-cols-2 p-1 bg-surface-container-low rounded-xl border border-outline-variant/30">
+<input checked="" class="hidden peer/parent" id="role-parent" name="role" type="radio"/>
+<label class="flex items-center justify-center py-3 px-4 rounded-lg cursor-pointer transition-all peer-checked/parent:bg-primary peer-checked/parent:text-on-primary text-on-surface-variant font-body-lg text-body-lg" for="role-parent">
+                        Parent
+                    </label>
+<input class="hidden peer/child" id="role-child" name="role" type="radio"/>
+<label class="flex items-center justify-center py-3 px-4 rounded-lg cursor-pointer transition-all peer-checked/child:bg-primary peer-checked/child:text-on-primary text-on-surface-variant font-body-lg text-body-lg" for="role-child">
+                        Child
+                    </label>
+</div>
+</div>
+<!-- Basic Info Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="first-name">FIRST NAME</label>
+<input class="w-full h-14 px-4 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-outline-variant" id="first-name" placeholder="Enter first name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="last-name">LAST NAME</label>
+<input class="w-full h-14 px-4 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-outline-variant" id="last-name" placeholder="Enter last name" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="display-name">DISPLAY NAME</label>
+<div class="relative">
+<input class="w-full h-14 pl-12 pr-4 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-outline-variant" id="display-name" placeholder="How should we call you?" type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">alternate_email</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant/70 px-1">This name will be visible to your family members.</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="dob">DATE OF BIRTH</label>
+<div class="relative">
+<input class="w-full h-14 pl-12 pr-4 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none" id="dob" type="date"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
+</div>
+</div>
+<!-- Location & Settings Info -->
+<div class="space-y-6 pt-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="country">COUNTRY</label>
+<div class="relative">
+<select class="w-full h-14 pl-12 pr-10 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none" id="country">
+<option value="us">United States</option>
+<option value="uk">United Kingdom</option>
+<option value="ca">Canada</option>
+<option value="au">Australia</option>
+<option value="de">Germany</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">public</span>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="language">LANGUAGE</label>
+<div class="relative">
+<select class="w-full h-14 pl-12 pr-10 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none" id="language">
+<option value="en">English (US)</option>
+<option value="es">Español</option>
+<option value="fr">Français</option>
+<option value="de">Deutsch</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">language</span>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="timezone">TIME ZONE</label>
+<div class="relative">
+<select class="w-full h-14 pl-12 pr-10 bg-surface rounded-xl border border-outline-variant font-body-lg text-body-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none" id="timezone">
+<option value="pst">(GMT-08:00) Pacific Time</option>
+<option value="mst">(GMT-07:00) Mountain Time</option>
+<option value="cst">(GMT-06:00) Central Time</option>
+<option value="est">(GMT-05:00) Eastern Time</option>
+<option value="gmt">(GMT+00:00) London</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">schedule</span>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</form>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-gradient-to-t from-background via-background/95 to-transparent z-40">
+<div class="content-canvas">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-headline-sm text-headline-sm-mobile md:text-headline-sm shadow-lg hover:bg-on-primary-fixed-variant active:scale-95 transition-all duration-150 flex items-center justify-center gap-2">
+                Continue
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+        // Subtle micro-interactions
+        document.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.classList.add('scale-[1.01]');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Date picker enhancement - force show picker on mobile touch
+        const dateInput = document.getElementById('dob');
+        dateInput.addEventListener('click', () => {
+            if (dateInput.showPicker) {
+                dateInput.showPicker();
+            }
+        });
+
+        // Form submission logic (UI Only)
+        document.querySelector('button.bg-primary').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Pulse effect
+            const btn = e.currentTarget;
+            btn.classList.add('bg-success');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-bounce">check_circle</span> Setting up...';
+            
+            setTimeout(() => {
+                btn.classList.remove('bg-success');
+                btn.innerHTML = 'Continue <span class="material-symbols-outlined">arrow_forward</span>';
+            }, 2000);
+        });
+    </script>
+</body></html>

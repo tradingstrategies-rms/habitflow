@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Reward Delivered | HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#eeeeed",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#6df5e1",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#00201c",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "secondary": "#006b5f",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#6ffbbe",
+                    "on-tertiary-container": "#523200",
+                    "surface-tint": "#006c49",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "on-surface": "#1a1c1c",
+                    "inverse-primary": "#4edea3",
+                    "surface-container-low": "#f4f3f2",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-container": "#10b981",
+                    "kids-accent": "#FFC107",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed": "#2a1700",
+                    "warning": "#F97316",
+                    "outline": "#6c7a71",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary": "#006c49",
+                    "surface-container-highest": "#e3e2e1",
+                    "background-dark": "#1F2937",
+                    "success": "#22C55E",
+                    "on-secondary-container": "#006f64",
+                    "tertiary": "#855300",
+                    "surface-dim": "#dadad9",
+                    "surface-container-high": "#e9e8e7",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bbcabf",
+                    "on-primary-fixed": "#002113",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "inverse-on-surface": "#f1f0f0",
+                    "tertiary-container": "#e29100",
+                    "surface-bright": "#faf9f8",
+                    "on-primary-container": "#00422b",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-secondary": "#ffffff",
+                    "surface": "#FFFFFF",
+                    "kids-primary": "#00D991",
+                    "surface-variant": "#e3e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "gutter": "16px",
+                    "chip-padding": "12px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            top: -20px;
+            opacity: 0;
+            border-radius: 2px;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(720deg);
+                opacity: 1;
+            }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .qr-gradient {
+            background: linear-gradient(135deg, #006c49 0%, #10b981 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top AppBar (from JSON) -->
+<header class="fixed top-0 w-full z-50 bg-surface flex items-center justify-between px-margin-mobile h-touch-target-min">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A warm, professional profile photograph of a smiling parent in a clean, brightly lit modern home setting. The image uses soft, natural lighting and has a premium, high-end feel consistent with a family-oriented growth and productivity app. The background is softly blurred to focus on the person's friendly expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATHoUMBd9FDLXVEgi3uoGKvIAkjNq8VVyiBEsIPeDU1LF3zprOMcnSuvCwiB89iJRcypHwiSQNopEbahAlQhzxzrX6VJiO1BddHwNAxpTc7fe_4YlgWkYEhvVIGYt6OKLz8EVW-kyaCXDjDgb89og3ez-qFzUzXNGlOXxPSA-DXrrlBbtv5F4RA8je851sBwjH7SFDrff0ZW4qCRnuj5s-a2PkBG7F4-IXs54sVSwhZFVpjS6NT8WQ"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">HabitFlow</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-margin-mobile flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Animated Background Elements -->
+<div class="absolute inset-0 pointer-events-none z-0 overflow-hidden" id="confetti-container"></div>
+<!-- Success Hero Section -->
+<section class="w-full max-w-md z-10 space-y-base text-center mb-8">
+<div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary-container text-white mb-4 animate-bounce duration-1000">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">celebration</span>
+</div>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-background">Reward Delivered!</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant px-4">Enjoy your movie night, Leo! You've earned this with your amazing progress this week.</p>
+</section>
+<!-- Reward Card (Bento/Glassmorphism) -->
+<div class="w-full max-w-md glass-card border border-white/40 rounded-[20px] p-card-padding shadow-sm z-10">
+<div class="flex flex-col items-center gap-6">
+<!-- Reward Details -->
+<div class="w-full flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+<div class="w-12 h-12 rounded-lg bg-kids-accent/20 flex items-center justify-center text-kids-accent">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">movie</span>
+</div>
+<div class="text-left">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Claimable Reward</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Family Movie Night</h3>
+</div>
+</div>
+<!-- QR Code Display Area -->
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-4 bg-primary/5 rounded-[32px] blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative bg-white p-4 rounded-[24px] shadow-sm border border-outline-variant/30">
+<div class="w-48 h-48 qr-gradient rounded-xl flex flex-col items-center justify-center gap-2 p-4 text-white overflow-hidden">
+<!-- Visual placeholder for QR -->
+<div class="grid grid-cols-4 grid-rows-4 gap-2 w-full h-full opacity-90">
+<div class="bg-white rounded-sm"></div><div class="bg-white rounded-sm"></div><div></div><div class="bg-white rounded-sm"></div>
+<div class="bg-white rounded-sm"></div><div></div><div class="bg-white rounded-sm"></div><div class="bg-white rounded-sm"></div>
+<div></div><div class="bg-white rounded-sm"></div><div class="bg-white rounded-sm"></div><div></div>
+<div class="bg-white rounded-sm"></div><div class="bg-white rounded-sm"></div><div></div><div class="bg-white rounded-sm"></div>
+</div>
+<span class="absolute text-[10px] font-bold tracking-widest uppercase">SCAN TO CLAIM</span>
+</div>
+</div>
+</div>
+<!-- Claim Instructions -->
+<div class="space-y-2 w-full">
+<p class="font-body-lg text-body-lg text-on-surface">Redeem code: <span class="font-bold text-primary">MOVIE-LEO-882</span></p>
+<p class="font-caption text-caption text-on-surface-variant">Show this QR code at the snack bar or use the code above in the HabitFlow TV app.</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full max-w-md mt-8 flex flex-col gap-base z-10">
+<button class="w-full bg-primary text-white h-[56px] rounded-xl font-headline-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined">share</span>
+                Share Joy
+            </button>
+<button class="w-full border-1.5 border-primary text-primary h-[56px] rounded-xl font-headline-sm flex items-center justify-center gap-2 hover:bg-primary/5 active:scale-95 transition-transform" style="border-width: 1.5px;">
+                Back to Habits
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (from JSON) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface flex justify-around items-center h-16 pb-safe shadow-[0_-2px_8px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</div>
+</nav>
+<!-- Celebration Logic -->
+<script>
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#10b981', '#6df5e1', '#FFC107', '#006c49', '#ffffff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                
+                // Random properties
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const duration = 2 + Math.random() * 3;
+                const size = 6 + Math.random() * 8;
+                const delay = Math.random() * 5;
+                
+                confetti.style.background = color;
+                confetti.style.left = `${left}%`;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.animationDuration = `${duration}s`;
+                confetti.style.animationDelay = `${delay}s`;
+                confetti.style.opacity = Math.random();
+                
+                container.appendChild(confetti);
+
+                // Clean up after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+
+        // Initial burst
+        createConfetti();
+        // Periodically add more for "atmospheric" joy
+        setInterval(createConfetti, 6000);
+    </script>
+</body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Create Habit - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Active State for selection chips */
+        .chip-active {
+            background-color: #10b981; /* primary-container */
+            color: #00422b; /* on-primary-container */
+            border-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#faf9f8",
+                        "surface": "#FFFFFF",
+                        "primary-fixed": "#6ffbbe",
+                        "secondary-container": "#6df5e1",
+                        "on-tertiary-container": "#523200",
+                        "primary-container": "#10b981",
+                        "on-background": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e9e8e7",
+                        "kids-primary": "#00D991",
+                        "outline-variant": "#bbcabf",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3c4a42",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-fixed": "#71f8e4",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed-variant": "#005048",
+                        "surface-variant": "#e3e2e1",
+                        "surface-dim": "#dadad9",
+                        "primary": "#006c49",
+                        "success": "#22C55E",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-fixed": "#00201c",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-secondary-container": "#006f64",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#006c49",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "error": "#ba1a1a",
+                        "danger": "#EF4444",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#e29100",
+                        "surface-bright": "#faf9f8",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-highest": "#e3e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#006b5f",
+                        "on-primary-container": "#00422b",
+                        "tertiary": "#855300",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "on-tertiary-fixed": "#2a1700",
+                        "kids-accent": "#FFC107",
+                        "background-dark": "#1F2937",
+                        "primary-fixed-dim": "#4edea3",
+                        "outline": "#6c7a71",
+                        "on-surface": "#1a1c1c",
+                        "inverse-primary": "#4edea3",
+                        "warning": "#F97316",
+                        "inverse-on-surface": "#f1f0f0",
+                        "surface-container-low": "#f4f3f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-padding": "20px",
+                        "chip-padding": "12px",
+                        "touch-target-min": "48px",
+                        "button-padding": "16px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-lg">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-surface shadow-sm flex justify-between items-center px-margin-mobile py-4">
+<button aria-label="Close" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Create New Habit</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<main class="flex-1 px-margin-mobile py-6 max-w-xl mx-auto w-full space-y-8 pb-32">
+<!-- Habit Type Toggle -->
+<div class="flex p-1 bg-surface-container rounded-xl">
+<button class="flex-1 py-3 px-4 rounded-lg font-label-sm text-label-sm transition-all duration-200 bg-surface shadow-sm text-primary font-bold" id="goodHabitBtn">
+                Good Habit
+            </button>
+<button class="flex-1 py-3 px-4 rounded-lg font-label-sm text-label-sm transition-all duration-200 text-on-surface-variant" id="badHabitBtn">
+                Break a Bad Habit
+            </button>
+</div>
+<!-- Name Input -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="habitName">Habit Name</label>
+<input class="w-full h-14 bg-surface border-outline-variant border rounded-xl px-4 focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-surface-variant" id="habitName" placeholder="e.g., Read for 20 mins" type="text"/>
+</div>
+<!-- Icon Picker -->
+<div class="space-y-3">
+<div class="flex justify-between items-center ml-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Icon</label>
+<span class="text-caption font-caption text-primary">View all</span>
+</div>
+<div class="flex overflow-x-auto gap-4 py-2 hide-scrollbar">
+<button class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-primary-container text-on-primary-container shadow-md border-2 border-primary">
+<span class="material-symbols-outlined">auto_stories</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-surface border border-outline-variant hover:bg-surface-variant/20">
+<span class="material-symbols-outlined">fitness_center</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-surface border border-outline-variant hover:bg-surface-variant/20">
+<span class="material-symbols-outlined">self_improvement</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-surface border border-outline-variant hover:bg-surface-variant/20">
+<span class="material-symbols-outlined">local_drink</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-surface border border-outline-variant hover:bg-surface-variant/20">
+<span class="material-symbols-outlined">brush</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-surface border border-outline-variant hover:bg-surface-variant/20">
+<span class="material-symbols-outlined">cleaning_services</span>
+</button>
+</div>
+</div>
+<!-- Life Area Grid -->
+<div class="space-y-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Life Area</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center gap-3 p-4 bg-surface border-2 border-primary-container rounded-2xl">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-label-sm text-on-surface">Mind</span>
+</button>
+<button class="flex items-center gap-3 p-4 bg-surface border border-outline-variant rounded-2xl hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">favorite</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Heart</span>
+</button>
+<button class="flex items-center gap-3 p-4 bg-surface border border-outline-variant rounded-2xl hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">bolt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Body</span>
+</button>
+<button class="flex items-center gap-3 p-4 bg-surface border border-outline-variant rounded-2xl hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">spa</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Soul</span>
+</button>
+</div>
+</div>
+<!-- Difficulty Selection -->
+<div class="space-y-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Difficulty</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-3 border border-outline-variant rounded-full text-caption font-caption text-on-surface-variant hover:bg-surface-variant/20">Easy</button>
+<button class="flex-1 py-2 px-3 bg-tertiary-container/20 border border-tertiary-container rounded-full text-caption font-caption text-on-tertiary-container">Medium</button>
+<button class="flex-1 py-2 px-3 border border-outline-variant rounded-full text-caption font-caption text-on-surface-variant hover:bg-surface-variant/20">Hard</button>
+</div>
+</div>
+<!-- Frequency Picker -->
+<div class="space-y-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Frequency</label>
+<div class="bg-surface border border-outline-variant rounded-2xl divide-y divide-outline-variant/30">
+<div class="p-4 flex justify-between items-center">
+<span class="font-body-lg text-body-lg">Daily</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="p-4 flex justify-between items-center text-on-surface-variant">
+<span class="font-body-lg text-body-lg">Weekly</span>
+<span class="material-symbols-outlined opacity-0">check_circle</span>
+</div>
+<div class="p-4 flex justify-between items-center text-on-surface-variant">
+<span class="font-body-lg text-body-lg">Specific Days</span>
+<span class="material-symbols-outlined opacity-0">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Reward Star Slider -->
+<div class="space-y-4 p-card-padding bg-surface-container-low rounded-2xl border border-outline-variant/20">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-kids-accent" style="font-variation-settings: 'FILL' 1;">stars</span>
+<label class="font-headline-sm text-headline-sm text-on-surface">Star Reward</label>
+</div>
+<span class="font-headline-md text-headline-md text-primary" id="starCount">10</span>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-full appearance-none cursor-pointer accent-primary" max="50" min="5" oninput="document.getElementById('starCount').innerText = this.value" step="5" type="range" value="10"/>
+<p class="text-caption font-caption text-on-surface-variant">Kids earn these stars every time they complete this habit.</p>
+</div>
+<!-- Parent Approval Toggle -->
+<div class="flex items-center justify-between p-4 bg-surface border border-outline-variant rounded-2xl">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-on-surface-variant">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Requires Parent Approval</span>
+<span class="text-caption font-caption text-on-surface-variant">Safety check for rewards</span>
+</div>
+</div>
+<button class="w-12 h-6 rounded-full bg-primary relative transition-colors" id="approvalToggle">
+<span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full transition-all"></span>
+</button>
+</div>
+</main>
+<!-- Bottom Action Button Container -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-gradient-to-t from-background via-background/95 to-transparent">
+<button class="w-full h-14 bg-primary text-on-primary rounded-2xl font-headline-sm text-headline-sm shadow-lg active:scale-[0.98] transition-transform hover:bg-primary/90 flex items-center justify-center gap-2">
+            Create Habit
+        </button>
+</div>
+<script>
+        // Simple Interaction Scripts
+        const goodBtn = document.getElementById('goodHabitBtn');
+        const badBtn = document.getElementById('badHabitBtn');
+        
+        goodBtn.onclick = () => {
+            goodBtn.className = "flex-1 py-3 px-4 rounded-lg font-label-sm text-label-sm transition-all duration-200 bg-surface shadow-sm text-primary font-bold";
+            badBtn.className = "flex-1 py-3 px-4 rounded-lg font-label-sm text-label-sm transition-all duration-200 text-on-surface-variant";
+        };
+
+        badBtn.onclick = () => {
+            badBtn.className = "flex-1 py-3 px-4 rounded-lg font-label-sm text-label-sm transition-all duration-200 bg-surface shadow-sm text-danger font-bold";
+            goodBtn.className = "flex-1 py-3 px-4 rounded-lg font-label-sm text-label-sm transition-all duration-200 text-on-surface-variant";
+        };
+
+        const approvalToggle = document.getElementById('approvalToggle');
+        let approvalActive = true;
+        approvalToggle.onclick = () => {
+            approvalActive = !approvalActive;
+            if(approvalActive) {
+                approvalToggle.classList.replace('bg-surface-variant', 'bg-primary');
+                approvalToggle.children[0].classList.replace('left-1', 'right-1');
+            } else {
+                approvalToggle.classList.replace('bg-primary', 'bg-surface-variant');
+                approvalToggle.children[0].classList.replace('right-1', 'left-1');
+            }
+        };
+
+        // Icon selection logic
+        const iconButtons = document.querySelectorAll('.hide-scrollbar button');
+        iconButtons.forEach(btn => {
+            btn.onclick = () => {
+                iconButtons.forEach(b => {
+                    b.className = "flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-surface border border-outline-variant hover:bg-surface-variant/20";
+                });
+                btn.className = "flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-primary-container text-on-primary-container shadow-md border-2 border-primary";
+            };
+        });
+    </script>
+</body></html>

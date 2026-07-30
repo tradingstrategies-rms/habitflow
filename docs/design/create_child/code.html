@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Add Child - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#e29100",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "kids-primary": "#00D991",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary-fixed": "#00201c",
+                    "secondary": "#006b5f",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#10b981",
+                    "surface-dim": "#dadad9",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#e3e2e1",
+                    "surface-bright": "#faf9f8",
+                    "success": "#22C55E",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary-container": "#00422b",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6ffbbe",
+                    "on-primary-fixed": "#002113",
+                    "warning": "#F97316",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "outline-variant": "#bbcabf",
+                    "kids-accent": "#FFC107",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary": "#006c49",
+                    "tertiary": "#855300",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary-container": "#523200",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006c49",
+                    "surface-container-highest": "#e3e2e1",
+                    "danger": "#EF4444",
+                    "surface": "#FFFFFF",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary-container": "#6df5e1",
+                    "primary-fixed-dim": "#4edea3",
+                    "outline": "#6c7a71",
+                    "on-tertiary": "#ffffff",
+                    "background-dark": "#1F2937",
+                    "on-tertiary-fixed": "#2a1700",
+                    "inverse-surface": "#2f3130",
+                    "inverse-primary": "#4edea3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom smooth transition for input focus */
+        .m3-input-transition {
+            transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .organic-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar (Task Focused: Hidden global nav, show back) -->
+<header class="bg-background dark:bg-background-dark flex items-center justify-between px-margin-mobile h-touch-target-min w-full max-w-7xl mx-auto sticky top-0 z-50">
+<button class="w-touch-target-min h-touch-target-min flex items-center justify-center hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">arrow_back</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim">HabitFlow</span>
+<div class="w-touch-target-min"></div> <!-- Spacer for symmetry -->
+</header>
+<!-- Progress Indicator -->
+<div class="w-full bg-surface-container-low h-1 mb-base">
+<div class="bg-primary h-full rounded-r-full transition-all duration-700" style="width: 40%;"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-margin-mobile py-8 max-w-lg mx-auto w-full relative">
+<!-- Atmospheric Ambient Elements -->
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/5 organic-shape blur-3xl -z-10 animate-pulse"></div>
+<div class="absolute top-1/2 -left-20 w-64 h-64 bg-secondary/5 organic-shape blur-3xl -z-10"></div>
+<!-- Headline Section -->
+<section class="mb-12">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-background mb-4">Tell us about your child</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We'll use this to personalize the rewards and growth challenges for them.</p>
+</section>
+<!-- Form Section -->
+<form class="space-y-10" id="addChildForm">
+<!-- Hero Illustration / Avatar Placeholder -->
+<div class="flex justify-center mb-8">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface shadow-sm bg-surface-container-high flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A soft-focus, minimalist illustration of a playful child avatar with organic shapes and a soft emerald green and warm white color palette. The style is modern corporate, professional but friendly, featuring clean lines and subtle gradients that evoke a sense of calm growth and premium quality for a family app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvhPE80jYda2QSPVZLUHemKg7wedEYRKZTtfkxrdstWGnCfAnvpYkOHTL_BLscF7eVs5pLyo8pvI0p-9_Y53Vvjr0NvsocryDNXAhrccc2f1eNfmKOSx6hoBzhio-ZpZIOVFf3Ps-wlzG7aHGBWYwE5vEEbk-AeNIrP4Fu7cHfX9mbgE9peCFak_DNFppfTYcafYmBe0DC6jOI6zQASqwMCQeWX7UXN7ZpFCitTQkY-3Bmk1MW_E61"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</button>
+</div>
+</div>
+<!-- Material 3 Text Field -->
+<div class="relative group">
+<label class="absolute -top-2.5 left-4 px-1 bg-background text-label-sm font-label-sm text-primary transition-all group-focus-within:text-primary" for="childName">
+                    Child's Name
+                </label>
+<input autocomplete="off" class="w-full h-14 px-4 bg-transparent border-2 border-outline-variant rounded-xl font-body-lg text-body-lg outline-none focus:border-primary focus:ring-1 focus:ring-primary m3-input-transition placeholder-on-surface-variant/40" id="childName" placeholder="Enter name" required="" type="text"/>
+<div class="mt-2 flex items-center gap-1.5 px-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">info</span>
+<span class="font-caption text-caption text-on-surface-variant">How should we address your child?</span>
+</div>
+</div>
+<!-- Quick Selection Chips (Minimal Typing Philosophy) -->
+<div class="space-y-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Common nicknames</p>
+<div class="flex flex-wrap gap-2">
+<button class="px-chip-padding py-2 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" onclick="setChildName('Buddy')" type="button">Buddy</button>
+<button class="px-chip-padding py-2 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" onclick="setChildName('Little One')" type="button">Little One</button>
+<button class="px-chip-padding py-2 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" onclick="setChildName('Champion')" type="button">Champion</button>
+<button class="px-chip-padding py-2 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" onclick="setChildName('Sunshine')" type="button">Sunshine</button>
+</div>
+</div>
+</form>
+<!-- Fixed Footer Actions -->
+<footer class="mt-auto pt-12">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:brightness-105 active:scale-[0.98] transition-all duration-200" form="addChildForm" type="submit">
+                Next
+                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="w-full mt-4 h-12 text-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container-low rounded-xl transition-colors">
+                Skip for now
+            </button>
+</footer>
+</main>
+<!-- Visual Polish: Subtle Background Noise Texture -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.02] -z-20" style="background-image: url('https://www.transparenttextures.com/patterns/p6.png')"></div>
+<script>
+        // Simple micro-interaction for chip selection
+        function setChildName(name) {
+            const input = document.getElementById('childName');
+            input.value = name;
+            input.focus();
+            
+            // Visual feedback on the button
+            const button = event.currentTarget;
+            button.classList.add('scale-95');
+            setTimeout(() => button.classList.remove('scale-95'), 100);
+        }
+
+        // Form submission animation
+        document.getElementById('addChildForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+            btn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                alert('Welcome, ' + document.getElementById('childName').value + '!');
+                btn.innerHTML = 'Next <span class="material-symbols-outlined">chevron_right</span>';
+                btn.classList.remove('opacity-80');
+            }, 1000);
+        });
+
+        // Focus state management for labels
+        const input = document.getElementById('childName');
+        const label = document.querySelector('label[for="childName"]');
+        
+        input.addEventListener('focus', () => {
+            label.classList.add('text-primary');
+            label.classList.remove('text-on-surface-variant');
+        });
+
+        input.addEventListener('blur', () => {
+            if (!input.value) {
+                label.classList.remove('text-primary');
+                label.classList.add('text-on-surface-variant');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Choose Avatar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .selected-avatar {
+            border: 3px solid #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#FFFFFF",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "surface-bright": "#faf9f8",
+                        "primary": "#006c49",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "outline": "#6c7a71",
+                        "surface-tint": "#006c49",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-variant": "#e3e2e1",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-container": "#006f64",
+                        "kids-primary": "#00D991",
+                        "success": "#22C55E",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#71f8e4",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-container": "#523200",
+                        "inverse-primary": "#4edea3",
+                        "on-background": "#1a1c1c",
+                        "surface-dim": "#dadad9",
+                        "on-surface-variant": "#3c4a42",
+                        "background-dark": "#1F2937",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#00422b",
+                        "surface-container-high": "#e9e8e7",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary": "#006b5f",
+                        "tertiary-container": "#e29100",
+                        "inverse-on-surface": "#f1f0f0",
+                        "danger": "#EF4444",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed-variant": "#005236",
+                        "background": "#faf9f8",
+                        "warning": "#F97316",
+                        "tertiary": "#855300",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#6ffbbe",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "surface-container-low": "#f4f3f2",
+                        "kids-accent": "#FFC107",
+                        "on-tertiary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "touch-target-min": "48px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "20px",
+                        "chip-padding": "12px",
+                        "button-padding": "16px",
+                        "base": "8px",
+                        "card-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "body-numbers": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full shadow-sm">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary">Choose Avatar</h1>
+</div>
+<button class="hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto">
+<!-- Category Tabs -->
+<div class="sticky top-14 md:top-16 z-40 bg-surface/90 backdrop-blur-md px-margin-mobile py-4 mb-2"><div class="flex p-1 bg-surface-container-low rounded-full mb-4 max-w-xs mx-auto"><button class="flex-1 py-2 px-4 rounded-full bg-primary text-on-primary font-label-sm transition-all">Child</button><button class="flex-1 py-2 px-4 rounded-full text-on-surface-variant font-label-sm hover:bg-surface-container-high transition-all">Adult</button></div>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar"><button class="flex-shrink-0 bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-sm text-label-sm transition-all active:scale-95">Kids</button><button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">Animals</button><button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">Fruits</button><button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">Flowers</button><button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">Fantasy</button><button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">Nature</button></div>
+</div>
+<!-- Avatar Grid -->
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 md:gap-6 pt-4"><div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 selected-avatar active:scale-95" onclick="selectAvatar(this)"><div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIyIb2g9cJCgtfLPpQ-6aEFgHOiHXDnP_W3bN3PfeFOPMltXE_Qh6jm-92V62sL4KwWdQx7EpoFLo3DRu4aHZqxbmtZ-BePxWb_UhOoRACl6R2Pqw3hzpsLuS_5pIlUv7fr1TA8H2Mc5sSS2eiuk-8mW-WSN1SoFoE9D7JESiFTOXczJ6DfC81UFl9FpdN5ZLlThob27pRf-Q07pCj7ugxZcuSqrAVf2lHx06ZzNCqAgJ4gJm9_yCU'); background-position: 0% 0%; background-size: 300% 200%;"></div><div class="absolute inset-0 bg-primary/10 flex items-center justify-center"><div class="bg-primary text-on-primary rounded-full p-1 shadow-lg"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span></div></div></div><div class="relative aspect-square rounded-3xl bg-surface-container-low overflow-hidden cursor-pointer group hover:bg-surface-container-high transition-all active:scale-95" onclick="selectAvatar(this)"><div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIyIb2g9cJCgtfLPpQ-6aEFgHOiHXDnP_W3bN3PfeFOPMltXE_Qh6jm-92V62sL4KwWdQx7EpoFLo3DRu4aHZqxbmtZ-BePxWb_UhOoRACl6R2Pqw3hzpsLuS_5pIlUv7fr1TA8H2Mc5sSS2eiuk-8mW-WSN1SoFoE9D7JESiFTOXczJ6DfC81UFl9FpdN5ZLlThob27pRf-Q07pCj7ugxZcuSqrAVf2lHx06ZzNCqAgJ4gJm9_yCU'); background-position: 50% 0%; background-size: 300% 200%;"></div></div><div class="relative aspect-square rounded-3xl bg-surface-container-low overflow-hidden cursor-pointer group hover:bg-surface-container-high transition-all active:scale-95" onclick="selectAvatar(this)"><div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIyIb2g9cJCgtfLPpQ-6aEFgHOiHXDnP_W3bN3PfeFOPMltXE_Qh6jm-92V62sL4KwWdQx7EpoFLo3DRu4aHZqxbmtZ-BePxWb_UhOoRACl6R2Pqw3hzpsLuS_5pIlUv7fr1TA8H2Mc5sSS2eiuk-8mW-WSN1SoFoE9D7JESiFTOXczJ6DfC81UFl9FpdN5ZLlThob27pRf-Q07pCj7ugxZcuSqrAVf2lHx06ZzNCqAgJ4gJm9_yCU'); background-position: 100% 0%; background-size: 300% 200%;"></div></div><div class="relative aspect-square rounded-3xl bg-surface-container-low overflow-hidden cursor-pointer group hover:bg-surface-container-high transition-all active:scale-95" onclick="selectAvatar(this)"><div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIyIb2g9cJCgtfLPpQ-6aEFgHOiHXDnP_W3bN3PfeFOPMltXE_Qh6jm-92V62sL4KwWdQx7EpoFLo3DRu4aHZqxbmtZ-BePxWb_UhOoRACl6R2Pqw3hzpsLuS_5pIlUv7fr1TA8H2Mc5sSS2eiuk-8mW-WSN1SoFoE9D7JESiFTOXczJ6DfC81UFl9FpdN5ZLlThob27pRf-Q07pCj7ugxZcuSqrAVf2lHx06ZzNCqAgJ4gJm9_yCU'); background-position: 0% 100%; background-size: 300% 200%;"></div></div><div class="relative aspect-square rounded-3xl bg-surface-container-low overflow-hidden cursor-pointer group hover:bg-surface-container-high transition-all active:scale-95" onclick="selectAvatar(this)"><div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIyIb2g9cJCgtfLPpQ-6aEFgHOiHXDnP_W3bN3PfeFOPMltXE_Qh6jm-92V62sL4KwWdQx7EpoFLo3DRu4aHZqxbmtZ-BePxWb_UhOoRACl6R2Pqw3hzpsLuS_5pIlUv7fr1TA8H2Mc5sSS2eiuk-8mW-WSN1SoFoE9D7JESiFTOXczJ6DfC81UFl9FpdN5ZLlThob27pRf-Q07pCj7ugxZcuSqrAVf2lHx06ZzNCqAgJ4gJm9_yCU'); background-position: 50% 100%; background-size: 300% 200%;"></div></div><div class="relative aspect-square rounded-3xl bg-surface-container-low overflow-hidden cursor-pointer group hover:bg-surface-container-high transition-all active:scale-95" onclick="selectAvatar(this)"><div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIyIb2g9cJCgtfLPpQ-6aEFgHOiHXDnP_W3bN3PfeFOPMltXE_Qh6jm-92V62sL4KwWdQx7EpoFLo3DRu4aHZqxbmtZ-BePxWb_UhOoRACl6R2Pqw3hzpsLuS_5pIlUv7fr1TA8H2Mc5sSS2eiuk-8mW-WSN1SoFoE9D7JESiFTOXczJ6DfC81UFl9FpdN5ZLlThob27pRf-Q07pCj7ugxZcuSqrAVf2lHx06ZzNCqAgJ4gJm9_yCU'); background-position: 100% 100%; background-size: 300% 200%;"></div></div></div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-lg px-margin-mobile py-6 z-50">
+<div class="max-w-4xl mx-auto">
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-headline-sm text-headline-sm-mobile shadow-lg shadow-primary/20 hover:bg-on-primary-fixed-variant transition-all active:scale-[0.98]">
+                Save Avatar
+            </button>
+</div>
+</div>
+<script>
+        function selectAvatar(element) {
+            // Remove existing selected state
+            document.querySelectorAll('.selected-avatar').forEach(el => {
+                el.classList.remove('selected-avatar');
+                el.classList.add('border-transparent');
+                // Remove checkmark overlay if it exists
+                const overlay = el.querySelector('.bg-primary\\/10');
+                if (overlay) overlay.remove();
+            });
+
+            // Add selected state to clicked element
+            element.classList.add('selected-avatar');
+            element.classList.remove('border-transparent');
+
+            // Add checkmark overlay
+            const checkOverlay = document.createElement('div');
+            checkOverlay.className = "absolute inset-0 bg-primary/10 flex items-center justify-center animate-in fade-in zoom-in duration-300";
+            checkOverlay.innerHTML = `
+                <div class="bg-primary text-on-primary rounded-full p-1 shadow-lg">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                </div>
+            `;
+            element.appendChild(checkOverlay);
+        }
+
+        // Initialize category switching logic
+        const tabs = document.querySelectorAll('.flex-shrink-0');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    t.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+                });
+                tab.classList.add('bg-primary-container', 'text-on-primary-container');
+                tab.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

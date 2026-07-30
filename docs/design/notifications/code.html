@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Settings - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#71f8e4",
+                        "surface-tint": "#006c49",
+                        "surface-container-high": "#e9e8e7",
+                        "kids-accent": "#FFC107",
+                        "danger": "#EF4444",
+                        "on-secondary-fixed-variant": "#005048",
+                        "background": "#faf9f8",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-surface-variant": "#3c4a42",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-fixed": "#002113",
+                        "surface-dim": "#dadad9",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#1F2937",
+                        "secondary-container": "#6df5e1",
+                        "outline": "#6c7a71",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary": "#855300",
+                        "kids-primary": "#00D991",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-low": "#f4f3f2",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#6ffbbe",
+                        "outline-variant": "#bbcabf",
+                        "inverse-surface": "#2f3130",
+                        "on-primary": "#ffffff",
+                        "primary": "#006c49",
+                        "tertiary-container": "#e29100",
+                        "primary-fixed-dim": "#4edea3",
+                        "warning": "#F97316",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#faf9f8",
+                        "surface-variant": "#e3e2e1",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f0f0",
+                        "on-secondary-container": "#006f64",
+                        "error-container": "#ffdad6",
+                        "surface": "#FFFFFF",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#ffffff",
+                        "primary-container": "#10b981",
+                        "error": "#ba1a1a",
+                        "success": "#22C55E",
+                        "inverse-primary": "#4edea3",
+                        "secondary": "#006b5f",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-tertiary-container": "#523200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "card-padding": "20px",
+                        "chip-padding": "12px",
+                        "base": "8px",
+                        "button-padding": "16px",
+                        "touch-target-min": "48px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* M3 Switch Implementation */
+        .m3-switch {
+            width: 52px;
+            height: 32px;
+            background-color: theme('colors.surface-container-highest');
+            border: 2px solid theme('colors.outline');
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .m3-switch::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 20px;
+            height: 20px;
+            background-color: theme('colors.outline');
+            border-radius: 50%;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .m3-switch.active {
+            background-color: theme('colors.primary');
+            border-color: theme('colors.primary');
+        }
+        .m3-switch.active::after {
+            left: 24px;
+            width: 24px;
+            height: 24px;
+            top: 2px;
+            background-color: theme('colors.on-primary');
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface-container-low dark:bg-surface-container-highest">
+<div class="flex items-center justify-between px-gutter h-touch-target-min w-full max-w-7xl mx-auto">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim active:scale-95 duration-200 p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full">
+                arrow_back
+            </button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim font-bold">HabitFlow</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean professional studio portrait of a friendly parent user, softly lit with warm morning light against a minimalist cream background. The user has a gentle smile, conveying a sense of organized calm and reliability. High-resolution photography with a shallow depth of field, reflecting the Organic Vitality brand style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm04F-uB1BXRBGaaAfICrBrc7rCXEcV5QqvkpzsY0UONxYy4o-22QxntJE4IMJ3hv-edWWBum_lJOCstnZUV_0zJtziirQj3IXOtl2d48QcX9YV-_xPbLbyvdyzM3bO0yeAhshpnRv2GU79O3Wl2QX8G8iMBMhT0yZTyG-OyRPl7npNs8aEFMCqezm4VRndnThgt3eqrg1xcIq3oMS2Ttq7nUZEzvMRn9lHz2mUPwo3K4ML-nBr9qU"/>
+</div>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-margin-mobile md:px-margin-desktop py-8">
+<!-- Header Section -->
+<section class="mb-10">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2 text-on-surface">Notifications</h2>
+<p class="font-caption text-caption text-on-surface-variant">Customize how and when you want to be reminded of your family's progress.</p>
+</section>
+<!-- Master Toggle Card -->
+<section class="mb-8">
+<div class="bg-surface border border-outline-variant rounded-xl p-card-padding flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Allow Notifications</h3>
+<p class="font-caption text-caption text-on-surface-variant">Enable all alerts and reminders</p>
+</div>
+</div>
+<div aria-checked="true" class="m3-switch active" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+</section>
+<!-- Grouped Toggles -->
+<div class="space-y-6">
+<!-- Group 1: Daily Habits -->
+<section>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 px-2">Daily Habits</h4>
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer border-b border-outline-variant">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface">Daily reminders</p>
+<p class="font-caption text-caption text-on-surface-variant">Gentle nudges for scheduled habits</p>
+</div>
+<div aria-checked="true" class="m3-switch active" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface">Streak alerts</p>
+<p class="font-caption text-caption text-on-surface-variant">Celebrate when you reach a milestone</p>
+</div>
+<div aria-checked="true" class="m3-switch active" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+</div>
+</section>
+<!-- Group 2: Family Activity -->
+<section>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 px-2">Family Activity</h4>
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer border-b border-outline-variant">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface">Approvals needed</p>
+<p class="font-caption text-caption text-on-surface-variant">Get notified when a child requests a reward</p>
+</div>
+<div aria-checked="true" class="m3-switch active" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface">Goal milestones</p>
+<p class="font-caption text-caption text-on-surface-variant">Notifications for shared family goals</p>
+</div>
+<div aria-checked="false" class="m3-switch" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+</div>
+</section>
+<!-- Group 3: System -->
+<section>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 px-2">System</h4>
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer border-b border-outline-variant">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface">New features</p>
+<p class="font-caption text-caption text-on-surface-variant">Be the first to know about app updates</p>
+</div>
+<div aria-checked="true" class="m3-switch active" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface">Weekly reports</p>
+<p class="font-caption text-caption text-on-surface-variant">Summary of your family's weekly growth</p>
+</div>
+<div aria-checked="true" class="m3-switch active" onclick="this.classList.toggle('active')" role="switch"></div>
+</div>
+</div>
+</section>
+</div>
+<!-- Visual Anchor: Growth Tree Illustration Placeholder -->
+<div class="mt-12 p-8 bg-surface-container-low rounded-3xl flex flex-col items-center text-center">
+<div class="w-24 h-24 mb-4">
+
+</div>
+<h5 class="font-headline-sm text-headline-sm text-primary mb-2">Stay in Sync</h5>
+<p class="font-caption text-caption text-on-surface-variant max-w-xs mx-auto">Notifications help maintain the rhythm of your family's growth journey.</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl md:hidden">
+<div class="flex justify-around items-center px-4 py-2 pb-safe h-16">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</div>
+</nav>
+<!-- Desktop Navigation Side Rail Mock -->
+<div class="hidden md:flex fixed left-0 top-16 h-full w-20 flex-col items-center py-8 gap-8 border-r border-outline-variant bg-surface">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">cached</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">emoji_events</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">redeem</span>
+</button>
+<button class="text-primary bg-secondary-container p-3 rounded-2xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+</button>
+</div>
+<script>
+        // Micro-interactions for toggles
+        document.querySelectorAll('.m3-switch').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                const isActive = this.classList.contains('active');
+                // Haptic feedback simulation or state logic can go here
+                console.log('Notification state changed:', !isActive);
+            });
+        });
+    </script>
+</body></html>

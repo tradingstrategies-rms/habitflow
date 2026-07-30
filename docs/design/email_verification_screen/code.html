@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Email Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "warning": "#F97316",
+                    "kids-accent": "#FFC107",
+                    "primary": "#006c49",
+                    "surface-variant": "#e3e2e1",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary-fixed-variant": "#005236",
+                    "primary-container": "#10b981",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-primary-fixed": "#002113",
+                    "tertiary-container": "#e29100",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#855300",
+                    "inverse-primary": "#4edea3",
+                    "surface-container-low": "#f4f3f2",
+                    "outline": "#6c7a71",
+                    "inverse-surface": "#2f3130",
+                    "surface": "#FFFFFF",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-dim": "#dadad9",
+                    "secondary-fixed": "#71f8e4",
+                    "kids-primary": "#00D991",
+                    "background": "#faf9f8",
+                    "on-tertiary-container": "#523200",
+                    "on-secondary-fixed-variant": "#005048",
+                    "success": "#22C55E",
+                    "surface-tint": "#006c49",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-high": "#e9e8e7",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#3c4a42",
+                    "on-background": "#1a1c1c",
+                    "danger": "#EF4444",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-container": "#eeeeed",
+                    "background-dark": "#1F2937",
+                    "on-primary-container": "#00422b",
+                    "secondary-container": "#6df5e1",
+                    "secondary": "#006b5f",
+                    "surface-bright": "#faf9f8",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bbcabf",
+                    "on-surface": "#1a1c1c",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "on-secondary-container": "#006f64"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "button-padding": "16px",
+                    "card-padding": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-xl-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .otp-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            transform: translateY(-2px);
+        }
+        .organic-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 108, 73, 0.05) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-lg text-on-background min-h-screen flex flex-col items-center organic-bg">
+<!-- Top Navigation Anchor -->
+<header class="w-full top-0 flex items-center justify-between px-margin-mobile h-touch-target-min bg-transparent md:px-margin-desktop">
+<button class="transition-transform duration-200 active:scale-95 hover:bg-surface-variant/20 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</button>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed font-extrabold tracking-tight">
+            HabitFlow
+        </div>
+<div class="w-10"></div> <!-- Spacer for centering title -->
+</header>
+<main class="flex-1 w-full max-w-md px-margin-mobile flex flex-col justify-center py-12 md:px-0">
+<!-- Visual Anchor: Illustration Card -->
+<div class="mb-10 relative">
+<div class="w-24 h-24 bg-primary-container/10 rounded-[20px] mx-auto flex items-center justify-center mb-8 rotate-3">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'FILL' 1;">mark_email_unread</span>
+</div>
+<div class="text-center">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-3">Check your email</h1>
+<p class="font-body-lg text-on-surface-variant max-w-[280px] mx-auto">
+                    We've sent a 4-digit verification code to <span class="font-medium text-on-surface">hello@user.com</span>
+</p>
+</div>
+</div>
+<!-- Verification Form -->
+<section class="bg-surface rounded-[20px] p-card-padding shadow-sm border border-surface-variant/30">
+<div class="flex justify-between gap-gutter mb-8" id="otp-container">
+<input aria-label="Digit 1" class="otp-input w-16 h-16 text-center text-headline-md font-body-numbers bg-surface-container-low border-2 border-transparent rounded-xl transition-all duration-200 focus:outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 2" class="otp-input w-16 h-16 text-center text-headline-md font-body-numbers bg-surface-container-low border-2 border-transparent rounded-xl transition-all duration-200 focus:outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 3" class="otp-input w-16 h-16 text-center text-headline-md font-body-numbers bg-surface-container-low border-2 border-transparent rounded-xl transition-all duration-200 focus:outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 4" class="otp-input w-16 h-16 text-center text-headline-md font-body-numbers bg-surface-container-low border-2 border-transparent rounded-xl transition-all duration-200 focus:outline-none" maxlength="1" type="text"/>
+</div>
+<button class="w-full h-[56px] bg-primary text-on-primary font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 active:scale-[0.98] shadow-lg shadow-primary/20">
+                Verify
+                <span class="material-symbols-outlined">check_circle</span>
+</button>
+<div class="mt-8 text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Didn't receive code?</p>
+<button class="text-primary font-bold hover:underline transition-all duration-200 flex items-center gap-1 mx-auto py-2">
+                    Resend Code
+                    <span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</section>
+<!-- Decorative Element -->
+<div class="mt-12 opacity-50">
+<img class="w-full h-32 object-cover rounded-[20px] grayscale-0" data-alt="A soft, minimalist lifestyle photography of a clean desk with a small emerald green plant in a white ceramic pot, illuminated by morning sunlight casting soft shadows on a warm white surface, conveying a sense of growth and focus in a high-end corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxajoR71XK3_MbI41XIP0P45PDs6VpJOh31fycRkR3gDElkYeNdUvl8nNQX0Os6T7R2cvzlH-3G_V3Xzz6WzX6iKWorEtvHX8GieB7QxzbH0MQeu5fWY8eJTR02zJ-mc9kItV-LR73jfysYsT5cma2zZWODlM1KhuIAZI8_sQm4zPTKLIKFxxQla3CKu2vgK1KaO7ElLihoULxRer9O61DbunKe3K4-DNqr0fygueX4iIKCCYDXv1e"/>
+</div>
+</main>
+<!-- Footer Identity -->
+<footer class="pb-10 pt-4 px-margin-mobile text-center">
+<p class="font-caption text-caption text-outline">
+            Securely powered by HabitFlow Identity Services
+        </p>
+</footer>
+<script>
+        // Simple micro-interaction for OTP fields
+        const inputs = document.querySelectorAll('.otp-input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+            
+            // Allow only numbers
+            input.addEventListener('keypress', (e) => {
+                if (!/[0-9]/.test(e.key)) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Focus first field on load
+        window.addEventListener('DOMContentLoaded', () => {
+            inputs[0].focus();
+        });
+    </script>
+</body></html>

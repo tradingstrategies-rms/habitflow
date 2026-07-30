@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Claim Reward - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeeed",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed": "#00201c",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "secondary": "#006b5f",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#523200",
+                        "surface-tint": "#006c49",
+                        "background": "#faf9f8",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1a1c1c",
+                        "inverse-primary": "#4edea3",
+                        "surface-container-low": "#f4f3f2",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "primary-container": "#10b981",
+                        "kids-accent": "#FFC107",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-tertiary-fixed": "#2a1700",
+                        "warning": "#F97316",
+                        "outline": "#6c7a71",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary": "#006c49",
+                        "surface-container-highest": "#e3e2e1",
+                        "background-dark": "#1F2937",
+                        "success": "#22C55E",
+                        "on-secondary-container": "#006f64",
+                        "tertiary": "#855300",
+                        "surface-dim": "#dadad9",
+                        "surface-container-high": "#e9e8e7",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#bbcabf",
+                        "on-primary-fixed": "#002113",
+                        "danger": "#EF4444",
+                        "secondary-fixed": "#71f8e4",
+                        "inverse-on-surface": "#f1f0f0",
+                        "tertiary-container": "#e29100",
+                        "surface-bright": "#faf9f8",
+                        "on-primary-container": "#00422b",
+                        "on-surface-variant": "#3c4a42",
+                        "on-secondary-fixed-variant": "#005048",
+                        "on-secondary": "#ffffff",
+                        "surface": "#FFFFFF",
+                        "kids-primary": "#00D991",
+                        "surface-variant": "#e3e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "card-padding": "20px",
+                        "base": "8px",
+                        "touch-target-min": "48px",
+                        "margin-mobile": "20px",
+                        "gutter": "16px",
+                        "chip-padding": "12px",
+                        "button-padding": "16px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .reward-confetti {
+            position: fixed;
+            pointer-events: none;
+            width: 10px;
+            height: 10px;
+            background-color: #00D991;
+            z-index: 100;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        .organic-float {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center">
+<!-- Background Canvas for the main app view (underlay) -->
+<div class="fixed inset-0 z-0 bg-surface-container-low opacity-40">
+<div class="grid grid-cols-2 p-margin-mobile gap-base opacity-20 pointer-events-none">
+<div class="h-32 bg-surface-variant rounded-xl"></div>
+<div class="h-32 bg-surface-variant rounded-xl"></div>
+<div class="h-48 bg-surface-variant rounded-xl col-span-2"></div>
+<div class="h-32 bg-surface-variant rounded-xl"></div>
+<div class="h-32 bg-surface-variant rounded-xl"></div>
+</div>
+</div>
+<!-- Scrim / Overlay -->
+<div class="fixed inset-0 bg-on-background/40 backdrop-blur-sm z-40 transition-opacity duration-300" id="scrim"></div>
+<!-- Dialog Container -->
+<div class="relative z-50 w-full max-w-[340px] md:max-w-[400px] mx-margin-mobile">
+<div class="bg-surface rounded-[32px] p-8 shadow-2xl flex flex-col items-center text-center border border-white/20">
+<!-- Reward Illustration -->
+<div class="relative mb-6">
+<div class="absolute inset-0 bg-secondary-container/30 rounded-full blur-2xl scale-150 organic-float"></div>
+<div class="relative bg-secondary-container/20 p-6 rounded-full organic-float">
+<span class="material-symbols-outlined text-[80px] text-primary" style="font-variation-settings: 'FILL' 1;">icecream</span>
+</div>
+<!-- Mini Floating Stars -->
+<div class="absolute -top-2 -right-2 bg-kids-accent p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="absolute bottom-4 -left-4 bg-primary p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">celebration</span>
+</div>
+</div>
+<!-- Content -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2 tracking-tight">
+                You've earned an Ice Cream Trip!
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 px-4">
+                Amazing work! Your consistency is paying off. Time to celebrate with something sweet.
+            </p>
+<!-- Star Deduction Indicator -->
+<div class="bg-surface-container-low rounded-2xl p-4 w-full mb-8 flex items-center justify-center gap-3">
+<div class="flex items-center gap-1.5 text-on-surface font-body-numbers text-body-numbers">
+<span class="material-symbols-outlined text-kids-accent" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>2,450</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-1.5 text-danger font-body-numbers text-body-numbers">
+<span class="material-symbols-outlined text-danger">trending_down</span>
+<span>-200 Stars</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col w-full gap-3">
+<button class="bg-primary text-on-primary font-headline-sm text-headline-sm h-touch-target-min rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center" id="redeemBtn">
+                    Redeem Now
+                </button>
+<button class="text-on-surface-variant font-label-sm text-label-sm h-touch-target-min hover:bg-surface-container-low rounded-2xl transition-colors" id="cancelBtn">
+                    Save for later
+                </button>
+</div>
+</div>
+<!-- Decorative Card Elements -->
+<div class="absolute -bottom-4 -right-4 -z-10 w-24 h-24 bg-primary/10 rounded-3xl rotate-12"></div>
+<div class="absolute -top-4 -left-4 -z-10 w-16 h-16 bg-secondary-container/30 rounded-full"></div>
+</div>
+<!-- Confetti Logic -->
+<script>
+        function createConfetti() {
+            const colors = ['#00D991', '#FFC107', '#006c49', '#6df5e1', '#F97316'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('reward-confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = Math.random();
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Trigger confetti on load for celebratory feel
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 300);
+        });
+
+        const redeemBtn = document.getElementById('redeemBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const scrim = document.getElementById('scrim');
+
+        redeemBtn.addEventListener('click', () => {
+            redeemBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+            createConfetti();
+            setTimeout(() => {
+                alert('Reward Redeemed! Check your digital voucher in the Rewards tab.');
+                redeemBtn.innerHTML = 'Redeem Now';
+            }, 1000);
+        });
+
+        [cancelBtn, scrim].forEach(el => {
+            el.addEventListener('click', () => {
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.reload(); // Simple reset for demo
+                }, 300);
+            });
+        });
+    </script>
+</body></html>
