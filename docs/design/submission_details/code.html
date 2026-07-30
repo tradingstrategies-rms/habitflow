@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Submission Review - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#faf9f8",
+                    "surface": "#FFFFFF",
+                    "primary-fixed": "#6ffbbe",
+                    "secondary-container": "#6df5e1",
+                    "on-tertiary-container": "#523200",
+                    "primary-container": "#10b981",
+                    "on-background": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e9e8e7",
+                    "kids-primary": "#00D991",
+                    "outline-variant": "#bbcabf",
+                    "surface-container": "#eeeeed",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "secondary-fixed": "#71f8e4",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-secondary-fixed-variant": "#005048",
+                    "surface-variant": "#e3e2e1",
+                    "surface-dim": "#dadad9",
+                    "primary": "#006c49",
+                    "success": "#22C55E",
+                    "on-primary-fixed": "#002113",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-secondary-container": "#006f64",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#006c49",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "error": "#ba1a1a",
+                    "danger": "#EF4444",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#e29100",
+                    "surface-bright": "#faf9f8",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#006b5f",
+                    "on-primary-container": "#00422b",
+                    "tertiary": "#855300",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "on-tertiary-fixed": "#2a1700",
+                    "kids-accent": "#FFC107",
+                    "background-dark": "#1F2937",
+                    "primary-fixed-dim": "#4edea3",
+                    "outline": "#6c7a71",
+                    "on-surface": "#1a1c1c",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "20px",
+                    "chip-padding": "12px",
+                    "touch-target-min": "48px",
+                    "button-padding": "16px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .proof-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .proof-card:active {
+            transform: scale(0.98);
+        }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #10b981;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-background min-h-screen flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface-container-low dark:bg-inverse-surface shadow-sm flex justify-between items-center px-margin-mobile py-4 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/20 p-2 rounded-full transition-colors">arrow_back</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Submission Review</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary hover:bg-surface-variant/20 p-2 rounded-full transition-colors" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="w-full max-w-2xl px-margin-mobile py-6 pb-32 space-y-6">
+<!-- Large Photo Proof Section (Asymmetric Layout) -->
+<section class="relative group">
+<div class="proof-card w-full overflow-hidden rounded-[2.5rem] bg-surface-variant aspect-[4/5] shadow-sm ring-1 ring-black/5 relative">
+<img class="w-full h-full object-cover" data-alt="A high-resolution photograph of a young child's tidy and organized bedroom, featuring a neatly made bed with colorful linens, toys arranged on shelves, and bright natural light streaming through a window. The style is warm and realistic, highlighting a sense of accomplishment and order. The overall aesthetic is clean, premium, and family-oriented, with soft shadows and a gentle, inviting glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjsPw0-_QRXERisugZhnVz3Qp5E-OWbX02vdVE2REDkDovxS0p6lTT3MQTfh8bMrQ_mXcYX7s1_sIcdxIm0n8uwv-Pq3SZT_SqdMEkRmopumcm3XlmLMeuAhl9YoGVw8n-afY79x4N9rZoHoKR5HPVNid0bjh_c_e6D5dwmlRHt2nbT3kJoZvPtDtDOxqnRFRsiaRkURD-yOgn5voJtgU4XhIMo_LL1dglgdosvPIkQlR-mUoa6-1s"/>
+<!-- Floating Info Badge on Image -->
+<div class="absolute bottom-6 left-6 right-6 glass-effect p-card-padding rounded-3xl border border-white/40 shadow-xl flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Submitted by</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-8 h-8 rounded-full bg-kids-primary flex items-center justify-center text-white font-bold text-xs">L</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Leo</span>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Timestamp</p>
+<p class="font-body-numbers text-body-numbers text-on-surface mt-1">Today, 4:30 PM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Habit Info Bento Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="col-span-2 bg-surface p-card-padding rounded-[20px] shadow-sm border border-surface-container-high flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="music_note" style="font-variation-settings: 'FILL' 1;">music_note</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Practice Piano</h2>
+<p class="font-caption text-caption text-on-surface-variant">Daily Habit • Musical Arts</p>
+</div>
+</div>
+<div class="bg-surface p-card-padding rounded-[20px] shadow-sm border border-surface-container-high flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="timer">timer</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Duration</p>
+<p class="font-body-numbers text-body-numbers text-on-surface">15m duration</p>
+</div>
+</div>
+<div class="bg-surface p-card-padding rounded-[20px] shadow-sm border border-surface-container-high flex flex-col justify-between">
+<span class="material-symbols-outlined text-tertiary-container mb-2" data-icon="star">star</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Reward Value</p>
+<p class="font-body-numbers text-body-numbers text-on-surface">50 Stars</p>
+</div>
+</div>
+</section>
+<!-- Parent Feedback Area -->
+<section class="bg-surface p-card-padding rounded-[20px] shadow-sm border border-surface-container-high space-y-4">
+<label class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2" for="feedback">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+                Parent Comments
+            </label>
+<textarea class="w-full bg-background border-none rounded-xl p-4 text-on-surface placeholder:text-on-surface-variant/40 resize-none font-body-lg text-body-lg" id="feedback" placeholder="Leave a word of encouragement for Leo..." rows="3"></textarea>
+<!-- Quick Chips for Feedback -->
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-primary-container hover:text-white transition-all active:scale-95">Amazing job! 🌟</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-primary-container hover:text-white transition-all active:scale-95">So proud of you</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-primary-container hover:text-white transition-all active:scale-95">Keep it up!</button>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 w-full max-w-2xl bg-surface/80 backdrop-blur-md p-6 pb-10 flex gap-4 z-50 border-t border-surface-variant/20">
+<button class="flex-1 h-[56px] border-2 border-outline text-outline font-headline-sm text-headline-sm rounded-2xl hover:bg-surface-variant/10 active:scale-95 transition-all">
+            Needs Work
+        </button>
+<button class="flex-[2] h-[56px] bg-primary-container text-white font-headline-sm text-headline-sm rounded-2xl shadow-lg shadow-primary-container/30 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2" id="approveBtn">
+<span class="material-symbols-outlined" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+            Approve &amp; Reward
+        </button>
+</div>
+<!-- Success Confetti Canvas (Invisible by default) -->
+<canvas class="fixed inset-0 pointer-events-none z-[100]" id="confetti"></canvas>
+<script>
+        // Simple micro-interaction for Approval
+        const approveBtn = document.getElementById('approveBtn');
+        const confettiCanvas = document.getElementById('confetti');
+        
+        approveBtn.addEventListener('click', () => {
+            approveBtn.innerHTML = 'Approved! 🎉';
+            approveBtn.classList.replace('bg-primary-container', 'bg-success');
+            
+            // Simple visual feedback trigger
+            startConfetti();
+            
+            setTimeout(() => {
+                // Navigate back or reset (mock behavior)
+                alert('Reward granted to Leo! Redirecting...');
+            }, 1500);
+        });
+
+        // Basic Confetti Effect
+        function startConfetti() {
+            const ctx = confettiCanvas.getContext('2d');
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+            
+            let particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: confettiCanvas.height + Math.random() * 20,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * 10,
+                    color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+                    tilt: Math.random() * 10 - 10,
+                    tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+                    tiltAngle: 0
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                particles.forEach((p, i) => {
+                    p.tiltAngle += p.tiltAngleIncremental;
+                    p.y -= (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(p.d);
+                    p.tilt = Math.sin(p.tiltAngle) * 15;
+
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+                });
+                
+                if (particles[0].y > -100) {
+                    requestAnimationFrame(draw);
+                }
+            }
+            draw();
+        }
+    </script>
+</body></html>

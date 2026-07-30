@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Reward Vault - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#eeeeed",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#6df5e1",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#00201c",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "secondary": "#006b5f",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#6ffbbe",
+                    "on-tertiary-container": "#523200",
+                    "surface-tint": "#006c49",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "on-surface": "#1a1c1c",
+                    "inverse-primary": "#4edea3",
+                    "surface-container-low": "#f4f3f2",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-container": "#10b981",
+                    "kids-accent": "#FFC107",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed": "#2a1700",
+                    "warning": "#F97316",
+                    "outline": "#6c7a71",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary": "#006c49",
+                    "surface-container-highest": "#e3e2e1",
+                    "background-dark": "#1F2937",
+                    "success": "#22C55E",
+                    "on-secondary-container": "#006f64",
+                    "tertiary": "#855300",
+                    "surface-dim": "#dadad9",
+                    "surface-container-high": "#e9e8e7",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bbcabf",
+                    "on-primary-fixed": "#002113",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "inverse-on-surface": "#f1f0f0",
+                    "tertiary-container": "#e29100",
+                    "surface-bright": "#faf9f8",
+                    "on-primary-container": "#00422b",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-secondary": "#ffffff",
+                    "surface": "#FFFFFF",
+                    "kids-primary": "#00D991",
+                    "surface-variant": "#e3e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "gutter": "16px",
+                    "chip-padding": "12px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .star-glow {
+            box-shadow: 0 0 40px rgba(255, 193, 7, 0.2);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface flex items-center justify-between px-margin-mobile h-touch-target-min">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, professional portrait of a friendly parent smiling, soft natural lighting, high-end photography style, warm white background, premium family app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsBgS5CndGOi_3ZXk7DxLeh0MaxylYzWbXI_QePtG2y6-FwfNpcxg8lYV3cu5BsmNo-rK8jeTkpSSSFFbykSvl64kN7oUIJHsLrppeu7-InebDMryYgro9IXNWtBiBWqA-iIUhSnRJkqGMJUHvh519iHyRWlxhmjlBNsO7jl0bwHTaDK1PTIcbLM2u2WzSIrE_0hXabEIqHIdtapteBFkjAIv-Ujk7410pgxaf3M4qQ2HNQtiblG5g"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">HabitFlow</h1>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors duration-200 text-primary">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="pt-20 px-margin-mobile max-w-2xl mx-auto">
+<!-- Vault Hero Card -->
+<section class="mb-8">
+<div class="relative overflow-hidden rounded-[24px] bg-primary-container p-8 text-on-primary star-glow">
+<!-- Background Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 right-0 w-64 h-64 bg-kids-accent rounded-full blur-3xl -mr-20 -mt-20"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary-container rounded-full blur-2xl -ml-10 -mb-10"></div>
+</div>
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-widest opacity-90">Available Balance</span>
+<span class="material-symbols-outlined text-kids-accent" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div class="flex items-baseline gap-2 mb-8">
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-5xl font-extrabold">1,240</span>
+<span class="font-body-lg text-body-lg opacity-90">Stars</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white/10 backdrop-blur-md rounded-xl p-4">
+<p class="font-label-sm text-label-sm opacity-80 mb-1">Reserved</p>
+<p class="font-headline-sm text-headline-sm">450</p>
+</div>
+<div class="bg-white/10 backdrop-blur-md rounded-xl p-4">
+<p class="font-label-sm text-label-sm opacity-80 mb-1">Lifetime</p>
+<p class="font-headline-sm text-headline-sm">5,600</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Goals Section -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Almost There</h2>
+<button class="text-primary font-label-sm text-label-sm font-semibold">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Goal Item 1 -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-surface-container-highest shadow-sm">
+<div class="flex items-start gap-4 mb-4">
+<div class="w-14 h-14 bg-tertiary-container rounded-2xl flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-3xl">videogame_asset</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">New Game Bundle</h3>
+<p class="font-caption text-caption text-on-surface-variant">Only 60 stars left to unlock!</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">1,440 / 1,500 Stars</span>
+<span class="text-primary font-bold">96%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-700 w-[96%]"></div>
+</div>
+</div>
+</div>
+<!-- Goal Item 2 -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-surface-container-highest shadow-sm">
+<div class="flex items-start gap-4 mb-4">
+<div class="w-14 h-14 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-3xl">restaurant</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Pizza Party Night</h3>
+<p class="font-caption text-caption text-on-surface-variant">Gather 800 stars for the whole family.</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">620 / 800 Stars</span>
+<span class="text-secondary font-bold">77%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary transition-all duration-700 w-[77%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Vault Stats / Activity Bento -->
+<section class="mb-8">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-4">Earnings History</h2>
+<div class="bento-grid">
+<div class="bg-surface-container-low p-5 rounded-[20px] flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
+<div>
+<p class="font-headline-md text-headline-md text-primary">+120</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">This Week</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-[20px] flex flex-col justify-between aspect-square">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-low bg-kids-accent flex items-center justify-center text-[10px] font-bold">L</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-low bg-secondary flex items-center justify-center text-[10px] font-bold text-white">M</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-low bg-primary-fixed-dim flex items-center justify-center text-[10px] font-bold">J</div>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-on-surface">3 Active</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Contributors</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="grid grid-cols-1 gap-4">
+<button class="w-full bg-primary text-white h-touch-target-min rounded-xl font-headline-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">redeem</span>
+                Redeem Stars
+            </button>
+<button class="w-full border-2 border-primary text-primary h-touch-target-min rounded-xl font-headline-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">history</span>
+                Transaction History
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface shadow-[0_-2px_8px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for hover effects on cards
+        document.querySelectorAll('.bg-surface').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Floating particles background effect for the hero card could be added here
+        // but keeping it clean as per Organic Vitality guidelines.
+    </script>
+</body></html>

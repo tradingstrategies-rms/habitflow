@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>HabitFlow Splash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "warning": "#F97316",
+                "kids-accent": "#FFC107",
+                "primary": "#006c49",
+                "surface-variant": "#e3e2e1",
+                "on-error-container": "#93000a",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed": "#2a1700",
+                "on-primary-fixed-variant": "#005236",
+                "primary-container": "#10b981",
+                "inverse-on-surface": "#f1f0f0",
+                "on-primary-fixed": "#002113",
+                "tertiary-container": "#e29100",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#855300",
+                "inverse-primary": "#4edea3",
+                "surface-container-low": "#f4f3f2",
+                "outline": "#6c7a71",
+                "inverse-surface": "#2f3130",
+                "surface": "#FFFFFF",
+                "tertiary-fixed": "#ffddb8",
+                "surface-dim": "#dadad9",
+                "secondary-fixed": "#71f8e4",
+                "kids-primary": "#00D991",
+                "background": "#faf9f8",
+                "on-tertiary-container": "#523200",
+                "on-secondary-fixed-variant": "#005048",
+                "success": "#22C55E",
+                "surface-tint": "#006c49",
+                "tertiary-fixed-dim": "#ffb95f",
+                "on-tertiary-fixed-variant": "#653e00",
+                "error": "#ba1a1a",
+                "primary-fixed": "#6ffbbe",
+                "surface-container-high": "#e9e8e7",
+                "primary-fixed-dim": "#4edea3",
+                "on-secondary-fixed": "#00201c",
+                "on-surface-variant": "#3c4a42",
+                "on-background": "#1a1c1c",
+                "danger": "#EF4444",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#e3e2e1",
+                "surface-container": "#eeeeed",
+                "background-dark": "#1F2937",
+                "on-primary-container": "#00422b",
+                "secondary-container": "#6df5e1",
+                "secondary": "#006b5f",
+                "surface-bright": "#faf9f8",
+                "on-primary": "#ffffff",
+                "error-container": "#ffdad6",
+                "outline-variant": "#bbcabf",
+                "on-surface": "#1a1c1c",
+                "secondary-fixed-dim": "#4fdbc8",
+                "on-secondary-container": "#006f64"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-desktop": "32px",
+                "gutter": "16px",
+                "margin-mobile": "20px",
+                "base": "8px",
+                "button-padding": "16px",
+                "card-padding": "20px",
+                "touch-target-min": "48px",
+                "chip-padding": "12px"
+            },
+            "fontFamily": {
+                "caption": ["Inter"],
+                "headline-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-sm": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-lg": ["Inter"],
+                "body-numbers": ["Inter"],
+                "headline-xl": ["Inter"],
+                "headline-xl-mobile": ["Inter"]
+            },
+            "fontSize": {
+                "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .scale-up {
+            animation: scaleUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .float-organic {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gradient-mesh {
+            background: radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 108, 73, 0.03) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-lg text-on-background selection:bg-primary-container/30">
+<!-- Splash Canvas -->
+<main class="relative h-screen w-full flex flex-col items-center justify-center gradient-mesh overflow-hidden">
+<!-- Subtle Background Atmosphere -->
+<div class="absolute inset-0 z-0 opacity-40">
+<div class="absolute top-[10%] left-[15%] w-64 h-64 bg-primary-container/10 rounded-full blur-3xl float-organic" style="animation-delay: 0s;"></div>
+<div class="absolute bottom-[15%] right-[10%] w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl float-organic" style="animation-delay: -2s;"></div>
+</div>
+<!-- Central Content -->
+<div class="relative z-10 flex flex-col items-center justify-center px-margin-mobile">
+<!-- Logo Container -->
+<div class="mb-gutter scale-up">
+<div class="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center p-4 bg-surface-container-lowest rounded-[2.5rem] shadow-sm ring-1 ring-outline-variant/10">
+<img alt="HabitFlow Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtpDL5Kt4eT_KyIAhCn0964zPpHZIpWdABmr50CEmqwxuAQud1m86N6LLEuep89wkJlPLpuC08Ub6owYhYe6MvYcvuipk41B0e66pa6mS9VFMJ401bGu8Ziy1_s4-YZfsr7fCEAdDNoDm4g3UlaAIXzaqmfohrx3Uav7LAYSE9O_vnYxW_ZNaJdvVHJik91KkRZjZqsfERTp8I9Y0JY41mhLxwlPhAAG9OvqqIzT3AxkALOzBsAe-h"/>
+</div>
+</div>
+<!-- Brand Name & Tagline -->
+<div class="text-center fade-in" style="animation-delay: 0.4s;">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-primary tracking-tight mb-2">
+                    HabitFlow
+                </h1>
+<p class="font-caption text-caption text-on-surface-variant max-w-[240px] leading-relaxed">
+                    Nurturing growth and connection for every family.
+                </p>
+</div>
+</div>
+<!-- Progress/Loading State (Subtle) -->
+<div class="absolute bottom-24 w-full flex flex-col items-center fade-in" style="animation-delay: 0.8s;">
+<div class="w-12 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container transition-all duration-[3000ms] ease-out w-0" id="progress-bar"></div>
+</div>
+<span class="mt-4 font-label-sm text-label-sm text-outline uppercase tracking-widest opacity-60">
+                Loading...
+            </span>
+</div>
+<!-- Organic Accent Shapes (Responsive) -->
+<div class="absolute -bottom-16 -left-16 w-64 h-64 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="absolute -top-16 -right-16 w-48 h-48 bg-secondary/5 rounded-full blur-2xl"></div>
+</main>
+<script>
+        // Micro-interaction: Progress bar simulation
+        window.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('progress-bar');
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
+
+            // Subtle interaction logic for premium feel
+            document.addEventListener('mousemove', (e) => {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                const logoContainer = document.querySelector('.scale-up');
+                if (logoContainer) {
+                    logoContainer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+                }
+            });
+        });
+    </script>
+</body></html>

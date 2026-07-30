@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HabitFlow - Habits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#00422b",
+                    "on-tertiary": "#ffffff",
+                    "kids-accent": "#FFC107",
+                    "on-primary-fixed": "#002113",
+                    "primary": "#006c49",
+                    "inverse-on-surface": "#f1f0f0",
+                    "success": "#22C55E",
+                    "outline": "#6c7a71",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "on-surface": "#1a1c1c",
+                    "kids-primary": "#00D991",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeed",
+                    "primary-fixed-dim": "#4edea3",
+                    "background": "#faf9f8",
+                    "secondary-container": "#6df5e1",
+                    "tertiary-container": "#e29100",
+                    "surface-container-high": "#e9e8e7",
+                    "surface-tint": "#006c49",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#71f8e4",
+                    "outline-variant": "#bbcabf",
+                    "on-secondary-container": "#006f64",
+                    "primary-fixed": "#6ffbbe",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#855300",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "danger": "#EF4444",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary-container": "#523200",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadad9",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface": "#FFFFFF",
+                    "surface-container-low": "#f4f3f2",
+                    "surface-variant": "#e3e2e1",
+                    "on-secondary-fixed-variant": "#005048",
+                    "primary-container": "#10b981",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#4edea3",
+                    "surface-bright": "#faf9f8",
+                    "warning": "#F97316",
+                    "secondary": "#006b5f",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary-fixed": "#2a1700",
+                    "background-dark": "#1F2937"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "button-padding": "16px",
+                    "chip-padding": "12px",
+                    "card-padding": "20px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .organic-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 40%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased organic-bg min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 flex justify-between items-center px-gutter h-14 bg-background/80 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">spa</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Habits</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-low active:scale-95 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low active:scale-95 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Empty State -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile text-center gap-8 pb-32">
+<!-- Illustration Container -->
+<div class="relative w-full max-w-[320px] aspect-square flex items-center justify-center">
+<!-- Decorative soft glow behind illustration -->
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl scale-75"></div>
+<!-- Modern Flat Vector Illustration -->
+<div class="relative z-10 w-full h-full flex items-center justify-center">
+<img class="w-4/5 h-4/5 object-contain" data-alt="A premium minimalist flat vector illustration of a stylized, organic emerald green plant growing from a sleek ceramic pot. Beside the plant, a soft yellow watering can gently pours sparkling, geometric water droplets. The background consists of soft, cream-colored abstract shapes and subtle pastel gradients, conveying a mood of calm growth, vitality, and modern wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd2zJtgU2SR0LIBPw03e99tfoOo-uAeq1xvo297jU9iPeYsBHYTIE901mqZt3WKLyF3WijfGVQ5Ev6Ljqt9NZniW0gO2DwN_Ol5VQV1gzVC9NNlVlgOsFAf2niAagp2vxHA_ZR2M_pMuhPp0CYaJEP17rzQKBmPuWG_40NWYa9SLjJMSY4nZzqPdqPDmszDAh0xtBRwafDYG0WL2maKxb_l3TivZjBeokyUSk74lD2-MUi_CzzMgZh"/>
+</div>
+</div>
+<!-- Textual Content -->
+<div class="space-y-3 max-w-[340px]">
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                Build Better Habits
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant px-2">
+                Create your first habit and begin building a healthier, happier lifestyle.
+            </p>
+</div>
+<!-- Action Buttons Cluster -->
+<div class="flex flex-col w-full max-w-[280px] gap-4">
+<button class="h-[56px] w-full bg-primary text-on-primary rounded-2xl font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined">add</span>
+                Create Habit
+            </button>
+<button class="h-[56px] w-full border-[1.5px] border-primary text-primary rounded-2xl font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:bg-primary/5 active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined">explore</span>
+                Browse Templates
+            </button>
+</div>
+</main>
+<!-- Floating Action Button (Extended FAB) -->
+<div class="fixed bottom-24 right-6 z-50">
+<button class="flex items-center gap-3 px-6 h-14 bg-primary-container text-on-primary-container rounded-2xl shadow-lg active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">add</span>
+<span class="font-body-numbers text-body-numbers font-semibold">Habit</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)] rounded-t-xl">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<!-- Habits (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cached</span>
+<span class="font-label-sm text-label-sm mt-1">Habits</span>
+</a>
+<!-- Goals -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm mt-1">Goals</span>
+</a>
+<!-- Rewards -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm mt-1">Rewards</span>
+</a>
+<!-- Family -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm mt-1">Family</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('touchend', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Theme sync (optional placeholder for real system dark mode logic)
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // document.documentElement.classList.add('dark');
+        }
+    </script>
+</body></html>

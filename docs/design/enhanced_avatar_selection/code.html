@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Choose an Avatar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#e29100",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "kids-primary": "#00D991",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary-fixed": "#00201c",
+                    "secondary": "#006b5f",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#10b981",
+                    "surface-dim": "#dadad9",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#e3e2e1",
+                    "surface-bright": "#faf9f8",
+                    "success": "#22C55E",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary-container": "#00422b",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6ffbbe",
+                    "on-primary-fixed": "#002113",
+                    "warning": "#F97316",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "outline-variant": "#bbcabf",
+                    "kids-accent": "#FFC107",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary": "#006c49",
+                    "tertiary": "#855300",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary-container": "#523200",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006c49",
+                    "surface-container-highest": "#e3e2e1",
+                    "danger": "#EF4444",
+                    "surface": "#FFFFFF",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary-container": "#6df5e1",
+                    "primary-fixed-dim": "#4edea3",
+                    "outline": "#6c7a71",
+                    "on-tertiary": "#ffffff",
+                    "background-dark": "#1F2937",
+                    "on-tertiary-fixed": "#2a1700",
+                    "inverse-surface": "#2f3130",
+                    "inverse-primary": "#4edea3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .avatar-card.selected {
+            border-color: #006c49;
+            background-color: #f0fdf4;
+            transform: scale(1.05);
+        }
+        .avatar-card.selected .check-badge {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Shell (Transactional Suppression: No BottomNav/FAB for this focused flow) -->
+<header class="bg-background dark:bg-background-dark docked full-width top-0 sticky z-30">
+<div class="flex items-center justify-between px-margin-mobile h-touch-target-min w-full max-w-7xl mx-auto">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full w-10 h-10 flex items-center justify-center active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">
+                HabitFlow
+            </div>
+<div class="w-10"></div> <!-- Spacer for symmetry -->
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center px-margin-mobile py-8 max-w-4xl mx-auto w-full">
+<!-- Progress Indicator -->
+<div class="flex gap-2 mb-8">
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-surface-container-highest"></div>
+</div>
+<div class="flex flex-wrap justify-center gap-2 mb-8 w-full">
+<button class="px-chip-padding py-2 rounded-full bg-primary text-white font-label-sm transition-all">Parent</button>
+<button class="px-chip-padding py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm hover:bg-surface-container-high transition-all">Child</button>
+<button class="px-chip-padding py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm hover:bg-surface-container-high transition-all">Guardian</button>
+<button class="px-chip-padding py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm hover:bg-surface-container-high transition-all">Other</button>
+</div><section class="text-center mb-10">
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface mb-3">Choose an Avatar</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Pick the character that best represents you today.</p>
+</section><div class="flex overflow-x-auto no-scrollbar gap-6 w-full mb-8 border-b border-outline-variant">
+<button class="pb-3 border-b-2 border-primary text-primary font-label-sm whitespace-nowrap">Adults</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant font-label-sm whitespace-nowrap hover:text-primary transition-colors">Kids</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant font-label-sm whitespace-nowrap hover:text-primary transition-colors">Animals</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant font-label-sm whitespace-nowrap hover:text-primary transition-colors">Nature</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant font-label-sm whitespace-nowrap hover:text-primary transition-colors">Fantasy</button>
+</div>
+<!-- Avatar Bento Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 w-full mb-12" id="avatar-grid"><!-- Adult Avatar -->
+<button class="avatar-card relative group flex flex-col items-center p-2 rounded-3xl border-4 border-transparent bg-surface shadow-sm transition-all duration-300 hover:shadow-md active:scale-95" onclick="selectAvatar(this)">
+<div class="aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl">person</span>
+</div>
+<div class="absolute top-3 right-3 check-badge opacity-0 scale-50 transition-all duration-300 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">The Mentor</span>
+</button>
+<!-- Animal Avatar -->
+<button class="avatar-card relative group flex flex-col items-center p-2 rounded-3xl border-4 border-transparent bg-surface shadow-sm transition-all duration-300 hover:shadow-md active:scale-95" onclick="selectAvatar(this)">
+<div class="aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl">pets</span>
+</div>
+<div class="absolute top-3 right-3 check-badge opacity-0 scale-50 transition-all duration-300 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">The Companion</span>
+</button>
+<!-- Nature Avatar -->
+<button class="avatar-card relative group flex flex-col items-center p-2 rounded-3xl border-4 border-transparent bg-surface shadow-sm transition-all duration-300 hover:shadow-md active:scale-95" onclick="selectAvatar(this)">
+<div class="aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl">eco</span>
+</div>
+<div class="absolute top-3 right-3 check-badge opacity-0 scale-50 transition-all duration-300 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">The Leaf</span>
+</button>
+<!-- Fantasy Avatar -->
+<button class="avatar-card relative group flex flex-col items-center p-2 rounded-3xl border-4 border-transparent bg-surface shadow-sm transition-all duration-300 hover:shadow-md active:scale-95" onclick="selectAvatar(this)">
+<div class="aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl">auto_awesome</span>
+</div>
+<div class="absolute top-3 right-3 check-badge opacity-0 scale-50 transition-all duration-300 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">The Mystic</span>
+</button>
+<!-- Nature Avatar 2 -->
+<button class="avatar-card relative group flex flex-col items-center p-2 rounded-3xl border-4 border-transparent bg-surface shadow-sm transition-all duration-300 hover:shadow-md active:scale-95" onclick="selectAvatar(this)">
+<div class="aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl">wb_sunny</span>
+</div>
+<div class="absolute top-3 right-3 check-badge opacity-0 scale-50 transition-all duration-300 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">The Sun</span>
+</button>
+<!-- Fantasy Avatar 2 -->
+<button class="avatar-card relative group flex flex-col items-center p-2 rounded-3xl border-4 border-transparent bg-surface shadow-sm transition-all duration-300 hover:shadow-md active:scale-95" onclick="selectAvatar(this)">
+<div class="aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl">star</span>
+</div>
+<div class="absolute top-3 right-3 check-badge opacity-0 scale-50 transition-all duration-300 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">The Star</span>
+</button></div>
+<!-- Sticky Bottom Action -->
+<div class="w-full max-w-md mt-auto">
+<button class="w-full py-4 px-6 bg-primary-container text-on-primary-container rounded-full font-headline-sm text-headline-sm flex items-center justify-center gap-2 transition-all duration-200 opacity-50 cursor-not-allowed active:scale-95 hover:shadow-lg" disabled="" id="next-button">
+                Next
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Background Decorative Elements -->
+<div class="fixed top-0 right-0 -z-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-50 -mr-32 -mt-32 pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl opacity-30 -ml-48 -mb-48 pointer-events-none"></div>
+<script>
+        function selectAvatar(element) {
+            // Remove selection from all cards
+            document.querySelectorAll('.avatar-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            element.classList.add('selected');
+            
+            // Enable next button
+            const nextBtn = document.getElementById('next-button');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.add('bg-primary', 'text-white');
+            
+            // Subtle haptic feel through animation
+            element.classList.add('scale-105');
+            setTimeout(() => {
+                element.classList.remove('scale-105');
+            }, 150);
+        }
+
+        // Add a subtle entrance animation to the grid items
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.avatar-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HabitFlow - Help &amp; Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#71f8e4",
+                    "surface-tint": "#006c49",
+                    "surface-container-high": "#e9e8e7",
+                    "kids-accent": "#FFC107",
+                    "danger": "#EF4444",
+                    "on-secondary-fixed-variant": "#005048",
+                    "background": "#faf9f8",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-surface": "#1a1c1c",
+                    "on-primary-fixed": "#002113",
+                    "surface-dim": "#dadad9",
+                    "on-primary-container": "#00422b",
+                    "background-dark": "#1F2937",
+                    "secondary-container": "#6df5e1",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary": "#855300",
+                    "kids-primary": "#00D991",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-low": "#f4f3f2",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#6ffbbe",
+                    "outline-variant": "#bbcabf",
+                    "inverse-surface": "#2f3130",
+                    "on-primary": "#ffffff",
+                    "primary": "#006c49",
+                    "tertiary-container": "#e29100",
+                    "primary-fixed-dim": "#4edea3",
+                    "warning": "#F97316",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-bright": "#faf9f8",
+                    "surface-variant": "#e3e2e1",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "surface-container": "#eeeeed",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-container": "#006f64",
+                    "error-container": "#ffdad6",
+                    "surface": "#FFFFFF",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-error": "#ffffff",
+                    "primary-container": "#10b981",
+                    "error": "#ba1a1a",
+                    "success": "#22C55E",
+                    "inverse-primary": "#4edea3",
+                    "secondary": "#006b5f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-tertiary-container": "#523200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "card-padding": "20px",
+                    "chip-padding": "12px",
+                    "base": "8px",
+                    "button-padding": "16px",
+                    "touch-target-min": "48px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .faq-transition {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+        }
+        .faq-open .faq-transition {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .faq-open .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface-container-low dark:bg-surface-container-highest">
+<div class="flex items-center justify-between px-gutter h-touch-target-min w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim font-bold">HabitFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly smiling parent in a bright, modern home office setting. The lighting is soft and natural, emphasizing a warm and reliable personality. The overall aesthetic is clean and premium, consistent with a high-end health and family development application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKFdD0ALELpEqTxY2K2IMGb8o5FZ8Mb7GnT05qgG31MnTDl4M_rqLj5zlaxq8LYWcNMB3uTqH6qdzsgPqjCLPt67CVgbAFiChHRmAIbriLPLTSADcukRqyE8bRxOpl6RNE5FdVyxHvt3isLcVj_8eUsZbLuDnYPTULpJXCWLOKA-1_51180IudlbM3r04gv7h4E8vTk0-1PylACKTxNzIzj-64p_zXDDIEOtcBHiTmpJkXSHqsoY84"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-8 space-y-8">
+<!-- Welcome Hero Section -->
+<section class="text-center space-y-2">
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background">How can we help you today?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">Whether you're looking for a quick answer or want to share your thoughts, we're here to grow with you.</p>
+</section>
+<!-- Search Bar Section -->
+<section class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-4 rounded-xl border-none bg-surface-container shadow-sm focus:ring-2 focus:ring-primary focus:bg-surface transition-all font-body-lg text-body-lg text-on-surface" placeholder="Search Help articles..." type="text"/>
+</section>
+<!-- Bento Layout for Support & Feedback -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+<!-- Left Column: Support & FAQs (3/5) -->
+<div class="md:col-span-3 space-y-6">
+<!-- Contact Support Card -->
+<div class="bg-surface border border-outline-variant p-card-padding rounded-2xl flex flex-col sm:flex-row items-center gap-6 group hover:shadow-md transition-shadow">
+<div class="w-16 h-16 rounded-2xl bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl">support_agent</span>
+</div>
+<div class="text-center sm:text-left flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Direct Support</h3>
+<p class="font-caption text-caption text-on-surface-variant mb-4">Can't find what you need? Our team is available 24/7.</p>
+<button class="bg-primary text-on-primary px-button-padding py-2 rounded-full font-label-sm text-label-sm active:scale-95 transition-transform">
+                            Contact Support
+                        </button>
+</div>
+</div>
+<!-- FAQs Accordion -->
+<div class="bg-surface border border-outline-variant rounded-2xl overflow-hidden">
+<div class="p-card-padding border-b border-outline-variant bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Frequently Asked Questions</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- FAQ Item 1 -->
+<div class="faq-item" onclick="this.classList.toggle('faq-open')">
+<button class="w-full flex items-center justify-between p-card-padding text-left hover:bg-surface-container-low transition-colors">
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">How do I reset my family tree?</span>
+<span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+</button>
+<div class="faq-transition bg-surface-container-lowest">
+<div class="px-card-padding pb-card-padding font-caption text-caption text-on-surface-variant">
+                                    You can reset your family tree in the 'Goals' section under 'Growth Settings'. Please note that this action will archive your current progress and cannot be undone.
+                                </div>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-item" onclick="this.classList.toggle('faq-open')">
+<button class="w-full flex items-center justify-between p-card-padding text-left hover:bg-surface-container-low transition-colors">
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Can I share rewards across devices?</span>
+<span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+</button>
+<div class="faq-transition bg-surface-container-lowest">
+<div class="px-card-padding pb-card-padding font-caption text-caption text-on-surface-variant">
+                                    Yes! Once you log in with your primary parent account, all earned rewards and progress are synced in real-time across all registered devices in your household.
+                                </div>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-item" onclick="this.classList.toggle('faq-open')">
+<button class="w-full flex items-center justify-between p-card-padding text-left hover:bg-surface-container-low transition-colors">
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">How are habit streaks calculated?</span>
+<span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+</button>
+<div class="faq-transition bg-surface-container-lowest">
+<div class="px-card-padding pb-card-padding font-caption text-caption text-on-surface-variant">
+                                    Streaks are calculated based on consecutive days of completion for each specific habit. Missing a day resets the streak to zero, but your overall growth tree progress remains intact!
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Feedback Form (2/5) -->
+<div class="md:col-span-2">
+<div class="bg-surface border border-outline-variant p-card-padding rounded-2xl sticky top-24 shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Share Your Thoughts</h3>
+<p class="font-caption text-caption text-on-surface-variant mb-6">Your feedback helps us build a better experience for every family.</p>
+<form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you for your feedback!');">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-2">Category</label>
+<select class="w-full rounded-xl border-outline-variant bg-surface-container-low text-on-surface font-body-lg h-12 focus:ring-primary focus:border-primary">
+<option>General Feedback</option>
+<option>Bug Report</option>
+<option>Feature Request</option>
+<option>Praise</option>
+</select>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-2">Message</label>
+<textarea class="w-full rounded-xl border-outline-variant bg-surface-container-low text-on-surface font-body-lg focus:ring-primary focus:border-primary p-4 resize-none" placeholder="Write your thoughts here..." rows="5"></textarea>
+</div>
+<div class="flex items-center gap-3 py-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Overall Satisfaction:</span>
+<div class="flex gap-1">
+<button class="material-symbols-outlined text-outline hover:text-kids-accent transition-colors" type="button">sentiment_very_dissatisfied</button>
+<button class="material-symbols-outlined text-outline hover:text-kids-accent transition-colors" type="button">sentiment_dissatisfied</button>
+<button class="material-symbols-outlined text-outline hover:text-kids-accent transition-colors" type="button">sentiment_neutral</button>
+<button class="material-symbols-outlined text-outline hover:text-kids-accent transition-colors" type="button">sentiment_satisfied</button>
+<button class="material-symbols-outlined text-primary hover:text-kids-accent transition-colors" style="font-variation-settings: 'FILL' 1;" type="button">sentiment_very_satisfied</button>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary h-touch-target-min rounded-xl font-headline-sm text-headline-sm hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                            Submit Feedback
+                        </button>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim z-50 rounded-t-xl shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-chip-padding py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm font-bold">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction logic for Star/Satisfaction rating toggle
+        const satisfactionBtns = document.querySelectorAll('button[type="button"].material-symbols-outlined');
+        satisfactionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                satisfactionBtns.forEach(b => {
+                    b.style.fontVariationSettings = "'FILL' 0";
+                    b.classList.replace('text-primary', 'text-outline');
+                });
+                this.style.fontVariationSettings = "'FILL' 1";
+                this.classList.replace('text-outline', 'text-primary');
+            });
+        });
+
+        // Search highlight mock
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body></html>

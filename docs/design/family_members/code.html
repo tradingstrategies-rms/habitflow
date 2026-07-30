@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Family Members - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "secondary": "#006b5f",
+                    "primary-container": "#10b981",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#523200",
+                    "on-primary": "#ffffff",
+                    "kids-accent": "#FFC107",
+                    "surface": "#FFFFFF",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#faf9f8",
+                    "background-dark": "#1F2937",
+                    "on-primary-fixed": "#002113",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-fixed-variant": "#005048",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "tertiary": "#855300",
+                    "secondary-container": "#6df5e1",
+                    "on-error": "#ffffff",
+                    "success": "#22C55E",
+                    "surface-dim": "#dadad9",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "background": "#faf9f8",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary": "#006c49",
+                    "on-secondary-container": "#006f64",
+                    "kids-primary": "#00D991",
+                    "surface-tint": "#006c49",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f8;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .organic-gradient {
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(0, 108, 73, 0.05), transparent 40%);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="organic-gradient min-h-screen text-on-surface">
+<!-- Top App Bar -->
+<header class="bg-surface sticky top-0 z-50 w-full transition-colors">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150 ease-in-out">
+                notifications
+            </button>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary tracking-tight">HabitFlow</h1>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150 ease-in-out">
+                account_circle
+            </button>
+</div>
+</header>
+<main class="px-margin-mobile md:px-margin-desktop py-8 max-w-3xl mx-auto pb-32">
+<!-- Header Section -->
+<section class="mb-10">
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">The Miller Family</h2>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">
+                        4 Members
+                    </span>
+<span class="text-on-surface-variant font-caption text-caption">Active since May 2023</span>
+</div>
+</div>
+</section>
+<!-- Members Grid/List -->
+<section class="grid grid-cols-1 gap-4">
+<!-- Parent: Sarah -->
+<div class="group flex items-center p-card-padding bg-surface border border-outline-variant/30 rounded-[20px] transition-all hover:shadow-sm active:scale-[0.98] duration-200">
+<div class="relative">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container bg-surface-container" data-alt="A portrait of a warm, smiling professional woman with shoulder-length brown hair, soft natural lighting, set against a blurred indoor home office background with plants. The style is clean, modern, and high-quality photography, reflecting a calm organic vitality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaSgUpz4nak2Dbh_PWI4YXy4k_rfHmjgV2bLAVH7xdiB5HJnR7nAMBcmv7I88f0DW3QDqgukmVbqC8Q_Qe_0o0Wi22FoTBiMy2BneyvZKQrTLZEoIKjeQqolzBmsU8zRSNxNXLRRzn589RGCmbuHFphiLfabmg8RJ3obpyysoL9LE-7a3aZBJ2FIoRL0plt34mWoXYpIlYNX_Vlwv57sgCEVhZzXnf9U2nd9PTFEfDOmkpm9JwnGAx')"></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full border-2 border-surface">
+<span class="material-symbols-outlined text-[14px] block" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+</div>
+<div class="ml-4 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sarah</h3>
+<p class="font-caption text-caption text-on-surface-variant">Parent • Account Owner</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-[18px]">eco</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">LVL 42</span>
+</div>
+</div>
+</div>
+<!-- Parent: David -->
+<div class="group flex items-center p-card-padding bg-surface border border-outline-variant/30 rounded-[20px] transition-all hover:shadow-sm active:scale-[0.98] duration-200">
+<div class="relative">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container bg-surface-container" data-alt="A portrait of a friendly man with a short beard and kind eyes, wearing a simple linen shirt. Soft morning sunlight filtering through a window, creating a serene and premium aesthetic. The background is a minimalist living space with soft neutral tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsZt0jQNMV1OOhB-qxvyNhR1mXAUST55zJVXaq6ywSn88-2O72jHAS7wDc0BU0jAuzpb4c3hQgoUKyiVQR648kFj1b1UNdtjxTnAVuf7Li2PvqyQKz_CT41QWdMibBbb3nt2Y9PthnQuPCNNNj582BYYffHhG6VUb5SLoyeo8LUiM4mgdP7DFnyNxIQL66oO_6gL3WbpnrGGBYkA552q6zg_-FGaYDLYqef0TsWVMLbHULz8RGxxOI')"></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full border-2 border-surface">
+<span class="material-symbols-outlined text-[14px] block" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+</div>
+<div class="ml-4 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">David</h3>
+<p class="font-caption text-caption text-on-surface-variant">Parent</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-[18px]">eco</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">LVL 38</span>
+</div>
+</div>
+</div>
+<!-- Kid: Leo -->
+<div class="group flex items-center p-card-padding bg-surface border border-outline-variant/30 rounded-[20px] transition-all hover:shadow-sm active:scale-[0.98] duration-200">
+<div class="relative">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-kids-primary bg-surface-container" data-alt="A cheerful 8-year-old boy with a bright smile, wearing a green t-shirt. The lighting is sunny and vibrant, suggesting an outdoor park setting. High-key modern digital photography with soft bokeh and a focus on joyful organic vitality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwmrp-MDB4Yg4rPcCfBq9yc_TtNBVJJHBjFWoHaz2QfMkEPxgCjlUPzFazxrK4BpVTIlRv6fLrGHSFeFyXzi5nWcqsodfa8FxzzVbVweyOWCx7gkwq4iIfWmVBvid9Gbbaot2bgUGUTcSJCbAu5mOh-dlggsTqZB3-iTim8bhUflIqSWkiNhEL3HhUsonCeOg8YWRoc2et0Bxqnu0RkEWutf_QVWihJTxyJqkJH82sApNmkf4ZwDCV')"></div>
+<div class="absolute -bottom-1 -right-1 bg-kids-accent text-on-surface p-1 rounded-full border-2 border-surface">
+<span class="material-symbols-outlined text-[14px] block" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="ml-4 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Leo</h3>
+<p class="font-caption text-caption text-on-surface-variant">Child</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-kids-primary/10 border border-kids-primary/20">
+<span class="material-symbols-outlined text-kids-primary text-[18px]">forest</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant font-bold">LVL 24</span>
+</div>
+</div>
+</div>
+<!-- Kid: Mia -->
+<div class="group flex items-center p-card-padding bg-surface border border-outline-variant/30 rounded-[20px] transition-all hover:shadow-sm active:scale-[0.98] duration-200">
+<div class="relative">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-kids-primary bg-surface-container" data-alt="A portrait of a curious 5-year-old girl with braided hair and a playful expression. The lighting is warm and golden, reflecting a cozy home environment. Minimalist and clean aesthetic with emerald green and soft white tones in the composition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC88Jv3rXn-ysmFOLO6G88hoyRyCKUFkc_ZC8M-mEUhCQ71Me0XwCnrFk1ET-X8y5-ubqGGuCb5bxgHToVl3PF3osERYdwNRs2l5rpy5Knx0IY5JdLxIP0quDW_Y2uVVIu79zT71ZhZan7cX1gOatBv4GhYKdqqK2S6yoFU5-WfbedVc-xn6852Zp8iW20yw2gbzoDlDvaqmHgGm2wmsX0pVyz6_UJF_CEN0v8JJOM7XlqEpTgvUGey')"></div>
+<div class="absolute -bottom-1 -right-1 bg-kids-accent text-on-surface p-1 rounded-full border-2 border-surface">
+<span class="material-symbols-outlined text-[14px] block" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="ml-4 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mia</h3>
+<p class="font-caption text-caption text-on-surface-variant">Child</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-kids-primary/10 border border-kids-primary/20">
+<span class="material-symbols-outlined text-kids-primary text-[18px]">forest</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant font-bold">LVL 19</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Invite Card -->
+<section class="mt-8">
+<button class="w-full flex items-center justify-between p-card-padding bg-surface-container-lowest border-2 border-dashed border-outline-variant rounded-[20px] hover:bg-surface-container-low transition-all group active:scale-[0.99]">
+<div class="flex items-center gap-4 text-left">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Invite New Member</h4>
+<p class="font-caption text-caption text-on-surface-variant">Expand your family growth journey</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe px-4 bg-surface shadow-sm rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<!-- Desktop Navigation (Hidden on Mobile) -->
+<div class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-20 flex-col items-center py-8 gap-8 bg-surface border-r border-outline-variant/10">
+<a class="p-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="p-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">cached</span>
+</a>
+<a class="p-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+</a>
+<a class="p-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+</a>
+<a class="p-3 bg-primary-container text-on-primary-container rounded-xl shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+</a>
+</div>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('section > div').forEach(card => {
+            card.addEventListener('click', () => {
+                // Future expansion: Navigate to member details
+                console.log('Member clicked');
+            });
+        });
+    </script>
+</body></html>

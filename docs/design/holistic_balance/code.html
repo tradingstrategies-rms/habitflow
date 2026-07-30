@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Family Growth Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#6c7a71",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background-dark": "#1F2937",
+                    "secondary": "#006b5f",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-container": "#e29100",
+                    "on-tertiary-container": "#523200",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#4edea3",
+                    "danger": "#EF4444",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-dim": "#dadad9",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eeeeed",
+                    "success": "#22C55E",
+                    "on-primary-fixed-variant": "#005236",
+                    "warning": "#F97316",
+                    "primary-container": "#10b981",
+                    "on-primary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-variant": "#e3e2e1",
+                    "background": "#faf9f8",
+                    "surface": "#FFFFFF",
+                    "secondary-fixed": "#71f8e4",
+                    "kids-accent": "#FFC107",
+                    "tertiary-fixed": "#ffddb8",
+                    "outline-variant": "#bbcabf",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-container": "#006f64",
+                    "tertiary": "#855300",
+                    "primary": "#006c49",
+                    "surface-bright": "#faf9f8",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "secondary-container": "#6df5e1",
+                    "on-primary-container": "#00422b",
+                    "on-tertiary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "chip-padding": "12px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .growth-ring {
+            transition: stroke-dashoffset 1s ease-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background flex items-center justify-between px-margin-mobile h-14 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="spa">spa</span>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">HabitFlow</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">
+                JD
+            </div>
+</div>
+</header>
+<main class="px-margin-mobile py-6 max-w-4xl mx-auto space-y-6">
+<!-- Hero Balance Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-12 lg:col-span-7 p-card-padding bg-surface rounded-[20px] shadow-sm flex flex-col items-center">
+<h2 class="font-headline-sm text-headline-sm-mobile self-start mb-6">Growth Radar</h2>
+<div class="w-full aspect-square max-w-[320px] relative">
+<canvas id="radarChart"></canvas>
+</div>
+<!-- Interactive Legend -->
+<div class="flex flex-wrap justify-center gap-3 mt-6">
+<button class="flex items-center gap-2 px-chip-padding py-1.5 rounded-full bg-primary-container text-on-primary-container border border-primary/20 transition-all active:scale-95" id="btn-family" onclick="toggleFamilyMember(0)">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-label-sm font-label-sm">Family</span>
+</button>
+<button class="flex items-center gap-2 px-chip-padding py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant transition-all active:scale-95" id="btn-dad" onclick="toggleFamilyMember(1)">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-label-sm font-label-sm">Dad</span>
+</button>
+<button class="flex items-center gap-2 px-chip-padding py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant transition-all active:scale-95" id="btn-mom" onclick="toggleFamilyMember(2)">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-label-sm font-label-sm">Mom</span>
+</button>
+<button class="flex items-center gap-2 px-chip-padding py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant transition-all active:scale-95" id="btn-leo" onclick="toggleFamilyMember(3)">
+<span class="w-2 h-2 rounded-full bg-kids-primary"></span>
+<span class="text-label-sm font-label-sm">Leo</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-12 lg:col-span-5 space-y-6">
+<!-- Balance Score Card -->
+<div class="p-card-padding bg-primary-container/10 border border-primary-container/20 rounded-[20px] relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-sm font-label-sm text-primary uppercase tracking-wider">Balance Score</span>
+<span class="font-headline-md text-primary">9/10</span>
+</div>
+<p class="text-body-lg font-body-lg text-on-surface leading-snug">
+                            Your family is <span class="font-bold text-primary">perfectly balanced</span> between physical health and mental growth.
+                        </p>
+<div class="mt-4 flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="trending_up">trending_up</span>
+<span class="text-caption font-caption">+12% from last month</span>
+</div>
+</div>
+<!-- Decorative background pulse -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Family Tree Progress Card -->
+<div class="p-card-padding bg-surface rounded-[20px] shadow-sm border border-surface-variant">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Growth Tree</h3>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Level 4: Mighty Oak</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 flex items-center justify-center shrink-0">
+<svg class="w-full h-full -rotate-90">
+<circle cx="32" cy="32" fill="none" r="28" stroke="#e9e8e7" stroke-width="6"></circle>
+<circle class="growth-ring" cx="32" cy="32" fill="none" r="28" stroke="#006c49" stroke-dasharray="175.9" stroke-dashoffset="44" stroke-width="6"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-primary" data-icon="park">park</span>
+</div>
+<div class="flex-1">
+<p class="text-caption font-caption text-on-surface-variant">75% to Level 5</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1">
+<div class="bg-primary h-full rounded-full w-3/4"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Next Steps -->
+<section class="space-y-4">
+<h2 class="font-headline-sm text-headline-sm">Next Steps</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Action 1 -->
+<div class="group p-card-padding bg-surface rounded-[20px] border border-surface-variant hover:border-primary transition-colors flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-secondary-container/30 flex items-center justify-center text-secondary mb-4">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+</div>
+<h4 class="font-headline-sm text-[18px] text-on-surface mb-2">Soul Connection</h4>
+<p class="text-caption font-caption text-on-surface-variant">Leo's "Soul" score is slightly lower this week. Try a 5-minute family meditation.</p>
+</div>
+<button class="mt-6 flex items-center gap-1 text-primary font-bold text-label-sm group-hover:gap-2 transition-all">
+                        Schedule Session <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Action 2 -->
+<div class="group p-card-padding bg-surface rounded-[20px] border border-surface-variant hover:border-primary transition-colors flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed/30 flex items-center justify-center text-tertiary mb-4">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</div>
+<h4 class="font-headline-sm text-[18px] text-on-surface mb-2">Heart Sync</h4>
+<p class="text-caption font-caption text-on-surface-variant">Perfect "Heart" balance! Maintain this by keeping your weekend family dinner tradition.</p>
+</div>
+<button class="mt-6 flex items-center gap-1 text-primary font-bold text-label-sm group-hover:gap-2 transition-all">
+                        View Traditions <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Action 3 -->
+<div class="group p-card-padding bg-primary text-on-primary rounded-[20px] border border-transparent flex flex-col justify-between shadow-md">
+<div>
+<div class="w-10 h-10 rounded-xl bg-on-primary/20 flex items-center justify-center text-on-primary mb-4">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-2">Consistency Boost</h4>
+<p class="text-caption font-caption opacity-90">Unlock the 'Golden Leaf' on your tree by hitting a 7-day streak for all habits.</p>
+</div>
+<button class="mt-6 flex items-center gap-1 font-bold text-label-sm group-hover:gap-2 transition-all text-white">
+                        Check Streaks <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Insights Summary Card -->
+<section class="p-card-padding bg-surface-container-low rounded-[20px] border border-outline-variant/30 flex flex-col md:flex-row items-center gap-6">
+<div class="w-full md:w-48 h-32 rounded-xl bg-white overflow-hidden relative border border-surface-variant shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A tranquil family scene in a sunlit modern living room, soft emerald green accents, minimalist corporate illustration style, bright airy mood, warm lighting, showing a growth-themed conceptual artwork." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbMBkJ3jpmXpmfqLGLzTbIQLcpBRrWH4kNjae-5IV8G1qcuEvc28L8bt0wo9s1RVlbYAB8lL9bpEcDsR-_LsCyw5w1DhzJD1qTWXl8XOgqzJRwbijkDr7vEuURX870cncVqOcr7Brcpi3ZfW6XUoEbE4_dnW7sS_kNM5D02viDV8647zfcq-ZRR0sSa2jNKe6HyX3XL8hKDza9SFFbR1DXSLRBx3hcJ2mot0JODiLhFUu1Hw8bRr9j')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-[18px] mb-2">Monthly Evolution</h3>
+<p class="text-caption font-caption text-on-surface-variant">You've moved from "Unbalanced Growth" to "Harmonious Bloom" in the last 30 days. The family consistency score is at an all-time high of 92%.</p>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-surface text-primary border border-primary px-button-padding py-2 rounded-full font-bold text-label-sm hover:bg-primary/5 transition-colors">
+                    Detailed Report
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 pb-safe h-[72px] bg-surface shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)] rounded-t-xl z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="Check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="ads_click">ads_click</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<script>
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        
+        const labels = ['Mind', 'Body', 'Heart', 'Soul', 'Consistency'];
+        const familyData = [9, 8, 9, 7, 9];
+        const dadData = [8, 9, 7, 6, 8];
+        const momData = [9, 7, 9, 8, 9];
+        const leoData = [7, 8, 6, 9, 7];
+
+        const chartData = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Family',
+                    data: familyData,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 108, 73, 0.2)',
+                    borderColor: '#006c49',
+                    pointBackgroundColor: '#006c49',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#006c49',
+                    borderWidth: 3,
+                    hidden: false
+                },
+                {
+                    label: 'Dad',
+                    data: dadData,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 107, 95, 0.1)',
+                    borderColor: '#006b5f',
+                    pointBackgroundColor: '#006b5f',
+                    borderWidth: 2,
+                    hidden: true
+                },
+                {
+                    label: 'Mom',
+                    data: momData,
+                    fill: true,
+                    backgroundColor: 'rgba(133, 83, 0, 0.1)',
+                    borderColor: '#855300',
+                    pointBackgroundColor: '#855300',
+                    borderWidth: 2,
+                    hidden: true
+                },
+                {
+                    label: 'Leo',
+                    data: leoData,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 217, 145, 0.1)',
+                    borderColor: '#00D991',
+                    pointBackgroundColor: '#00D991',
+                    borderWidth: 2,
+                    hidden: true
+                }
+            ]
+        };
+
+        const config = {
+            type: 'radar',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { display: true, color: '#e3e2e1' },
+                        grid: { color: '#e3e2e1' },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: { display: false },
+                        pointLabels: {
+                            font: { size: 12, family: 'Inter', weight: '600' },
+                            color: '#3c4a42'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        };
+
+        const radarChart = new Chart(ctx, config);
+
+        function toggleFamilyMember(index) {
+            const isHidden = radarChart.data.datasets[index].hidden;
+            radarChart.data.datasets[index].hidden = !isHidden;
+            
+            // Update UI buttons
+            const ids = ['btn-family', 'btn-dad', 'btn-mom', 'btn-leo'];
+            const btn = document.getElementById(ids[index]);
+            
+            if (isHidden) { // Now visible
+                btn.classList.remove('bg-surface-container-low', 'text-on-surface-variant', 'border-outline-variant');
+                btn.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary/20');
+            } else { // Now hidden
+                btn.classList.add('bg-surface-container-low', 'text-on-surface-variant', 'border-outline-variant');
+                btn.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary/20');
+            }
+            
+            radarChart.update();
+        }
+    </script>
+</body></html>

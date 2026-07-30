@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Theme Settings - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#71f8e4",
+                      "surface-tint": "#006c49",
+                      "surface-container-high": "#e9e8e7",
+                      "kids-accent": "#FFC107",
+                      "danger": "#EF4444",
+                      "on-secondary-fixed-variant": "#005048",
+                      "background": "#faf9f8",
+                      "surface-container-highest": "#e3e2e1",
+                      "on-surface-variant": "#3c4a42",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "on-surface": "#1a1c1c",
+                      "on-primary-fixed": "#002113",
+                      "surface-dim": "#dadad9",
+                      "on-primary-container": "#00422b",
+                      "background-dark": "#1F2937",
+                      "secondary-container": "#6df5e1",
+                      "outline": "#6c7a71",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#ffddb8",
+                      "tertiary": "#855300",
+                      "kids-primary": "#00D991",
+                      "on-secondary-fixed": "#00201c",
+                      "surface-container-low": "#f4f3f2",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#6ffbbe",
+                      "outline-variant": "#bbcabf",
+                      "inverse-surface": "#2f3130",
+                      "on-primary": "#ffffff",
+                      "primary": "#006c49",
+                      "tertiary-container": "#e29100",
+                      "primary-fixed-dim": "#4edea3",
+                      "warning": "#F97316",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "surface-bright": "#faf9f8",
+                      "surface-variant": "#e3e2e1",
+                      "secondary-fixed-dim": "#4fdbc8",
+                      "surface-container": "#eeeeed",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#f1f0f0",
+                      "on-secondary-container": "#006f64",
+                      "error-container": "#ffdad6",
+                      "surface": "#FFFFFF",
+                      "on-background": "#1a1c1c",
+                      "on-tertiary-fixed": "#2a1700",
+                      "on-error": "#ffffff",
+                      "primary-container": "#10b981",
+                      "error": "#ba1a1a",
+                      "success": "#22C55E",
+                      "inverse-primary": "#4edea3",
+                      "secondary": "#006b5f",
+                      "on-primary-fixed-variant": "#005236",
+                      "on-tertiary-container": "#523200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "margin-mobile": "20px",
+                      "card-padding": "20px",
+                      "chip-padding": "12px",
+                      "base": "8px",
+                      "button-padding": "16px",
+                      "touch-target-min": "48px",
+                      "margin-desktop": "32px"
+              },
+              "fontFamily": {
+                      "headline-xl-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "body-numbers": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "caption": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .theme-card-selected { border: 3px solid #006c49 !important; }
+        .theme-dot { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background transition-colors duration-500">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface-container-low dark:bg-surface-container-highest transition-colors">
+<div class="flex items-center justify-between px-gutter h-touch-target-min w-full max-w-7xl mx-auto">
+<button aria-label="Go back" class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-200">
+                arrow_back
+            </button>
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim font-bold">Theme Settings</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="max-w-xl mx-auto px-margin-mobile py-8 space-y-10">
+<!-- Header Section -->
+<section class="text-center space-y-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Visual Style</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xs mx-auto">Choose an appearance that matches your family's pace.</p>
+</section>
+<!-- Theme Selection Grid -->
+<form class="space-y-6" id="themeSelector">
+<!-- Light Theme Card -->
+<label class="block cursor-pointer group">
+<input checked="" class="hidden peer" name="theme" type="radio" value="light"/>
+<div class="bg-surface border-2 border-outline-variant rounded-xl p-card-padding transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary-container/10 group-hover:bg-surface-container-low shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Light Theme</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary">
+<div class="w-2.5 h-2.5 bg-on-primary rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<!-- Preview Light -->
+<div class="w-full h-40 bg-background rounded-lg border border-outline-variant flex flex-col p-4 gap-3 overflow-hidden shadow-inner">
+<div class="flex gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container"></div>
+<div class="space-y-1 flex-1">
+<div class="h-2 w-24 bg-surface-container-highest rounded-full"></div>
+<div class="h-2 w-16 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-auto">
+<div class="h-16 bg-surface border border-outline-variant rounded-lg p-2 flex flex-col justify-end">
+<div class="h-1.5 w-8 bg-primary rounded-full"></div>
+</div>
+<div class="h-16 bg-surface border border-outline-variant rounded-lg p-2 flex flex-col justify-end">
+<div class="h-1.5 w-12 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-4">A crisp, organic "Warm White" aesthetic for clarity and focus during the day.</p>
+</div>
+</label>
+<!-- Dark Theme Card -->
+<label class="block cursor-pointer group">
+<input class="hidden peer" name="theme" type="radio" value="dark"/>
+<div class="bg-background-dark border-2 border-gray-700 rounded-xl p-card-padding transition-all duration-300 peer-checked:border-primary-fixed peer-checked:bg-gray-800/50 group-hover:bg-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+<span class="font-headline-sm text-headline-sm text-white">Dark Theme</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-gray-500 flex items-center justify-center peer-checked:border-primary-fixed peer-checked:bg-primary-fixed">
+<div class="w-2.5 h-2.5 bg-on-primary-fixed rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<!-- Preview Dark -->
+<div class="w-full h-40 bg-gray-900 rounded-lg border border-gray-700 flex flex-col p-4 gap-3 overflow-hidden shadow-inner">
+<div class="flex gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim"></div>
+<div class="space-y-1 flex-1">
+<div class="h-2 w-24 bg-gray-700 rounded-full"></div>
+<div class="h-2 w-16 bg-gray-800 rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-auto">
+<div class="h-16 bg-gray-800 border border-gray-700 rounded-lg p-2 flex flex-col justify-end">
+<div class="h-1.5 w-8 bg-primary-fixed-dim rounded-full"></div>
+</div>
+<div class="h-16 bg-gray-800 border border-gray-700 rounded-lg p-2 flex flex-col justify-end">
+<div class="h-1.5 w-12 bg-gray-600 rounded-full"></div>
+</div>
+</div>
+</div>
+<p class="font-caption text-caption text-gray-400 mt-4">Deep grays and soft tonal layers for eye comfort during evening family routines.</p>
+</div>
+</label>
+<!-- Kids Theme Card -->
+<label class="block cursor-pointer group relative overflow-hidden">
+<input class="hidden peer" name="theme" type="radio" value="kids"/>
+<div class="bg-surface border-2 border-kids-accent/30 rounded-xl p-card-padding transition-all duration-300 peer-checked:border-kids-accent peer-checked:bg-kids-accent/10 group-hover:bg-kids-accent/5 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-kids-accent" style="font-variation-settings: 'FILL' 1;">celebration</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Kids Theme</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-kids-accent/50 flex items-center justify-center peer-checked:border-kids-accent peer-checked:bg-kids-accent">
+<div class="w-2.5 h-2.5 bg-on-tertiary-fixed rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<!-- Preview Kids -->
+<div class="w-full h-40 bg-gradient-to-br from-kids-primary/20 to-kids-accent/20 rounded-lg border-2 border-dashed border-kids-accent/30 flex flex-col p-4 gap-3 overflow-hidden shadow-inner relative">
+<div class="absolute top-2 right-2 flex gap-1">
+<div class="w-2 h-2 rounded-full bg-kids-accent animate-bounce"></div>
+<div class="w-2 h-2 rounded-full bg-kids-primary animate-bounce delay-100"></div>
+</div>
+<div class="flex gap-2">
+<div class="w-10 h-10 rounded-xl bg-kids-accent shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xs">star</span>
+</div>
+<div class="space-y-1 flex-1">
+<div class="h-3 w-28 bg-white rounded-lg"></div>
+<div class="h-2 w-16 bg-kids-primary/40 rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-auto">
+<div class="h-16 bg-white rounded-2xl p-2 flex flex-col items-center justify-center border-b-4 border-kids-primary/20">
+<div class="w-full h-2 bg-kids-primary rounded-full"></div>
+</div>
+<div class="h-16 bg-white rounded-2xl p-2 flex flex-col items-center justify-center border-b-4 border-kids-accent/20">
+<div class="w-8 h-8 rounded-full bg-kids-accent/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-kids-accent text-sm">emoji_events</span>
+</div>
+</div>
+</div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-4">Vibrant accents and playful rounded shapes to keep kids engaged and motivated.</p>
+</div>
+</label>
+</form>
+<!-- Save Button Section -->
+<div class="pt-4 pb-12">
+<button class="w-full py-button-padding bg-primary text-on-primary font-bold rounded-xl shadow-lg active:scale-95 transition-all duration-200 hover:bg-surface-tint">
+                Apply Theme Appearance
+            </button>
+<p class="text-center font-label-sm text-label-sm text-outline mt-4 uppercase tracking-widest">Settings will sync across family devices</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim z-50 rounded-t-xl shadow-sm md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-chip-padding py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        const themeSelector = document.getElementById('themeSelector');
+        const body = document.body;
+        const html = document.documentElement;
+
+        themeSelector.addEventListener('change', (e) => {
+            const theme = e.target.value;
+            
+            // Remove previous classes
+            html.classList.remove('dark');
+            body.classList.remove('bg-background', 'bg-background-dark');
+            
+            if (theme === 'dark') {
+                html.classList.add('dark');
+                body.classList.add('bg-background-dark');
+            } else if (theme === 'light') {
+                body.classList.add('bg-background');
+            } else if (theme === 'kids') {
+                body.classList.add('bg-background');
+                // Subtle feedback or animation could go here
+            }
+        });
+
+        // Micro-interaction for cards
+        const themeCards = document.querySelectorAll('label > div');
+        themeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

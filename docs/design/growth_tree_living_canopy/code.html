@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - The Living Canopy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "kids-primary": "#00D991",
+                    "on-tertiary-container": "#523200",
+                    "danger": "#EF4444",
+                    "surface-container-lowest": "#ffffff",
+                    "success": "#22C55E",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-high": "#e9e8e7",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-surface-variant": "#3c4a42",
+                    "on-primary-fixed": "#002113",
+                    "surface-variant": "#e3e2e1",
+                    "tertiary-container": "#e29100",
+                    "background": "#faf9f8",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary": "#006b5f",
+                    "primary-fixed": "#6ffbbe",
+                    "primary-container": "#10b981",
+                    "outline": "#6c7a71",
+                    "secondary-fixed": "#71f8e4",
+                    "warning": "#F97316",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-bright": "#faf9f8",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-dim": "#dadad9",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary-container": "#6df5e1",
+                    "outline-variant": "#bbcabf",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-container": "#eeeeed",
+                    "kids-accent": "#FFC107",
+                    "tertiary": "#855300",
+                    "surface-tint": "#006c49",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface": "#FFFFFF",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#00422b",
+                    "surface-container-low": "#f4f3f2",
+                    "on-secondary-container": "#006f64",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1a1c1c",
+                    "primary": "#006c49",
+                    "inverse-primary": "#4edea3",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "on-secondary-fixed-variant": "#005048",
+                    "background-dark": "#1F2937"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px",
+                    "chip-padding": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .canopy-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+        }
+        .shimmer-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFFACD 50%, #FFD700 100%);
+            background-size: 200% 200%;
+            animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -100% -100%; }
+            100% { background-position: 100% 100%; }
+        }
+        .organic-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2.5s forwards ease-in-out;
+        }
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        .gem-float {
+            animation: float 4s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background/80 backdrop-blur-md flex items-center justify-between px-margin-mobile h-14 border-b border-surface-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="nature">nature</span>
+<h1 class="font-headline-md text-headline-sm text-primary tracking-tight font-light">The Living Canopy</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="auto_awesome">auto_awesome</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs ring-2 ring-primary/20">
+            JD
+        </div>
+</div>
+</header>
+<main class="px-margin-mobile py-6 max-w-4xl mx-auto space-y-8">
+<!-- Premium Tree Visualization Section -->
+<section class="relative overflow-hidden rounded-[32px] glass-card p-6 shadow-xl border border-white/40">
+<div class="canopy-gradient absolute inset-0 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="flex justify-between w-full items-start mb-4">
+<div>
+<h2 class="font-headline-sm text-primary">Evolution: Grand Oak</h2>
+<p class="text-caption text-on-surface-variant font-light">Rooted in 1,240 consistent days</p>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-primary/60 uppercase tracking-widest">Heritage Level</span>
+<div class="text-headline-md font-bold text-primary">14</div>
+</div>
+</div>
+<!-- Organic Tree Illustration -->
+<div class="w-full aspect-[4/5] max-w-[340px] relative flex items-center justify-center py-4">
+<svg class="w-full h-full drop-shadow-2xl" viewbox="0 0 200 240">
+<!-- Tree Trunk -->
+<path class="organic-line" d="M100,220 Q95,180 100,140 T100,60" fill="none" stroke="#00422b" stroke-linecap="round" stroke-width="4"></path>
+<!-- Branches -->
+<path class="organic-line" d="M100,150 Q70,130 50,140" fill="none" stroke="#005236" stroke-linecap="round" stroke-width="2.5" style="animation-delay: 0.2s"></path>
+<path class="organic-line" d="M100,120 Q130,100 150,110" fill="none" stroke="#005236" stroke-linecap="round" stroke-width="2.5" style="animation-delay: 0.4s"></path>
+<path class="organic-line" d="M100,90 Q70,70 60,40" fill="none" stroke="#005236" stroke-linecap="round" stroke-width="2.5" style="animation-delay: 0.6s"></path>
+<!-- Foliage Clusters (High Fidelity) -->
+<g class="opacity-80">
+<circle cx="60" cy="50" fill="#006c49" fill-opacity="0.2" r="25"></circle>
+<circle cx="140" cy="100" fill="#006c49" fill-opacity="0.15" r="30"></circle>
+<circle cx="80" cy="120" fill="#006c49" fill-opacity="0.2" r="20"></circle>
+<circle cx="100" cy="50" fill="#006c49" fill-opacity="0.1" r="35"></circle>
+</g>
+<!-- Shimmering Golden Leaves -->
+<circle class="shimmer-gold rounded-full" cx="65" cy="45" r="4"></circle>
+<circle class="shimmer-gold rounded-full" cx="135" cy="95" r="4"></circle>
+<circle class="shimmer-gold rounded-full" cx="95" cy="40" r="3"></circle>
+<circle class="shimmer-gold rounded-full" cx="110" cy="70" r="5"></circle>
+<!-- Family Gems (Achievement Markers) -->
+<g class="gem-float">
+<path class="shadow-lg" d="M100,30 L105,40 L100,50 L95,40 Z" fill="#FFC107"></path>
+<path d="M50,135 L55,145 L50,155 L45,145 Z" fill="#00D991"></path>
+<path d="M150,105 L155,115 L150,125 L145,115 Z" fill="#855300"></path>
+</g>
+</svg>
+<!-- Floating Labels -->
+<div class="absolute top-[10%] left-[10%] bg-white/60 backdrop-blur px-3 py-1 rounded-full border border-primary/20 text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full shimmer-gold"></span> Golden Leaf: Leo's Focus
+                </div>
+</div>
+<!-- Stats Overlay -->
+<div class="grid grid-cols-3 gap-4 w-full mt-6">
+<div class="text-center">
+<div class="text-headline-sm font-bold text-primary">842</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Leaves</div>
+</div>
+<div class="text-center border-x border-surface-variant/40 px-2">
+<div class="text-headline-sm font-bold text-tertiary">12</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Family Gems</div>
+</div>
+<div class="text-center">
+<div class="text-headline-sm font-bold text-success">92%</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Vitality</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Growth Timeline: Premium Direction -->
+<section class="space-y-4">
+<h3 class="font-headline-sm text-on-surface px-2">Growth Timeline</h3>
+<div class="relative pl-6 space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-gradient-to-b before:from-primary/40 before:via-primary/20 before:to-transparent">
+<!-- Milestone 1 -->
+<div class="relative">
+<div class="absolute -left-[20px] top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background ring-4 ring-primary/5"></div>
+<div class="glass-card p-4 rounded-2xl border border-surface-variant/30">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-bold text-primary uppercase">The Grand Oak</span>
+<span class="text-[10px] text-on-surface-variant">Today</span>
+</div>
+<p class="text-caption text-on-surface-variant">Canopy fully formed. Family consistency reached an all-time high of 94%.</p>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="relative">
+<div class="absolute -left-[20px] top-1.5 w-3 h-3 rounded-full bg-primary/40 border-2 border-background"></div>
+<div class="p-4 rounded-2xl border border-surface-variant/20 bg-surface/50">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-bold text-on-surface-variant uppercase">Mighty Sapling</span>
+<span class="text-[10px] text-on-surface-variant">6 Months Ago</span>
+</div>
+<p class="text-caption text-on-surface-variant/60">First 100-day streak unlocked. The first Golden Leaf appeared on Leo's branch.</p>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="relative">
+<div class="absolute -left-[20px] top-1.5 w-3 h-3 rounded-full bg-primary/20 border-2 border-background"></div>
+<div class="p-4 rounded-2xl border border-dashed border-surface-variant/40">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-bold text-on-surface-variant/40 uppercase">The Seedling</span>
+<span class="text-[10px] text-on-surface-variant/40">Jan 2024</span>
+</div>
+<p class="text-caption text-on-surface-variant/40">The journey began with 3 simple habits. Roots were established.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Insights: Subtle Blur & Emerald Lines -->
+<section class="p-card-padding bg-primary/5 rounded-[24px] border border-primary/10 flex flex-col items-center gap-6">
+<div class="flex items-center gap-4 w-full">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm border border-primary/20">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-[18px]">Elegance in Consistency</h4>
+<p class="text-caption text-on-surface-variant font-light">Your family's growth pattern matches the "Harmonious Bloom" architectural style.</p>
+</div>
+</div>
+<div class="w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+<button class="w-full py-3 rounded-xl bg-primary text-white font-bold text-label-sm shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+            View Evolution Report
+            <span class="material-symbols-outlined text-[18px]" data-icon="north_east">north_east</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (iOS Styled) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-safe h-[76px] bg-white/80 backdrop-blur-xl border-t border-surface-variant/20 z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="home">home</span>
+<span class="font-label-sm text-[10px] uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="nest_eco_leaf">nest_eco_leaf</span>
+<span class="font-label-sm text-[10px] uppercase tracking-tighter">Habits</span>
+</a>
+<div class="relative -top-4">
+<button class="w-14 h-14 bg-primary text-white rounded-2xl shadow-xl flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="military_tech">military_tech</span>
+<span class="font-label-sm text-[10px] uppercase tracking-tighter">Awards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="#">
+<span class="material-symbols-outlined font-variation-fill" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-[10px] uppercase tracking-tighter">Family</span>
+</a>
+</nav>
+<script>
+    // Simple intersection observer to trigger "drawing" animation on scroll if needed
+    // In this mockup, it triggers on load via the CSS animation
+</script>
+</body></html>

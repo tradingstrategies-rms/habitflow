@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HabitFlow Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration Reference -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#6c7a71",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background-dark": "#1F2937",
+                    "secondary": "#006b5f",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-container": "#e29100",
+                    "on-tertiary-container": "#523200",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#4edea3",
+                    "danger": "#EF4444",
+                    "surface-container-highest": "#e3e2e1",
+                    "surface-dim": "#dadad9",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eeeeed",
+                    "success": "#22C55E",
+                    "on-primary-fixed-variant": "#005236",
+                    "warning": "#F97316",
+                    "primary-container": "#10b981",
+                    "on-primary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-variant": "#e3e2e1",
+                    "background": "#faf9f8",
+                    "surface": "#FFFFFF",
+                    "secondary-fixed": "#71f8e4",
+                    "kids-accent": "#FFC107",
+                    "tertiary-fixed": "#ffddb8",
+                    "outline-variant": "#bbcabf",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-container": "#006f64",
+                    "tertiary": "#855300",
+                    "primary": "#006c49",
+                    "surface-bright": "#faf9f8",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "secondary-container": "#6df5e1",
+                    "on-primary-container": "#00422b",
+                    "on-tertiary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "chip-padding": "12px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f8;
+            color: #1a1c1c;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .chart-bar {
+            transition: height 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .organic-bg {
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface organic-bg min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background-dark w-full top-0 sticky z-50 flex items-center justify-between px-margin-mobile h-14 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="spa">spa</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-kids-primary tracking-tight">HabitFlow</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A warm, professional headshot of a friendly parent in a bright, modern domestic setting with soft natural lighting and a minimalist green accent in the background. High-quality photography style with a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHq_UZR2TvGgembRQVU1-fLCUxmclBEkPKmcFq09afn74cbqmORl7zA73cjwPmLfK0q2tWU0GLyS5dMq203Zp2Y_7P-hLQUQOx4MBK6nFI9osBAhDuzSGqIDG9BaLc8ORDhAxfXOdotS2RT57uN85of_tly_muy0-JSTHHEldhQ0qJ5B0yX_AULdHW21uDSSOCSvwi6zQoc2bIK1jZr7XyuBAG-hHgoZMrOg7lld4-QMDQ_jAyD4jN"/>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-6">
+<!-- Family Vitality Summary Card -->
+<section class="relative overflow-hidden bg-surface rounded-3xl p-card-padding shadow-[0_4px_20px_rgba(0,108,73,0.06)] border border-white">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm-mobile text-on-surface">Family Vitality</h2>
+<p class="font-caption text-caption text-on-surface-variant">Overall wellness index</p>
+</div>
+<span class="bg-success/10 text-success px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+                    +4%
+                </span>
+</div>
+<div class="flex items-end gap-2 mb-6">
+<span class="font-headline-xl text-headline-xl-mobile text-primary leading-none">84</span>
+<span class="font-label-sm text-label-sm text-outline mb-1">/100</span>
+</div>
+<!-- Custom Growth Progress Tree (Abstracted) -->
+<div class="relative h-2 w-full bg-surface-container-low rounded-full overflow-hidden mb-2">
+<div class="absolute left-0 top-0 h-full bg-primary rounded-full transition-all duration-1000" style="width: 84%;"></div>
+</div>
+<div class="flex justify-between text-[10px] text-outline-variant font-medium uppercase tracking-wider">
+<span>Seedling</span>
+<span>Sprouting</span>
+<span class="text-primary">Blooming</span>
+</div>
+</section>
+<!-- Actionable Insight -->
+<section class="bg-primary-container/10 border border-primary-container/20 rounded-2xl p-4 flex gap-4 items-center">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg leading-snug text-on-primary-container">
+<span class="font-bold">Insight:</span> Your family is most consistent on Tuesday mornings. Try scheduling more group activities then.
+                </p>
+</div>
+</section>
+<!-- Quick Stats Grid -->
+<section class="bento-grid">
+<!-- Stat 1 -->
+<div class="bg-surface p-4 rounded-2xl border border-surface-container-highest shadow-sm">
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="task_alt">task_alt</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">142</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Habits Completed</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface p-4 rounded-2xl border border-surface-container-highest shadow-sm">
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-kids-accent" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">3,240</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stars Earned</span>
+</div>
+</div>
+<!-- Stat 3: Spans two columns for visual interest -->
+<div class="col-span-2 bg-surface p-4 rounded-2xl border border-surface-container-highest shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-warning/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-warning" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<span class="block font-headline-sm text-headline-sm text-on-surface">12 Days</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Best Family Streak</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</section>
+<!-- Daily Completion Rates Chart -->
+<section class="bg-surface rounded-3xl p-card-padding shadow-sm border border-surface-container-highest">
+<h3 class="font-headline-sm text-headline-sm-mobile text-on-surface mb-6">Daily Completion</h3>
+<div class="flex items-end justify-between h-40 px-2">
+<!-- Bars generated by JS for variety -->
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-surface-container-high rounded-t-lg group-hover:bg-primary-container" style="height: 65%;"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">M</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-primary rounded-t-lg" style="height: 92%;"></div>
+<span class="font-label-sm text-label-sm text-primary font-bold">T</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-surface-container-high rounded-t-lg group-hover:bg-primary-container" style="height: 45%;"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">W</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-surface-container-high rounded-t-lg group-hover:bg-primary-container" style="height: 78%;"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">T</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-surface-container-high rounded-t-lg group-hover:bg-primary-container" style="height: 82%;"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">F</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-surface-container-high rounded-t-lg group-hover:bg-primary-container" style="height: 55%;"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">S</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-8">
+<div class="chart-bar w-full bg-surface-container-high rounded-t-lg group-hover:bg-primary-container" style="height: 30%;"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">S</span>
+</div>
+</div>
+</section>
+<!-- Interactive Quote / Motivation -->
+<section class="py-4">
+<div class="bg-inverse-surface rounded-2xl p-6 text-inverse-on-surface relative overflow-hidden">
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl opacity-10" data-icon="format_quote">format_quote</span>
+<p class="font-body-lg text-body-lg italic relative z-10">"Small steps everyday lead to big changes over time. Your family is doing amazing!"</p>
+<div class="mt-4 flex items-center gap-2">
+<div class="w-6 h-1 bg-primary rounded-full"></div>
+<span class="font-label-sm text-label-sm opacity-60">The HabitFlow Team</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 pb-safe h-[72px] bg-surface dark:bg-inverse-surface shadow-lg z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="Check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-4 py-1 transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="ads_click">ads_click</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<script>
+        // Simple entry animation for bars
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach((bar, index) => {
+                const height = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

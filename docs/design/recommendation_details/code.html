@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Recommendation Details - HabitFlow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "primary": "#006c49",
+                    "on-surface": "#1a1c1c",
+                    "surface-dim": "#dadad9",
+                    "surface-tint": "#006c49",
+                    "inverse-primary": "#4edea3",
+                    "surface-bright": "#faf9f8",
+                    "secondary-fixed": "#71f8e4",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-secondary-container": "#006f64",
+                    "kids-accent": "#FFC107",
+                    "primary-container": "#10b981",
+                    "surface": "#FFFFFF",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#523200",
+                    "kids-primary": "#00D991",
+                    "primary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "outline": "#6c7a71",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "tertiary": "#855300",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#6df5e1",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-high": "#e9e8e7",
+                    "on-primary-fixed": "#002113",
+                    "on-background": "#1a1c1c",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-surface-variant": "#3c4a42",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-error": "#ffffff",
+                    "danger": "#EF4444",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary": "#006b5f",
+                    "outline-variant": "#bbcabf",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "success": "#22C55E",
+                    "surface-variant": "#e3e2e1",
+                    "background-dark": "#1F2937",
+                    "warning": "#F97316",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "primary-fixed-dim": "#4edea3",
+                    "surface-container": "#eeeeed",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "error": "#ba1a1a",
+                    "background": "#faf9f8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "chip-padding": "12px",
+                    "button-padding": "16px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "card-padding": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="bg-background dark:bg-on-surface flex justify-between items-center px-margin-mobile w-full h-16 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<button aria-label="Back" class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity p-2 -ml-2">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Personalized Recommendation</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="Close-up studio portrait of a serene woman with natural lighting, representing a healthy lifestyle and mindfulness, set against a soft minimalist emerald green background that matches the HabitFlow brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP1ueN7HSWeKtnp-eLBZju_Y9ffPkKzVFfQyDfQRuwhT9JS8Dca_JrGv29XInEFmy6QDXuTn0lQ_P3t6h7XcVnIpQFhYQ-AjIZonookw4z9M5_ep5whMBxgvVc5S_2TDI05VhX_fY5sGGAz-_b7mmhE3Qwf2T7grKpuz7fcCvd45IfzL0aZnC_0dKIK88M8gk7lt1uaOWJtgseEHRm82NaVuGnga4x9WFc_ovV-K5R49FYLJVxMGzg"/>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-6 max-w-2xl mx-auto">
+<!-- Hero Recommendation Card -->
+<section class="relative overflow-hidden rounded-[20px] bg-primary text-on-primary p-card-padding shadow-sm">
+<!-- Animated Background Hint (Semantic Shell) -->
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-[120px] rotate-12" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div class="relative z-10 space-y-4">
+<div class="flex items-center gap-2 bg-white/20 w-fit px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Smart Adjustment</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg leading-tight">Move 'Yoga' to 5:00 PM on Weekdays.</h2>
+<div class="flex items-center gap-3 bg-on-primary-container/20 p-3 rounded-xl border border-white/10">
+<div class="flex-shrink-0 bg-success text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-bold">+15% Consistency Score boost.</p>
+<p class="font-caption text-caption opacity-80">Predicted based on your Golden Window.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Intelligence Insights Bento Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Why Card -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 flex flex-col gap-3 shadow-sm md:col-span-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">info</span>
+<h3 class="font-headline-sm text-headline-sm">Why this works</h3>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    Our intelligence engine noticed your 5 PM slot is currently your <span class="text-primary font-bold">'Golden Window'</span>—a time when you have the highest likelihood of follow-through with physical activities.
+                </p>
+<div class="mt-2 h-32 rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist data visualization chart showing peaks of user energy and activity throughout a 24-hour day. The chart highlights a vibrant emerald green 'Golden Window' at 5 PM with soft glows and organic, rounded bar shapes. The background is a warm white with subtle grid lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFxwquNE746Spa-BPEvMG6MMz6cslNSC6Euuux106K-GQ4YDp0dk1lYIU2m2kyqO3yKOfAwaEe08kyBWzeU3pkkCLmM4pw2l_B4kBrtw2o70LvwfUBpNJnzkWyzVA7hUrc692da-0GTX5lGuXNCFyiplcC69SAtKkZaAbwVWgHvLkmCrxzwLQeSBYKntonhQAVw_PTFXcNse8w6ooCCCFdXcvqMLU--RWgd_eFfCTN_2WOsXWLwDgE"/>
+</div>
+</div>
+<!-- Affected Habit -->
+<div class="bg-surface-container-low rounded-[20px] p-card-padding flex items-center gap-4 border border-outline-variant/20">
+<div class="w-14 h-14 bg-primary-container rounded-2xl flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-3xl">self_improvement</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Affected Habit</p>
+<p class="font-headline-sm text-headline-sm">Yoga</p>
+</div>
+</div>
+<!-- Suggested Schedule -->
+<div class="bg-surface-container-low rounded-[20px] p-card-padding flex items-center gap-4 border border-outline-variant/20">
+<div class="w-14 h-14 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container shadow-sm">
+<span class="material-symbols-outlined text-3xl">schedule</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">New Schedule</p>
+<p class="font-headline-sm text-headline-sm">Mon-Fri, 5:00 PM</p>
+</div>
+</div>
+</div>
+<!-- Weekly Impact Visualization -->
+<section class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 space-y-4">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">analytics</span>
+                Projected Success Rate
+            </h3>
+<div class="flex justify-between items-end h-24 gap-2">
+<div class="flex-1 bg-surface-variant rounded-t-lg h-[40%] transition-all hover:h-[45%]" title="Current"></div>
+<div class="flex-1 bg-surface-variant rounded-t-lg h-[35%] transition-all hover:h-[40%]"></div>
+<div class="flex-1 bg-surface-variant rounded-t-lg h-[50%] transition-all hover:h-[55%]"></div>
+<div class="flex-1 bg-primary-container rounded-t-lg h-[85%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-primary-container text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">5PM Slot</div>
+</div>
+<div class="flex-1 bg-surface-variant rounded-t-lg h-[45%] transition-all hover:h-[50%]"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant px-1">
+<span>12 PM</span>
+<span>2 PM</span>
+<span>4 PM</span>
+<span class="text-primary font-bold">5 PM</span>
+<span>6 PM</span>
+</div>
+</section>
+</main>
+<!-- Fixed Action Drawer -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-outline-variant/20 pb-safe">
+<div class="max-w-2xl mx-auto p-margin-mobile space-y-3">
+<button class="w-full bg-primary text-on-primary h-14 rounded-full font-headline-sm text-headline-sm shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                Apply Schedule
+            </button>
+<div class="flex gap-3">
+<button class="flex-1 border-2 border-primary text-primary h-14 rounded-full font-headline-sm text-headline-sm active:scale-95 transition-transform">
+                    Apply Later
+                </button>
+<button class="flex-1 text-on-surface-variant h-14 rounded-full font-headline-sm text-headline-sm active:opacity-60 transition-opacity">
+                    Dismiss
+                </button>
+</div>
+</div>
+</div>
+<!-- Background Decoration (Atmospheric) -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] bg-primary-container/5 rounded-full blur-[100px]"></div>
+<div class="absolute top-[40%] -left-[10%] w-[40%] h-[40%] bg-secondary-container/10 rounded-full blur-[80px]"></div>
+</div>
+<!-- Hidden Navigation Logic based on instructions -->
+<!-- Navigation Shell is suppressed for focused transactional/detail screen -->
+<script>
+        // Simple micro-interaction for button states
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                if (button.innerText.includes('Apply Schedule')) {
+                    button.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Updating...';
+                    setTimeout(() => {
+                        button.innerHTML = '<span class="material-symbols-outlined">done_all</span> Applied';
+                        button.classList.replace('bg-primary', 'bg-success');
+                    }, 1200);
+                }
+            });
+        });
+    </script>
+</body></html>

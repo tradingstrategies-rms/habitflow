@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Choose Avatar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .selected-avatar {
+            border: 3px solid #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#FFFFFF",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "surface-bright": "#faf9f8",
+                        "primary": "#006c49",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "outline": "#6c7a71",
+                        "surface-tint": "#006c49",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-variant": "#e3e2e1",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-container": "#006f64",
+                        "kids-primary": "#00D991",
+                        "success": "#22C55E",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#71f8e4",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-container": "#523200",
+                        "inverse-primary": "#4edea3",
+                        "on-background": "#1a1c1c",
+                        "surface-dim": "#dadad9",
+                        "on-surface-variant": "#3c4a42",
+                        "background-dark": "#1F2937",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#00422b",
+                        "surface-container-high": "#e9e8e7",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary": "#006b5f",
+                        "tertiary-container": "#e29100",
+                        "inverse-on-surface": "#f1f0f0",
+                        "danger": "#EF4444",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed-variant": "#005236",
+                        "background": "#faf9f8",
+                        "warning": "#F97316",
+                        "tertiary": "#855300",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#6ffbbe",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "surface-container-low": "#f4f3f2",
+                        "kids-accent": "#FFC107",
+                        "on-tertiary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "touch-target-min": "48px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "20px",
+                        "chip-padding": "12px",
+                        "button-padding": "16px",
+                        "base": "8px",
+                        "card-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "body-numbers": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full shadow-sm">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary">Choose Avatar</h1>
+</div>
+<button class="hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto">
+<!-- Category Tabs -->
+<div class="sticky top-14 md:top-16 z-40 bg-surface/90 backdrop-blur-md px-margin-mobile py-4 mb-2">
+<div class="flex gap-2 overflow-x-auto hide-scrollbar">
+<button class="flex-shrink-0 bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-sm text-label-sm transition-all active:scale-95">
+                    Kids
+                </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">
+                    Adults
+                </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">
+                    Animals
+                </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-all active:scale-95">
+                    Abstract
+                </button>
+</div>
+</div>
+<!-- Avatar Grid -->
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 md:gap-6 pt-4">
+<!-- Selected State Example -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 selected-avatar active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A warm and friendly digital illustration of a smiling young boy with soft curly brown hair, wearing a vibrant yellow t-shirt. The background is a soft mint green. The style is organic and clean, with a gentle corporate modern aesthetic and soft lighting that feels inviting for a family-focused app." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUnhkHyN-zOsPtlcsfY8CSpRNId0vyYXLEYFC_lQz1D5SOmywpLToYzmvJZIkWMMtTrbbnhcWMnV_B-NAHwyyjbgQlKMdRmHTvF2PRexN8tqFiIUlDYX_DyYSRFikX1eClZL7TK4akIwrWBM6cKtZrL2vOe2uSR4ncWL4U2jk2f-l6-VxwwfobNpHS1GFQBBDgicoAaqiy5YZLa7Xht_6UyUWRl1b_mL1Kcb4qAr067RRIsc8I7LGr')"></div>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<div class="bg-primary text-on-primary rounded-full p-1 shadow-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A charming digital illustration of a young girl with braided hair and a bright, happy expression. She wears a soft teal sweater against a gentle lavender background. The art style is minimalist yet expressive, using organic shapes and warm, optimistic lighting to create a premium feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIx0ZQhLn261hq_eFkjLP8eNFPR-caFHlDrDsfIAmZD7uQydBFZWXXSQts_1W4feI2MlUMeH3D2Pv_VTdkltwS53cFezVZrqAiZffzslkJmPqlj4ja1A68nM-8kZILJYlrRu-ctOCEMfFCViw3tQ7qeUlsw3-QE_hNEAz75tR5bUVpBAFso8vL_yQf-OXb2VQ-Sa3aBauzY5J26WI4_wudW2NGsHUD5V3Ck6kVJKLbcAsLO3mohHGr')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A delightful digital portrait of a toddler with a wide grin, wearing a playful orange beanie. The background is a crisp warm white. The illustration uses soft textures and clean lines consistent with a premium Material 3 design system, conveying growth and vitality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDu2H8yNgVVbJBN6Wk6P1tqWnJWOJdWhKFK_0MDLQaaE6q7h36rDo7LmnggX0m6nf4jXAfTSkpArxgb2d2Ujr5iC7gE3zOLMN8A6xd52BlADJqa_Dm3KAImucp1OBdA2y5mL3uC3GdI1OOqUAC03LxAFUWSpa8Hfl6ybsUYtX4KqMUQlQSQrK3HtcLprX_Ax5xsKEenhoQlnfzgc3BzjNOt-tEyzJwTERhEssPqS2QunxEwE0euGUpX')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A creative digital illustration of a young person with short, modern styled hair and cool glasses, looking thoughtfully to the side. The color palette features emerald green and soft cream. The aesthetic is clean, minimalist, and approachable, perfect for a modern habit tracking application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOqBQt-E7YiIRjGADhxzvChB7QCVers0IyoUeuCFo_z-4BrvpnaCWQmPWqsAwgtaMzaOjpaLKuJTkh8jPMnDSREjyH2zmErx77qJyCJmt7IXzNsEdMw0vpfdJxDzALUkdMmnh78y-Bipwa9Y6B3MM1EomAM4bietRZEusJ-TGCTBSMCMbSUXAvrMqprbdHbPtJCzclQbDhVtX7zsHSgDro0C20OOkixEEkVyhlRlJqWlhhVi2HOdrZ')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A joyful digital avatar of a young child with a striped t-shirt and messy hair, laughing heartily. The background is a warm sunlight yellow. The art is professional and organic, avoiding cartoonish cliches in favor of a sophisticated, high-end family experience style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDl6FJn1N0IQJuB-kDzBmxZQOQM9jcDNx_IbIb2aD7U0-OluknRlfkOxVgW8eGvoTsIvYeNU3qok6YYMW4GuFcpto53D32ER-tgJi7Y9thOdR66EBa05NACSP7WLAmceUXmC2p_j2_4AMFZ_7u3OrCKrvCRHFgIW87SdINYOCchk5pVo6uFgWxpBcfSd2gAIzk2shY11-vXWKqgXMXt0dLdWIN_myR4BVGoc26IfpHp3BhIrgxT_Nnj')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A serene digital illustration of a teenage girl with long hair and a calm expression, wearing a simple white polo. The background is a soft pastel blue. The lighting is diffused and natural, reinforcing the brand's 'calm growth' philosophy through minimal and breathable design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaU3_TQ7FhCUyTxWxvR2964fE4Gh6P-nk1-VZl19PlbjJVf9RdMN5oOzRU1QeLFLEywH17Isb3K3rF_yo4B4Mn2IZo1xURmtBfsIAijglQ16kkvUnagR5x56zEvricRxYPwFjXS5C2pKQsws4Lhxgbgb5d2q6WOlFF8Qg1oM2xIUuXqJQC5_cHiWOkXaFWYaNdcFfFTyqF8V51dMVWmsW4loRwqatSPxelBXyjALYvKR6nhyzSqQab')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A friendly illustrated avatar of a boy wearing a green hoodie, looking forward with bright, optimistic eyes. Set against a soft grey-green background. The style is distinctly corporate modern with a focus on simplicity and emotional resonance for parent and child users." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA52FmNh4bp29XxxKsZyrStuXwfK1NKUYZ5nSvI0qF1cFgDBhcVJg1j0cO4xe57bk8D4eIOqnTdSOptV5KiCnA5ClqyHRxbPnLIUj9BA0r_sizwxoFpLO3MTPI4U1oUHItLIeXx9dSwFEc3vZ__MbXofceE_3LrZ3s-NimN0wnPrBY4H9PXnyb0p2D49QKz_CfGlfsSbgbUmzQU8YndJ8-yQ8-43nqmb3kdzOSUYhzAxXVdXBWr8V-4')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A warm, inclusive digital portrait of a young girl with curly black hair wearing a simple pink dress. The background is a soft peach tone. The visual execution is clean and professional, emphasizing a high-quality user interface for family development and tracking." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARbqIg_okbodLJaFdaIXTQkU_i39IuLI7XZTKA6YOQVUQux5IXOhYRQXFouZ40NDtn9XCvzYPNMD_w_D-7NTkTdAX151HYTMROEzp1Zimq5iC5VG7rY8sNev5cXcxpS5jGbZYrbKtpobq3YwHsCJh30lFNnTuQ64ZE8FG0gvxLcpEwJg74Ys2-k0RHnvRmLI66ACjpMz0Z29l8TYld0SYVCT4Fct9dP47x0axHBzhzoK1oPwoUrFh-')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A modern digital avatar of a young child with a playful expression, wearing a denim jacket. The background is a light mint. The style is organic and vibrant without being busy, using the 8pt grid and tonal layering of the HabitFlow design system." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkxZdzdmXjeGUjdog2l8iMDLczStotcvjbne56J2-jAWHpKgsCulXuB4gYqiPsuzblRi9fvM1yD7YOn5TFCYOxW-NOdBK6iynmicP1sfcgsO735P91uH0qdsWhUGzZNHPEv5J4LT5OcZxR87bgnf_HQeqIDsZUFVuKDYxJbH--sK621EXA9XdHgb61U8JSpRwo5WLjcuH36T3ODwcNIxY5S2r3Bplpwsvu2HijeMABXelrt22KXktV')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="An adorable illustration of a young boy with big glasses and a smart look, wearing a blue sweater. Set against a clean white background. The illustration feels fast and breathable, adhering to the 'Organic Vitality' brand aesthetic of the application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMoqzEoX4tav_kHjzKmL3e2F13X2ty9xMucsKD2wY9Bvl5SsJ6xk_7s1QjRhKk6LCv13puxcGedgNn_LYGp4Y6F4kB5ISNTXORKK1zo3ejAegzGCunRlLay_Db0a8alfh3Ntb10g86EzPSesjFolChiZ7mEX9yEzEUbTPTX2ncOFM-4DN70XjvUVH6js_Lm6UqEQCJF1TF9x4BXOWXaglTXcZbRR-MeHSYnCN-EAZ-ak6AVyTW08Zd')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A minimalist and premium digital avatar of a young child with a happy, open expression. The color palette uses emerald green accents and soft neutrals. The lighting is bright and high-key, creating a professional yet approachable aesthetic for family habit building." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFFt0xIAUVvOngj9IkCzlnPW3Yfmj8n6zURtqSLOI3kwgRLmbfC6laeHYtRflqdlUm8NexqWccyvsvHc7C4APXroAipHuhtA0LybSWkiIQFDBHA99a00PWUVDDjHr1HXhpskiWcDrFNYDNECJi75xyRqMfuuWjt-4exsVvHAoW8WAMR5Z-XkEcDstFQGPh5dmJSPupnNd3SzRGnCmwMihqyAUAtF4dBqlkCeVfmaET6PQnFW9aylmI')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+<!-- Avatar Item -->
+<div class="relative aspect-square rounded-3xl bg-surface-container-high overflow-hidden cursor-pointer group transition-all duration-300 border-2 border-transparent active:scale-95" onclick="selectAvatar(this)">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform" data-alt="A soft and organic digital illustration of a smiling toddler in a yellow onesie. Background is a warm off-white. The character design is simple and friendly, utilizing the 20dp corner radius of the card-based UI system to feel cohesive with the app's components." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPAxIsc0IeUV2zDiVMFnG7X9asxrHTiwGKNYxtzsF8ZKA-xdyF3mxkPZQgPIQYpi9ytDeNyo5eUZNyGwCunWFiecJtCeMIe4jztL4_Mpz5_hORQXQ8K8GEZWeEyIDwBdbbM-ma7cqposLU9nNzSLcBt6R3JeT3bvQ4CVpysQCk67djYfodjO-zOw-h7KWlzPjHSbx6PcvNyiG06F1RrQlKGtaJ07-f5aRVDSF86A6zJ4IbdduXzA-d')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-lg px-margin-mobile py-6 z-50">
+<div class="max-w-4xl mx-auto">
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-headline-sm text-headline-sm-mobile shadow-lg shadow-primary/20 hover:bg-on-primary-fixed-variant transition-all active:scale-[0.98]">
+                Save Avatar
+            </button>
+</div>
+</div>
+<script>
+        function selectAvatar(element) {
+            // Remove existing selected state
+            document.querySelectorAll('.selected-avatar').forEach(el => {
+                el.classList.remove('selected-avatar');
+                el.classList.add('border-transparent');
+                // Remove checkmark overlay if it exists
+                const overlay = el.querySelector('.bg-primary\\/10');
+                if (overlay) overlay.remove();
+            });
+
+            // Add selected state to clicked element
+            element.classList.add('selected-avatar');
+            element.classList.remove('border-transparent');
+
+            // Add checkmark overlay
+            const checkOverlay = document.createElement('div');
+            checkOverlay.className = "absolute inset-0 bg-primary/10 flex items-center justify-center animate-in fade-in zoom-in duration-300";
+            checkOverlay.innerHTML = `
+                <div class="bg-primary text-on-primary rounded-full p-1 shadow-lg">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                </div>
+            `;
+            element.appendChild(checkOverlay);
+        }
+
+        // Initialize category switching logic
+        const tabs = document.querySelectorAll('.flex-shrink-0');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    t.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+                });
+                tab.classList.add('bg-primary-container', 'text-on-primary-container');
+                tab.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

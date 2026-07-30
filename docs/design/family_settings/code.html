@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Family Settings - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "secondary-fixed": "#71f8e4",
+                  "surface-tint": "#006c49",
+                  "surface-container-high": "#e9e8e7",
+                  "kids-accent": "#FFC107",
+                  "danger": "#EF4444",
+                  "on-secondary-fixed-variant": "#005048",
+                  "background": "#faf9f8",
+                  "surface-container-highest": "#e3e2e1",
+                  "on-surface-variant": "#3c4a42",
+                  "on-tertiary-fixed-variant": "#653e00",
+                  "on-surface": "#1a1c1c",
+                  "on-primary-fixed": "#002113",
+                  "surface-dim": "#dadad9",
+                  "on-primary-container": "#00422b",
+                  "background-dark": "#1F2937",
+                  "secondary-container": "#6df5e1",
+                  "outline": "#6c7a71",
+                  "on-secondary": "#ffffff",
+                  "surface-container-lowest": "#ffffff",
+                  "tertiary-fixed": "#ffddb8",
+                  "tertiary": "#855300",
+                  "kids-primary": "#00D991",
+                  "on-secondary-fixed": "#00201c",
+                  "surface-container-low": "#f4f3f2",
+                  "on-tertiary": "#ffffff",
+                  "primary-fixed": "#6ffbbe",
+                  "outline-variant": "#bbcabf",
+                  "inverse-surface": "#2f3130",
+                  "on-primary": "#ffffff",
+                  "primary": "#006c49",
+                  "tertiary-container": "#e29100",
+                  "primary-fixed-dim": "#4edea3",
+                  "warning": "#F97316",
+                  "tertiary-fixed-dim": "#ffb95f",
+                  "surface-bright": "#faf9f8",
+                  "surface-variant": "#e3e2e1",
+                  "secondary-fixed-dim": "#4fdbc8",
+                  "surface-container": "#eeeeed",
+                  "on-error-container": "#93000a",
+                  "inverse-on-surface": "#f1f0f0",
+                  "on-secondary-container": "#006f64",
+                  "error-container": "#ffdad6",
+                  "surface": "#FFFFFF",
+                  "on-background": "#1a1c1c",
+                  "on-tertiary-fixed": "#2a1700",
+                  "on-error": "#ffffff",
+                  "primary-container": "#10b981",
+                  "error": "#ba1a1a",
+                  "success": "#22C55E",
+                  "inverse-primary": "#4edea3",
+                  "secondary": "#006b5f",
+                  "on-primary-fixed-variant": "#005236",
+                  "on-tertiary-container": "#523200"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "gutter": "16px",
+                  "margin-mobile": "20px",
+                  "card-padding": "20px",
+                  "chip-padding": "12px",
+                  "base": "8px",
+                  "button-padding": "16px",
+                  "touch-target-min": "48px",
+                  "margin-desktop": "32px"
+          },
+          "fontFamily": {
+                  "headline-xl-mobile": ["Inter"],
+                  "body-lg": ["Inter"],
+                  "headline-lg": ["Inter"],
+                  "label-sm": ["Inter"],
+                  "headline-xl": ["Inter"],
+                  "body-numbers": ["Inter"],
+                  "headline-sm": ["Inter"],
+                  "headline-md": ["Inter"],
+                  "caption": ["Inter"]
+          },
+          "fontSize": {
+                  "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                  "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                  "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                  "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                  "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #bbcabf;
+      border-radius: 10px;
+    }
+    .card-transition {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface-container-low dark:bg-surface-container-highest">
+<div class="flex items-center justify-between px-gutter h-touch-target-min w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-full">arrow_back</button>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">HabitFlow</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a smiling father in his 40s, representing a parent user profile. The lighting is soft and natural, emphasizing warmth and reliability. The style is clean and high-end, consistent with a premium family app's organic vitality aesthetic, using a soft depth-of-field background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIO2x1DmVZxJkAbYwnlC0X3nyXKWf7w0UUKl7ADNKeCI0u8e5UhODSCpG8RenXORGt-Q6f3h84OIozqZjkIq-T5OeHEVI4cmI_qAlqznWIxUUnIIE9jQj_ut1yjuAm8zMWZ8XP0LVfiiQ8pzZ60lJTaByRihpC9ql9ff284nr_e5CJpP-6CUen7-Wtuix2L-cAAO00PbJgqx7JGwJSEnM5pA2Klu3lC_7mgjYCd--MGYSDwedgwvfY"/>
+</div>
+</div>
+</header>
+<main class="max-w-xl mx-auto px-margin-mobile mt-8 space-y-6">
+<!-- Screen Title -->
+<div class="mb-2">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">Family Settings</h2>
+<p class="font-caption text-caption text-on-surface-variant">Manage your family identity and plan.</p>
+</div>
+<!-- Identity Card -->
+<section class="bg-surface rounded-xl p-card-padding shadow-sm border border-outline-variant/20 card-transition">
+<div class="space-y-6">
+<!-- Family Name Field -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Family Name</label>
+<div class="relative group">
+<input class="w-full px-4 py-3 rounded-lg border-2 border-outline-variant focus:border-primary focus:ring-0 transition-all font-body-lg text-body-lg bg-surface-bright outline-none" type="text" value="The Henderson Tribe"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary">edit</span>
+</div>
+</div>
+<!-- Avatar Scroller -->
+<div class="space-y-4">
+<label class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Family Portrait</label>
+<div class="flex gap-4 overflow-x-auto pb-4 custom-scrollbar snap-x">
+<!-- Active Avatar -->
+<div class="flex-shrink-0 snap-center">
+<div class="w-20 h-20 rounded-full border-4 border-primary p-1 relative">
+<div class="w-full h-full rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="An artistic organic illustration of a lush green tree with stylized leaves, symbolizing family growth and vitality. The colors are vibrant emerald and mint greens against a soft warm white background, reflecting a professional family development app's visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgj012aXE03T65xolkBiNXeiSnMjW6F4GYNAuW6oa9yl4sj3b5Bnb3lIWAWC1jUlqMcj6vLQE0fadY7khRL2SM5yn-CMXDLBzwcEARCk6__QZzAxLbSyapCfX_Fp0_V1q2qID0NFYGC4cDd6JlIf4s64J4Vyy2tbCXlq5Ri3HkuP6lN92bvYpXKwgNdRI-aRicC1Rq2axVbIK0DcV4qgxXgILC584SZZUOC4RAXgxC-96cyaEVcvtG"/>
+</div>
+<div class="absolute -top-1 -right-1 bg-primary text-white rounded-full p-1 shadow-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+</div>
+<!-- Option 1 -->
+<button class="flex-shrink-0 snap-center group">
+<div class="w-20 h-20 rounded-full border-2 border-outline-variant p-1 group-hover:border-primary-container transition-colors">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A minimalist abstract graphic of four colorful overlapping circles in soft pastel tones of teal, amber, and coral. The shapes suggest a sense of unity and connection, presented in a clean and modern digital art style for a premium family organization platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG2TGwvigpxgop85xKHOM7QfdKi9S2bKBdE12TRjEGso2q1lKPqw_CkaC4C8QQ4LgH67My9i7J0dLzoJ84iPEEzUzC07m7ZYbfRpk4v9ctSWj59ZMVHIlBp5TbD5wBIbjBZstjw7jVZXfYcepWQzNf31mYcXU7rd2A8zenEu3YCs7XBKiKeXAO-c9-uGSW7s6Wnt1lCT28BFuygKFw0JyFzqiW88SpOpX3BO9oWG3MpPWJMJKi_l4M"/>
+</div>
+</div>
+</button>
+<!-- Option 2 -->
+<button class="flex-shrink-0 snap-center group">
+<div class="w-20 h-20 rounded-full border-2 border-outline-variant p-1 group-hover:border-primary-container transition-colors">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A heartwarming digital painting of a stylized family of four silhouettes standing together in a sun-drenched meadow. The lighting is golden and atmospheric, creating a feeling of peace and collective happiness. The aesthetic is clean and corporate-modern with an organic touch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNwRaloPzYILqn9dvjEmr95zI9ZowDAU01FcuWtKQ8E6f7hUNaCKF8O9iCA3xADC1w2qgff_DC3QkZ2lMORMhLQP2j6mi4DqecDo7deM06rbYKhT3jpeb825Y6vNqAtl9fiMefIxTSlWGyyEhpV8bjDaFAV8pvqeHt5qhG8uS8HHY7xhcuadB1b_25GR8GndZW6JiTg-wb91pM5TuADgSw_HBxixCddWH-NOHcKmDW6nd_r9YXzj8m"/>
+</div>
+</div>
+</button>
+<!-- Option 3 (Upload) -->
+<button class="flex-shrink-0 snap-center group">
+<div class="w-20 h-20 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center group-hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-outline text-3xl">add_a_photo</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Subscription Management -->
+<section class="bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 card-transition">
+<div class="bg-primary-container/10 p-4 flex items-center justify-between border-b border-primary-container/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-primary-container/70 uppercase">Current Plan</p>
+<p class="font-headline-sm text-headline-sm text-primary font-bold">Premium Family</p>
+</div>
+</div>
+<span class="bg-success/10 text-success px-3 py-1 rounded-full font-label-sm text-label-sm font-bold">Active</span>
+</div>
+<div class="p-card-padding space-y-4">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-body-lg text-body-lg">Next billing date</span>
+<span class="font-body-numbers text-body-numbers font-semibold">Oct 24, 2024</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-body-lg text-body-lg">Payment method</span>
+<span class="flex items-center gap-2 font-body-numbers text-body-numbers font-semibold">
+<span class="material-symbols-outlined text-sm">credit_card</span> •••• 4242
+          </span>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 py-3 px-4 border-2 border-primary text-primary rounded-xl font-body-lg font-semibold hover:bg-primary/5 transition-colors active:scale-95">Change Plan</button>
+<button class="flex-1 py-3 px-4 text-on-surface-variant font-body-lg font-medium hover:bg-surface-container transition-colors">Invoices</button>
+</div>
+</div>
+</section>
+<!-- Permissions / Members Summary -->
+<section class="bg-surface rounded-xl p-card-padding shadow-sm border border-outline-variant/20 card-transition flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up avatar of a young woman with glasses, soft natural lighting, modern corporate style for a family app profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcscR3lEkmpuDChSHZablB6k5zkVl6C3sosrtBXoW9WqXbQTHwlHKVmPZ0b8p-TW8PKhj0H1dBaVp3-OCxmL4AGsjEsrtFlzT-AjqybkDOt19zs3j3PiEb3E6WYMqNmSf0MnDpyX9INdfSQWFeDSSkiPFIlpSwRvy2GtXsidpQTlsKC_G3YGydSIwGe-NM-azxKnZCluv54eXwjkE-Oyp3-UZ77l2O_Jf_JaF7ZxXsx5XROoHcYLlv"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-secondary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up avatar of a teenage boy smiling, outdoors, high quality photography, organic vitality aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW1RbV1A3YzJwJl6Ljkza7RCGZfPwrz4uwFWfb0RlohI-DGlSNo6LMkYItvUO-m7SoLA2tch2loL0pjIa98R4hQQr9Yfp03sI8og_GOjys2kiWUp87Z5u68OSZP2_NodblfR_TbS1Lw73-QW9Vix_LKbEgwAANammoN-TJGIHjj1bJbGy7AwKZH6qQldr-z9mRVH-kpu8O_fkpdx_ID3uFSOhz5ke0O28WHXw8gBwlCdahjflZzI8u"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-tertiary-fixed flex items-center justify-center font-bold text-xs text-on-tertiary-fixed">
+            +2
+          </div>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm leading-none">Family Members</p>
+<p class="font-caption text-caption text-on-surface-variant">4 members active</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">chevron_right</button>
+</section>
+<!-- Danger Zone -->
+<div class="pt-8 pb-12 border-t border-outline-variant/30">
+<h3 class="font-label-sm text-label-sm text-danger/70 uppercase tracking-widest mb-4">Danger Zone</h3>
+<button class="w-full flex items-center justify-center gap-2 py-4 px-6 border-2 border-danger/30 text-danger rounded-2xl font-body-lg font-bold hover:bg-danger/5 active:bg-danger/10 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">delete_forever</span>
+        Delete Family Account
+      </button>
+<p class="mt-3 text-center font-caption text-caption text-on-surface-variant/60 italic">
+        Warning: This action is irreversible. All progress, habits, and tree growth will be permanently erased.
+      </p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl md:hidden">
+<div class="flex justify-around items-center px-4 py-2 pb-safe w-full">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-chip-padding py-1 hover:bg-surface-variant dark:hover:bg-surface-container-high active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-chip-padding py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+    // Micro-interactions for smooth feedback
+    document.querySelectorAll('button, input').forEach(el => {
+      el.addEventListener('mousedown', () => {
+        el.style.transform = 'scale(0.98)';
+      });
+      el.addEventListener('mouseup', () => {
+        el.style.transform = 'scale(1)';
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'scale(1)';
+      });
+    });
+
+    // Horizontal Scroll with Mouse Wheel support for avatars
+    const scrollContainer = document.querySelector('.overflow-x-auto');
+    if (scrollContainer) {
+      scrollContainer.addEventListener('wheel', (evt) => {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+      });
+    }
+  </script>
+</body></html>
