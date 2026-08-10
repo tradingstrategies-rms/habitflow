@@ -9,6 +9,7 @@ import 'package:habitflow/features/profile/domain/family_role.dart';
 import 'package:habitflow/features/profile/domain/user_profile.dart';
 import 'package:habitflow/features/profile/presentation/avatar_selection_screen.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
+import '../../settings/application/settings_notifier.dart';
 import 'widgets/family_role_selector.dart';
 
 class EditProfileScreen extends ConsumerStatefulWidget {
@@ -28,8 +29,6 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   
   FamilyRole _selectedRole = FamilyRole.parent;
   DateTime? _selectedBirthday;
-  String _selectedCountry = 'United States';
-  String _selectedTimezone = 'UTC';
   AvatarItem? _selectedAvatar;
 
   bool _isInitialized = false;
@@ -55,8 +54,6 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       _birthdayController.text = "${_selectedBirthday!.toLocal()}".split(' ')[0];
     }
     _selectedRole = profile.familyRole;
-    _selectedCountry = profile.country;
-    _selectedTimezone = profile.timezone;
     if (profile.avatarId != null) {
       _selectedAvatar = AvatarItem(
         id: profile.avatarId!,
@@ -78,8 +75,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
            _displayNameController.text != _initialProfile.displayName ||
            _selectedBirthday != _initialProfile.birthday ||
            _selectedRole != _initialProfile.familyRole ||
-           _selectedCountry != _initialProfile.country ||
-           _selectedTimezone != _initialProfile.timezone ||
+           ref.read(settingsProvider).selectedCountry.code != _initialProfile.country ||
+           ref.read(settingsProvider).selectedCountry.timezone != _initialProfile.timezone ||
            _selectedAvatar?.id != _initialProfile.avatarId;
   }
 
@@ -110,13 +107,15 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   Future<void> _saveProfile(UserProfile currentProfile) async {
     if (!_formKey.currentState!.validate()) return;
 
+    final settings = ref.read(settingsProvider);
+
     final updatedProfile = currentProfile.copyWith(
       firstName: _firstNameController.text,
       lastName: _lastNameController.text,
       displayName: _displayNameController.text,
       birthday: _selectedBirthday,
-      country: _selectedCountry,
-      timezone: _selectedTimezone,
+      country: settings.selectedCountry.code,
+      timezone: settings.selectedCountry.timezone,
       familyRole: _selectedRole,
       avatarId: _selectedAvatar?.id,
       photoUrl: _selectedAvatar?.url,
@@ -303,17 +302,17 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       _buildSelector(
                         context,
                         label: 'COUNTRY',
-                        value: _selectedCountry,
+                        value: ref.watch(settingsProvider).selectedCountry.name,
                         icon: Icons.public_rounded,
-                        onTap: () => _showPicker(context, 'Country', ['United States', 'United Kingdom', 'Germany'], (v) => setState(() => _selectedCountry = v)),
+                        onTap: () => context.pushNamed(RouteNames.countrySelection),
                       ),
                       const SizedBox(height: 16),
                       _buildSelector(
                         context,
                         label: 'TIME ZONE',
-                        value: _selectedTimezone,
+                        value: ref.watch(settingsProvider).selectedCountry.timezone,
                         icon: Icons.schedule_rounded,
-                        onTap: () => _showPicker(context, 'Time Zone', ['UTC', 'PST', 'EST', 'CET'], (v) => setState(() => _selectedTimezone = v)),
+                        onTap: () => context.pushNamed(RouteNames.countrySelection),
                       ),
 
                       const SizedBox(height: 40),
@@ -366,26 +365,5 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     );
   }
 
-  void _showPicker(BuildContext context, String title, List<String> options, ValueChanged<String> onSelected) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Select $title', style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            ...options.map((opt) => ListTile(
-              title: Text(opt),
-              onTap: () {
-                onSelected(opt);
-                Navigator.pop(context);
-              },
-            )),
-          ],
-        ),
-      ),
-    );
-  }
+
 }

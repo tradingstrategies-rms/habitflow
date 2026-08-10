@@ -55,6 +55,7 @@ void main() {
     test('getProfile returns UserProfile if data exists', () async {
       mockDatabaseService.data = {
         'uid': 'user123',
+        'email': 'test@example.com',
         'firstName': 'Test',
         'lastName': 'User',
         'displayName': 'Test User',
@@ -78,11 +79,11 @@ void main() {
     test('saveProfile calls setData with correct path and data', () async {
       const profile = UserProfile(
         uid: 'user123',
+        email: 'test@example.com',
         firstName: 'Test',
         lastName: 'User',
         displayName: 'Test User',
         country: 'US',
-        language: 'en',
         timezone: 'UTC',
         familyRole: FamilyRole.parent,
       );

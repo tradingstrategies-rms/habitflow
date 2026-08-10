@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Goal Achieved - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-tint": "#006c49",
+                    "on-primary-fixed": "#002113",
+                    "secondary-fixed": "#71f8e4",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary": "#ffffff",
+                    "background": "#faf9f8",
+                    "on-primary-container": "#00422b",
+                    "surface-bright": "#faf9f8",
+                    "tertiary": "#855300",
+                    "surface-variant": "#e3e2e1",
+                    "surface-container": "#eeeeed",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "warning": "#F97316",
+                    "on-secondary-fixed": "#00201c",
+                    "danger": "#EF4444",
+                    "on-surface-variant": "#3c4a42",
+                    "success": "#22C55E",
+                    "on-tertiary-fixed": "#2a1700",
+                    "secondary-container": "#6df5e1",
+                    "surface": "#FFFFFF",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#006f64",
+                    "outline": "#6c7a71",
+                    "on-primary-fixed-variant": "#005236",
+                    "inverse-surface": "#2f3130",
+                    "kids-accent": "#FFC107",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006b5f",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-dim": "#dadad9",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#10b981",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-container": "#523200",
+                    "tertiary-container": "#e29100",
+                    "primary-fixed": "#6ffbbe",
+                    "kids-primary": "#00D991",
+                    "primary-fixed-dim": "#4edea3",
+                    "inverse-primary": "#4edea3",
+                    "surface-container-high": "#e9e8e7",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-surface": "#1a1c1c",
+                    "background-dark": "#1F2937",
+                    "primary": "#006c49",
+                    "surface-container-low": "#f4f3f2",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e3e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "card-padding": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f8;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .growth-animation {
+            animation: growIn 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+        }
+
+        @keyframes growIn {
+            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 108, 73, 0.15);
+        }
+
+        .floating-action {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-start pb-safe">
+<!-- Celebration Background Animation -->
+<canvas class="confetti-canvas" id="confetti"></canvas>
+<!-- Content Wrapper -->
+<main class="w-full max-w-lg mx-auto flex flex-col items-center px-gutter pt-12 pb-24 relative z-20">
+<!-- Header Text -->
+<div class="text-center mb-8 space-y-2 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards]">
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-container/10 text-primary font-label-sm text-label-sm tracking-widest uppercase mb-4">
+                Milestone Reached
+            </span>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-background tracking-tight">
+                Goal Achieved!
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px] mx-auto">
+                "Complete Morning Mindfulness"
+            </p>
+</div>
+<!-- The Growth Illustration (Tree/Flower) -->
+<div class="relative w-full aspect-square max-w-[320px] mb-12 flex items-center justify-center growth-animation">
+<div class="absolute inset-0 bg-primary-container/10 rounded-full blur-3xl scale-90"></div>
+<!-- Illustration -->
+<div class="relative z-10 w-full h-full rounded-full flex items-center justify-center overflow-hidden border-4 border-white shadow-xl">
+<img class="w-full h-full object-cover" data-alt="A lush, vibrant organic illustration of a fully grown, stylized oak tree with deep emerald leaves and golden glowing fruits. The art style is minimalist with corporate modern clean lines, set against a soft morning mist background. Soft sunlight filters through branches, creating a warm, celebratory atmosphere of calm growth and premium achievement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUjosmi4sXGb8311MHugcnMUGneQbLG-IC6XRNDqTRW_u27qqJptjAI_7MLuv3Xn_LrBdEP5S6OWlOcVHlw4mffo2cPsKZt918lmKkcK1NRUydcJFlBCs13a_oPn2sXnllmI2KVbNID4c_nq09kaVyMmmjCfTyQt3XccnW7N8Tug4c0csM-mUbZ4lQL1NRgyQ46nSNkVmtPrx-In6i773YD3B-w9MGzIETi3jc59lKefBXmwvmn_Dv"/>
+</div>
+<!-- Floating Achievement Badges -->
+<div class="absolute -top-4 -right-4 bg-kids-accent p-3 rounded-2xl shadow-lg floating-action">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[32px]" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+<div class="absolute bottom-4 -left-6 bg-white p-3 rounded-2xl shadow-lg floating-action" style="animation-delay: -1.5s;">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+</div>
+<!-- Stats Bento Grid -->
+<div class="w-full grid grid-cols-2 gap-4 mb-10">
+<!-- Time Spent -->
+<div class="bento-card col-span-1 p-card-padding rounded-[20px] flex flex-col items-center justify-center text-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'opsz' 20;">calendar_month</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-tighter">Duration</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">30 Days</p>
+</div>
+<!-- Habits Completed -->
+<div class="bento-card col-span-1 p-card-padding rounded-[20px] flex flex-col items-center justify-center text-center">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'opsz' 20;">task_alt</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-tighter">Consistency</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">92%</p>
+</div>
+<!-- Rewards Earned -->
+<div class="bento-card col-span-2 p-card-padding rounded-[20px] flex items-center justify-between border-primary-container/20">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">redeem</span>
+</div>
+<div class="text-left">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Total Rewards</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">450 Bloom Points</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="w-full space-y-4">
+<button class="w-full bg-primary text-on-primary py-button-padding rounded-xl font-headline-sm text-headline-sm shadow-lg shadow-primary/20 active:scale-95 transition-transform duration-150 flex items-center justify-center gap-2" onclick="handleBack()">
+<span class="material-symbols-outlined">arrow_back</span>
+                Back to Dashboard
+            </button>
+<button class="w-full bg-transparent text-primary py-button-padding rounded-xl font-headline-sm text-headline-sm border-2 border-primary/10 hover:bg-surface-container-low transition-colors active:scale-95 duration-150">
+                Share Achievement
+            </button>
+</div>
+</main>
+<!-- Custom Micro-Interaction Script -->
+<script>
+        // Confetti logic
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 + 2;
+                this.color = ['#10b981', '#006c49', '#FFC107', '#e29100'][Math.floor(Math.random() * 4)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 10 - 5;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        function handleBack() {
+            // Animation for transition
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                // Simulation of navigation
+                console.log("Navigating to Dashboard...");
+            }, 500);
+        }
+
+        // Entrance animation delays
+        document.querySelectorAll('.bento-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300 + (index * 100));
+        });
+    </script>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body></html>

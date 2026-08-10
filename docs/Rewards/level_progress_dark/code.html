@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Level Progress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00201c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d9e3f6",
+                        "surface-dark": "#1E1E1E",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "emerald-glow": "rgba(16, 185, 129, 0.15)",
+                        "on-tertiary-fixed": "#2a1700",
+                        "background-warm": "#FFFFFF",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#3c4a42",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-surface": "#121c2a",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-primary": "#4edea3",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dee9fc",
+                        "on-tertiary-container": "#523200",
+                        "surface-container": "#e6eeff",
+                        "primary": "#006c49",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7a71",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed": "#002113",
+                        "kids-secondary": "#0D9488",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#71f8e4",
+                        "kids-accent": "#D97706",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d9e3f6",
+                        "tertiary-fixed": "#ffddb8",
+                        "kids-primary": "#059669",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "secondary": "#006b5f",
+                        "on-secondary-container": "#006f64",
+                        "surface-tint": "#006c49",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-surface": "#27313f",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#121212",
+                        "tertiary": "#855300",
+                        "tertiary-container": "#e29100",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d0dbed",
+                        "tertiary-fixed-dim": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "chip-gap": "12px",
+                        "button-height": "48px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "card-padding": "20px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "numbers-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "numbers-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .badge-glow {
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+        }
+        .progress-glow {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+        .bg-glass {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dark w-full sticky top-0 flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 z-40 transition-colors duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high dark:bg-inverse-surface flex items-center justify-center overflow-hidden border border-outline-variant/20 cursor-pointer hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-outline-variant" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Rewards</h1>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-outline-variant">settings</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-8 pb-32 flex flex-col gap-8">
+<!-- Level Progress Hero -->
+<section class="flex flex-col items-center justify-center py-10 relative">
+<div class="absolute inset-0 bg-emerald-glow rounded-full blur-3xl opacity-30 pointer-events-none transform -translate-y-10"></div>
+<!-- Glowing Level Badge -->
+<div class="relative w-40 h-40 mb-8 flex items-center justify-center badge-glow rounded-[2rem] bg-gradient-to-br from-surface-dark to-background-dark border border-primary-container/30 transform rotate-45 group hover:scale-105 transition-transform duration-500 cursor-pointer">
+<div class="absolute inset-0 bg-primary-container/10 rounded-[2rem]"></div>
+<div class="transform -rotate-45 flex flex-col items-center">
+<span class="font-label-md text-label-md text-outline-variant uppercase tracking-widest mb-1">Level</span>
+<span class="font-headline-xl text-headline-xl text-primary-fixed-dim" style="font-size: 4rem; line-height: 4rem;">8</span>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-inverse-on-surface mb-2">Consistency Master</h2>
+<p class="font-body-lg text-body-lg text-outline-variant mb-10 text-center max-w-md">You're making incredible progress. Keep up the daily habits to reach the next milestone.</p>
+<!-- XP Progress Bar -->
+<div class="w-full max-w-md bg-glass rounded-3xl p-6 shadow-sm relative overflow-hidden">
+<div class="flex justify-between items-end mb-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline-variant uppercase tracking-wider mb-1">Current XP</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-primary-fixed-dim">650</span>
+<span class="font-body-sm text-body-sm text-outline-variant">/ 1000</span>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-label-md text-label-md text-outline-variant mb-1">Next Level</span>
+<span class="font-numbers-md text-numbers-md text-inverse-on-surface">350 XP left</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-dark/50 rounded-full overflow-hidden border border-outline-variant/10">
+<div class="h-full bg-primary-container rounded-full progress-glow relative" style="width: 65%;">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-full h-full animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Preview & Roadmap Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-4">
+<!-- Next Level Preview -->
+<div class="md:col-span-5 bg-glass rounded-[2rem] p-card-padding flex flex-col justify-between relative overflow-hidden group hover:border-primary-container/30 transition-colors">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-xl bg-surface-dark border border-outline-variant/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed-dim">lock_open</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-inverse-on-surface">Next Milestone</h3>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-surface-dark to-background-dark border border-outline-variant/30 flex items-center justify-center transform rotate-12 opacity-80 group-hover:rotate-0 transition-transform duration-500">
+<span class="font-headline-md text-headline-md text-outline-variant">9</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-inverse-on-surface mb-1">Habit Champion</h4>
+<p class="font-body-sm text-body-sm text-outline-variant">Unlocks exclusive avatar frames and a 1.2x points multiplier.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Roadmap List -->
+<div class="md:col-span-7 bg-glass rounded-[2rem] p-card-padding">
+<h3 class="font-headline-sm text-headline-sm text-inverse-on-surface mb-6">Upcoming Rewards</h3>
+<div class="flex flex-col gap-6 relative">
+<!-- Vertical Line -->
+<div class="absolute left-6 top-6 bottom-6 w-0.5 bg-surface-dark/50 -z-10"></div>
+<!-- Item 1 (Locked) -->
+<div class="flex items-start gap-4 relative">
+<div class="w-12 h-12 rounded-full bg-surface-dark border border-outline-variant/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="font-numbers-md text-numbers-md text-outline-variant">L9</span>
+</div>
+<div class="pt-3">
+<h4 class="font-numbers-md text-numbers-md text-inverse-on-surface/70 mb-1">1.2x Points Multiplier</h4>
+<p class="font-body-sm text-body-sm text-outline-variant">Earn points faster for every habit completed.</p>
+</div>
+</div>
+<!-- Item 2 (Locked) -->
+<div class="flex items-start gap-4 relative opacity-60">
+<div class="w-12 h-12 rounded-full bg-surface-dark border border-outline-variant/10 flex items-center justify-center flex-shrink-0 z-10">
+<span class="font-numbers-md text-numbers-md text-outline-variant/50">L10</span>
+</div>
+<div class="pt-3">
+<h4 class="font-numbers-md text-numbers-md text-inverse-on-surface/50 mb-1">Family Hero Status</h4>
+<p class="font-body-sm text-body-sm text-outline-variant/70">Unlock the highest tier of family rewards.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container-low/80 dark:bg-surface-dark/80 backdrop-blur-md fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe shadow-sm transition-colors duration-300 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform">checklist</span>
+<span class="font-label-md text-label-md">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform">emoji_events</span>
+<span class="font-label-md text-label-md">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface active:scale-90 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-md text-label-md font-bold">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform">family_restroom</span>
+<span class="font-label-md text-label-md">Family</span>
+</button>
+</nav>
+<style>
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Safe area padding for mobile bottom nav */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 12px);
+        }
+    </style>
+</body></html>

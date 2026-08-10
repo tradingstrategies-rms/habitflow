@@ -3,23 +3,63 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/router/route_paths.dart';
+import 'package:habitflow/core/achievements/providers/achievement_providers.dart';
+import 'package:habitflow/features/goals/application/providers/goal_providers.dart';
+import 'package:habitflow/features/goals/presentation/widgets/goal_completion_dialog.dart';
 import 'package:habitflow/features/authentication/data/auth_providers.dart';
-import 'package:habitflow/features/authentication/application/auth_controller.dart';
 import 'package:habitflow/features/profile/data/profile_providers.dart';
 import 'package:habitflow/features/splash/presentation/splash_providers.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
+
+import 'package:habitflow/features/intelligence/presentation/screens/intelligence_dashboard_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/create_family_circle_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/family_profiles_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/profile_selector_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/parent_pin_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/setup_pin_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/child_dashboard_screen.dart';
+import 'package:habitflow/features/rewards/presentation/screens/rewards_dashboard_screen.dart';
+import 'package:habitflow/features/rewards/presentation/screens/kids_rewards_dashboard_screen.dart';
+import 'package:habitflow/features/rewards/presentation/screens/reward_history_screen.dart';
+import 'package:habitflow/features/rewards/presentation/screens/reward_detail_screen.dart';
+import 'package:habitflow/features/rewards/presentation/screens/reward_level_progress_screen.dart';
+import 'package:habitflow/features/challenges/presentation/screens/challenges_dashboard_screen.dart';
+import 'package:habitflow/features/challenges/presentation/screens/challenge_detail_screen.dart';
+import 'package:habitflow/features/challenges/presentation/screens/completed_challenges_screen.dart';
+import 'package:habitflow/features/leaderboards/presentation/screens/leaderboard_screen.dart';
+import 'package:habitflow/features/reward_store/presentation/screens/reward_store_screen.dart';
+import 'package:habitflow/features/reward_store/presentation/screens/reward_store_detail_screen.dart';
+import 'package:habitflow/features/reward_store/presentation/screens/redemption_history_screen.dart';
+import 'package:habitflow/features/reward_store/domain/entities/reward_item.dart';
+import 'package:habitflow/features/challenges/domain/entities/challenge.dart';
+import 'package:habitflow/features/challenges/domain/entities/challenge_progress.dart';
+import 'package:habitflow/features/rewards/domain/entities/reward_transaction.dart';
+import 'package:habitflow/features/rewards/domain/enums/reward_type.dart';
+import 'package:habitflow/features/rewards/domain/enums/reward_source.dart';
+import 'package:habitflow/features/family/domain/enums/profile_type.dart';
+import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
+import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
+import 'package:habitflow/features/family/domain/entities/family_profile.dart';
+import 'package:habitflow/features/family/presentation/screens/family_dashboard_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/family_settings_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/shared_habits_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/shared_habit_details_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/family_activity_feed_screen.dart';
+import 'package:habitflow/features/family/presentation/screens/family_achievements_screen.dart';
+import 'package:habitflow/features/family/domain/entities/shared_habit.dart';
+import 'package:habitflow/features/settings/presentation/country_selection_screen.dart';
 
 // Modular Routes
 import 'routes/splash_routes.dart';
 import 'routes/auth_routes.dart';
 import 'routes/profile_routes.dart';
+import 'routes/habit_routes.dart';
+import 'routes/goal_routes.dart';
 
 // Feature Screens
 import 'package:habitflow/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:habitflow/features/habits/presentation/habits_screen.dart';
-import 'package:habitflow/features/goals/presentation/goals_screen.dart';
-import 'package:habitflow/features/rewards/presentation/rewards_screen.dart';
-import 'package:habitflow/features/family/presentation/family_screen.dart';
+import 'package:habitflow/features/habits/presentation/screens/habits_screen.dart';
+import 'package:habitflow/features/goals/presentation/screens/goals_screen.dart';
 import 'package:habitflow/features/analytics/presentation/analytics_screen.dart';
 import 'package:habitflow/features/settings/presentation/settings_screen.dart';
 
@@ -63,6 +103,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ...splashRoutes,
       ...authRoutes,
       ...profileRoutes,
+      ...habitRoutes,
+      ...goalRoutes,
 
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -92,15 +134,205 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: RoutePaths.rewards,
             name: RouteNames.rewards,
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: RewardsScreen()),
+                NoTransitionPage(child: Consumer(
+                  builder: (context, ref, _) {
+                    final session = ref.watch(activeProfileSessionProvider);
+                    if (session == null) return const RewardsDashboardScreen();
+                    
+                    final familyState = ref.watch(familyProvider);
+                    final profile = familyState.profiles.firstWhere(
+                      (p) => p.id == session.profileId,
+                      orElse: () => familyState.profiles.firstWhere((p) => true, orElse: () => throw 'No profile found'),
+                    );
+
+                    if (profile.profileType == ProfileType.child) {
+                      return const KidsRewardsDashboardScreen();
+                    }
+                    return const RewardsDashboardScreen();
+                  },
+                )),
           ),
           GoRoute(
             path: RoutePaths.family,
             name: RouteNames.family,
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: FamilyScreen()),
+            const NoTransitionPage(
+              child: FamilyDashboardScreen(),
+            ),
           ),
         ],
+      ),
+
+      GoRoute(
+        path: RoutePaths.intelligence,
+        name: RouteNames.intelligence,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const IntelligenceDashboardScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyCreate,
+        name: RouteNames.familyCreate,
+        builder: (context, state) => const CreateFamilyCircleScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyMembers,
+        name: RouteNames.familyMembers,
+        builder: (context, state) => const FamilyProfilesScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyProfileSelector,
+        name: RouteNames.familyProfileSelector,
+        builder: (context, state) => const ProfileSelectorScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyPin,
+        name: RouteNames.familyPin,
+        builder: (context, state) {
+          final profile = state.extra;
+
+          if (profile is! FamilyProfile) {
+            return const Scaffold(
+              body: Center(
+                child: Text('Invalid profile'),
+              ),
+            );
+          }
+
+          return ParentPinScreen(profile: profile);
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.familyPinSetup,
+        name: RouteNames.familyPinSetup,
+        builder: (context, state) => const SetupPinScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familySettings,
+        name: RouteNames.familySettings,
+        builder: (context, state) => const FamilySettingsScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.countrySelection,
+        name: RouteNames.countrySelection,
+        builder: (context, state) => const CountrySelectionScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyChild,
+        name: RouteNames.familyChild,
+        builder: (context, state) => const ChildDashboardScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.levelProgress,
+        name: RouteNames.levelProgress,
+        builder: (context, state) => const RewardLevelProgressScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.rewardHistory,
+        name: RouteNames.rewardHistory,
+        builder: (context, state) => const RewardHistoryScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.rewardDetail,
+        name: RouteNames.rewardDetail,
+        builder: (context, state) {
+          final extra = state.extra;
+          if (extra is RewardTransaction) {
+            return RewardDetailScreen(transaction: extra);
+          }
+          // Fallback / Placeholder if navigation happened without extra
+          return RewardDetailScreen(
+            transaction: RewardTransaction(
+              id: 'error',
+              profileId: '',
+              amount: 0,
+              type: RewardType.points,
+              source: RewardSource.manualAdjustment,
+              description: 'Transaction not found',
+              createdAt: DateTime.now(),
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.challengesDashboard,
+        name: RouteNames.challengesDashboard,
+        builder: (context, state) => const ChallengesDashboardScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.challengeDetail,
+        name: RouteNames.challengeDetail,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          if (extra != null && 
+              extra['challenge'] is Challenge && 
+              extra['progress'] is ChallengeProgress) {
+            return ChallengeDetailScreen(
+              challenge: extra['challenge'] as Challenge,
+              progress: extra['progress'] as ChallengeProgress,
+            );
+          }
+          return const Scaffold(body: Center(child: Text('Invalid challenge data')));
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.completedChallenges,
+        name: RouteNames.completedChallenges,
+        builder: (context, state) => const CompletedChallengesScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.leaderboard,
+        name: RouteNames.leaderboard,
+        builder: (context, state) => const LeaderboardScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.rewardStore,
+        name: RouteNames.rewardStore,
+        builder: (context, state) => const RewardStoreScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.rewardStoreDetail,
+        name: RouteNames.rewardStoreDetail,
+        builder: (context, state) {
+          final extra = state.extra;
+          if (extra is RewardItem) {
+            return RewardStoreDetailScreen(item: extra);
+          }
+          return const Scaffold(body: Center(child: Text('Invalid reward item')));
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.redemptionHistory,
+        name: RouteNames.redemptionHistory,
+        builder: (context, state) {
+          final profileId = state.pathParameters['profileId'] ?? '';
+          return RedemptionHistoryScreen(profileId: profileId);
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.familyActivity,
+        name: RouteNames.familyActivity,
+        builder: (context, state) => const FamilyActivityFeedScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyAchievements,
+        name: RouteNames.familyAchievements,
+        builder: (context, state) => const FamilyAchievementsScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familySharedHabits,
+        name: RouteNames.familySharedHabits,
+        builder: (context, state) => const SharedHabitsScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familySharedHabitDetails,
+        name: RouteNames.familySharedHabitDetails,
+        builder: (context, state) {
+          final extra = state.extra;
+          if (extra is SharedHabit) {
+            return SharedHabitDetailsScreen(sharedHabit: extra);
+          }
+          return const Scaffold(body: Center(child: Text('Invalid shared habit')));
+        },
       ),
 
       GoRoute(
@@ -289,44 +521,22 @@ class AppShell extends ConsumerWidget {
       BuildContext context,
       WidgetRef ref) {
 
+    ref.listen(goalCompletionEventsProvider, (previous, next) {
+      next.whenData((event) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => GoalCompletionDialog(event: event),
+        );
+        ref.read(achievementEventBusProvider).acknowledge(event.goalId);
+      });
+    });
+
+    // Initialize Goal Completion Watcher lifecycle
+    ref.listen(goalCompletionWatcherProvider, (_, __) {});
+
     return Scaffold(
-
-      appBar: HFTopAppBar(
-        title: 'HabitFlow',
-
-        actions: [
-
-          HFIconButton(
-            icon: Icons.logout_rounded,
-            onPressed: () =>
-                ref
-                .read(authControllerProvider.notifier)
-                .logout(),
-          ),
-
-
-          HFIconButton(
-            icon: Icons.person_outline_rounded,
-            onPressed: () =>
-                context.pushNamed(
-                    RouteNames.editProfile),
-          ),
-
-
-          HFIconButton(
-            icon: Icons.settings_outlined,
-            onPressed: () =>
-                context.pushNamed(
-                    RouteNames.settings),
-          ),
-
-        ],
-      ),
-
-
       body: child,
-
-
       bottomNavigationBar:
           HFBottomNavigation(
             currentIndex:

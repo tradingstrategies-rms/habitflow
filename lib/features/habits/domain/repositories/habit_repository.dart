@@ -1,11 +1,25 @@
-import '../models/habit.dart';
-import '../models/habit_id.dart';
+import '../entities/habit.dart';
 
-/// [HabitRepository] defines the domain-level interface for habit management.
 abstract class HabitRepository {
   Future<void> createHabit(Habit habit);
+  
   Future<void> updateHabit(Habit habit);
-  Future<void> deleteHabit(HabitId habitId);
-  Future<Habit?> getHabit(HabitId habitId);
-  Stream<List<Habit>> getAllHabits();
+  
+  Future<void> deleteHabit(String id);
+  
+  Future<void> archiveHabit(String id);
+  
+  Future<void> restoreHabit(String id);
+  
+  Future<Habit?> getHabitById(String id);
+  
+  Future<List<Habit>> getAllHabits();
+  
+  Future<List<Habit>> getActiveHabits();
+  
+  Future<List<Habit>> getArchivedHabits();
+  
+  Future<List<Habit>> getTodayHabits();
+  
+  Stream<List<Habit>> watchHabits();
 }

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Leo's Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "secondary": "#006b5f",
+                    "primary-container": "#10b981",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#523200",
+                    "on-primary": "#ffffff",
+                    "kids-accent": "#FFC107",
+                    "surface": "#FFFFFF",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#faf9f8",
+                    "background-dark": "#1F2937",
+                    "on-primary-fixed": "#002113",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-fixed-variant": "#005048",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "tertiary": "#855300",
+                    "secondary-container": "#6df5e1",
+                    "on-error": "#ffffff",
+                    "success": "#22C55E",
+                    "surface-dim": "#dadad9",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "background": "#faf9f8",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary": "#006c49",
+                    "on-secondary-container": "#006f64",
+                    "kids-primary": "#00D991",
+                    "surface-tint": "#006c49",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .growth-card-gradient {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(0, 107, 95, 0.05) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky bg-surface z-40 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-150">arrow_back</span>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary tracking-tight">HabitFlow</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95">notifications</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95">account_circle</button>
+</div>
+</header>
+<main class="max-w-screen-md mx-auto px-margin-mobile pt-6 space-y-8">
+<!-- 1. Profile Header -->
+<section class="flex flex-col items-center text-center space-y-4">
+<div class="relative">
+<div class="w-32 h-32 rounded-full ring-4 ring-primary-container p-1 overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="A portrait of a cheerful, young boy named Leo with bright eyes and a friendly smile, captured in a vibrant and high-quality 3D Pixar-style digital art. The background is a soft, out-of-focus garden filled with emerald green leaves and hints of teal blossoms, perfectly matching the HabitFlow app's organic and premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnVVoaULYUgxoOLpAjzg9r4fmRqva67OhCGvci-VeVqvFfHaMTbN5cpG-PIurDDha0-GkcZOnVefFufvU3rCuX8QQI3NnYVFSDXrod7yAZyYEVFuMC-M757ubsJ7f020EhOm9fDeDv-Te-Q-78yV-HBoB8LrVOAMecavxG1hkAo2gwwCKqM0b-Gasnv11zAMwNdVkj3GA76yjX-Xh3P6aCFhOOs-HNfu7S1XT4nH2DkasgwdPcW15J"/>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-kids-accent text-on-tertiary-fixed px-4 py-1 rounded-full shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-label-sm text-label-sm whitespace-nowrap">Level 4 Seedling</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Leo's Journey</h2>
+<p class="font-body-lg text-on-surface-variant">Growing strong since February 2024</p>
+</div>
+</section>
+<!-- 2. Growth Progress Chart -->
+<section class="bg-surface rounded-[20px] p-card-padding border border-surface-container-high shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Growth Progress</h3>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="h-48 w-full flex items-end justify-between gap-2 px-2">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center w-full space-y-2">
+<div class="w-full bg-primary-container/20 rounded-t-lg h-24 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container h-[60%] transition-all duration-500"></div>
+</div>
+<span class="text-[10px] font-label-sm text-outline uppercase tracking-wider">Mon</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col items-center w-full space-y-2">
+<div class="w-full bg-primary-container/20 rounded-t-lg h-32 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container h-[85%] transition-all duration-500"></div>
+</div>
+<span class="text-[10px] font-label-sm text-outline uppercase tracking-wider">Tue</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col items-center w-full space-y-2">
+<div class="w-full bg-primary-container/20 rounded-t-lg h-40 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container h-[70%] transition-all duration-500"></div>
+</div>
+<span class="text-[10px] font-label-sm text-outline uppercase tracking-wider">Wed</span>
+</div>
+<!-- Bar 4 (Today - Active) -->
+<div class="flex flex-col items-center w-full space-y-2">
+<div class="w-full bg-primary-container/30 rounded-t-lg h-44 relative overflow-hidden ring-2 ring-primary ring-inset">
+<div class="absolute bottom-0 w-full bg-primary h-[95%] transition-all duration-500 shadow-[0_-4px_12px_rgba(0,108,73,0.3)]"></div>
+</div>
+<span class="text-[10px] font-label-sm text-primary font-bold uppercase tracking-wider">Thu</span>
+</div>
+<!-- Bar 5 -->
+<div class="flex flex-col items-center w-full space-y-2">
+<div class="w-full bg-surface-container rounded-t-lg h-28"></div>
+<span class="text-[10px] font-label-sm text-outline uppercase tracking-wider">Fri</span>
+</div>
+</div>
+<div class="mt-6 flex justify-around border-t border-surface-variant pt-4">
+<div class="text-center">
+<p class="font-body-numbers text-primary font-bold">12</p>
+<p class="font-label-sm text-on-surface-variant">Day Streak</p>
+</div>
+<div class="text-center">
+<p class="font-body-numbers text-primary font-bold">84%</p>
+<p class="font-label-sm text-on-surface-variant">Focus Score</p>
+</div>
+</div>
+</section>
+<!-- 3. Current Focus -->
+<section class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Current Focus</h3>
+<div class="space-y-3">
+<!-- Habit 1 -->
+<div class="flex items-center justify-between p-4 bg-surface border border-surface-container rounded-[20px] hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<h4 class="font-body-lg font-semibold text-on-surface">Evening Reading</h4>
+<p class="font-label-sm text-on-surface-variant">20 minutes per day</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container group-active:scale-125 transition-transform">check_circle</span>
+</div>
+<!-- Habit 2 -->
+<div class="flex items-center justify-between p-4 bg-surface border border-surface-container rounded-[20px] hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">brush</span>
+</div>
+<div>
+<h4 class="font-body-lg font-semibold text-on-surface">Art &amp; Creativity</h4>
+<p class="font-label-sm text-on-surface-variant">3/5 times this week</p>
+</div>
+</div>
+<div class="w-24 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[60%]"></div>
+</div>
+</div>
+<!-- Habit 3 -->
+<div class="flex items-center justify-between p-4 bg-surface border border-surface-container rounded-[20px] hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">sports_soccer</span>
+</div>
+<div>
+<h4 class="font-body-lg font-semibold text-on-surface">Daily Practice</h4>
+<p class="font-label-sm text-on-surface-variant">Focus on teamwork</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">circle</span>
+</div>
+</div>
+</section>
+<!-- 4. Achievements (Horizontal Scroll) -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Achievements</h3>
+<button class="font-label-sm text-primary hover:underline">View All</button>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 pb-2 -mx-margin-mobile px-margin-mobile">
+<!-- Badge 1 -->
+<div class="flex-shrink-0 w-32 bg-surface border border-surface-container rounded-[20px] p-4 text-center space-y-2">
+<div class="w-16 h-16 mx-auto bg-kids-accent/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-kids-accent text-3xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<p class="font-label-sm font-bold text-on-surface leading-tight">First Week Clean</p>
+</div>
+<!-- Badge 2 -->
+<div class="flex-shrink-0 w-32 bg-surface border border-surface-container rounded-[20px] p-4 text-center space-y-2">
+<div class="w-16 h-16 mx-auto bg-primary-container/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-label-sm font-bold text-on-surface leading-tight">Habit Master</p>
+</div>
+<!-- Badge 3 -->
+<div class="flex-shrink-0 w-32 bg-surface border border-surface-container rounded-[20px] p-4 text-center space-y-2">
+<div class="w-16 h-16 mx-auto bg-secondary-container/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">forest</span>
+</div>
+<p class="font-label-sm font-bold text-on-surface leading-tight">Tree Helper</p>
+</div>
+<!-- Locked Badge -->
+<div class="flex-shrink-0 w-32 bg-surface-container-low border border-dashed border-outline-variant rounded-[20px] p-4 text-center space-y-2 opacity-60">
+<div class="w-16 h-16 mx-auto bg-surface flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-outline-variant text-3xl">lock</span>
+</div>
+<p class="font-label-sm font-medium text-outline-variant leading-tight">Early Bird</p>
+</div>
+</div>
+</section>
+<!-- 5. Growth Tree Contribution Card -->
+<section class="growth-card-gradient rounded-[20px] p-card-padding border border-primary/10 overflow-hidden relative">
+<div class="relative z-10 space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">nature</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-primary-container">Family Tree Impact</h3>
+</div>
+<p class="font-body-lg text-on-surface-variant pr-24">Leo has contributed <span class="font-bold text-primary">340 leaves</span> to the Family Growth Tree this month!</p>
+<button class="bg-primary text-white px-button-padding py-3 rounded-xl font-bold flex items-center gap-2 active:scale-95 transition-all">
+                    Visit the Forest
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Organic Illustration Placeholder -->
+<div class="absolute -right-8 -bottom-8 w-48 h-48 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[160px] text-primary" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-6 px-4 bg-surface shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for habit cards
+        document.querySelectorAll('section div.bg-surface').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.add('scale-[0.98]');
+                setTimeout(() => card.classList.remove('scale-[0.98]'), 150);
+            });
+        });
+    </script>
+</body></html>

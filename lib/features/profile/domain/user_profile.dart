@@ -4,12 +4,12 @@ import 'family_role.dart';
 class UserProfile {
   const UserProfile({
     required this.uid,
+    required this.email,
     required this.firstName,
     required this.lastName,
     required this.displayName,
     this.birthday,
     required this.country,
-    required this.language,
     required this.timezone,
     required this.familyRole,
     this.photoUrl,
@@ -17,12 +17,12 @@ class UserProfile {
   });
 
   final String uid;
+  final String email;
   final String firstName;
   final String lastName;
   final String displayName;
   final DateTime? birthday;
   final String country;
-  final String language;
   final String timezone;
   final FamilyRole familyRole;
   final String? photoUrl;
@@ -32,6 +32,7 @@ class UserProfile {
   factory UserProfile.fromJson(Map<String, dynamic> json) {
     return UserProfile(
       uid: json['uid'] as String,
+      email: json['email'] as String? ?? '',
       firstName: json['firstName'] as String? ?? '',
       lastName: json['lastName'] as String? ?? '',
       displayName: json['displayName'] as String? ?? '',
@@ -39,7 +40,6 @@ class UserProfile {
           ? DateTime.parse(json['birthday'] as String) 
           : null,
       country: json['country'] as String? ?? 'US',
-      language: json['language'] as String? ?? 'en',
       timezone: json['timezone'] as String? ?? 'UTC',
       familyRole: FamilyRole.fromString(json['familyRole'] as String?),
       photoUrl: json['photoUrl'] as String?,
@@ -51,12 +51,12 @@ class UserProfile {
   Map<String, dynamic> toJson() {
     return {
       'uid': uid,
+      'email': email,
       'firstName': firstName,
       'lastName': lastName,
       'displayName': displayName,
       'birthday': birthday?.toIso8601String(),
       'country': country,
-      'language': language,
       'timezone': timezone,
       'familyRole': familyRole.name,
       'photoUrl': photoUrl,
@@ -66,12 +66,12 @@ class UserProfile {
 
   /// Creates a copy of this [UserProfile] with the given fields replaced.
   UserProfile copyWith({
+    String? email,
     String? firstName,
     String? lastName,
     String? displayName,
     DateTime? birthday,
     String? country,
-    String? language,
     String? timezone,
     FamilyRole? familyRole,
     String? photoUrl,
@@ -79,12 +79,12 @@ class UserProfile {
   }) {
     return UserProfile(
       uid: uid,
+      email: email ?? this.email,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       displayName: displayName ?? this.displayName,
       birthday: birthday ?? this.birthday,
       country: country ?? this.country,
-      language: language ?? this.language,
       timezone: timezone ?? this.timezone,
       familyRole: familyRole ?? this.familyRole,
       photoUrl: photoUrl ?? this.photoUrl,

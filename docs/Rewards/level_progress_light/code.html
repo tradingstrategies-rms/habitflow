@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Level Progress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00201c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d9e3f6",
+                        "surface-dark": "#1E1E1E",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "emerald-glow": "rgba(16, 185, 129, 0.15)",
+                        "on-tertiary-fixed": "#2a1700",
+                        "background-warm": "#FFFFFF",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#3c4a42",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-surface": "#121c2a",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-primary": "#4edea3",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dee9fc",
+                        "on-tertiary-container": "#523200",
+                        "surface-container": "#e6eeff",
+                        "primary": "#006c49",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7a71",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed": "#002113",
+                        "kids-secondary": "#0D9488",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#71f8e4",
+                        "kids-accent": "#D97706",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d9e3f6",
+                        "tertiary-fixed": "#ffddb8",
+                        "kids-primary": "#059669",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "secondary": "#006b5f",
+                        "on-secondary-container": "#006f64",
+                        "surface-tint": "#006c49",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-surface": "#27313f",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#121212",
+                        "tertiary": "#855300",
+                        "tertiary-container": "#e29100",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d0dbed",
+                        "tertiary-fixed-dim": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "chip-gap": "12px",
+                        "button-height": "48px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "card-padding": "20px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "numbers-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "numbers-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .ambient-shadow {
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.08);
+        }
+        .organic-gradient {
+            background: linear-gradient(135deg, rgba(0, 108, 73, 0.05) 0%, rgba(109, 245, 225, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pb-safe">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dark font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim w-full sticky top-0 bg-surface dark:bg-surface-dark flat no shadows flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full z-40">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant/30 flex-shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A minimalist and elegant avatar illustration representing a user profile, featuring soft organic shapes in shades of emerald green and warm white, rendered in a modern clean digital style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATmCHD1blK3sfCv3TtczEHggA_bkZUzRMYeMp1wgRr6gcHFOHbxxNpEU1e34az8QBNMntId9Nvk646fKRC3imVsCakcYgBkMAs8OXHW7HzkW7HXKoYVeWmAWjX4Qr1D_q2ve09hXyMlMV6Qab4XmWr4asBYGR9kB5m1zzyCEhGBVxbkf8IDI9jOyMuSkWLZzNxzRmi3PeZppg_pQ55l9LR7iFFGAjW69jumK4cyUSVes1Cl4-n5Hzd"/>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Level Progress</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</header>
+<main class="flex-1 px-margin-mobile md:px-margin-desktop py-6 max-w-4xl mx-auto w-full space-y-8 pb-32">
+<!-- Current Level Badge & Progress Bento -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Badge Card -->
+<div class="md:col-span-5 bg-background-warm rounded-3xl p-8 flex flex-col items-center justify-center relative overflow-hidden ambient-shadow border border-outline-variant/20 organic-gradient">
+<div class="w-32 h-32 relative mb-6">
+<div class="absolute inset-0 bg-tertiary-container/20 rounded-[2rem] rotate-12 transform-gpu"></div>
+<div class="absolute inset-0 bg-primary/10 rounded-[2rem] -rotate-6 transform-gpu"></div>
+<div class="absolute inset-0 bg-background-warm rounded-2xl flex items-center justify-center border border-primary/20 shadow-sm z-10 backdrop-blur-sm">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">8</span>
+</div>
+<div class="absolute -right-2 -top-2 z-20 text-tertiary-container animate-pulse">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface text-center mb-2">Consistency Builder</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">You're proving that small daily actions lead to monumental growth.</p>
+</div>
+<!-- XP Progress Card -->
+<div class="md:col-span-7 bg-background-warm rounded-3xl p-card-padding flex flex-col justify-between border border-outline-variant/20 shadow-sm">
+<div>
+<div class="flex justify-between items-end mb-2">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Current XP</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-primary">650</span>
+<span class="font-numbers-md text-numbers-md text-outline">/ 1000</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-secondary block mb-1">Next Level</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">350 XP to go</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-primary/10 h-3 rounded-full overflow-hidden mb-6 relative">
+<div class="bg-primary h-full rounded-full transition-all duration-1000 ease-out w-[65%] relative overflow-hidden" id="xp-progress">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Daily Streak Active</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Earn 2x XP for your next habit completion.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Next Level Preview -->
+<section class="mt-12">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">lock</span>
+                Upcoming: Level 9
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Milestone Card -->
+<div class="bg-background-warm rounded-2xl p-6 border border-outline-variant/30 flex gap-4 hover:border-primary/40 transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+<span class="font-headline-md text-headline-md text-outline">9</span>
+</div>
+<div>
+<h4 class="font-numbers-md text-numbers-md text-on-surface mb-1">Habit Champion</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Mastering the art of sustainable routines.</p>
+<div class="flex items-center gap-2 font-label-md text-label-md text-primary">
+<span class="material-symbols-outlined text-[16px]">redeem</span>
+                            Unlocks Premium Avatar Frames
+                        </div>
+</div>
+</div>
+<!-- Milestone Card -->
+<div class="bg-background-warm rounded-2xl p-6 border border-outline-variant/30 flex gap-4 opacity-70 grayscale">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="font-headline-md text-headline-md text-outline">10</span>
+</div>
+<div>
+<h4 class="font-numbers-md text-numbers-md text-on-surface mb-1">Zen Master</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Reaching the pinnacle of holistic wellness.</p>
+<div class="flex items-center gap-2 font-label-md text-label-md text-outline">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                            Secret Reward
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface-container-low/80 dark:bg-surface-dark/80 backdrop-blur-md bg-surface-container-low dark:bg-surface-dark shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:opacity-80 transition-opacity" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:opacity-80 transition-opacity" style="font-variation-settings: 'FILL' 0;">checklist</span>
+<span class="font-label-md text-label-md mt-1">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface active:scale-90 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:opacity-80 transition-opacity" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-label-md text-label-md mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:opacity-80 transition-opacity" style="font-variation-settings: 'FILL' 0;">stars</span>
+<span class="font-label-md text-label-md mt-1">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:opacity-80 transition-opacity" style="font-variation-settings: 'FILL' 0;">family_restroom</span>
+<span class="font-label-md text-label-md mt-1">Family</span>
+</a>
+</nav>
+<style>
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+<script>
+        // Simple animation to load the progress bar
+        document.addEventListener('DOMContentLoaded', () => {
+            const bar = document.getElementById('xp-progress');
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = '65%';
+            }, 300);
+        });
+    </script>
+</body></html>

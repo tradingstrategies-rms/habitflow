@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Morning Momentum - HabitFlow Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .organic-gradient {
+            background: linear-gradient(135deg, #f0f9f4 0%, #e0f2fe 100%);
+        }
+        .chart-bar {
+            transition: height 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "primary": "#006c49",
+                        "on-surface": "#1a1c1c",
+                        "surface-dim": "#dadad9",
+                        "surface-tint": "#006c49",
+                        "inverse-primary": "#4edea3",
+                        "surface-bright": "#faf9f8",
+                        "secondary-fixed": "#71f8e4",
+                        "on-secondary-fixed-variant": "#005048",
+                        "on-secondary-container": "#006f64",
+                        "kids-accent": "#FFC107",
+                        "primary-container": "#10b981",
+                        "surface": "#FFFFFF",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#523200",
+                        "kids-primary": "#00D991",
+                        "primary-fixed": "#6ffbbe",
+                        "on-error-container": "#93000a",
+                        "outline": "#6c7a71",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary": "#855300",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#6df5e1",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-high": "#e9e8e7",
+                        "on-primary-fixed": "#002113",
+                        "on-background": "#1a1c1c",
+                        "inverse-on-surface": "#f1f0f0",
+                        "on-surface-variant": "#3c4a42",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#ffffff",
+                        "danger": "#EF4444",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary": "#006b5f",
+                        "outline-variant": "#bbcabf",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f3f2",
+                        "success": "#22C55E",
+                        "surface-variant": "#e3e2e1",
+                        "background-dark": "#1F2937",
+                        "warning": "#F97316",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#00201c",
+                        "tertiary-container": "#e29100",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-container": "#eeeeed",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-primary-container": "#00422b",
+                        "error": "#ba1a1a",
+                        "background": "#faf9f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "chip-padding": "12px",
+                        "button-padding": "16px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "touch-target-min": "48px",
+                        "card-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-lg text-on-background min-h-screen pb-24">
+<!-- Top App Bar (Suppressing because it's a detail screen, using Back instead) -->
+<header class="sticky top-0 z-40 bg-background/80 backdrop-blur-md px-margin-mobile h-16 flex items-center justify-between">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors" onclick="history.back()">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface">Insight</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface">share</span>
+</button>
+</header>
+<main class="max-w-screen-md mx-auto px-margin-mobile space-y-8">
+<!-- Hero Illustration & Title Section -->
+<section class="mt-4 text-center space-y-6">
+<div class="relative w-full aspect-square max-w-[320px] mx-auto overflow-hidden rounded-[40px] organic-gradient shadow-sm">
+<div class="absolute inset-0 flex items-center justify-center p-8">
+<img class="w-full h-full object-contain float-animation" data-alt="A premium, flat vector illustration for a wellness app. The scene shows a stylized sun rising over rolling green hills with dew drops. In the foreground, a glass of water, a meditation cushion, and a running shoe are arranged in an artistic, minimalist composition. The color palette features soft emerald greens, sky blues, and warm gold. The mood is tranquil, fresh, and motivating, with a clean light-mode aesthetic and plenty of whitespace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt7WG_AfVFNrj7gGxL_pZEBqBI0ff9G-PVl_vNWLyAdPXQaV_Zfnkpa9FT26cgKylfgXwiIj-XITwr5IHVqz435rXei9IGbUUdwJ5EsLr8q1Hp_29lX1w7nNfckW5EscZ474Rr4-7CkbDzmGptWaaef7_r7JRAIBcnGHU_lh9pm_0Rl0RcTiji3fmWQ4VeFFybiqFTFjFgMeKsjBHLN8jHZ1OOTcFu8zUTKPRXXIVqyptBuD841m-F"/>
+</div>
+</div>
+<div class="space-y-2">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface">Morning Momentum</h1>
+<div class="flex items-center justify-center gap-2 text-primary font-body-numbers text-body-numbers">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span>25% Higher Consistency</span>
+</div>
+</div>
+</section>
+<!-- Insight Narrative Card -->
+<section class="glass-card p-card-padding rounded-[24px] border border-outline-variant/30 space-y-4">
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                Your consistency score is <span class="font-bold text-primary">25% higher</span> when you complete your core habits before 9 AM. This 'Front-loading' behavior reduces decision fatigue throughout your day.
+            </p>
+</section>
+<!-- Supporting Evidence: Chart -->
+<section class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm px-2">Completion Efficiency</h3>
+<div class="bg-surface p-card-padding rounded-[24px] shadow-sm border border-outline-variant/20">
+<div class="h-48 w-full flex items-end justify-between gap-2 px-2">
+<!-- 6 AM -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative h-[40%]">
+<div class="chart-bar absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[85%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">6 AM</span>
+</div>
+<!-- 8 AM -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative h-[40%]">
+<div class="chart-bar absolute bottom-0 w-full bg-primary rounded-t-lg h-[95%]"></div>
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">Peak</div>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface font-bold">8 AM</span>
+</div>
+<!-- 10 AM -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative h-[40%]">
+<div class="chart-bar absolute bottom-0 w-full bg-secondary-container rounded-t-lg h-[60%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">10 AM</span>
+</div>
+<!-- 12 PM -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative h-[40%]">
+<div class="chart-bar absolute bottom-0 w-full bg-secondary-container rounded-t-lg h-[45%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">12 PM</span>
+</div>
+<!-- 4 PM -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative h-[40%]">
+<div class="chart-bar absolute bottom-0 w-full bg-tertiary-container/60 rounded-t-lg h-[30%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">4 PM</span>
+</div>
+</div>
+<div class="mt-6 flex justify-center items-center gap-4 border-t border-outline-variant/10 pt-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-label-sm font-label-sm text-outline">Completion Streak</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+<span class="text-label-sm font-label-sm text-outline">Average Completion</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Affected Habits -->
+<section class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm px-2">Affected Habits</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<!-- Drink Water -->
+<div class="flex items-center gap-4 p-4 bg-surface rounded-xl border border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Drink Water</p>
+<p class="text-label-sm text-outline">Every morning</p>
+</div>
+</div>
+<!-- Meditation -->
+<div class="flex items-center gap-4 p-4 bg-surface rounded-xl border border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-500">
+<span class="material-symbols-outlined">self_improvement</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Meditation</p>
+<p class="text-label-sm text-outline">10 minutes</p>
+</div>
+</div>
+<!-- Exercise -->
+<div class="flex items-center gap-4 p-4 bg-surface rounded-xl border border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Exercise</p>
+<p class="text-label-sm text-outline">30 minutes</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Suggested Actions -->
+<section class="space-y-4 pb-12">
+<h3 class="font-headline-sm text-headline-sm px-2">Suggested Actions</h3>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-between p-card-padding bg-primary-container text-on-primary-container rounded-[20px] shadow-sm hover:opacity-90 transition-opacity text-left">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">alarm</span>
+<div>
+<p class="font-bold">Schedule a reminder for 7:00 AM</p>
+<p class="text-caption opacity-80">Sync with your smart home devices</p>
+</div>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-card-padding bg-white border border-outline-variant/30 text-on-surface rounded-[20px] shadow-sm hover:bg-surface-container-low transition-colors text-left">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<p class="font-bold">Set out your clothes the night before</p>
+<p class="text-caption text-outline">Reduce morning friction</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Shared Component Logic) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface shadow-[0_-1px_0_0_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<!-- Intelligence is Active -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-label-sm">Intelligence</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction: animate bars on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                const finalHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = finalHeight;
+                }, 100);
+            });
+        });
+
+        // Floating effect for the hero image
+        const heroImg = document.querySelector('.float-animation');
+        if (heroImg) {
+            heroImg.addEventListener('mouseenter', () => {
+                heroImg.style.animationPlayState = 'paused';
+                heroImg.style.transform = 'scale(1.05) translateY(-10px)';
+            });
+            heroImg.addEventListener('mouseleave', () => {
+                heroImg.style.animationPlayState = 'running';
+                heroImg.style.transform = 'scale(1) translateY(0px)';
+            });
+        }
+    </script>
+</body></html>

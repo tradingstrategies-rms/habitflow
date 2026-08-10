@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rewards Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00201c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d9e3f6",
+                        "surface-dark": "#1E1E1E",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "emerald-glow": "rgba(16, 185, 129, 0.15)",
+                        "on-tertiary-fixed": "#2a1700",
+                        "background-warm": "#FFFFFF",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#3c4a42",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-surface": "#121c2a",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-primary": "#4edea3",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dee9fc",
+                        "on-tertiary-container": "#523200",
+                        "surface-container": "#e6eeff",
+                        "primary": "#006c49",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7a71",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed": "#002113",
+                        "kids-secondary": "#0D9488",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#71f8e4",
+                        "kids-accent": "#D97706",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d9e3f6",
+                        "tertiary-fixed": "#ffddb8",
+                        "kids-primary": "#059669",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "secondary": "#006b5f",
+                        "on-secondary-container": "#006f64",
+                        "surface-tint": "#006c49",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-surface": "#27313f",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#121212",
+                        "tertiary": "#855300",
+                        "tertiary-container": "#e29100",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d0dbed",
+                        "tertiary-fixed-dim": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "chip-gap": "12px",
+                        "button-height": "48px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "card-padding": "20px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "numbers-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "numbers-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background-dark');
+            color: theme('colors.on-primary');
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .ambient-shadow {
+            box-shadow: 0 8px 32px 0 theme('colors.emerald-glow');
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col md:pb-0 pb-[80px]">
+<!-- TopAppBar (from JSON) -->
+<header class="w-full sticky top-0 bg-surface dark:bg-surface-dark flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full z-40">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high dark:bg-inverse-surface overflow-hidden flex items-center justify-center text-on-surface-variant dark:text-outline-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-xl">person</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Rewards</h1>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-outline-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</header>
+<main class="flex-grow flex flex-col items-center w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-8 gap-8">
+<!-- Reward Balance Card (High Emphasis) -->
+<section class="w-full max-w-4xl rounded-3xl glass-card ambient-shadow p-8 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+<div class="flex flex-col gap-2 z-10 w-full md:w-auto">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-dark border border-outline-variant/30 flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary-fixed-dim text-2xl" style="font-variation-settings: 'FILL' 1;">hexagon</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-outline-variant uppercase tracking-wider">Level 8</p>
+<h2 class="font-headline-sm text-headline-sm text-on-primary">Consistency Builder</h2>
+</div>
+</div>
+<div class="mt-6">
+<p class="font-label-md text-label-md text-outline-variant mb-1">Total Points</p>
+<div class="flex items-baseline gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-3xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<h1 class="font-headline-xl text-headline-xl text-on-primary">2,450</h1>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 z-10 w-full md:w-[320px]">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-outline-variant">Next Level: Master</span>
+<span class="text-primary-fixed-dim">650 / 1000 XP</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-dark border border-outline-variant/20 overflow-hidden">
+<div class="h-full bg-primary-fixed-dim rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="flex gap-4 w-full mt-2">
+<button class="flex-1 h-button-height rounded-xl border border-outline-variant/30 text-on-primary font-body-sm text-body-sm hover:bg-surface-dark/50 transition-colors flex items-center justify-center">
+                        History
+                    </button>
+<button class="flex-1 h-button-height rounded-xl bg-primary-container text-on-primary-container font-body-sm text-body-sm hover:opacity-90 transition-opacity flex items-center justify-center font-medium">
+                        Redeem
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Summary -->
+<section class="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+<!-- Habits -->
+<div class="glass-card rounded-2xl p-card-padding flex flex-col gap-3 hover:bg-surface-dark/40 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-secondary-fixed-dim">checklist</span>
+</div>
+<div>
+<h3 class="font-numbers-md text-numbers-md text-on-primary">12</h3>
+<p class="font-label-md text-label-md text-outline-variant">Habits Tracked</p>
+</div>
+</div>
+<!-- Goals -->
+<div class="glass-card rounded-2xl p-card-padding flex flex-col gap-3 hover:bg-surface-dark/40 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-primary-fixed-dim">flag</span>
+</div>
+<div>
+<h3 class="font-numbers-md text-numbers-md text-on-primary">4</h3>
+<p class="font-label-md text-label-md text-outline-variant">Active Goals</p>
+</div>
+</div>
+<!-- Streaks -->
+<div class="glass-card rounded-2xl p-card-padding flex flex-col gap-3 hover:bg-surface-dark/40 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-tertiary-fixed-dim">local_fire_department</span>
+</div>
+<div>
+<h3 class="font-numbers-md text-numbers-md text-on-primary">14 Days</h3>
+<p class="font-label-md text-label-md text-outline-variant">Current Streak</p>
+</div>
+</div>
+<!-- Achievements -->
+<div class="glass-card rounded-2xl p-card-padding flex flex-col gap-3 hover:bg-surface-dark/40 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-secondary-container">trophy</span>
+</div>
+<div>
+<h3 class="font-numbers-md text-numbers-md text-on-primary">8</h3>
+<p class="font-label-md text-label-md text-outline-variant">Achievements</p>
+</div>
+</div>
+</section>
+<!-- Recent Activity Timeline -->
+<section class="w-full max-w-4xl glass-card rounded-3xl p-6 md:p-8 mt-4">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-sm text-headline-sm text-on-primary">Recent Activity</h2>
+<button class="font-body-sm text-body-sm text-primary-fixed-dim hover:underline">View All</button>
+</div>
+<div class="flex flex-col relative before:absolute before:inset-y-0 before:left-[19px] before:w-px before:bg-outline-variant/20 ml-2">
+<!-- Item 1 -->
+<div class="flex gap-4 relative py-4 first:pt-0 last:pb-0">
+<div class="absolute left-[15px] top-[24px] w-2 h-2 rounded-full bg-primary-fixed-dim ring-4 ring-background-dark z-10"></div>
+<div class="w-10 h-10 rounded-full bg-surface-dark border border-outline-variant/30 flex items-center justify-center z-10 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">fitness_center</span>
+</div>
+<div class="flex-grow bg-surface-dark/30 rounded-xl p-4 border border-outline-variant/10 flex justify-between items-center hover:bg-surface-dark/50 transition-colors">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-primary">Morning Workout Completed</h4>
+<p class="font-label-md text-label-md text-outline-variant mt-1">Today, 7:30 AM</p>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary-fixed-dim">+50 XP</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 relative py-4">
+<div class="absolute left-[15px] top-[24px] w-2 h-2 rounded-full bg-surface-dark border border-outline-variant/50 ring-4 ring-background-dark z-10"></div>
+<div class="w-10 h-10 rounded-full bg-surface-dark border border-outline-variant/30 flex items-center justify-center z-10 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">local_cafe</span>
+</div>
+<div class="flex-grow bg-surface-dark/30 rounded-xl p-4 border border-outline-variant/10 flex justify-between items-center hover:bg-surface-dark/50 transition-colors">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-primary">Skipped Coffee Shop</h4>
+<p class="font-label-md text-label-md text-outline-variant mt-1">Yesterday, 9:00 AM</p>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary-fixed-dim">+20 XP</span>
+</div>
+</div>
+<!-- Item 3 (Negative) -->
+<div class="flex gap-4 relative py-4">
+<div class="absolute left-[15px] top-[24px] w-2 h-2 rounded-full bg-surface-dark border border-outline-variant/50 ring-4 ring-background-dark z-10"></div>
+<div class="w-10 h-10 rounded-full bg-surface-dark border border-outline-variant/30 flex items-center justify-center z-10 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">movie</span>
+</div>
+<div class="flex-grow bg-surface-dark/30 rounded-xl p-4 border border-outline-variant/10 flex justify-between items-center hover:bg-surface-dark/50 transition-colors">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-primary">Movie Night Reward</h4>
+<p class="font-label-md text-label-md text-outline-variant mt-1">Oct 24, 8:00 PM</p>
+</div>
+<span class="font-numbers-md text-numbers-md text-outline-variant">-300 Pts</span>
+</div>
+</div>
+</div>
+<button class="w-full h-button-height mt-6 rounded-xl border border-primary-fixed-dim/30 text-primary-fixed-dim font-body-sm text-body-sm hover:bg-primary-fixed-dim/10 transition-colors flex items-center justify-center">
+                View Reward History
+            </button>
+</section>
+</main>
+<!-- BottomNavBar (from JSON) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-low/80 dark:bg-surface-dark/80 backdrop-blur-md shadow-sm border-t-0 fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1">checklist</span>
+<span class="font-label-md text-label-md">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1">emoji_events</span>
+<span class="font-label-md text-label-md">Goals</span>
+</button>
+<!-- Active State for Rewards -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-md text-label-md">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1">family_restroom</span>
+<span class="font-label-md text-label-md">Family</span>
+</button>
+</nav>
+</body></html>

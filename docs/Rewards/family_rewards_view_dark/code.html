@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Family Rewards - Shared Growth</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00201c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d9e3f6",
+                        "surface-dark": "#1E1E1E",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "emerald-glow": "rgba(16, 185, 129, 0.15)",
+                        "on-tertiary-fixed": "#2a1700",
+                        "background-warm": "#FFFFFF",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#3c4a42",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-surface": "#121c2a",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-primary": "#4edea3",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dee9fc",
+                        "on-tertiary-container": "#523200",
+                        "surface-container": "#e6eeff",
+                        "primary": "#006c49",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7a71",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed": "#002113",
+                        "kids-secondary": "#0D9488",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#71f8e4",
+                        "kids-accent": "#D97706",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d9e3f6",
+                        "tertiary-fixed": "#ffddb8",
+                        "kids-primary": "#059669",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "secondary": "#006b5f",
+                        "on-secondary-container": "#006f64",
+                        "surface-tint": "#006c49",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-surface": "#27313f",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#121212",
+                        "tertiary": "#855300",
+                        "tertiary-container": "#e29100",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d0dbed",
+                        "tertiary-fixed-dim": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "chip-gap": "12px",
+                        "button-height": "48px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "card-padding": "20px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "numbers-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "numbers-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        .ambient-shadow-primary {
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.08);
+        }
+        .glow-pip {
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-surface-dark text-on-surface-variant min-h-screen flex flex-col font-body-sm selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-surface-dark flat no shadows z-40">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A macro photography portrait of a smooth, rounded river stone, symbolizing a family user avatar. The lighting is soft and moody, emphasizing natural textures against a dark, premium background. The style is minimalist and organic, fitting a modern wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZrb7cU9TiafR3nDB4hp9aXmM0GeJn-YDjdDapUGUcb8yz1uPNW1OGeCirqvUEYwz3RwtRDm-nlKWWd0DM2j_gZqDblLrxliKpif7M3zwSMjQW4B9pqpX3rFojUBauFUw1GpktTvoKXUE046BTcYxxD0bbwk0seNAbRkQP65wabusdIeStfE7j5qsEmQo_I2sSOWnW_QW_cJJLgSnyhqXG3zYXwC-vj2SP2Ifp1RbW06H_-wqWQ2Je"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary-fixed-dim">Family</h1>
+</div>
+<button aria-label="Settings" class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant dark:text-outline-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-margin-mobile md:px-margin-desktop pt-6 pb-32 flex flex-col gap-10">
+<!-- Header Section -->
+<section class="flex flex-col items-center text-center gap-4">
+<h2 class="font-headline-lg text-headline-lg text-primary-fixed-dim">Everyone completed habits today!</h2>
+<p class="font-body-lg text-body-lg text-outline-variant max-w-md">The family is growing stronger together. Keep up the steady progress.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-5xl mx-auto w-full">
+<!-- Shared Growth / Tree Visualization (High Emphasis) -->
+<section class="md:col-span-12 lg:col-span-8 bg-inverse-surface rounded-[24px] p-card-padding border border-outline-variant/10 ambient-shadow-primary flex flex-col gap-6 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-error">Family Tree</h3>
+<p class="font-body-sm text-body-sm text-outline-variant">Collective Growth Level</p>
+</div>
+<div class="px-4 py-2 bg-surface-dark rounded-full border border-primary-fixed-dim/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-numbers-md text-numbers-md text-primary-fixed-dim">Lvl 12</span>
+</div>
+</div>
+<!-- Abstract Tree/Growth Representation -->
+<div class="h-64 rounded-xl bg-surface-dark/50 border border-outline-variant/5 flex items-end justify-center pb-8 relative z-10">
+<!-- Decorative elements representing growth -->
+<div class="w-1 bg-gradient-to-t from-primary-container to-secondary-container h-3/4 rounded-full relative">
+<div class="absolute bottom-1/4 -left-8 w-16 h-1 bg-gradient-to-r from-transparent via-secondary-fixed to-transparent rotate-45 opacity-50 rounded-full"></div>
+<div class="absolute bottom-1/2 -right-10 w-20 h-1 bg-gradient-to-r from-transparent via-primary-fixed to-transparent -rotate-12 opacity-70 rounded-full"></div>
+<div class="absolute top-0 -translate-y-1/2 -translate-x-1/2 left-1/2 w-4 h-4 bg-primary-fixed rounded-full glow-pip"></div>
+</div>
+<div class="absolute bottom-4 text-center font-label-md text-label-md text-outline-variant uppercase tracking-widest">Growing Steadily</div>
+</div>
+</section>
+<!-- Family Members Progress (Pips) -->
+<section class="md:col-span-12 lg:col-span-4 flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm text-on-error px-2">Today's Contribution</h3>
+<div class="flex flex-col gap-3">
+<!-- Member 1 -->
+<div class="bg-inverse-surface rounded-xl p-4 border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dark flex items-center justify-center text-primary-fixed-dim font-headline-sm text-headline-sm">A</div>
+<span class="font-body-lg text-body-lg text-on-error">Adult 1</span>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="bg-inverse-surface rounded-xl p-4 border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dark flex items-center justify-center text-secondary-fixed-dim font-headline-sm text-headline-sm">A</div>
+<span class="font-body-lg text-body-lg text-on-error">Adult 2</span>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-surface-dark border border-outline-variant/30"></div>
+</div>
+</div>
+<!-- Member 3 (Child) -->
+<div class="bg-inverse-surface rounded-xl p-4 border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dark flex items-center justify-center text-kids-accent font-headline-sm text-headline-sm">K</div>
+<span class="font-body-lg text-body-lg text-on-error">Kid 1</span>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed glow-pip"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface-dark/80 backdrop-blur-md shadow-sm">
+<a class="flex flex-col items-center justify-center text-outline-variant px-4 py-1 hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant px-4 py-1 hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">checklist</span>
+<span class="font-label-md text-label-md">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant px-4 py-1 hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">emoji_events</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant px-4 py-1 hover:bg-inverse-surface rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">stars</span>
+<span class="font-label-md text-label-md">Rewards</span>
+</a>
+<!-- Active Tab: Family -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+<span class="font-label-md text-label-md">Family</span>
+</a>
+</nav>
+</body></html>

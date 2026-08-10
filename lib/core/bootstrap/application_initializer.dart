@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:timezone/timezone.dart' as tz;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:habitflow/core/providers/core_providers.dart';
 import 'package:habitflow/core/theme/theme_controller.dart';
-import 'startup_tasks.dart';
+import 'package:habitflow/features/habits/application/providers/reminder_scheduler_providers.dart';
 
 /// [ApplicationInitializer] orchestrates the startup sequence.
 class ApplicationInitializer {
@@ -46,7 +47,9 @@ class ApplicationInitializer {
     };
 
     // 5. Notifications
-    await StartupTasks.initNotifications();
+    final reminderScheduler = container.read(reminderSchedulerServiceProvider);
+    await reminderScheduler.initialize();
+    debugPrint('ApplicationInitializer: Notifications initialized. Local timezone: ${tz.local.name}');
     
     logger.info('Startup sequence completed');
   }

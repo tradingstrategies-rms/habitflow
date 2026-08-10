@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HabitFlow - Welcome Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#e29100",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "kids-primary": "#00D991",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary-fixed": "#00201c",
+                    "secondary": "#006b5f",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#10b981",
+                    "surface-dim": "#dadad9",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#e3e2e1",
+                    "surface-bright": "#faf9f8",
+                    "success": "#22C55E",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary-container": "#00422b",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6ffbbe",
+                    "on-primary-fixed": "#002113",
+                    "warning": "#F97316",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "outline-variant": "#bbcabf",
+                    "kids-accent": "#FFC107",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary": "#006c49",
+                    "tertiary": "#855300",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary-container": "#523200",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006c49",
+                    "surface-container-highest": "#e3e2e1",
+                    "danger": "#EF4444",
+                    "surface": "#FFFFFF",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary-container": "#6df5e1",
+                    "primary-fixed-dim": "#4edea3",
+                    "outline": "#6c7a71",
+                    "on-tertiary": "#ffffff",
+                    "background-dark": "#1F2937",
+                    "on-tertiary-fixed": "#2a1700",
+                    "inverse-surface": "#2f3130",
+                    "inverse-primary": "#4edea3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        
+        @keyframes tree-growth {
+            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+            60% { transform: scale(1.05) translateY(-5px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        @keyframes leaf-pop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .animate-tree { animation: tree-growth 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .animate-leaf { animation: leaf-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 10;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 108, 73, 0.05) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Placeholder (Suppressed per "Transactional" rule, but keeping structure for layout balance) -->
+<header class="w-full flex items-center justify-between px-margin-mobile h-touch-target-min max-w-7xl mx-auto pt-4">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">HabitFlow</span>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-margin-mobile text-center relative z-20">
+<!-- Animated Background Layer -->
+<div class="absolute inset-0 bg-pattern -z-10 opacity-60"></div>
+<!-- Success Content Container -->
+<div class="w-full max-w-md space-y-8 flex flex-col items-center">
+<!-- Growth Tree Organic Illustration -->
+<div class="relative w-72 h-72 md:w-80 md:h-80 mb-4 flex items-center justify-center">
+<!-- Outer Halo -->
+<div class="absolute inset-0 bg-primary/5 rounded-full scale-125 blur-3xl animate-pulse"></div>
+<!-- Main Tree Graphic -->
+<div class="animate-tree relative z-10 w-full h-full flex items-center justify-center">
+<img class="w-full h-full object-contain" data-alt="A stylized, organic 3D digital illustration of a vibrant 'Growth Tree' blooming with lush emerald green leaves and small golden fruits. The tree is centered on a clean white background with soft, high-key studio lighting. The aesthetic is premium and modern, featuring smooth rounded shapes and subtle gradients that evoke a sense of calm vitality and family development. Small floating sparkles surround the branches to suggest magic and achievement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp8ib4NIuKN-saG7RMT38fAF6eugtnvfB316KXJ3O5GMEQNXDiJxwgsNRjwkKVW3h3OYOmqqxwnGHOVOvY-FIMjpe9hzBTALsP3mBzlYS0W4K2TTwLBr716GBtpREdEaSuWSeeaMfUGQaTLPwZtPf78rB37Rma-VAXYEPkThRuXkk-vGyYX-_TtdUtiATHhfB4Y1o4HyqTHgPk2yufKsPQnb7qECEA4ENQJmsm44Cz9cFyc8W3GxtO"/>
+<!-- Decorative Floating Leaves (Simulated micro-interactions) -->
+<div class="absolute top-1/4 right-1/4 animate-leaf" style="animation-delay: 0.8s;">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="absolute top-1/3 left-1/4 animate-leaf" style="animation-delay: 1.1s;">
+<span class="material-symbols-outlined text-kids-primary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+</div>
+</div>
+<!-- Headlines -->
+<div class="space-y-3 opacity-0 translate-y-4 animate-[fade-in-up_0.8s_ease-out_0.5s_forwards]">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface tracking-tight">
+                    You're all set!
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px] mx-auto">
+                    Small habits. Big futures. Your family's growth journey starts today.
+                </p>
+</div>
+<!-- Action Button -->
+<div class="w-full pt-8 opacity-0 translate-y-4 animate-[fade-in-up_0.8s_ease-out_0.8s_forwards]">
+<button class="group relative w-full bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-bold py-button-padding px-8 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 active:scale-95 flex items-center justify-center gap-3" onclick="window.location.reload()">
+<span class="text-lg">Go to Dashboard</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<p class="mt-6 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest opacity-60">
+                    Preparing your workspace...
+                </p>
+</div>
+</div>
+</main>
+<!-- Success Confetti Particles (JS Generated) -->
+<div class="pointer-events-none absolute inset-0 z-50" id="confetti-container"></div>
+<!-- Footer Decorative Element -->
+<footer class="h-20 w-full flex items-center justify-center opacity-40">
+<div class="flex gap-2 items-center">
+<span class="w-2 h-2 rounded-full bg-primary/20"></span>
+<span class="w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="w-2 h-2 rounded-full bg-primary/20"></span>
+</div>
+</footer>
+<script>
+        // Confetti Generator
+        const container = document.getElementById('confetti-container');
+        const colors = ['#006c49', '#10b981', '#FFC107', '#4edea3', '#71f8e4'];
+        
+        function createConfetti() {
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                const duration = 2 + Math.random() * 3;
+                const delay = Math.random() * 2;
+                
+                confetti.style.animation = `confetti-fall ${duration}s ${delay}s linear forwards`;
+                container.appendChild(confetti);
+                
+                // Remove from DOM after animation
+                setTimeout(() => confetti.remove(), (duration + delay) * 1000);
+            }
+        }
+
+        // Trigger confetti on load
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 600);
+            
+            // Micro-interaction: button haptic feel
+            const btn = document.querySelector('button');
+            btn.addEventListener('mouseenter', () => {
+                // Potential for light rumble or extra particles
+            });
+        });
+
+        // Add tailwind fade-in-up animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-in-up {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

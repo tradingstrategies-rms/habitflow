@@ -36,11 +36,11 @@ void main() {
   testWidgets('Authenticated user with profile is redirected to Dashboard', (tester) async {
     const mockProfile = UserProfile(
       uid: 'user123',
+      email: 'test@example.com',
       firstName: 'Test',
       lastName: 'User',
       displayName: 'Test User',
       country: 'US',
-      language: 'en',
       timezone: 'UTC',
       familyRole: FamilyRole.parent,
     );
@@ -58,8 +58,7 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Verify we are on Dashboard
-    expect(find.text('Overview'), findsOneWidget);
-    expect(find.text('Daily Score'), findsOneWidget);
+    expect(find.text('Current Goals'), findsOneWidget);
   });
 
   testWidgets('Unauthenticated user is redirected to Welcome', (tester) async {

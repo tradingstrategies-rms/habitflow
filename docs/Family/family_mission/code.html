@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Mission Details - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "secondary": "#006b5f",
+                    "primary-container": "#10b981",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#523200",
+                    "on-primary": "#ffffff",
+                    "kids-accent": "#FFC107",
+                    "surface": "#FFFFFF",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#faf9f8",
+                    "background-dark": "#1F2937",
+                    "on-primary-fixed": "#002113",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-fixed-variant": "#005048",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "tertiary": "#855300",
+                    "secondary-container": "#6df5e1",
+                    "on-error": "#ffffff",
+                    "success": "#22C55E",
+                    "surface-dim": "#dadad9",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "background": "#faf9f8",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary": "#006c49",
+                    "on-secondary-container": "#006f64",
+                    "kids-primary": "#00D991",
+                    "surface-tint": "#006c49",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "20": "20px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .organic-gradient { background: linear-gradient(135deg, #006c49 0%, #10b981 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .step-active { border-left: 4px solid #006c49; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top AppBar (JSON Mapping: TopAppBar) -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-on-surface-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16">
+<button class="w-touch-target-min h-touch-target-min flex items-center justify-center text-on-surface-variant active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary dark:text-primary-fixed-dim">Mission Details</h1>
+<button class="w-touch-target-min h-touch-target-min flex items-center justify-center text-on-surface-variant active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<main class="px-margin-mobile md:px-margin-desktop mt-base max-w-4xl mx-auto space-y-6">
+<!-- Mission Hero Header -->
+<section class="relative overflow-hidden rounded-20 h-64 flex flex-col justify-end p-card-padding text-white organic-gradient shadow-lg">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined !text-[120px]">potted_plant</span>
+</div>
+<div class="relative z-10 space-y-2">
+<span class="bg-kids-accent text-on-tertiary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm inline-block uppercase tracking-wider">Family Mission</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg leading-tight">Operation Green Thumb - Plant a Garden</h2>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="font-label-sm text-label-sm">Ends in 5 days</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Collective Progress Card -->
+<section class="md:col-span-2 bg-white rounded-20 p-card-padding shadow-sm border border-surface-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mission Progress</h3>
+<p class="font-caption text-caption text-on-surface-variant">Collective Effort</p>
+</div>
+<span class="text-primary font-bold text-2xl">40%</span>
+</div>
+<div class="space-y-4">
+<div class="w-full bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(16,185,129,0.4)]" style="width: 40%"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Started April 12</span>
+<span>Target: Completion</span>
+</div>
+</div>
+</section>
+<!-- Shared Reward Preview -->
+<section class="bg-tertiary-container/10 border-2 border-dashed border-tertiary-container/30 rounded-20 p-card-padding flex flex-col items-center justify-center text-center space-y-3">
+<div class="w-16 h-16 bg-tertiary-container rounded-full flex items-center justify-center text-on-tertiary shadow-md">
+<span class="material-symbols-outlined !text-3xl" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest">Shared Reward</h4>
+<p class="font-headline-md text-headline-md text-on-tertiary-container">+200 Family Gems</p>
+</div>
+</section>
+</div>
+<!-- Who's Helping Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm">Who's Helping</h3>
+<button class="text-primary font-label-sm text-label-sm flex items-center gap-1 hover:underline">
+                    Manage Team <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-4">
+<!-- Member 1 -->
+<div class="flex items-center gap-3 bg-white p-2 pr-6 rounded-full border border-surface-variant/30 shadow-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a cheerful middle-aged father with a warm smile, wearing a clean white t-shirt. The lighting is bright and natural, set against a soft-focus garden background that matches the organic vitality UI theme with lush greens and soft sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8hRBvM1TKcEYJype5EFWA_dicLkwJjUPP980IN5oAxvZ_tK6uZTe5XlwosTzH7l2p5IRS3g5bOUeq1uzvtwYL3jxLl5iPRq2z9HNeIuIC6z85HA6MJTmjdnaHT-ZG0GsbAzW7q4m6L0nWETBNN0hEE07y2Jl1Ze7a6Nk0HpBnBgoBwiIHkfBCbW-OtwRH9w3oC2NxAvyavw4zSEHyK8FE7OF0hWj2iw9nPljXuO8MvYqLEZxHcW3U"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm font-bold">Dad</p>
+<p class="text-[10px] text-success font-medium uppercase">Team Leader</p>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="flex items-center gap-3 bg-white p-2 pr-6 rounded-full border border-surface-variant/30 shadow-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-kids-accent">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young girl with pigtails and a playful expression, wearing a bright yellow apron. The background is a minimalist, modern interior with soft lighting that complements the kids-accent yellow and emerald green color palette of the app's premium design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUHsy2EHzm1m7GfN_IIcT-Ka-fmdnbWi6dP9FTKgz4ZvBvKXRlMXe73T7EAhzEXSt7FhSZZjpWnDfuFj_V-HuYey3TEBv2FqPJS-9yKz_I1tVGgxuHY_SldpIzNPb3xxV1n6Y3glYfGYpE-rtfO6N1Ij5gbVSVnoOik01m2HtjTt_M79tVlOcvOtFOVOxprb3UTJ2t8LM-TDkZO-K-tEtDyXrV4zhH3_5kjeABRE2F2NW58jk-XBZN"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm font-bold">Lily</p>
+<p class="text-[10px] text-on-surface-variant font-medium uppercase">Active</p>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="flex items-center gap-3 bg-white p-2 pr-6 rounded-full border border-surface-variant/30 shadow-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-secondary">
+<img class="w-full h-full object-cover" data-alt="A friendly, modern portrait of a teenage boy with dark hair and a confident look, wearing a green hoodie. The image style is clean, sharp, and optimistic, utilizing high-key lighting and a palette that reinforces the calm growth and professional family development atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy01jt3KryCQzG_vwLOhsK47u_3kp52CygyykEY1B8VZbRyx7V2Lxc7ew3v8x0ISF7tueEyfj6dS7NmVlCsfCu2A87psu-o1y5z9ZU9bHrmD4fpmdn6vCCZyRtJ7heL62MtjiXP9Wjjj_1YzxEpYM82vs61iE2xTOWkcIuJC5DZtAKHdWAxzMUTExBgYBBsGQAcIdeAm1yUV_Q71sNL3rlYoVxEdBvFA4oJQLjsQSNl8TP5l9eihks"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm font-bold">Alex</p>
+<p class="text-[10px] text-on-surface-variant font-medium uppercase">Contributor</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center text-outline-variant hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+<!-- Mission Steps -->
+<section class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm">Mission Steps</h3>
+<div class="space-y-3">
+<!-- Step 1: Completed -->
+<div class="bg-surface-container-low rounded-20 p-4 flex items-center gap-4 opacity-70 group">
+<div class="w-8 h-8 bg-success rounded-full flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div class="flex-1">
+<h4 class="font-body-lg text-body-lg line-through text-on-surface-variant">Buy seeds and fertilizer</h4>
+<p class="text-[12px] text-on-surface-variant/60">Completed by Dad • Yesterday</p>
+</div>
+</div>
+<!-- Step 2: In Progress -->
+<div class="bg-white rounded-20 p-4 flex items-center gap-4 border-2 border-primary/20 shadow-md transform hover:-translate-y-1 transition-all duration-300">
+<button class="w-8 h-8 border-2 border-primary rounded-full flex items-center justify-center text-primary shrink-0 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm">radio_button_unchecked</span>
+</button>
+<div class="flex-1">
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Prepare the soil</h4>
+<p class="text-[12px] text-primary font-medium">Alex is working on this</p>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Small avatar icon of a teenage boy with dark hair, matching the previous portrait of Alex, optimized for a miniature UI display with vibrant, clear features and modern lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNLxmKvZQ85dM_PqqNJy3KWN7iRG1jCCfQ48x4HJrPP68kE0VBLLnPJtFO7sHm8K2Cly9DOwVYHXU7cVNj7wTxGbkMgsu3kp8uCnlfVWYY8Obvk_mqGqrTGdO1V2jWhix6MbsSe9LvWg-sLcrR4tqQodoO3W-b9XlAFAEt577VRwztXoLqb5x0-jrO5bpGWHCxG4qxa6pZp-jSTqH6WLC5nelgJXrb5mE1ZvEuJ93jYbztURFbY9IU"/>
+</div>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="bg-white rounded-20 p-4 flex items-center gap-4 border border-surface-variant/30 shadow-sm opacity-60">
+<button class="w-8 h-8 border-2 border-outline-variant rounded-full flex items-center justify-center text-outline-variant shrink-0">
+<span class="material-symbols-outlined text-sm">lock</span>
+</button>
+<div class="flex-1">
+<h4 class="font-body-lg text-body-lg text-on-surface">Plant the primary seeds</h4>
+<p class="text-[12px] text-on-surface-variant">Unlocks after Step 2</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="bg-white rounded-20 p-4 flex items-center gap-4 border border-surface-variant/30 shadow-sm opacity-60">
+<button class="w-8 h-8 border-2 border-outline-variant rounded-full flex items-center justify-center text-outline-variant shrink-0">
+<span class="material-symbols-outlined text-sm">lock</span>
+</button>
+<div class="flex-1">
+<h4 class="font-body-lg text-body-lg text-on-surface">Set up watering schedule</h4>
+<p class="text-[12px] text-on-surface-variant">Pending</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Motivation Card -->
+<section class="bg-secondary/5 rounded-20 p-card-padding border border-secondary/10 flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-3xl">lightbulb</span>
+<div class="space-y-1">
+<h5 class="font-label-sm text-label-sm font-bold text-secondary">Mission Tip</h5>
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">Plants grow better when everyone talks to them! Take 5 minutes tonight to check the moisture level together.</p>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (JSON Mapping: BottomNavBar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe px-4 bg-surface dark:bg-on-surface-variant shadow-sm rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<!-- Active Tab: Family (Because this is a Family Mission screen) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<!-- Floating Action Button - Action-Oriented -->
+<button class="fixed right-6 bottom-24 md:bottom-10 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-all z-40">
+<span class="material-symbols-outlined !text-3xl">chat</span>
+</button>
+<script>
+        // Simple micro-interaction for the progress bar
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.querySelector('.bg-primary.h-full');
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                setTimeout(() => {
+                    progressBar.style.width = '40%';
+                }, 300);
+            }
+
+            // Click interaction for checkboxes
+            const steps = document.querySelectorAll('.bg-white.rounded-20.p-4');
+            steps.forEach(step => {
+                step.addEventListener('click', function() {
+                    const icon = this.querySelector('.material-symbols-outlined');
+                    if (icon && icon.innerText === 'radio_button_unchecked') {
+                        this.classList.add('scale-95');
+                        setTimeout(() => this.classList.remove('scale-95'), 150);
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

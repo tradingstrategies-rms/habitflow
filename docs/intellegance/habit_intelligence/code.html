@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Habit Intelligence - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "primary": "#006c49",
+                        "on-surface": "#1a1c1c",
+                        "surface-dim": "#dadad9",
+                        "surface-tint": "#006c49",
+                        "inverse-primary": "#4edea3",
+                        "surface-bright": "#faf9f8",
+                        "secondary-fixed": "#71f8e4",
+                        "on-secondary-fixed-variant": "#005048",
+                        "on-secondary-container": "#006f64",
+                        "kids-accent": "#FFC107",
+                        "primary-container": "#10b981",
+                        "surface": "#FFFFFF",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#523200",
+                        "kids-primary": "#00D991",
+                        "primary-fixed": "#6ffbbe",
+                        "on-error-container": "#93000a",
+                        "outline": "#6c7a71",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary": "#855300",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#6df5e1",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-high": "#e9e8e7",
+                        "on-primary-fixed": "#002113",
+                        "on-background": "#1a1c1c",
+                        "inverse-on-surface": "#f1f0f0",
+                        "on-surface-variant": "#3c4a42",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#ffffff",
+                        "danger": "#EF4444",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary": "#006b5f",
+                        "outline-variant": "#bbcabf",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f3f2",
+                        "success": "#22C55E",
+                        "surface-variant": "#e3e2e1",
+                        "background-dark": "#1F2937",
+                        "warning": "#F97316",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#00201c",
+                        "tertiary-container": "#e29100",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-container": "#eeeeed",
+                        "surface-container-highest": "#e3e2e1",
+                        "on-primary-container": "#00422b",
+                        "error": "#ba1a1a",
+                        "background": "#faf9f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "chip-padding": "12px",
+                        "button-padding": "16px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "touch-target-min": "48px",
+                        "card-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-on-surface docked full-width top-0 z-40 sticky">
+<div class="flex justify-between items-center px-margin-mobile w-full h-16">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-outline-variant hover:opacity-80 transition-opacity cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a cheerful, middle-aged professional woman with a kind expression and soft natural lighting. She is set against a clean, blurred office background with emerald green and warm white accents, embodying the Organic Vitality aesthetic of being approachable and reliable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtfRvIWRNuJcAsvJG4BIOU6tPB7xptmJtuDGa-j6S3N9mpWj10q0OkrDDhlpJfYm4FXq66PYzMMERNK_RYQYmGoNl_rtQjXLjLOleNHHNl7X_JrCOWTvujYSEHzf1B81FMziroM8gQkd1LOJ8e21FqVXKBjJ7U4_NalZ9XEiPBlXT6_NLduVfdEZlF4V2L20SIz6MallWJshhVi6pSqkhGDs7qwhlW1ZIgErdE_7zNv0POUTc1LyrJ"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Habit Intelligence</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+                notifications
+            </button>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-8 max-w-2xl mx-auto">
+<!-- Segmented Control (Weekly/Monthly) -->
+<div class="flex justify-center">
+<div class="bg-surface-container p-1 rounded-full flex w-full max-w-xs shadow-sm">
+<button class="flex-1 py-2 text-label-sm font-label-sm rounded-full transition-all duration-200 bg-surface text-primary shadow-sm" id="toggle-weekly">Weekly</button>
+<button class="flex-1 py-2 text-label-sm font-label-sm rounded-full transition-all duration-200 text-on-surface-variant hover:bg-surface-container-high" id="toggle-monthly">Monthly</button>
+</div>
+</div>
+<!-- Overview Section: Wellness Score -->
+<section class="relative overflow-hidden rounded-[20px] bg-primary text-on-primary p-card-padding shadow-lg">
+<!-- Background Decoration -->
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-primary-container opacity-20 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col items-center text-center py-4">
+<span class="font-label-sm text-label-sm uppercase tracking-widest opacity-80 mb-2">Overall Wellness Score</span>
+<div class="text-[72px] font-extrabold leading-none mb-2">82</div>
+<div class="bg-primary-container text-on-primary-container px-4 py-1 rounded-full text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                    Excellent +4%
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+<p class="font-label-sm text-label-sm opacity-70 mb-1">Most Improved</p>
+<p class="font-headline-sm text-headline-sm">Reading</p>
+<p class="text-xs text-primary-container font-semibold">+15% vs last week</p>
+</div>
+<div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+<p class="font-label-sm text-label-sm opacity-70 mb-1">Needs Attention</p>
+<p class="font-headline-sm text-headline-sm">Evening Walk</p>
+<p class="text-xs text-kids-accent font-semibold">-8% consistency</p>
+</div>
+</div>
+</section>
+<!-- Best Routine Card -->
+<section class="bg-surface border border-outline-variant rounded-[20px] p-card-padding flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">wb_sunny</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Best Routine</h3>
+<p class="text-on-surface-variant font-caption text-caption">Early Morning (6:00 AM - 8:00 AM)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</section>
+<!-- Behavior Patterns Section -->
+<section class="space-y-4">
+<h2 class="font-headline-md text-headline-md text-on-surface px-1">Behavior Patterns</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Pattern Card 1 -->
+<div class="bg-surface-container-low rounded-[20px] p-5 border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-start justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<span class="text-xs font-bold text-primary bg-primary-container/10 px-2 py-0.5 rounded">HIGH VELOCITY</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-1">The Morning Starter</h3>
+<p class="text-on-surface-variant text-caption font-caption mb-4">You complete 85% of your core habits before 9:00 AM. This is your power window.</p>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%] rounded-full"></div>
+</div>
+</div>
+<!-- Pattern Card 2 -->
+<div class="bg-surface-container-low rounded-[20px] p-5 border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-start justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">weekend</span>
+</div>
+<span class="text-xs font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded">CONSISTENT</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Weekend Resilient</h3>
+<p class="text-on-surface-variant text-caption font-caption mb-4">Unlike most users, your hydration and reading habits remain steady on Saturdays.</p>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[72%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights & Recommendations -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="font-headline-md text-headline-md text-on-surface">Tailored Insights</h2>
+<button class="text-primary font-label-sm text-label-sm">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Insight Card 1 -->
+<div class="bg-surface border border-outline-variant rounded-[20px] overflow-hidden flex flex-col md:flex-row shadow-sm">
+<div class="w-full md:w-32 h-32 relative shrink-0">
+<img class="w-full h-full object-cover" data-alt="A peaceful, high-quality photograph of a minimalist bedroom at dawn. Soft morning light filters through thin white curtains onto a wooden nightstand with a single glass of water and an open book. The atmosphere is calm, clean, and refreshing, following a modern corporate wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfQtK9Rk_K6Elmu2495ZoUri8p99KrKFFEYE42ne0rh5ElnK8Czf2S0f6PH8MVHYxTZkewbaUG4QIjCArkFszVakB0baHS78MuwHvWTM9PXb7OkPZV-UO943UHcxXlAYTiye2aYAYosIcBhXjC8WGKpwPiSQWHElguee8kaPMOIsUKgqAZeVDVB0Uy_2kDO0EUCC0ohHQs92h_rmfhaohsfQ92cDjWIXJ55cMW1kos86dz-WCO19bK"/>
+</div>
+<div class="p-5 flex flex-col justify-center">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-primary font-bold text-[10px] uppercase tracking-wider">Premium Insight</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-1">The Hydration-Energy Loop</h4>
+<p class="text-on-surface-variant text-caption font-caption">Your energy scores are 12% higher on days you finish 1L of water before noon.</p>
+</div>
+</div>
+<!-- Recommendation Card 1 -->
+<div class="bg-secondary-container/10 border-2 border-dashed border-secondary-container rounded-[20px] p-6 text-center">
+<div class="w-14 h-14 rounded-full bg-secondary-container mx-auto flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-secondary-container text-[28px]">lightbulb</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-secondary-container mb-2">Recommendation for Tomorrow</h4>
+<p class="text-on-surface-variant text-body-lg font-body-lg mb-6">Stack your 'Evening Walk' immediately after finishing your last work meeting to increase success by 40%.</p>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-sm text-label-sm shadow-md hover:opacity-90 transition-opacity scale-100 active:scale-95">
+                        Accept Routine Suggestion
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface dark:bg-inverse-surface shadow-sm rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-100 active:scale-95 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-100 active:scale-95 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-5 py-1 scale-100 active:scale-95 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-label-sm">Intelligence</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-100 active:scale-95 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<script>
+        // Simple Interaction for the Toggle
+        const toggleWeekly = document.getElementById('toggle-weekly');
+        const toggleMonthly = document.getElementById('toggle-monthly');
+
+        function setActive(activeBtn, inactiveBtn) {
+            activeBtn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+            activeBtn.classList.add('bg-surface', 'text-primary', 'shadow-sm');
+            
+            inactiveBtn.classList.remove('bg-surface', 'text-primary', 'shadow-sm');
+            inactiveBtn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+        }
+
+        toggleWeekly.addEventListener('click', () => setActive(toggleWeekly, toggleMonthly));
+        toggleMonthly.addEventListener('click', () => setActive(toggleMonthly, toggleWeekly));
+
+        // Subtle animation for pattern cards on scroll
+        const cards = document.querySelectorAll('.bg-surface-container-low');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('translate-y-0', 'opacity-100');
+                    entry.target.classList.remove('translate-y-4', 'opacity-0');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.classList.add('transition-all', 'duration-700', 'translate-y-4', 'opacity-0');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

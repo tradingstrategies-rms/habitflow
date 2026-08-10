@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habitflow/core/providers/core_providers.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/router/route_paths.dart';
-import 'package:habitflow/features/authentication/data/auth_providers.dart';
 import 'package:habitflow/features/profile/application/profile_controller.dart';
 import 'package:habitflow/features/profile/domain/family_role.dart';
 import 'package:habitflow/features/profile/domain/user_profile.dart';
 import 'package:habitflow/features/profile/presentation/avatar_selection_screen.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
+import '../../settings/application/settings_notifier.dart';
 import 'widgets/family_role_selector.dart';
 
 class CreateProfileScreen extends ConsumerStatefulWidget {
@@ -28,8 +29,6 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
   
   FamilyRole _selectedRole = FamilyRole.parent;
   DateTime? _selectedBirthday;
-  String _selectedCountry = 'United States';
-  String _selectedTimezone = 'UTC';
   AvatarItem? _selectedAvatar;
 
   bool _isFormValid = false;
@@ -37,7 +36,6 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedTimezone = DateTime.now().timeZoneName;
     _firstNameController.addListener(_validate);
     _displayNameController.addListener(_validate);
   }
@@ -79,19 +77,21 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
   Future<void> _saveProfile() async {
     if (!_formKey.currentState!.validate()) return;
 
-    final authState = ref.read(authStateProvider);
-    final uid = authState.value;
-    if (uid == null) return;
+    final authService = ref.read(authServiceProvider);
+    final currentUser = authService.currentUser;
+    if (currentUser == null) return;
+
+    final settings = ref.read(settingsProvider);
 
     final profile = UserProfile(
-      uid: uid,
+      uid: currentUser.uid,
+      email: currentUser.email ?? '',
       firstName: _firstNameController.text,
       lastName: _lastNameController.text,
       displayName: _displayNameController.text,
       birthday: _selectedBirthday,
-      country: _selectedCountry,
-      language: 'English',
-      timezone: _selectedTimezone,
+      country: settings.selectedCountry.code,
+      timezone: settings.selectedCountry.timezone,
       familyRole: _selectedRole,
       avatarId: _selectedAvatar?.id,
       photoUrl: _selectedAvatar?.url,
@@ -239,28 +239,19 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                 const HFSectionHeader(title: 'PREFERENCES'),
                 const SizedBox(height: 16),
                 
-                // Mock Selectors for Country & TimeZone to maintain clean UI without heavy libs
+                // Regional Selectors hooked to global settings
                 _buildSelector(
                   label: 'COUNTRY',
-                  value: _selectedCountry,
+                  value: ref.watch(settingsProvider).selectedCountry.name,
                   icon: Icons.public_rounded,
-                  onTap: () {
-                     // In a real app, show search list. Here we mock it.
-                     _showMockPicker('Select Country', ['United States', 'United Kingdom', 'Canada', 'Australia'], (val) {
-                       setState(() => _selectedCountry = val);
-                     });
-                  },
+                  onTap: () => context.pushNamed(RouteNames.countrySelection),
                 ),
                 const SizedBox(height: 16),
                 _buildSelector(
                   label: 'TIME ZONE',
-                  value: _selectedTimezone,
+                  value: ref.watch(settingsProvider).selectedCountry.timezone,
                   icon: Icons.schedule_rounded,
-                  onTap: () {
-                     _showMockPicker('Select Time Zone', ['GMT+00:00 (London)', 'GMT-05:00 (EST)', 'GMT-08:00 (PST)'], (val) {
-                       setState(() => _selectedTimezone = val);
-                     });
-                  },
+                  onTap: () => context.pushNamed(RouteNames.countrySelection),
                 ),
                 
                 const SizedBox(height: 48),
@@ -308,26 +299,5 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
      );
   }
 
-  void _showMockPicker(String title, List<String> options, ValueChanged<String> onSelected) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            ...options.map((opt) => ListTile(
-              title: Text(opt),
-              onTap: () {
-                onSelected(opt);
-                Navigator.pop(context);
-              },
-            )),
-          ],
-        ),
-      ),
-    );
-  }
+
 }

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Family Dashboard | HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "secondary": "#006b5f",
+                    "primary-container": "#10b981",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#523200",
+                    "on-primary": "#ffffff",
+                    "kids-accent": "#FFC107",
+                    "surface": "#FFFFFF",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#faf9f8",
+                    "background-dark": "#1F2937",
+                    "on-primary-fixed": "#002113",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-fixed-variant": "#005048",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "tertiary": "#855300",
+                    "secondary-container": "#6df5e1",
+                    "on-error": "#ffffff",
+                    "success": "#22C55E",
+                    "surface-dim": "#dadad9",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "background": "#faf9f8",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary": "#006c49",
+                    "on-secondary-container": "#006f64",
+                    "kids-primary": "#00D991",
+                    "surface-tint": "#006c49",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf9f8; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .organic-gradient {
+            background: linear-gradient(135deg, #006c49 0%, #10b981 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-background min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-on-surface-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="notifications">notifications</span>
+</div>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight">HabitFlow</h1>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pt-6 space-y-8">
+<!-- Hero Section: Family Health Score -->
+<section class="relative overflow-hidden rounded-[20px] bg-primary text-on-primary p-card-padding shadow-sm">
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div>
+<p class="font-label-sm text-label-sm opacity-90 uppercase tracking-widest mb-1">Current Vitality</p>
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl mb-2">Growing Strong</h2>
+<div class="flex items-center gap-3">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-bold text-label-sm">LEVEL 14</span>
+<div class="h-2 w-32 md:w-48 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-kids-primary w-3/4 shimmer"></div>
+</div>
+<span class="font-body-numbers text-body-numbers">75%</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="bg-white text-primary h-12 px-6 rounded-xl font-bold hover:bg-surface-container-low transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                        Boost Score
+                    </button>
+</div>
+</div>
+<!-- Atmospheric visual -->
+<div class="absolute -right-12 -top-12 w-64 h-64 bg-kids-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute -left-12 -bottom-12 w-48 h-48 bg-secondary/30 rounded-full blur-2xl"></div>
+</section>
+<!-- Bento Grid Main Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Column 1: Family Growth Tree -->
+<div class="md:col-span-7 space-y-6">
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 flex flex-col items-center justify-center relative overflow-hidden min-h-[400px]">
+<div class="absolute top-6 left-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Family Growth Tree</h3>
+<p class="font-caption text-caption text-on-surface-variant">Thriving with 12 active habits</p>
+</div>
+<!-- Growth Tree Animation Placeholder -->
+<div class="w-full h-72 flex items-center justify-center mt-12">
+
+</div>
+<div class="mt-8 flex gap-4 w-full">
+<div class="flex-1 bg-surface-container-low p-4 rounded-xl text-center border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Roots</p>
+<p class="font-body-numbers text-body-numbers font-bold text-primary">Solid</p>
+</div>
+<div class="flex-1 bg-surface-container-low p-4 rounded-xl text-center border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Leaves</p>
+<p class="font-body-numbers text-body-numbers font-bold text-primary">New</p>
+</div>
+<div class="flex-1 bg-surface-container-low p-4 rounded-xl text-center border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Fruits</p>
+<p class="font-body-numbers text-body-numbers font-bold text-primary">2 Harvested</p>
+</div>
+</div>
+</div>
+<!-- Family Mission Card -->
+<div class="bg-tertiary-fixed rounded-[20px] p-card-padding relative overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-4">
+<span class="bg-on-tertiary-container/10 text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Active Family Mission</span>
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="explore">explore</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-tertiary-container mb-2">Outdoor Weekend Adventure</h3>
+<p class="font-body-lg text-body-lg text-on-tertiary-fixed-variant mb-6 max-w-md">Visit a new hiking trail and document 5 different bird species together as a team.</p>
+<div class="flex -space-x-2">
+<div class="w-10 h-10 rounded-full border-2 border-tertiary-fixed overflow-hidden bg-surface" data-alt="A close-up portrait of a smiling young boy with curly hair, outdoors in natural morning sunlight, warm tones, high-quality photography, family-oriented app style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWz09HIZHyvsnLpE8XISTbwaxB562-2S8fwseeCSnoDISfrlKbsdiX_YAY7dYcyMvzNJFvs0a5r6-BxYQSk4dJsmvKw0Tc2fbslmoKT7g9a5AKZSfzXMfoE_TvlplLp5o5fBnMl8KbRuOnrkQxHzLT_x_NheoXUoM8SI2aUO1K1c1ZxjQWfiVjPhBEvKmBWCzJGkaXziAmeyVfwKoSOowmUHaZMiuJbknN6Q-GdEWqxS2fiyO5qgqj')"></div>
+<div class="w-10 h-10 rounded-full border-2 border-tertiary-fixed overflow-hidden bg-surface" data-alt="A professional headshot of a middle-aged woman with a friendly expression, soft lighting, minimalist background, corporate modern aesthetic for a family health app." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmq0jYB1N5EkAVLz5GLuNa_3paRAZjepKa_9TfSsTQmOotPcAOUhw6roCaFHwm8gWJWjh6CMELzZsRpa4VBTAntgvXGuXsorCDcJltl5zN3cEt305Co_I-_kXU6ff3L-sVHruj4LBZx3iaXjb1RCmyoJBLSTHXzHlM32mtVuTZ1LQjs_DnS2Emj4K6f44KZCufmFlooG278hiSsAxO_Ea1m-qwb8IJzdavDEJJNAk7erriCXt5syq7')"></div>
+<div class="w-10 h-10 rounded-full border-2 border-tertiary-fixed overflow-hidden bg-surface" data-alt="A portrait of a teenage girl laughing, soft bokeh background of a park, natural vibrant colors, organic vitality style, high resolution." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrJszKkD5zOdbqbJ_qeksWbH6wYrSuv4P8tR1YChh-VR42r-Rh5RhnobWDvCTJNzbOmkVhqNyicJraLHLrABrkhfBOiHd_8Prv4LBo4lzrdQNfN0UHMl3b_aegD9E48fQkq1O7imhzmpIsSTvXp1BfHkWbLHZ5wlNoyeNCQQxRkVSSQNFbg5dLivT1x6ycFT7Lo5Sdh_b94bhov40fxjtzqwYZahLkimh0LDSpQnNBvNkuevcWQDGs')"></div>
+<div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-tertiary-fixed bg-tertiary text-on-tertiary text-[10px] font-bold">+2</div>
+</div>
+</div>
+<!-- Mission Decorative Graphic -->
+<div class="absolute right-0 bottom-0 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[160px]" data-icon="landscape">landscape</span>
+</div>
+</div>
+</div>
+<!-- Column 2: Events & Members -->
+<div class="md:col-span-5 space-y-6">
+<!-- Upcoming Family Events -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 flex flex-col h-full">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Family Events</h3>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container transition-colors p-1 rounded-full" data-icon="calendar_month">calendar_month</span>
+</div>
+<div class="space-y-4">
+<div class="flex gap-4 items-center group cursor-pointer">
+<div class="flex flex-col items-center justify-center bg-surface-container-low text-primary w-14 h-14 rounded-2xl border border-outline-variant/10 group-hover:bg-primary-container transition-colors">
+<span class="font-bold text-label-sm uppercase">Sat</span>
+<span class="font-headline-sm">18</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Hiking Adventure</h4>
+<p class="text-caption text-on-surface-variant">Blue Peak Trail • 9:00 AM</p>
+</div>
+</div>
+<div class="flex gap-4 items-center group cursor-pointer">
+<div class="flex flex-col items-center justify-center bg-surface-container-low text-primary w-14 h-14 rounded-2xl border border-outline-variant/10 group-hover:bg-primary-container transition-colors">
+<span class="font-bold text-label-sm uppercase">Tue</span>
+<span class="font-headline-sm">21</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Family Game Night</h4>
+<p class="text-caption text-on-surface-variant">Living Room • 7:30 PM</p>
+</div>
+</div>
+<div class="flex gap-4 items-center group cursor-pointer">
+<div class="flex flex-col items-center justify-center bg-surface-container-low text-primary w-14 h-14 rounded-2xl border border-outline-variant/10 group-hover:bg-primary-container transition-colors">
+<span class="font-bold text-label-sm uppercase">Fri</span>
+<span class="font-headline-sm">24</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Monthly Reward Dinner</h4>
+<p class="text-caption text-on-surface-variant">Choose Together • 6:00 PM</p>
+</div>
+</div>
+</div>
+<button class="mt-auto pt-6 text-primary font-bold text-label-sm flex items-center justify-center gap-2 hover:opacity-80">
+                        View Full Calendar
+                        <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Family Members Quick Access -->
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Family Members</h3>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="person_add">person_add</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary mb-3 group-hover:scale-105 transition-transform" data-alt="A portrait of a middle-aged man with short dark hair and a warm smile, wearing a casual polo shirt, soft studio lighting with a slight green tint, modern minimalist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfdeWj2zOrt4aG6SonSg3H0onkB2QKJ2jXp7fb-D7ZNoATHg031qpgyuiEC9GV-R1-zcbiszMUZ6B2SQiNSlyv2nBRSVQqEm6DoFSvDJkUKBcmeSb9JFY_NaCZ9siLV8FrniOgsT98az_QoHZoOn3Jksx-CXOeKEKozxp9QJUeIiIW-MPZB_gRc3v3QVk50byRlKzox2_rqkvxQZyKuCqEk9yCYRK7rchnpgT409y_b-cGcetOO37i')"></div>
+<p class="font-bold text-on-surface">Dad</p>
+<span class="text-[10px] text-success font-bold uppercase">Online</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary mb-3 group-hover:scale-105 transition-transform" data-alt="A beautiful woman with auburn hair in a professional but warm portrait, bright natural lighting, soft focus background, organic vitality aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_mMZtJWeNUJRtiS0tfGK8wQaIVFOu5xCCJ-ULU1IzSoguHJRshn0YWRhpUdPw0-2VCxH203OjhUnkQa6FORWSUj5ZD2khg5Oa6vGOtVNjeZ9AFKK9urBXotg_oio5-_3JCDgIxhx3yewpt1APirnbRMr0GVS0a8UWpHVnhOa6NZQJewd1EJrw05zbx0O-4Qp1APGQ1I7qcF5aDuBXcI19tQsHo5U2mMUFSSeVjrbKJdiHkZSbDHQs')"></div>
+<p class="font-bold text-on-surface">Mom</p>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Away</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-kids-accent mb-3 group-hover:scale-105 transition-transform" data-alt="A young boy about 8 years old with a cheeky grin, vibrant colors, expressive lighting, part of a family dashboard theme." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3hQdBhFBM1VInSeQfELNCnmdTR165ilB4_5uMw75upUzvRuQ9d3Gr44ahje0Qr72gXxpUOVzLEEDMwfTHVQESxE4CYlLjfRbUBvAcGNCPEof3YD13e8jisI7ML4s-vKngd-h1PAh2QHVpSYkQDj7VAH99UgYrNPt2qcmeVEng_5jteZ8QLu94t-hmzt-W29J66HB9GkOc_ihk2aDOqvZs2qv4pPlhZTcYaUAGFXqcRQ-JkXrR7R4n')"></div>
+<p class="font-bold text-on-surface">Leo</p>
+<span class="text-[10px] text-success font-bold uppercase">Active</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-kids-accent mb-3 group-hover:scale-105 transition-transform" data-alt="A teenage girl with headphones around her neck, artistic lighting, modern portrait for a mobile app dashboard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMfkq5Kv0DtTWZaWwz59h6ViX8YNxJReD8OTDeJ1xE6l5ALts2yFVbvC2vbXSaQhoFd1JX4K7e8syPYh_8f8eTZKR6TFYYPgQ0GhFLyM52iVpN5WBV7cQE__HHMarguc0l3yybsHKTVRg6ZB5V81klf6V8Ek8SSWiQA1HRCJw5DCElJ73j4jZ8x-S1DREwaxKv6Nr4V-qvH7rSCZpy97zN18IFhBsuyf9X8GXIo9VD5kLytlpMiSKD')"></div>
+<p class="font-bold text-on-surface">Sarah</p>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Reading</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe px-4 bg-surface dark:bg-on-surface-variant shadow-sm rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="cached">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="card_giftcard">card_giftcard</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<!-- Floating Action Button -->
+<button class="fixed right-6 bottom-24 md:bottom-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 z-40">
+<span class="material-symbols-outlined text-[32px]" data-icon="add">add</span>
+</button>
+<script>
+        // Simple interactivity for the cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simulating progress update for health score
+        const progressBar = document.querySelector('.shimmer');
+        if (progressBar) {
+            setInterval(() => {
+                let currentWidth = parseInt(progressBar.style.width) || 75;
+                if (currentWidth < 95) {
+                    progressBar.style.width = (currentWidth + 0.1) + '%';
+                }
+            }, 1000);
+        }
+    </script>
+</body></html>

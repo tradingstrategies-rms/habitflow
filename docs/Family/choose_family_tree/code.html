@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Choose Your Family Tree - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#e29100",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "background": "#faf9f8",
+                    "on-error": "#ffffff",
+                    "kids-primary": "#00D991",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary-fixed": "#00201c",
+                    "secondary": "#006b5f",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#10b981",
+                    "surface-dim": "#dadad9",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#e3e2e1",
+                    "surface-bright": "#faf9f8",
+                    "success": "#22C55E",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-primary-container": "#00422b",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6ffbbe",
+                    "on-primary-fixed": "#002113",
+                    "warning": "#F97316",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e9e8e7",
+                    "outline-variant": "#bbcabf",
+                    "kids-accent": "#FFC107",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary": "#006c49",
+                    "tertiary": "#855300",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f4f3f2",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary-container": "#523200",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006c49",
+                    "surface-container-highest": "#e3e2e1",
+                    "danger": "#EF4444",
+                    "surface": "#FFFFFF",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary-container": "#6df5e1",
+                    "primary-fixed-dim": "#4edea3",
+                    "outline": "#6c7a71",
+                    "on-tertiary": "#ffffff",
+                    "background-dark": "#1F2937",
+                    "on-tertiary-fixed": "#2a1700",
+                    "inverse-surface": "#2f3130",
+                    "inverse-primary": "#4edea3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "button-padding": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "headline-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .tree-card-selected {
+            border: 2px solid #006c49;
+            background-color: #f0fdf4;
+            transform: scale(1.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bbcabf;
+            border-radius: 10px;
+        }
+        .glass-nav {
+            backdrop-filter: blur(8px);
+            background: rgba(250, 249, 248, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="bg-background dark:bg-background-dark docked full-width top-0 z-50">
+<div class="flex items-center justify-between px-margin-mobile h-touch-target-min w-full max-w-7xl mx-auto">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">HabitFlow</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile pt-8 pb-32">
+<div class="mb-8">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl mb-2">Choose Your Growth Tree</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your tree grows as your family builds healthy habits together. Select a style that represents your family's journey.</p>
+</div>
+<!-- Bento Grid for Tree Selection -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Oak Tree Card -->
+<button class="tree-option text-left relative flex flex-col bg-surface border border-outline-variant rounded-[20px] p-card-padding transition-all duration-300 hover:shadow-md group" onclick="selectTree(this)">
+<div class="w-full aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A lush, magnificent ancient Oak tree standing in a sun-drenched meadow. The tree features thick, sprawling branches and dense emerald green foliage, rendered in a soft organic illustration style with warm morning light. The background is a clean, minimal landscape with a soft-focus watercolor feel, emphasizing growth and strength." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZXIhd2xN62C1ix8GdmhdbQl5GIdzKMXcyGufawFxq9XRmTz9GYJN61UhvghMzx_kBL2S9nlDZZWzr6ny5XymCp6USqwt86a2Kyr7yFPpCj8oTkc7StBY-HSOfq_3ETIVkNesIn3XhwsZM7KxeeSPRXKUky80RoA4jGrx3AgIQCWREVklyOeLIw0AssG5bbQSiD2VVeoxKFXtO9qGLEfkqZyz0x8GLcs3CLXHxfeBymsXA-oi8b2yY"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">The Mighty Oak</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Symbolizes strength, longevity, and deep-rooted family traditions.</p>
+</div>
+<div class="selection-indicator opacity-0 group-[.tree-card-selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="px-chip-padding py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Steady Progress</span>
+<span class="px-chip-padding py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Strength</span>
+</div>
+</button>
+<!-- Willow Tree Card -->
+<button class="tree-option text-left relative flex flex-col bg-surface border border-outline-variant rounded-[20px] p-card-padding transition-all duration-300 hover:shadow-md group" onclick="selectTree(this)">
+<div class="w-full aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An elegant, weeping Willow tree with long, graceful cascading branches touching a calm, reflective pond. The leaves are a vibrant, translucent light green, depicted in a contemporary minimalist organic art style. The atmosphere is serene and peaceful, with a soft misty background and gentle pastel lighting, representing flexibility and grace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwVFCkrL8D-qzAL9xW9Pomx9L-N8G22uYH8Y2yB7bP93PKW0UzGY-iDPAOilVM3QAwrXvrdMh9Wm_pes8qP7pzpmThgpT4lH8zG9oFVTnDTs9os2ZX53y7wpQBkFlJWxRjytK2u86fi0vqJSZ48Z6zWYLmtRqPBoPrlahMNrNqQfrUPz1htAYnHjL7spYEa7YxuD5NO6oWK01fY7SdtPd-TQxzITP_HfaWSsTuGzdGNKtNHvMC3yB"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">The Graceful Willow</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Represents flexibility, harmony, and emotional intelligence.</p>
+</div>
+<div class="selection-indicator opacity-0 group-[.tree-card-selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="px-chip-padding py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Flexibility</span>
+<span class="px-chip-padding py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Harmony</span>
+</div>
+</button>
+<!-- Bonsai Tree Card -->
+<button class="tree-option text-left relative flex flex-col bg-surface border border-outline-variant rounded-[20px] p-card-padding transition-all duration-300 hover:shadow-md group" onclick="selectTree(this)">
+<div class="w-full aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A masterfully crafted Zen Bonsai tree in a minimalist ceramic pot, sitting on a clean wooden surface. The tree features intricate, twisting bark and perfectly manicured clouds of tiny green leaves. The aesthetic is extremely clean and corporate modern, with high-key lighting and a soft grey background that emphasizes precision and mindful growth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7z-sHHALaU8_HeVD1YRs2SktHZs1my7qShNi3636LlWmy7VPlmzZ-0-TnAROqc5CyPWQPS1MXKe7Nwio8aeq5I9yn89OLJddRYvkyhXJDW-FaWpNGZmGOaskcVuekBj-Eboxwimlzp3JvPeG_1LbVItsyhTWdXuCGJxzHBGohcSDAC7ZbPKLzgDSiKAMfm1YUNeAK-_LzHee_OOXIYYh53Fy0aYJaiX0q0-vjNPujr1y5RxCF6PyA"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">The Mindful Bonsai</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Focuses on discipline, patience, and attention to detail.</p>
+</div>
+<div class="selection-indicator opacity-0 group-[.tree-card-selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="px-chip-padding py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Focus</span>
+<span class="px-chip-padding py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Discipline</span>
+</div>
+</button>
+</div>
+</main>
+<!-- Bottom Action Bar (Contextual Continue) -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface dark:bg-surface-container-highest shadow-sm h-24 flex items-center justify-center px-margin-mobile z-50">
+<div class="w-full max-w-7xl flex items-center justify-between">
+<div class="hidden md:block">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Step 2 of 4: Environment Setup</p>
+</div>
+<button class="w-full md:w-auto px-12 h-touch-target-min bg-outline-variant text-on-primary font-headline-sm text-headline-sm rounded-full transition-all duration-300 cursor-not-allowed opacity-50 flex items-center justify-center gap-2" disabled="" id="continue-btn">
+                Continue
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</footer>
+<!-- Bottom Nav Bar (Hidden for this Task-Focused Screen as per instructions) -->
+<!-- The shared component logic suppresses global nav on task-focused journeys like this wizard. -->
+<script>
+        function selectTree(element) {
+            // Remove selection from all
+            document.querySelectorAll('.tree-option').forEach(card => {
+                card.classList.remove('tree-card-selected');
+                card.classList.add('border-outline-variant');
+            });
+
+            // Add selection to clicked
+            element.classList.add('tree-card-selected');
+            element.classList.remove('border-outline-variant');
+
+            // Enable Continue Button
+            const continueBtn = document.getElementById('continue-btn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('bg-outline-variant', 'cursor-not-allowed', 'opacity-50');
+            continueBtn.classList.add('bg-primary-container', 'hover:bg-primary', 'active:scale-95');
+            
+            // Add slight celebration feedback
+            element.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1.02)';
+            }, 100);
+        }
+
+        // Micro-interaction for the button
+        document.getElementById('continue-btn').addEventListener('click', function() {
+            if(!this.disabled) {
+                this.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Planting...';
+                setTimeout(() => {
+                    alert('Tree selected! Heading to your family dashboard.');
+                }, 1000);
+            }
+        });
+    </script>
+</body></html>

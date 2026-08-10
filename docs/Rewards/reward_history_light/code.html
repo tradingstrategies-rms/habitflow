@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reward History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#00201c",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container-highest": "#d9e3f6",
+                      "surface-dark": "#1E1E1E",
+                      "primary-container": "#10b981",
+                      "outline-variant": "#bbcabf",
+                      "secondary-fixed-dim": "#4fdbc8",
+                      "emerald-glow": "rgba(16, 185, 129, 0.15)",
+                      "on-tertiary-fixed": "#2a1700",
+                      "background-warm": "#FFFFFF",
+                      "surface-container-low": "#eff4ff",
+                      "on-surface-variant": "#3c4a42",
+                      "background": "#f8f9ff",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#005236",
+                      "on-surface": "#121c2a",
+                      "primary-fixed": "#6ffbbe",
+                      "inverse-primary": "#4edea3",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#dee9fc",
+                      "on-tertiary-container": "#523200",
+                      "surface-container": "#e6eeff",
+                      "primary": "#006c49",
+                      "on-error": "#ffffff",
+                      "outline": "#6c7a71",
+                      "secondary-container": "#6df5e1",
+                      "on-primary-fixed": "#002113",
+                      "kids-secondary": "#0D9488",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#121c2a",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#4edea3",
+                      "secondary-fixed": "#71f8e4",
+                      "kids-accent": "#D97706",
+                      "surface": "#f8f9ff",
+                      "surface-variant": "#d9e3f6",
+                      "tertiary-fixed": "#ffddb8",
+                      "kids-primary": "#059669",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed-variant": "#005048",
+                      "secondary": "#006b5f",
+                      "on-secondary-container": "#006f64",
+                      "surface-tint": "#006c49",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "inverse-surface": "#27313f",
+                      "on-primary-container": "#00422b",
+                      "background-dark": "#121212",
+                      "tertiary": "#855300",
+                      "tertiary-container": "#e29100",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d0dbed",
+                      "tertiary-fixed-dim": "#ffb95f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "chip-gap": "12px",
+                      "button-height": "48px",
+                      "base": "8px",
+                      "margin-desktop": "32px",
+                      "card-padding": "20px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "numbers-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "numbers-md": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-surface text-primary flat no shadows flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait photo of a smiling person, warmly lit in a clean modern environment, serving as a user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ3YcBWHcvSEfYYHNpywsW4mGwGi7SO1BGsv7VDdiJtDKwrWmE2b8QIV6n8kE01CjtXTiUm2dxZizUIEBe8Kigc6oBLaDMDudQtWjmex5YeOD6opCLvEhI2xGp8DuB5D6E1v9IkjxYf-0eW1COn_BOxOc4sZyFxnWLVOMGH4DMWRe__sjktnZkj44WJjvhE0DpfUwzUCFFGXXlLFrNfiANxy4Rfw618jVGWxkv3hbipO17qmwlZ-FC"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Rewards</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto pt-8 flex flex-col gap-8">
+<!-- Filter Chips -->
+<section class="w-full overflow-x-auto pb-4 hide-scrollbar">
+<div class="flex gap-chip-gap w-max">
+<button class="h-10 px-6 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md hover:opacity-90 transition-opacity">All</button>
+<button class="h-10 px-6 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors">Habits</button>
+<button class="h-10 px-6 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors">Goals</button>
+<button class="h-10 px-6 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors">Achievements</button>
+<button class="h-10 px-6 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors">Family</button>
+</div>
+</section>
+<!-- Timeline Section: Today -->
+<section class="flex flex-col gap-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface-variant">Today</h2>
+<div class="relative pl-6 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-surface-container-high before:z-0 flex flex-col gap-8">
+<!-- Transaction Item -->
+<div class="relative flex items-center justify-between z-10 group">
+<div class="absolute -left-6 w-px h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center -ml-[30px] shadow-sm z-20">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Morning Exercise</span>
+<span class="font-label-md text-label-md text-on-surface-variant">08:00 AM • Habit</span>
+</div>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary">+10</span>
+</div>
+<!-- Transaction Item -->
+<div class="relative flex items-center justify-between z-10 group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center -ml-[30px] border border-surface-container-highest z-20">
+<span class="material-symbols-outlined text-on-surface-variant">water_drop</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Drink Water</span>
+<span class="font-label-md text-label-md text-on-surface-variant">10:30 AM • Habit</span>
+</div>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary">+5</span>
+</div>
+</div>
+</section>
+<!-- Timeline Section: This Week -->
+<section class="flex flex-col gap-6 pt-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface-variant">This Week</h2>
+<div class="relative pl-6 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-surface-container-high before:z-0 flex flex-col gap-8">
+<!-- Transaction Item (Goal) -->
+<div class="relative flex items-center justify-between z-10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/30 flex items-center justify-center -ml-[30px] z-20 shadow-sm backdrop-blur-sm border border-secondary-container/50">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Read 3 Books</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Mon, 14th • Goal Reached</span>
+</div>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary">+50</span>
+</div>
+<!-- Transaction Item (Spent) -->
+<div class="relative flex items-center justify-between z-10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center -ml-[30px] z-20">
+<span class="material-symbols-outlined text-error">shopping_bag</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Movie Night Ticket</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Sun, 13th • Redeemed</span>
+</div>
+</div>
+<span class="font-numbers-md text-numbers-md text-on-surface-variant">-150</span>
+</div>
+<!-- Transaction Item -->
+<div class="relative flex items-center justify-between z-10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center -ml-[30px] z-20 shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Clean Room</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Sat, 12th • Family Task</span>
+</div>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary">+20</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-low/80 backdrop-blur-md shadow-sm fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md text-label-md mt-1">Habits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-md text-label-md mt-1">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">stars</span>
+<span class="font-label-md text-label-md mt-1 text-primary dark:text-primary-fixed-dim">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">family_restroom</span>
+<span class="font-label-md text-label-md mt-1">Family</span>
+</button>
+</nav>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 16px);
+        }
+    </style>
+</body></html>

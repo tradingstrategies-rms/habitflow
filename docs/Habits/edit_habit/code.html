@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Edit Habit - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#faf9f8",
+                        "surface": "#FFFFFF",
+                        "primary-fixed": "#6ffbbe",
+                        "secondary-container": "#6df5e1",
+                        "on-tertiary-container": "#523200",
+                        "primary-container": "#10b981",
+                        "on-background": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e9e8e7",
+                        "kids-primary": "#00D991",
+                        "outline-variant": "#bbcabf",
+                        "surface-container": "#eeeeed",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3c4a42",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-fixed": "#71f8e4",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed-variant": "#005048",
+                        "surface-variant": "#e3e2e1",
+                        "surface-dim": "#dadad9",
+                        "primary": "#006c49",
+                        "success": "#22C55E",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-fixed": "#00201c",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-secondary-container": "#006f64",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#006c49",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "error": "#ba1a1a",
+                        "danger": "#EF4444",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#e29100",
+                        "surface-bright": "#faf9f8",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-highest": "#e3e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#006b5f",
+                        "on-primary-container": "#00422b",
+                        "tertiary": "#855300",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "on-tertiary-fixed": "#2a1700",
+                        "kids-accent": "#FFC107",
+                        "background-dark": "#1F2937",
+                        "primary-fixed-dim": "#4edea3",
+                        "outline": "#6c7a71",
+                        "on-surface": "#1a1c1c",
+                        "inverse-primary": "#4edea3",
+                        "warning": "#F97316",
+                        "inverse-on-surface": "#f1f0f0",
+                        "surface-container-low": "#f4f3f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-padding": "20px",
+                        "chip-padding": "12px",
+                        "touch-target-min": "48px",
+                        "button-padding": "16px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-numbers": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-numbers": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bbcabf;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top Navigation Anchor -->
+<header class="w-full top-0 sticky z-40 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile py-4 w-full">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Edit Habit</h1>
+</div>
+<button class="text-primary font-label-sm text-label-sm px-3 py-2 rounded-full hover:bg-surface-variant/20 transition-colors">
+                Cancel
+            </button>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-margin-mobile mt-6 space-y-6">
+<!-- Habit Header/Visual Focus -->
+<section class="bg-surface rounded-[20px] p-card-padding shadow-sm flex items-center gap-6 border border-outline-variant/30">
+<div class="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant relative group cursor-pointer overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-20" data-alt="A serene close-up photograph of a modern open book lying on a minimalist light-colored wooden surface. The lighting is soft and natural, suggesting a peaceful morning atmosphere. Tiny green leaves sprout from the center of the book as a symbolic growth metaphor, styled with an organic vitality aesthetic. The background is clean and out of focus to emphasize the growth and learning theme." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjHN4jFDmgSzFefWAfewoq8Gsry53F5D3k_RgC9UzgKcqpaIqp8TXRxCYX7xlnxdsxL1FxaJUv8eWCJvFyXspOPZi_X5UKMVyANxZCiO8_1znXkx2s-iZSfqA68kcL3IYb84kFNwCAivliRe9kGKEUzA5Vt04bmYWn40weM8T9MNQEX77_aL4TBWvuZyC1GpXODUso6OfH0xSVESCI5Fo8NQqB9uxGnhh04L5wdX7ganw9QRwCMLkX')"></div>
+<span class="material-symbols-outlined text-4xl relative z-10">auto_stories</span>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">edit</span>
+</div>
+</div>
+<div class="flex-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 ml-1">Habit Name</label>
+<input class="w-full bg-transparent border-none p-0 font-headline-md text-headline-md focus:ring-0 text-on-surface placeholder:text-surface-variant" placeholder="E.g. Daily Yoga" type="text" value="Read for 20m"/>
+<div class="h-0.5 w-full bg-primary/20 mt-1"></div>
+</div>
+</section>
+<!-- Configuration Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Life Area -->
+<div class="bg-surface rounded-[20px] p-card-padding shadow-sm border border-outline-variant/30">
+<label class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-sm">category</span>
+                    Life Area
+                </label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm transition-transform active:scale-95">Mind</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant/40 transition-colors">Health</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant/40 transition-colors">Family</button>
+</div>
+</div>
+<!-- Difficulty -->
+<div class="bg-surface rounded-[20px] p-card-padding shadow-sm border border-outline-variant/30">
+<label class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-sm">fitness_center</span>
+                    Difficulty
+                </label>
+<div class="flex items-center justify-between gap-1">
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface-variant border-2 border-transparent transition-all">
+<span class="block text-xs font-bold">1</span>
+</button>
+<button class="flex-1 py-2 rounded-lg bg-primary/10 text-primary border-2 border-primary transition-all">
+<span class="block text-xs font-bold">2</span>
+</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface-variant border-2 border-transparent transition-all">
+<span class="block text-xs font-bold">3</span>
+</button>
+</div>
+<p class="text-caption font-caption text-on-surface-variant mt-2 text-center">Moderate growth (Medium XP)</p>
+</div>
+</div>
+<!-- Frequency & Reminder Card -->
+<section class="bg-surface rounded-[20px] p-card-padding shadow-sm border border-outline-variant/30">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">event_repeat</span>
+                Frequency &amp; Reminders
+            </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/20">
+<span class="font-body-lg text-body-lg text-on-surface">Repeat Every</span>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm">Daily</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="font-body-lg text-body-lg text-on-surface">Reminder</span>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm px-3 py-1 bg-surface-container rounded-md">08:00 AM</span>
+<span class="material-symbols-outlined text-on-surface-variant">notifications_active</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Rewards Bento Section -->
+<section class="space-y-3">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant ml-1">Success Rewards</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="col-span-2 bg-gradient-to-br from-tertiary-fixed to-tertiary-fixed-dim/50 rounded-[20px] p-card-padding relative overflow-hidden group cursor-pointer shadow-sm">
+<div class="flex justify-between items-start relative z-10">
+<div>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">XP Reward</p>
+<p class="font-headline-md text-headline-md font-body-numbers text-on-tertiary-fixed">+25 Points</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-on-tertiary-fixed/30">stars</span>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all"></div>
+</div>
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 flex flex-col items-center justify-center text-center gap-2 group hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">redeem</span>
+<p class="font-label-sm text-label-sm text-on-surface">Family Coin</p>
+</div>
+<div class="bg-surface rounded-[20px] p-card-padding border border-outline-variant/30 flex flex-col items-center justify-center text-center gap-2 group hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-kids-primary text-3xl">forest</span>
+<p class="font-label-sm text-label-sm text-on-surface">Tree Growth</p>
+</div>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="pt-8 pb-12">
+<button class="w-full py-4 flex items-center justify-center gap-2 text-danger hover:bg-error-container/20 rounded-xl transition-colors group">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">delete</span>
+<span class="font-label-sm text-label-sm">Delete Habit</span>
+</button>
+<p class="text-center font-caption text-caption text-on-surface-variant mt-2">This action cannot be undone. Your progress will be lost.</p>
+</section>
+</main>
+<!-- Bottom Action Anchor -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-gradient-to-t from-background via-background/90 to-transparent pt-8 z-50">
+<div class="max-w-2xl mx-auto">
+<button class="w-full bg-primary-container text-on-primary-container py-button-padding rounded-full font-headline-sm text-headline-sm shadow-lg active:scale-95 transition-all hover:bg-primary-container/90 flex items-center justify-center gap-3">
+                Save Changes
+                <span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</div>
+<!-- Micro-interaction script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.querySelector('div')?.classList.remove('bg-primary/20');
+                    input.parentElement.querySelector('div')?.classList.add('bg-primary');
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.querySelector('div')?.classList.remove('bg-primary');
+                    input.parentElement.querySelector('div')?.classList.add('bg-primary/20');
+                });
+            });
+
+            const difficultyBtns = document.querySelectorAll('.grid button');
+            difficultyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.parentElement.previousElementSibling.innerText.includes('Difficulty')) {
+                        this.parentElement.querySelectorAll('button').forEach(b => {
+                            b.classList.remove('bg-primary/10', 'text-primary', 'border-primary');
+                            b.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'border-transparent');
+                        });
+                        this.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'border-transparent');
+                        this.classList.add('bg-primary/10', 'text-primary', 'border-primary');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

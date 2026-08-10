@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Family Calendar - HabitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e3e2e1",
+                    "on-primary-container": "#00422b",
+                    "surface-container": "#eeeeed",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#4edea3",
+                    "warning": "#F97316",
+                    "secondary": "#006b5f",
+                    "primary-container": "#10b981",
+                    "primary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#523200",
+                    "on-primary": "#ffffff",
+                    "kids-accent": "#FFC107",
+                    "surface": "#FFFFFF",
+                    "danger": "#EF4444",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#faf9f8",
+                    "background-dark": "#1F2937",
+                    "on-primary-fixed": "#002113",
+                    "inverse-on-surface": "#f1f0f0",
+                    "on-secondary-fixed-variant": "#005048",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-highest": "#e3e2e1",
+                    "on-surface-variant": "#3c4a42",
+                    "tertiary": "#855300",
+                    "secondary-container": "#6df5e1",
+                    "on-error": "#ffffff",
+                    "success": "#22C55E",
+                    "surface-dim": "#dadad9",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-container": "#e29100",
+                    "background": "#faf9f8",
+                    "outline": "#6c7a71",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary": "#006c49",
+                    "on-secondary-container": "#006f64",
+                    "kids-primary": "#00D991",
+                    "surface-tint": "#006c49",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f4f3f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "card-padding": "20px",
+                    "button-padding": "16px",
+                    "base": "8px",
+                    "touch-target-min": "48px",
+                    "chip-padding": "12px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-numbers": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-numbers": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-surface-variant w-full top-0 sticky z-40 transition-colors">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-14 md:h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors">arrow_back</button>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight">Family Calendar</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary p-2 rounded-full hover:bg-surface-container-low transition-colors">notifications</button>
+<button class="material-symbols-outlined text-primary p-2 rounded-full hover:bg-surface-container-low transition-colors">account_circle</button>
+</div>
+</div>
+</header>
+<main class="max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop mt-6 space-y-8">
+<!-- Header & Month Selector -->
+<section class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg">October 2023</h2>
+<div class="flex items-center bg-surface-container rounded-full p-1">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors material-symbols-outlined">chevron_left</button>
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors material-symbols-outlined">chevron_right</button>
+</div>
+</div>
+<button class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-button-padding h-12 rounded-full font-label-sm shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                Add Event
+            </button>
+</section>
+<!-- Asymmetric Bento-style Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Monthly Calendar View (Main Card) -->
+<section class="lg:col-span-8 bg-surface border border-outline-variant/30 rounded-[20px] p-card-padding shadow-sm">
+<div class="calendar-grid text-center mb-4">
+<div class="font-label-sm text-on-surface-variant/60 py-2">SUN</div>
+<div class="font-label-sm text-on-surface-variant/60 py-2">MON</div>
+<div class="font-label-sm text-on-surface-variant/60 py-2">TUE</div>
+<div class="font-label-sm text-on-surface-variant/60 py-2">WED</div>
+<div class="font-label-sm text-on-surface-variant/60 py-2">THU</div>
+<div class="font-label-sm text-on-surface-variant/60 py-2">FRI</div>
+<div class="font-label-sm text-on-surface-variant/60 py-2">SAT</div>
+</div>
+<div class="calendar-grid gap-1">
+<!-- Previous Month -->
+<div class="aspect-square flex items-center justify-center text-outline text-label-sm rounded-xl">26</div>
+<div class="aspect-square flex items-center justify-center text-outline text-label-sm rounded-xl">27</div>
+<div class="aspect-square flex items-center justify-center text-outline text-label-sm rounded-xl">28</div>
+<div class="aspect-square flex items-center justify-center text-outline text-label-sm rounded-xl">29</div>
+<div class="aspect-square flex items-center justify-center text-outline text-label-sm rounded-xl">30</div>
+<!-- Current Month -->
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">1</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">2</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        3
+                        <span class="absolute bottom-2 w-1 h-1 bg-primary rounded-full"></span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">4</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">5</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">6</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        7
+                        <span class="absolute bottom-2 w-1 h-1 bg-tertiary-container rounded-full"></span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">8</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">9</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">10</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        11
+                        <span class="absolute bottom-2 w-1 h-1 bg-primary rounded-full"></span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center bg-primary text-on-primary font-body-numbers rounded-xl shadow-md">12</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">13</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        14
+                        <span class="absolute bottom-2 flex gap-0.5">
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span class="w-1 h-1 bg-kids-accent rounded-full"></span>
+</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">15</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">16</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">17</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        18
+                        <span class="absolute bottom-2 w-1 h-1 bg-secondary rounded-full"></span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">19</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">20</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        21
+                        <span class="absolute bottom-2 w-1 h-1 bg-primary rounded-full"></span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">22</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">23</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">24</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">25</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">26</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">27</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors relative">
+                        28
+                        <span class="absolute bottom-2 w-1 h-1 bg-primary rounded-full"></span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">29</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">30</div>
+<div class="aspect-square flex flex-col items-center justify-center font-body-numbers text-on-surface rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">31</div>
+</div>
+</section>
+<!-- Family Members & Quick View -->
+<aside class="lg:col-span-4 space-y-gutter">
+<div class="bg-surface border border-outline-variant/30 rounded-[20px] p-card-padding shadow-sm">
+<h3 class="font-headline-sm text-headline-sm mb-4">Family Tree</h3>
+<div class="flex flex-wrap gap-3">
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full border-2 border-primary p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="A portrait photo of a smiling mother with long hair, professional lighting, minimalist background, organic and warm aesthetic, soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhZiKce0m9v3t0NXj1rQVlpG0BHoF95dNRqcI5cew8zwvMjClNlrX3cccUz29Wi-ALriOfV9Ocp5dr06wT1d4oOpOzlZAH0jvP_sRZ4axSOVvxCqrDiPNoDmmrW8R8vqhNGd5dpgtG_rfeBNBvwM3ztYeCBAy28v_FvySX4CjapaCkuQJEYASQXIav54kWbDQatlnfhYBxinoRoeJqPjdykk7TO1hn-Z_fQaHFe7PY5Gi9MQEFgtcv"/>
+</div>
+<span class="text-label-sm font-medium">Mom</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full border-2 border-secondary p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="A portrait photo of a cheerful father wearing glasses, warm sweater, blurred natural garden background, clean and professional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFP2IJ1mjGCVRz8FR_yhNuyBccDW0IaUhtVUhVNAIspkJmN_H_LY6LmrD1mxu0WWoljdkVgKQr-9mYLo7NLF27uWuRIOGkOY5szhxb6oe3qiUEa9osJpyGeNC7PqqX7eXbuc1F4s-uJGDXUZ-F5Rl2VbhXQk-OEaogtFMjgK8c3gT-peeeBFThPw5f7UDDeN1JYbdIdY5FSf-yxqA8dKtPDl4gQabm1n8qBiCiCfsyn1jQSI01GH9y"/>
+</div>
+<span class="text-label-sm font-medium">Dad</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full border-2 border-kids-accent p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="A portrait photo of a young boy laughing, wearing a bright green t-shirt, vibrant lighting, clean studio background, modern kids photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbM9XgpIqw9BH0BhrrGDPpcgaM4pKHRBNzbLoQuIQf8u5oODpkA5wR9ZJ5EnSUwj7mGfx-WXJSIoVpXFyFlseYywl21soup0l-pPAlp0C0wQnW4fTBj46rWTLCKdw5IGXhpSXVHBnOit-e-qvuKhpV35KUqIf_XT7LiiyGm551d6pVwtof5u46iq45PBuKhgg_eGtD_SiJCvAAbkEkjHqdedTHnVt0klJ43dyYInz9OtcEGclxrZtX"/>
+</div>
+<span class="text-label-sm font-medium">Leo</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50">
+<div class="w-12 h-12 rounded-full border-2 border-outline border-dashed flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">add</span>
+</div>
+<span class="text-label-sm font-medium">Add</span>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container/20 rounded-[20px] p-card-padding border border-secondary/10 overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-headline-sm text-headline-sm text-on-secondary-container mb-2">Monthly Mission</h3>
+<p class="text-caption text-on-surface-variant mb-4">Complete 20 family walks this month to unlock the Zoo trip!</p>
+<div class="w-full bg-surface-container rounded-full h-2 mb-2">
+<div class="bg-secondary h-full rounded-full" style="width: 65%"></div>
+</div>
+<span class="text-label-sm font-bold text-secondary">13/20 Walks Done</span>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-secondary/10 text-[120px]" style="font-variation-settings: 'FILL' 1;">park</span>
+</div>
+</aside>
+</div>
+<!-- Today's Schedule List -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg">Today's Missions</h2>
+<button class="text-primary font-label-sm hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Mission Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-[20px] p-5 hover:shadow-md transition-all group">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-primary-container/20 text-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<span class="bg-primary-container text-on-primary-container text-label-sm px-3 py-1 rounded-full font-medium">6:30 PM</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-1">Family Dinner</h4>
+<p class="text-caption text-on-surface-variant mb-4">Taco Night! Everyone helps with prep.</p>
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a smiling mother." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBActUOg5rpRfIi9hg6JhrXy4b2x0HxQJNSE7FM6gSPUqNxHFQQYZqMB4RM4HP8Y3_7HoGImERrgeo33vZir0y-gq6BuG_x3-ymLLDip1owb6x4KESyBrKEDReF-A2cWFNoDvsUs8IEC-N09SRxvbxPd5cFa_A152juiHpdFsTAx4euwbeibRWMBIT8cGv5svpLz0ubW-P_CmnDA6JeQ0rqvJDlEVzdfHM2Sk31yb57l_7v2Ri0Y_uf"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a cheerful father." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyKUICeaknD0eXm_SCtNl9-1MkdPZxLpN10Ynbwx-mwLRXpfugBnZfzWvGnOTlMZF7mbIynyjCgUDPDiujvdBvvoZV_BUNZz4e7Ju3lwl9ZHKAXy5htoELtFib6h8K_Oq1oGzYHDdXmH3JW7jokfMboznwBnkZEFOgv4dXVedDUkeRCOZ-94k185bY4ZkoDIPhxt-4DhgTMQFp88VTr0gxfnacpp4ULFJ-Z6PDxp0y21lqYH9dLuZA"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a young boy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeLoT9HgxPCEO8ju_ZswwwkYLtmPGluMMFEK_z6Zmi7oymBcmJSjPjj1yqW5yTi6ytUQyJA4BL7xlk9JNGm7AfY2xziRzU1StPRwRsGgimMJowl92nVrWXLvzrqLT9E0HWiClx_vDMN-eBdJXzlC81WgzXwjkBnJXTE8RHZh-jtHMu5G9zqVJ87LdgD41Bwt-xFPhRah2wvFOT1rFM0S9mS4FALEM6blkPUkc74mOenGGqx1U60e1-"/>
+</div>
+</div>
+<!-- Mission Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-[20px] p-5 hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-tertiary-container/20 text-tertiary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+<span class="bg-tertiary-container/20 text-tertiary text-label-sm px-3 py-1 rounded-full font-medium">8:00 AM</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-1">Morning Yoga</h4>
+<p class="text-caption text-on-surface-variant mb-4">15 mins stretch in the living room.</p>
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a smiling mother." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHs8FLen8utwEpGkQRBX9_aoUv3EwAWdIUqWwU6o5gXSFYViMkPjUwU9RV9SxhYlC34RG_Tsa9aMhdghLe2qg24_qixid7_2EOeDVaP0MrzrWdQkzH0Z8scLiVNbRUZZtHAOQr1rt3rxxa81ioEHPtbizdKC0jB2g2hcFdiTwcKz8IOBgGjixDOVk1xfF6oB-nZvFdMUeMNlXtDoRYy0OQBaj9krpo3U5-9hueTYrs-jSJnXhfOcJu"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a young boy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4HepnVIx7vezDYOmhFmVe7nBYTHYS7Qeb4k2MvmHCMx6YvPAo3MJKXF3htr3r9D83yMFZSw-obw_jlFdSbEwfXP8DZU9b78zxZ4aTcRmV-8-yzk7CHPl3TfUk2Nrxye4G-0ruS7IToVR7X6fXfNb0kduqUBV04oEPzmd-EN8G3sm3XVAGb37db73UWXY7vYffCqDi397ficU30ECwKZnvQ3-u35WXWmeZ6WZE8ES4jucTaXlsnNuB"/>
+</div>
+</div>
+<!-- Mission Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-[20px] p-5 hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-secondary-container/30 text-secondary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-label-sm px-3 py-1 rounded-full font-medium">7:30 PM</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-1">Story Time</h4>
+<p class="text-caption text-on-surface-variant mb-4">Reading 'The Green Forest' together.</p>
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a cheerful father." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMCFiS6mfPBw8303tPiq7i84vjuBGoryBQF5EKY9q04PV-pRjFpnfCJPCu-2VjVSh9QTp8PRNqm_SfKfbsu35S_2UKMzWbyena_nb-5VvtAbea3ejyNjAQ4oKLDzB5BWS_BUWGLmpmQXLdxcC2HSX9GUXk3O6vXQ9n3EU06InI_xuyFDpJubxVphShMoiE48ulWu745JlnHun_3sVk27WAhZuAgUxMnjTcvZDDKuYJ-38OVfifT7Yw"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a young boy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvbRvUFHO-ptTr6gJwscKrHOV29Imid-0ICclaN4lrHnSRjbYzYYjC7ThQL6O-q_CwihVFuFpUABut1QGdpwOQBnQShC6W03TqDpxxhcyKEvZM8oS0KTkNfAEPWT63jEm-ckv3lNddyZ7pxDTdTJ5UtoIrCujA1dTMdhuI6N2c26tq4Wl8DU1ihL7DfMMuYzWzSaCi3aw-5a8lmHCw_pcxbTHzmrXDlYTOmfgk8TpaC4hxKyrq0m1k"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-margin-mobile md:right-margin-desktop bg-primary text-on-primary w-14 h-14 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center z-50 md:hidden">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-on-surface-variant flex justify-around items-center pt-2 pb-safe px-4 shadow-sm rounded-t-xl transition-colors">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">cached</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<!-- Active Tab: Family (mapping to Calendar intent) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for calendar date selection
+        document.querySelectorAll('.calendar-grid div[class*="hover:bg-surface-container-low"]').forEach(date => {
+            date.addEventListener('click', () => {
+                // Remove previous selection
+                document.querySelectorAll('.calendar-grid div').forEach(d => {
+                    if (d.classList.contains('bg-primary')) {
+                        d.classList.remove('bg-primary', 'text-on-primary', 'shadow-md');
+                        d.classList.add('text-on-surface', 'hover:bg-surface-container-low');
+                    }
+                });
+                // Add new selection
+                date.classList.remove('text-on-surface', 'hover:bg-surface-container-low');
+                date.classList.add('bg-primary', 'text-on-primary', 'shadow-md');
+            });
+        });
+
+        // Add Event Button Ripple/Feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => { ripple.remove(); }, 600);
+            });
+        });
+    </script>
+</body></html>

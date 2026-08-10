@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Adult Rewards Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00201c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d9e3f6",
+                        "surface-dark": "#1E1E1E",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#bbcabf",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "emerald-glow": "rgba(16, 185, 129, 0.15)",
+                        "on-tertiary-fixed": "#2a1700",
+                        "background-warm": "#FFFFFF",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#3c4a42",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-surface": "#121c2a",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-primary": "#4edea3",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dee9fc",
+                        "on-tertiary-container": "#523200",
+                        "surface-container": "#e6eeff",
+                        "primary": "#006c49",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7a71",
+                        "secondary-container": "#6df5e1",
+                        "on-primary-fixed": "#002113",
+                        "kids-secondary": "#0D9488",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#71f8e4",
+                        "kids-accent": "#D97706",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d9e3f6",
+                        "tertiary-fixed": "#ffddb8",
+                        "kids-primary": "#059669",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "secondary": "#006b5f",
+                        "on-secondary-container": "#006f64",
+                        "surface-tint": "#006c49",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-surface": "#27313f",
+                        "on-primary-container": "#00422b",
+                        "background-dark": "#121212",
+                        "tertiary": "#855300",
+                        "tertiary-container": "#e29100",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d0dbed",
+                        "tertiary-fixed-dim": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "chip-gap": "12px",
+                        "button-height": "48px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "card-padding": "20px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "numbers-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "numbers-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #006c49, #006b5f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[90px]">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-surface dark:bg-surface-dark z-40 transition-shadow" id="mainHeader">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A detailed, close-up portrait of a serene individual outdoors. The lighting is soft and natural, suggesting a calm morning. They exude a sense of wellness and organic vitality, fitting a premium holistic lifestyle app aesthetic. The background is a gently blurred natural environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkccpVi_-tEtEquAtJxlPYmX963XOf6G4ll_B81sw_ARuVrLQOY6C8mczhN56auQAHJqPY_dI1liD70_GwlU6tkJNxECfqIwrNc52QyQDlyFaD75g-Ge_r8Frd5sXm6OGbT86mByqoyWJHeTq59U0a07QQMivhM0T1CRHrvkdPKAF5QyenSeX_ZSM3PpkLKq1Y-Ldi0jGpoZ5TbqWvqcCKVBkfljat05Zcts97fgVP9Nf-UQKwaGkb"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Rewards</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Level 8 – Consistency Builder</p>
+</div>
+</div>
+<button aria-label="Settings" class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile md:px-margin-desktop py-6 max-w-4xl mx-auto space-y-10">
+<!-- Reward Balance Card (High Emphasis Level 2) -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-sm border border-outline-variant/30 relative overflow-hidden flex flex-col gap-6 transform hover:scale-[1.01] transition-transform duration-300">
+<!-- Ambient Shadow Glow -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-emerald-glow rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Current Balance</span>
+<div class="flex items-center gap-2">
+<span class="text-3xl text-tertiary-container drop-shadow-sm">⭐</span>
+<span class="font-headline-xl text-headline-xl text-gradient">2,450</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary h-button-height px-6 rounded-full font-body-sm text-body-sm font-medium hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                    Redeem
+                </button>
+</div>
+<!-- XP Progress -->
+<div class="flex flex-col gap-2 z-10 mt-2">
+<div class="flex justify-between items-end">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Next Level: Master</span>
+<span class="font-numbers-md text-numbers-md text-on-surface-variant">650 / 1000 XP</span>
+</div>
+<!-- Organic Rounded Progress Bar -->
+<div class="h-2 w-full bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000 ease-out" style="width: 65%;"></div>
+</div>
+</div>
+<div class="z-10 mt-2 flex gap-4">
+<button class="text-primary font-body-sm text-body-sm font-medium hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                     History
+                 </button>
+</div>
+</section>
+<!-- Summary Grid (Bento Style) -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Habits -->
+<div class="bg-surface-container-low rounded-xl p-card-padding flex flex-col gap-2 border border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">checklist</span>
+</div>
+<span class="font-numbers-md text-numbers-md text-on-surface">142</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Habits</span>
+</div>
+<!-- Goals -->
+<div class="bg-surface-container-low rounded-xl p-card-padding flex flex-col gap-2 border border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary mb-2">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<span class="font-numbers-md text-numbers-md text-on-surface">12</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Goals</span>
+</div>
+<!-- Streaks -->
+<div class="bg-surface-container-low rounded-xl p-card-padding flex flex-col gap-2 border border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary-container mb-2">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+<span class="font-numbers-md text-numbers-md text-on-surface">18d</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Streak</span>
+</div>
+<!-- Achievements -->
+<div class="bg-surface-container-low rounded-xl p-card-padding flex flex-col gap-2 border border-surface-variant">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-kids-accent mb-2">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<span class="font-numbers-md text-numbers-md text-on-surface">7</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Badges</span>
+</div>
+</section>
+<!-- Recent Rewards Timeline -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-sm border border-outline-variant/30 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity</h2>
+</div>
+<div class="flex flex-col relative pl-4 border-l border-surface-variant ml-2 space-y-6">
+<!-- Timeline Item 1 -->
+<div class="relative flex flex-col gap-1 pl-6">
+<div class="absolute -left-[25px] top-1 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[14px]">self_improvement</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-body-lg text-body-lg text-on-surface">Morning Meditation</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-0.5">Today, 7:30 AM</p>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary font-medium">+10</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex flex-col gap-1 pl-6">
+<div class="absolute -left-[25px] top-1 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[14px]">task_alt</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-body-lg text-body-lg text-on-surface">Weekly Goal Completed</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-0.5">Yesterday</p>
+</div>
+<span class="font-numbers-md text-numbers-md text-primary font-medium">+50</span>
+</div>
+</div>
+</div>
+<button class="w-full h-button-height border border-outline-variant text-primary rounded-xl font-body-sm text-body-sm font-medium hover:bg-surface-container-low transition-colors mt-2">
+                View Reward History
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface-container-low/80 backdrop-blur-md shadow-sm border-t-0 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">checklist</span>
+<span class="font-label-md text-label-md mt-1">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">emoji_events</span>
+<span class="font-label-md text-label-md mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-md text-label-md mt-1">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">family_restroom</span>
+<span class="font-label-md text-label-md mt-1">Family</span>
+</a>
+</nav>
+<script>
+        // Simple scroll effect for TopAppBar shadow
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body></html>
