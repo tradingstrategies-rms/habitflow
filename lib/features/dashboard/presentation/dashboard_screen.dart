@@ -8,6 +8,7 @@ import '../../home/presentation/widgets/intelligence_preview_card.dart';
 import '../../rewards/presentation/widgets/reward_preview_card.dart';
 import '../../challenges/presentation/widgets/challenge_preview_card.dart';
 import '../../leaderboards/presentation/widgets/leaderboard_preview_card.dart';
+import '../../analytics/presentation/widgets/analytics_preview_card.dart';
 import '../../../../core/sync/widgets/sync_status_indicator.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
@@ -55,6 +56,8 @@ class DashboardScreen extends ConsumerWidget {
             const ChallengePreviewCard(),
             const SizedBox(height: HFSpacing.l),
             const LeaderboardPreviewCard(),
+            const SizedBox(height: HFSpacing.l),
+            const AnalyticsPreviewCard(),
             const SizedBox(height: HFSpacing.l),
             Card(
               child: ListTile(

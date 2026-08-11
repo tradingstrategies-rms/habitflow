@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:habitflow/features/analytics/domain/entities/analytics_metrics.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_trend.dart';
 import 'package:habitflow/features/analytics/domain/services/analytics_metrics_calculator.dart';
 import 'package:habitflow/features/habits/domain/entities/habit_completion.dart';
 
@@ -76,6 +77,59 @@ void main() {
 
       expect(result.completedCount, 1);
       expect(result.activeDays, 1);
+    });
+
+    test('correctly handles one completion', () {
+      final result = calculator.calculate(
+        habitId: 'habit-1',
+        startDate: start,
+        endDate: end,
+        completions: [completion(DateTime(2026, 1, 2))],
+      );
+
+      expect(result.completedCount, 1);
+      expect(result.activeDays, 1);
+      expect(result.longestStreak, 1);
+      expect(result.averageGapDays, 0.0);
+    });
+
+    test('respects boundary dates strictly', () {
+      final result = calculator.calculate(
+        habitId: 'habit-1',
+        startDate: start,
+        endDate: end,
+        completions: [
+          completion(start), // On boundary
+          completion(end),   // On boundary
+        ],
+      );
+
+      expect(result.activeDays, 2);
+      expect(result.activityRate, closeTo(2 / 7, 0.000001));
+    });
+
+    test('calculates longest streak and average gap across multiple days', () {
+      final result = calculator.calculate(
+        habitId: 'habit-1',
+        startDate: start,
+        endDate: end,
+        completions: [
+          completion(DateTime(2026, 1, 1)), // Day 1
+          completion(DateTime(2026, 1, 2)), // Day 2 - Streak 2
+          completion(DateTime(2026, 1, 4)), // Day 4 - Gap 2 from Day 2
+          completion(DateTime(2026, 1, 5)), // Day 5 - Streak 2
+          completion(DateTime(2026, 1, 6)), // Day 6 - Streak 3
+        ],
+      );
+
+      // Unique days: 1, 2, 4, 5, 6
+      // Streaks: [1, 2], [4, 5, 6] -> Longest is 3
+      // Gaps: (2-1)=1, (4-2)=2, (5-4)=1, (6-5)=1
+      // Average Gap: (1+2+1+1) / 4 = 5 / 4 = 1.25
+      
+      expect(result.activeDays, 5);
+      expect(result.longestStreak, 3);
+      expect(result.averageGapDays, 1.25);
     });
   });
 
