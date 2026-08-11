@@ -8,6 +8,7 @@ import 'package:habitflow/core/theme/hf_spacing.dart';
 import 'widgets/habit_heatmap.dart';
 import 'widgets/analytics_summary_cards.dart';
 import 'widgets/analytics_trend_section.dart';
+import 'widgets/habit_intelligence_section.dart';
 
 class AnalyticsScreen extends ConsumerWidget {
   const AnalyticsScreen({super.key});
@@ -55,6 +56,8 @@ class AnalyticsScreen extends ConsumerWidget {
                 AnalyticsSummaryCards(metrics: metrics),
                 const SizedBox(height: HFSpacing.l),
                 AnalyticsTrendSection(trend: trend),
+                const SizedBox(height: HFSpacing.xl),
+                HabitIntelligenceSection(habitId: habitId, period: period),
                 const SizedBox(height: HFSpacing.xl),
                 HabitHeatmap(metrics: dailyMetrics),
                 const SizedBox(height: HFSpacing.xxl),

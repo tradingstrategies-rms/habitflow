@@ -8,6 +8,9 @@ import 'package:habitflow/features/family/domain/enums/profile_type.dart';
 import 'package:habitflow/features/family/domain/repositories/family_repository.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
 import 'package:habitflow/features/family/presentation/screens/family_dashboard_screen.dart';
+import 'package:habitflow/features/analytics/application/providers/analytics_providers.dart';
+import 'package:habitflow/features/analytics/domain/entities/family_productivity_score.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_trend.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockFamilyRepository extends Mock implements FamilyRepository {}
@@ -46,6 +49,18 @@ void main() {
       ProviderScope(
         overrides: [
           familyRepositoryProvider.overrideWithValue(mockRepo),
+          familyProductivityScoreProvider(const Duration(days: 30)).overrideWithValue(
+            AsyncValue.data(FamilyProductivityScore(
+              familyId: 'f1',
+              score: 80.0,
+              startDate: DateTime.now(),
+              endDate: DateTime.now(),
+              participatingProfileCount: 1,
+              averageActivityRate: 0.8,
+              trend: AnalyticsTrendDirection.stable,
+              trendDelta: 0.0,
+            )),
+          ),
         ],
         child: const MaterialApp(
           home: FamilyDashboardScreen(),

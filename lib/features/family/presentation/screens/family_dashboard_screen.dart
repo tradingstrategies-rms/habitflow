@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/features/authentication/application/auth_controller.dart';
-import 'package:habitflow/features/family/domain/entities/family_circle.dart';
 import 'package:habitflow/features/family/domain/entities/family_profile.dart';
 import 'package:habitflow/features/family/domain/enums/profile_type.dart';
 import 'package:habitflow/features/family/domain/enums/family_role.dart';
@@ -12,6 +11,7 @@ import 'package:habitflow/features/family/presentation/providers/active_profile_
 import 'package:habitflow/features/family/presentation/providers/parent_approval_provider.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
 import 'package:habitflow/features/family/presentation/widgets/invitation_inbox.dart';
+import 'package:habitflow/features/family/presentation/widgets/family_productivity_score_card.dart';
 
 import 'package:habitflow/features/family/domain/entities/family_achievement.dart';
 import 'package:habitflow/features/family/presentation/providers/family_achievement_provider.dart';
@@ -126,7 +126,7 @@ class FamilyDashboardScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(HFSpacing.m),
           children: [
             const FamilyInvitationInbox(),
-            _buildFamilySummaryCard(context, familyCircle, profiles),
+            FamilyProductivityScoreCard(isChild: isChild),
             const SizedBox(height: HFSpacing.m),
             _buildSharedHabitsCard(context, ref),
             const SizedBox(height: HFSpacing.m),
@@ -140,76 +140,6 @@ class FamilyDashboardScreen extends ConsumerWidget {
             ),
             const SizedBox(height: HFSpacing.s),
             ..._buildNavigationCards(context, activeProfile, pendingCount),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFamilySummaryCard(BuildContext context, FamilyCircle circle, List<FamilyProfile> profiles) {
-    final theme = Theme.of(context);
-    const double completion = 0.65; // Mock data for completion
-
-    return Card(
-      elevation: 0,
-      color: theme.colorScheme.primaryContainer.withAlpha(40),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-        side: BorderSide(color: theme.colorScheme.primary.withAlpha(40)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    circle.name,
-                    style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${profiles.length} Members active',
-                    style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Icon(Icons.trending_up, size: 16, color: theme.colorScheme.primary),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${(completion * 100).toInt()}% Week completion',
-                        style: theme.textTheme.labelMedium?.copyWith(
-                          color: theme.colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: 64,
-                  height: 64,
-                  child: CircularProgressIndicator(
-                    value: completion,
-                    strokeWidth: 8,
-                    backgroundColor: theme.colorScheme.surfaceContainerHighest,
-                    strokeCap: StrokeCap.round,
-                  ),
-                ),
-                Text(
-                  '${(completion * 100).toInt()}%',
-                  style: theme.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
           ],
         ),
       ),

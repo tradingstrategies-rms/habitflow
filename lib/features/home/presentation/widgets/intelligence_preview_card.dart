@@ -13,7 +13,7 @@ class IntelligencePreviewCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final intelligenceDataAsync = ref.watch(intelligenceSummaryProvider);
+    final intelligenceDataAsync = ref.watch(intelligenceDashboardProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -22,6 +22,9 @@ class IntelligencePreviewCard extends ConsumerWidget {
       error: (_, __) => const SizedBox.shrink(),
       data: (data) {
         if (data == null) return const SizedBox.shrink();
+
+        final score = data.overallConsistency?.overallScore.toInt() ?? 0;
+        final insightTitle = data.priorityInsight?.title ?? 'Stay consistent!';
 
         return Card(
           elevation: 0,
@@ -45,7 +48,7 @@ class IntelligencePreviewCard extends ConsumerWidget {
                     ),
                     child: Center(
                       child: Text(
-                        data.consistencyScore.overallScore.toInt().toString(),
+                        score.toString(),
                         style: theme.textTheme.headlineSmall?.copyWith(
                           color: colorScheme.onPrimaryContainer,
                           fontWeight: FontWeight.w800,
@@ -67,7 +70,7 @@ class IntelligencePreviewCard extends ConsumerWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          data.insights.isNotEmpty ? data.insights.first.title : 'Stay consistent!',
+                          insightTitle,
                           style: theme.textTheme.bodyMedium,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

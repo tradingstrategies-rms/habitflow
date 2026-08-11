@@ -48,7 +48,7 @@ class DashboardScreen extends ConsumerWidget {
             const DashboardGoalSummary(),
             const SizedBox(height: HFSpacing.l),
             IntelligencePreviewCard(
-              onTap: () => context.push('/intelligence'),
+              onTap: () => context.pushNamed(RouteNames.intelligence),
             ),
             const SizedBox(height: HFSpacing.l),
             const RewardPreviewCard(),

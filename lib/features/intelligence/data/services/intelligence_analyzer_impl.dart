@@ -2,6 +2,8 @@ import 'package:habitflow/features/goals/domain/entities/goal.dart';
 import 'package:habitflow/features/habits/domain/entities/habit.dart';
 import 'package:habitflow/features/habits/domain/entities/habit_completion.dart';
 import 'package:habitflow/features/habits/application/services/habit_streak_service.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_metrics.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_trend.dart';
 import '../../domain/services/intelligence_analyzer.dart';
 import '../../domain/services/consistency_score_calculator.dart';
 import '../../domain/services/pattern_detection_service.dart';
@@ -28,6 +30,8 @@ class IntelligenceAnalyzerImpl implements IntelligenceAnalyzer {
     required Habit habit,
     required List<HabitCompletion> history,
     Goal? goal,
+    AnalyticsMetrics? metrics,
+    AnalyticsTrend? trend,
   }) async {
     final currentStreak = _streakService.calculateCurrentStreak(history);
     
@@ -40,12 +44,15 @@ class IntelligenceAnalyzerImpl implements IntelligenceAnalyzer {
     final patterns = _patternDetector.detectPatterns(
       habit: habit,
       history: history,
+      metrics: metrics,
+      trend: trend,
     );
 
     final insights = _insightGenerator.generateInsights(
       habit: habit,
       score: score,
       patterns: patterns,
+      trend: trend,
     );
 
     final recommendations = _recommendationGenerator.generateRecommendations(
@@ -53,6 +60,7 @@ class IntelligenceAnalyzerImpl implements IntelligenceAnalyzer {
       score: score,
       patterns: patterns,
       insights: insights,
+      trend: trend,
     );
 
     return IntelligenceAnalysisResult(

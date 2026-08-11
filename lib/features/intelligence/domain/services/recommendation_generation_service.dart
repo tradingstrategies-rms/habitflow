@@ -1,4 +1,5 @@
 import 'package:habitflow/features/habits/domain/entities/habit.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_trend.dart';
 import 'package:uuid/uuid.dart';
 import '../entities/habit_consistency_score.dart';
 import '../entities/habit_insight.dart';
@@ -16,11 +17,12 @@ class RecommendationGenerationService {
     required HabitConsistencyScore score,
     required List<HabitPattern> patterns,
     required List<HabitInsight> insights,
+    AnalyticsTrend? trend,
   }) {
     final recommendations = <HabitRecommendation>[];
 
     for (final insight in insights) {
-      final rec = _mapInsightToRecommendation(habit, insight, score);
+      final rec = _mapInsightToRecommendation(habit, insight, score, trend);
       if (rec != null) {
         recommendations.add(rec);
       }
@@ -50,7 +52,12 @@ class RecommendationGenerationService {
     return uniqueRecs.values.take(maxRecommendations).toList();
   }
 
-  HabitRecommendation? _mapInsightToRecommendation(Habit habit, HabitInsight insight, HabitConsistencyScore score) {
+  HabitRecommendation? _mapInsightToRecommendation(
+    Habit habit, 
+    HabitInsight insight, 
+    HabitConsistencyScore score,
+    AnalyticsTrend? trend,
+  ) {
     // We look at the first supporting pattern of the insight to decide the recommendation
     if (insight.supportingPatterns.isEmpty) return null;
     
@@ -80,14 +87,17 @@ class RecommendationGenerationService {
           supportingInsights: [insight],
         );
       case PatternType.decliningTrend:
+        final isFading = (trend?.delta ?? 0) < -0.2;
         return _createRecommendation(
           habitId: habit.id,
           type: RecommendationType.goalAdjustment,
-          priority: RecommendationPriority.high,
-          title: 'Mini-Restart',
-          summary: 'Lower the barrier to entry.',
-          reason: 'Recent consistency has dropped significantly.',
-          suggestedAction: 'For the next 7 days, aim for a "Minimum Viable" version of "${habit.title}" (e.g., 2 minutes instead of 20) to rebuild the habit loop.',
+          priority: isFading ? RecommendationPriority.critical : RecommendationPriority.high,
+          title: isFading ? 'Emergency Reset' : 'Mini-Restart',
+          summary: isFading ? 'Stop the decline now.' : 'Lower the barrier to entry.',
+          reason: isFading ? 'This habit is fading rapidly.' : 'Recent consistency has dropped significantly.',
+          suggestedAction: isFading
+            ? 'Reduce your "${habit.title}" goal to the absolute minimum (e.g., 1 minute) for the next 14 days to preserve the habit loop.'
+            : 'For the next 7 days, aim for a "Minimum Viable" version of "${habit.title}" to rebuild the habit loop.',
           supportingInsights: [insight],
         );
       case PatternType.longInactiveGap:
@@ -141,7 +151,7 @@ class RecommendationGenerationService {
           priority: RecommendationPriority.low,
           title: 'Keep it Up',
           summary: 'Your trend is positive.',
-          reason: 'You have increased your completion rate by ${(pattern.metrics['improvement'] * 100).toStringAsFixed(0)}% recently.',
+          reason: 'You have increased your completion rate recently.',
           suggestedAction: 'Stay focused on your current streak. You are building lasting change.',
           supportingInsights: [insight],
         );

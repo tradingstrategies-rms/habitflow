@@ -1,81 +1,99 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
+import 'package:habitflow/core/theme/hf_opacity.dart';
 import 'package:habitflow/features/intelligence/application/providers/intelligence_providers.dart';
-import 'package:habitflow/features/intelligence/presentation/widgets/consistency_score_card.dart';
-import 'package:habitflow/features/intelligence/presentation/widgets/behavior_patterns_section.dart';
 import 'package:habitflow/features/intelligence/presentation/widgets/insight_card.dart';
 import 'package:habitflow/features/intelligence/presentation/widgets/recommendation_card.dart';
-import 'package:habitflow/features/intelligence/presentation/widgets/section_header.dart';
+import 'package:habitflow/features/family/presentation/widgets/family_productivity_score_card.dart';
+import 'package:habitflow/features/family/presentation/providers/active_profile_provider.dart';
+import 'package:habitflow/features/family/domain/enums/profile_type.dart';
+import 'package:habitflow/shared/widgets/widgets.dart';
 
 class IntelligenceDashboardScreen extends ConsumerWidget {
   const IntelligenceDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final intelligenceDataAsync = ref.watch(intelligenceSummaryProvider);
+    final dashboardDataAsync = ref.watch(intelligenceDashboardProvider);
+    final activeProfile = ref.watch(activeProfileProvider);
+    final isChild = activeProfile?.profileType == ProfileType.child;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Habit Intelligence'),
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Intelligence'),
+            Text(
+              'Your habits, understood',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+            ),
+          ],
+        ),
         centerTitle: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: HFSpacing.m),
-            child: Icon(Icons.notifications_none, color: Theme.of(context).colorScheme.onSurface),
-          ),
-        ],
       ),
-      body: intelligenceDataAsync.when(
+      body: dashboardDataAsync.when(
         data: (data) {
           if (data == null) {
-            return const Center(child: Padding(
-              padding: EdgeInsets.all(HFSpacing.l),
-              child: Text('When enough habit data is available, your intelligence insights will appear.', textAlign: TextAlign.center),
-            ));
+            return const Center(
+              child: HFEmptyState(
+                title: 'No Data Yet',
+                message: 'Complete a few more habits and we\'ll start spotting patterns.',
+                icon: Icons.auto_awesome_outlined,
+              ),
+            );
           }
-          return RefreshIndicator(
-            onRefresh: () async {
-              // ref.refresh(intelligenceSummaryProvider);
-            },
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: HFSpacing.m, vertical: HFSpacing.s),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                      ConsistencyScoreCard(score: data.consistencyScore),
-                      const SizedBox(height: HFSpacing.l),
-                      BehaviorPatternsSection(
-                        patterns: data.patterns,
-                        title: 'Behavior Patterns',
-                      ),
-                      const SizedBox(height: HFSpacing.l),
-                      SectionHeader(
-                        title: 'Tailored Insights',
-                        actionLabel: 'View All',
-                        onActionPressed: () {},
-                      ),
-                      ...data.insights.map((insight) => Padding(
+
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(HFSpacing.m),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (data.priorityInsight != null) ...[
+                  _buildSectionTitle(context, 'Priority Insight'),
+                  const SizedBox(height: HFSpacing.s),
+                  InsightCard(insight: data.priorityInsight!),
+                  const SizedBox(height: HFSpacing.l),
+                ],
+                if (data.topRecommendation != null) ...[
+                  _buildSectionTitle(context, 'Next Step'),
+                  const SizedBox(height: HFSpacing.s),
+                  RecommendationCard(recommendation: data.topRecommendation!),
+                  const SizedBox(height: HFSpacing.l),
+                ],
+                if (data.positiveInsights.isNotEmpty) ...[
+                  _buildSectionTitle(context, 'Going Well'),
+                  const SizedBox(height: HFSpacing.s),
+                  ...data.positiveInsights.take(2).map((insight) => Padding(
                         padding: const EdgeInsets.only(bottom: HFSpacing.m),
                         child: InsightCard(insight: insight),
                       )),
-                      const SizedBox(height: HFSpacing.s),
-                      RecommendationCard(
-                        recommendation: data.topRecommendation,
-                        onActionPressed: () {},
-                      ),
-                      const SizedBox(height: HFSpacing.xl),
-                    ]),
-                  ),
-                ),
+                  const SizedBox(height: HFSpacing.s),
+                ],
+                if (data.familyScore != null) ...[
+                  _buildSectionTitle(context, 'Family Productivity'),
+                  const SizedBox(height: HFSpacing.s),
+                  FamilyProductivityScoreCard(isChild: isChild),
+                  const SizedBox(height: HFSpacing.l),
+                ],
+                const SizedBox(height: HFSpacing.xl),
               ],
             ),
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: HFLoadingIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
+    );
+  }
+
+  Widget _buildSectionTitle(BuildContext context, String title) {
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            color: Theme.of(context).colorScheme.onSurface.withAlpha(HFOpacity.alpha80),
+          ),
     );
   }
 }

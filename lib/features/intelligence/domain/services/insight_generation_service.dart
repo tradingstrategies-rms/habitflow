@@ -1,4 +1,5 @@
 import 'package:habitflow/features/habits/domain/entities/habit.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_trend.dart';
 import 'package:uuid/uuid.dart';
 import '../entities/habit_consistency_score.dart';
 import '../entities/habit_insight.dart';
@@ -14,19 +15,18 @@ class InsightGenerationService {
     required Habit habit,
     required HabitConsistencyScore score,
     required List<HabitPattern> patterns,
+    AnalyticsTrend? trend,
   }) {
     final insights = <HabitInsight>[];
 
     for (final pattern in patterns) {
-      final insight = _mapPatternToInsight(habit, pattern, score);
+      final insight = _mapPatternToInsight(habit, pattern, score, trend);
       if (insight != null) {
         insights.add(insight);
       }
     }
 
-    // Sort by severity (high first), then confidence of supporting patterns (if multiple, use average?), 
-    // but here we map 1:1 for now.
-    // Let's sort by severity and then detectedAt.
+    // Sort by severity (high first), then generatedAt.
     insights.sort((a, b) {
       final severityComparison = b.severity.index.compareTo(a.severity.index);
       if (severityComparison != 0) return severityComparison;
@@ -36,7 +36,7 @@ class InsightGenerationService {
     return insights.take(maxInsights).toList();
   }
 
-  HabitInsight? _mapPatternToInsight(Habit habit, HabitPattern pattern, HabitConsistencyScore score) {
+  HabitInsight? _mapPatternToInsight(Habit habit, HabitPattern pattern, HabitConsistencyScore score, AnalyticsTrend? trend) {
     switch (pattern.type) {
       case PatternType.morningStrength:
         return _createInsight(
@@ -82,20 +82,28 @@ class InsightGenerationService {
         return _createInsight(
           habitId: habit.id,
           category: InsightCategory.trend,
-          severity: InsightSeverity.medium,
+          severity: pattern.severity == PatternSeverity.high 
+            ? InsightSeverity.high 
+            : InsightSeverity.medium,
           title: 'On the Rise',
-          summary: 'Your consistency has improved over the last week.',
-          explanation: 'Great job! You are becoming much more consistent with "${habit.title}" compared to previous weeks.',
+          summary: 'Your consistency has improved recently.',
+          explanation: 'Great job! You are becoming much more consistent with "${habit.title}" compared to your historical baseline.',
           supportingPatterns: [pattern],
         );
       case PatternType.decliningTrend:
+        final isFading = (trend?.delta ?? 0) < -0.2;
+        final severity = (isFading || pattern.severity == PatternSeverity.high) 
+          ? InsightSeverity.high 
+          : InsightSeverity.medium;
         return _createInsight(
           habitId: habit.id,
           category: InsightCategory.warning,
-          severity: InsightSeverity.high,
-          title: 'Slipping Consistency',
-          summary: 'Recent performance has declined.',
-          explanation: 'You have been less consistent with "${habit.title}" lately. Try to get back on track with a small win today.',
+          severity: severity,
+          title: isFading ? 'Fading Habit' : 'Slipping Consistency',
+          summary: isFading ? 'Your "${habit.title}" habit is fading.' : 'Recent performance has declined.',
+          explanation: isFading 
+            ? 'Your engagement with "${habit.title}" has dropped significantly. It might be time to simplify your target to stay on track.'
+            : 'You have been less consistent with "${habit.title}" lately. Try to get back on track with a small win today.',
           supportingPatterns: [pattern],
         );
       case PatternType.highConsistency:

@@ -1,5 +1,7 @@
 import 'package:habitflow/features/habits/domain/entities/habit.dart';
 import 'package:habitflow/features/habits/domain/entities/habit_completion.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_metrics.dart';
+import 'package:habitflow/features/analytics/domain/entities/analytics_trend.dart';
 import 'package:uuid/uuid.dart';
 import '../entities/habit_pattern.dart';
 
@@ -22,12 +24,15 @@ class PatternDetectionService {
   static const int trendWindowRecentDays = 7;
   static const int trendWindowHistoricalDays = 30;
   static const double trendChangeThreshold = 0.2; // 20% change
+  static const double fadingTrendThreshold = -0.15; // 15% decline for fading
   static const int longGapThresholdDays = 3;
   static const int fastRecoveryMaxDays = 1;
 
   List<HabitPattern> detectPatterns({
     required Habit habit,
     required List<HabitCompletion> history,
+    AnalyticsMetrics? metrics,
+    AnalyticsTrend? trend,
   }) {
     if (history.isEmpty) return [];
 
@@ -46,12 +51,17 @@ class PatternDetectionService {
     final weekPartPattern = _detectWeekdayWeekendPattern(habit.id, successfulCompletions);
     if (weekPartPattern != null) patterns.add(weekPartPattern);
 
-    // 3 & 4. Trends
-    final trendPattern = _detectTrendPattern(habit.id, successfulCompletions);
-    if (trendPattern != null) patterns.add(trendPattern);
+    // 3 & 4. Trends (Prefer using passed trend if available)
+    if (trend != null) {
+      final trendPattern = _detectTrendFromAnalytics(habit.id, trend, history.length);
+      if (trendPattern != null) patterns.add(trendPattern);
+    } else {
+      final trendPattern = _detectTrendPattern(habit.id, successfulCompletions);
+      if (trendPattern != null) patterns.add(trendPattern);
+    }
 
     // 5 & 6. Consistency
-    final consistencyPattern = _detectConsistencyPattern(habit.id, successfulCompletions);
+    final consistencyPattern = _detectConsistencyPattern(habit.id, successfulCompletions, metrics);
     if (consistencyPattern != null) patterns.add(consistencyPattern);
 
     // 7. Longest Inactive Gap
@@ -67,6 +77,29 @@ class PatternDetectionService {
     patterns.addAll(weekdayPatterns);
 
     return patterns;
+  }
+
+  HabitPattern? _detectTrendFromAnalytics(String habitId, AnalyticsTrend trend, int historyLength) {
+    if (trend.direction == AnalyticsTrendDirection.improving) {
+      return _createPattern(
+        habitId,
+        PatternType.improvingTrend,
+        PatternSeverity.high,
+        _calculateConfidence(historyLength),
+        'pattern_improving_trend',
+        {'improvement': trend.delta},
+      );
+    } else if (trend.direction == AnalyticsTrendDirection.declining) {
+      return _createPattern(
+        habitId,
+        PatternType.decliningTrend,
+        PatternSeverity.high,
+        _calculateConfidence(historyLength),
+        'pattern_declining_trend',
+        {'decline': trend.delta.abs()},
+      );
+    }
+    return null;
   }
 
   HabitPattern? _detectTimeOfDayPattern(String habitId, List<HabitCompletion> history) {
@@ -203,7 +236,29 @@ class PatternDetectionService {
     return null;
   }
 
-  HabitPattern? _detectConsistencyPattern(String habitId, List<HabitCompletion> history) {
+  HabitPattern? _detectConsistencyPattern(String habitId, List<HabitCompletion> history, AnalyticsMetrics? metrics) {
+    if (metrics != null) {
+      if (metrics.activityRate > 0.9) {
+        return _createPattern(
+          habitId,
+          PatternType.highConsistency,
+          PatternSeverity.high,
+          _calculateConfidence(history.length),
+          'pattern_high_consistency',
+          {'activity_rate': metrics.activityRate},
+        );
+      } else if (metrics.activityRate < 0.3 && history.length > 10) {
+        return _createPattern(
+          habitId,
+          PatternType.lowConsistency,
+          PatternSeverity.medium,
+          _calculateConfidence(history.length),
+          'pattern_low_consistency',
+          {'activity_rate': metrics.activityRate},
+        );
+      }
+    }
+
     if (history.length < 10) return null;
 
     final gaps = <int>[];
