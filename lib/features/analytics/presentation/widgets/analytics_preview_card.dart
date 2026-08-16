@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_badge.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
 import 'package:habitflow/core/theme/hf_opacity.dart';
@@ -11,6 +13,7 @@ class AnalyticsPreviewCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isPremium = ref.watch(premiumServiceProvider).isPremium;
     return HFCard(
       onTap: () => context.pushNamed(RouteNames.analytics),
       child: Column(
@@ -19,9 +22,17 @@ class AnalyticsPreviewCard extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Analytics',
-                style: Theme.of(context).textTheme.headlineMedium,
+              Row(
+                children: [
+                  Text(
+                    'Analytics',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  if (!isPremium) ...[
+                    const SizedBox(width: HFSpacing.s),
+                    const PremiumBadge(),
+                  ],
+                ],
               ),
               Icon(
                 Icons.chevron_right_rounded,

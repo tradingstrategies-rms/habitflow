@@ -3,6 +3,7 @@ import '../../domain/entities/family_profile.dart';
 import '../../domain/entities/parent_approval.dart';
 import '../../domain/entities/active_profile_session.dart';
 import '../../domain/entities/family_invitation.dart';
+import '../../domain/enums/invitation_status.dart';
 import '../../domain/entities/shared_habit.dart';
 import '../../domain/entities/family_activity.dart';
 import '../../domain/entities/family_achievement.dart';
@@ -81,28 +82,75 @@ class FamilyRepositoryImpl implements FamilyRepository {
   @override
   Future<List<FamilyInvitation>> getInvitationsForEmail(String email) async {
     final models = await _datasource.getInvitations();
-    return models.where((m) => m.invitedEmail == email).map((m) => m as FamilyInvitation).toList();
+    return models
+        .where((m) => m.invitedEmail == email)
+        .map((m) => m as FamilyInvitation)
+        .toList();
   }
 
   @override
-  Future<void> acceptInvitation(String invitationId, String userId) async {
-    final invitations = await _datasource.getInvitations();
-    final invitation = invitations.firstWhere((i) => i.id == invitationId);
-    
-    // In a real app, this would be a server-side transaction.
-    // Here we update local state.
-    await _datasource.deleteInvitation(invitationId);
-    
-    // Usually we would also set the active family to this one.
-    final circle = await _datasource.getFamilyCircleById(invitation.familyId);
-    if (circle != null) {
-      await _datasource.updateFamilyCircle(circle);
+  Future<List<FamilyInvitation>> getInvitationsByFamilyId(String familyId) async {
+    final models = await _datasource.getInvitations();
+    return models
+        .where((m) => m.familyId == familyId)
+        .map((m) => m as FamilyInvitation)
+        .toList();
+  }
+
+  @override
+  Future<FamilyInvitation?> getInvitationByToken(String token) async {
+    final models = await _datasource.getInvitations();
+    try {
+      return models.firstWhere((m) => m.token == token);
+    } catch (_) {
+      return null;
     }
   }
 
   @override
+  Future<void> acceptInvitation(String invitationId, String profileId) async {
+    final invitations = await _datasource.getInvitations();
+    final invitation = invitations.firstWhere((i) => i.id == invitationId);
+
+    if (invitation.status != InvitationStatus.pending) {
+      throw Exception('Invitation is not pending');
+    }
+    if (invitation.isExpired) {
+      throw Exception('Invitation has expired');
+    }
+
+    final updatedInvitation = invitation.copyWith(
+      status: InvitationStatus.accepted,
+      usedAt: DateTime.now(),
+      usedByProfileId: profileId,
+    );
+
+    await _datasource.updateInvitation(FamilyInvitationModel.fromEntity(updatedInvitation));
+  }
+
+  @override
+  Future<void> acceptInvitationWithToken(String token, String profileId) async {
+    final invitation = await getInvitationByToken(token);
+    if (invitation == null) {
+      throw Exception('Invitation not found');
+    }
+    await acceptInvitation(invitation.id, profileId);
+  }
+
+  @override
   Future<void> declineInvitation(String invitationId) async {
-    await _datasource.deleteInvitation(invitationId);
+    final invitations = await _datasource.getInvitations();
+    final invitation = invitations.firstWhere((i) => i.id == invitationId);
+    final updatedInvitation = invitation.copyWith(status: InvitationStatus.declined);
+    await _datasource.updateInvitation(FamilyInvitationModel.fromEntity(updatedInvitation));
+  }
+
+  @override
+  Future<void> revokeInvitation(String invitationId) async {
+    final invitations = await _datasource.getInvitations();
+    final invitation = invitations.firstWhere((i) => i.id == invitationId);
+    final updatedInvitation = invitation.copyWith(status: InvitationStatus.revoked);
+    await _datasource.updateInvitation(FamilyInvitationModel.fromEntity(updatedInvitation));
   }
 
   @override

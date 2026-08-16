@@ -105,7 +105,7 @@ class AvatarTheme extends ThemeExtension<AvatarTheme> {
       radius: AvatarConstants.borderRadius,
       shadows: [
         BoxShadow(
-          color : AvatarColors.warmClay.withValues(alpha: 0.5),
+          color : AvatarColors.warmClay.withAlpha(128),
           blurRadius: 24,
           offset: const Offset(0, 8),
         ),
@@ -115,7 +115,7 @@ class AvatarTheme extends ThemeExtension<AvatarTheme> {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
-      strokeColor: AvatarColors.softMint.withValues(alpha: 0.5),
+      strokeColor: AvatarColors.softMint.withAlpha(128),
     );
   }
 

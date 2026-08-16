@@ -26,8 +26,12 @@ abstract class FamilyRepository {
   // Adult Invitations
   Future<void> sendInvitation(FamilyInvitation invitation);
   Future<List<FamilyInvitation>> getInvitationsForEmail(String email);
-  Future<void> acceptInvitation(String invitationId, String userId);
+  Future<List<FamilyInvitation>> getInvitationsByFamilyId(String familyId);
+  Future<FamilyInvitation?> getInvitationByToken(String token);
+  Future<void> acceptInvitation(String invitationId, String profileId);
+  Future<void> acceptInvitationWithToken(String token, String profileId);
   Future<void> declineInvitation(String invitationId);
+  Future<void> revokeInvitation(String invitationId);
   Future<void> deleteInvitation(String invitationId);
 
   // Parent Approvals

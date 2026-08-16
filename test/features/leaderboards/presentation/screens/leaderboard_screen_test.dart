@@ -10,11 +10,36 @@ import 'package:habitflow/features/leaderboards/presentation/screens/leaderboard
 import 'package:habitflow/features/family/domain/entities/active_profile_session.dart';
 import 'package:habitflow/features/family/domain/repositories/family_repository.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
+import 'package:habitflow/features/billing/domain/entities/premium_event_type.dart';
+import 'package:habitflow/features/billing/domain/entities/premium_telemetry_event.dart';
+import 'package:habitflow/features/billing/application/providers/telemetry_providers.dart';
+import 'package:habitflow/features/billing/domain/entities/premium_conversion_metrics.dart';
+import 'package:habitflow/features/billing/domain/repositories/premium_telemetry_service.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/application/services/premium_service.dart';
+import 'package:habitflow/features/subscription/domain/entities/subscription.dart';
+import 'package:habitflow/features/subscription/domain/enums/subscription_status.dart';
+import 'package:habitflow/core/theme/theme_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockFamilyRepository extends Mock implements FamilyRepository {}
+class MockSharedPreferences extends Mock implements SharedPreferences {}
+class MockTelemetryService extends Mock implements PremiumTelemetryService {}
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(PremiumTelemetryEvent(
+      type: PremiumEventType.subscriptionScreenViewed,
+      timestamp: DateTime.now(),
+    ));
+  });
+
+  const premiumSubscription = Subscription(
+    id: 'premium',
+    status: SubscriptionStatus.premium,
+  );
+
   testWidgets('LeaderboardScreen shows entries', (tester) async {
     final session = ActiveProfileSession(
       profileId: 'p1',
@@ -41,9 +66,19 @@ void main() {
     final mockRepo = MockFamilyRepository();
     when(() => mockRepo.getActiveProfileSession()).thenAnswer((_) async => session);
 
+    final mockPrefs = MockSharedPreferences();
+    when(() => mockPrefs.getString(any())).thenReturn(null);
+
+    final mockTelemetry = MockTelemetryService();
+    when(() => mockTelemetry.recordEvent(any())).thenAnswer((_) async => {});
+    when(() => mockTelemetry.getMetrics()).thenAnswer((_) async => PremiumConversionMetrics.empty());
+
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          sharedPreferencesProvider.overrideWithValue(mockPrefs),
+          premiumTelemetryServiceProvider.overrideWithValue(mockTelemetry),
+          premiumServiceProvider.overrideWithValue(PremiumService(premiumSubscription)),
           familyRepositoryProvider.overrideWithValue(mockRepo),
           currentLeaderboardProvider((
             LeaderboardType.family,

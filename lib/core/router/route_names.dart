@@ -47,4 +47,6 @@ class RouteNames {
   static const String rewardStore = 'rewardStore';
   static const String rewardStoreDetail = 'rewardStoreDetail';
   static const String redemptionHistory = 'redemptionHistory';
+  static const String familyInvite = 'familyInvite';
+  static const String subscription = 'subscription';
 }

@@ -11,6 +11,14 @@ class FamilyInvitation {
   final String invitedByName;
   final DateTime invitedAt;
   final InvitationStatus status;
+  
+  // New fields for Sprint 9.3.1
+  final String inviterProfileId;
+  final String token;
+  final DateTime createdAt;
+  final DateTime expiresAt;
+  final DateTime? usedAt;
+  final String? usedByProfileId;
 
   const FamilyInvitation({
     required this.id,
@@ -21,7 +29,22 @@ class FamilyInvitation {
     required this.invitedByName,
     required this.invitedAt,
     required this.status,
+    required this.inviterProfileId,
+    required this.token,
+    required this.createdAt,
+    required this.expiresAt,
+    this.usedAt,
+    this.usedByProfileId,
   });
+
+  bool get isExpired => DateTime.now().isAfter(expiresAt);
+  bool get isPending => status == InvitationStatus.pending && !isExpired;
+  bool get isAccepted => status == InvitationStatus.accepted;
+  bool get isRevoked => status == InvitationStatus.revoked;
+
+  bool isValidForFamily(String targetFamilyId) {
+    return familyId == targetFamilyId;
+  }
 
   FamilyInvitation copyWith({
     String? id,
@@ -32,6 +55,12 @@ class FamilyInvitation {
     String? invitedByName,
     DateTime? invitedAt,
     InvitationStatus? status,
+    String? inviterProfileId,
+    String? token,
+    DateTime? createdAt,
+    DateTime? expiresAt,
+    DateTime? usedAt,
+    String? usedByProfileId,
   }) {
     return FamilyInvitation(
       id: id ?? this.id,
@@ -42,6 +71,12 @@ class FamilyInvitation {
       invitedByName: invitedByName ?? this.invitedByName,
       invitedAt: invitedAt ?? this.invitedAt,
       status: status ?? this.status,
+      inviterProfileId: inviterProfileId ?? this.inviterProfileId,
+      token: token ?? this.token,
+      createdAt: createdAt ?? this.createdAt,
+      expiresAt: expiresAt ?? this.expiresAt,
+      usedAt: usedAt ?? this.usedAt,
+      usedByProfileId: usedByProfileId ?? this.usedByProfileId,
     );
   }
 
@@ -52,13 +87,13 @@ class FamilyInvitation {
           runtimeType == other.runtimeType &&
           id == other.id &&
           familyId == other.familyId &&
-          invitedEmail == other.invitedEmail &&
+          token == other.token &&
           status == other.status);
 
   @override
   int get hashCode =>
       id.hashCode ^
       familyId.hashCode ^
-      invitedEmail.hashCode ^
+      token.hashCode ^
       status.hashCode;
 }

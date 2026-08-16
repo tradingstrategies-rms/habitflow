@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
 import 'package:habitflow/features/intelligence/application/providers/intelligence_providers.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_badge.dart';
 
 class IntelligencePreviewCard extends ConsumerWidget {
   final VoidCallback onTap;
@@ -14,6 +16,7 @@ class IntelligencePreviewCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final intelligenceDataAsync = ref.watch(intelligenceDashboardProvider);
+    final isPremium = ref.watch(premiumServiceProvider).isPremium;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -61,12 +64,20 @@ class IntelligencePreviewCard extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Intelligence Insight',
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              'Intelligence Insight',
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                color: colorScheme.primary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            if (!isPremium) ...[
+                              const SizedBox(width: HFSpacing.xs),
+                              const PremiumBadge(),
+                            ],
+                          ],
                         ),
                         const SizedBox(height: 4),
                         Text(

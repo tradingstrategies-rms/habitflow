@@ -40,6 +40,7 @@ import 'package:habitflow/features/family/domain/enums/profile_type.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
 import 'package:habitflow/features/family/domain/entities/family_profile.dart';
+import 'package:habitflow/features/family/presentation/screens/parent_approval_screen.dart';
 import 'package:habitflow/features/family/presentation/screens/family_dashboard_screen.dart';
 import 'package:habitflow/features/family/presentation/screens/family_settings_screen.dart';
 import 'package:habitflow/features/family/presentation/screens/shared_habits_screen.dart';
@@ -48,6 +49,8 @@ import 'package:habitflow/features/family/presentation/screens/family_activity_f
 import 'package:habitflow/features/family/presentation/screens/family_achievements_screen.dart';
 import 'package:habitflow/features/family/domain/entities/shared_habit.dart';
 import 'package:habitflow/features/settings/presentation/country_selection_screen.dart';
+
+import 'package:habitflow/features/family/presentation/screens/family_invitation_details_screen.dart';
 
 // Modular Routes
 import 'routes/splash_routes.dart';
@@ -62,6 +65,7 @@ import 'package:habitflow/features/habits/presentation/screens/habits_screen.dar
 import 'package:habitflow/features/goals/presentation/screens/goals_screen.dart';
 import 'package:habitflow/features/analytics/presentation/analytics_screen.dart';
 import 'package:habitflow/features/settings/presentation/settings_screen.dart';
+import 'package:habitflow/features/subscription/presentation/screens/subscription_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -168,6 +172,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: RouteNames.intelligence,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const IntelligenceDashboardScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.familyApprovals,
+        name: RouteNames.familyApprovals,
+        builder: (context, state) => const ParentApprovalScreen(),
       ),
       GoRoute(
         path: RoutePaths.familyCreate,
@@ -336,6 +345,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       GoRoute(
+        path: RoutePaths.familyInvite,
+        name: RouteNames.familyInvite,
+        builder: (context, state) {
+          final token = state.pathParameters['token'] ?? '';
+          return FamilyInvitationDetailsScreen(token: token);
+        },
+      ),
+      GoRoute(
         path: RoutePaths.analytics,
         name: RouteNames.analytics,
         parentNavigatorKey: _rootNavigatorKey,
@@ -347,6 +364,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: RouteNames.settings,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.subscription,
+        name: RouteNames.subscription,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const SubscriptionScreen(),
       ),
     ],
 

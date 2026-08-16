@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:habitflow/core/providers/core_providers.dart';
 import 'package:habitflow/core/theme/theme_controller.dart';
 import 'package:habitflow/core/notifications/application/notification_providers.dart';
+import 'package:habitflow/features/habits/application/providers/notification_router_providers.dart';
 import 'package:habitflow/features/habits/application/providers/reminder_scheduler_providers.dart';
 
 /// [ApplicationInitializer] orchestrates the startup sequence.
@@ -51,11 +52,13 @@ class ApplicationInitializer {
     final reminderScheduler = container.read(reminderSchedulerServiceProvider);
     await reminderScheduler.initialize();
 
+    final notificationRouter = container.read(notificationRouterServiceProvider);
+
     // Initialize new Notification Service Foundation
     final notificationService = container.read(notificationDeliveryServiceProvider);
     await notificationService.initialize((payload) {
       debugPrint('Notification tapped: ${payload.id}, route: ${payload.route}');
-      // Future: Route to specific screens via GoRouter
+      notificationRouter.handleNotificationPayloadTap(payload);
     });
 
     debugPrint('ApplicationInitializer: Notifications initialized. Local timezone: ${tz.local.name}');

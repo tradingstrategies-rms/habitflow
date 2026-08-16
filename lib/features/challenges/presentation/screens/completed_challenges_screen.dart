@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_feature_locked_view.dart';
+import 'package:habitflow/shared/widgets/widgets.dart';
 import '../../domain/entities/challenge_progress.dart';
 import '../providers/challenge_providers.dart';
 import '../widgets/challenge_card.dart';
@@ -11,6 +15,20 @@ class CompletedChallengesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isPremium = ref.watch(premiumServiceProvider).hasEntitlement(EntitlementType.premiumChallenges);
+    
+    if (!isPremium) {
+      return const Scaffold(
+        appBar: HFTopAppBar(title: 'Hall of Fame'),
+        body: PremiumFeatureLockedView(
+          title: 'Challenge History',
+          message: 'Upgrade to see your past achievements and completed challenges!',
+          icon: Icons.workspace_premium_outlined,
+          entitlement: EntitlementType.premiumChallenges,
+        ),
+      );
+    }
+
     final session = ref.watch(activeProfileSessionProvider);
 
     if (session == null) {

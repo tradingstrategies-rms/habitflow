@@ -8,7 +8,14 @@ import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/core/sync/models/sync_status.dart';
 import 'package:habitflow/core/sync/providers/sync_providers.dart';
 import 'package:habitflow/core/sync/services/gamification_sync_service.dart';
+import 'package:habitflow/features/family/domain/enums/profile_type.dart';
+import 'package:habitflow/features/family/presentation/providers/active_profile_provider.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/entities/subscription.dart';
+import 'package:habitflow/features/subscription/domain/enums/subscription_status.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/billing/application/providers/telemetry_providers.dart';
 import '../application/settings_notifier.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -20,6 +27,8 @@ class SettingsScreen extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
     final syncStatus = ref.watch(syncStatusProvider);
     final session = ref.watch(activeProfileSessionProvider);
+    final activeProfile = ref.watch(activeProfileProvider);
+    final isChild = activeProfile?.profileType == ProfileType.child;
 
     return Scaffold(
       appBar: const HFTopAppBar(title: 'Settings'),
@@ -60,6 +69,12 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const HFSectionHeader(title: 'Account'),
           ListTile(
+            title: const Text('Subscription'),
+            subtitle: Text(ref.watch(premiumServiceProvider).isPremium ? 'Premium Active' : 'Free Plan'),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () => context.pushNamed(RouteNames.subscription),
+          ),
+          ListTile(
             title: const Text('Profile'),
             trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () {
@@ -74,6 +89,75 @@ class SettingsScreen extends ConsumerWidget {
               ref.read(authControllerProvider.notifier).logout();
             },
           ),
+          if (!isChild) ...[
+            const HFSectionHeader(title: 'Developer Tools'),
+            ListTile(
+              title: const Text('Simulate Premium'),
+              subtitle: const Text('Toggle local mock subscription for testing'),
+              trailing: Switch(
+                value: ref.watch(premiumServiceProvider).isPremium,
+                onChanged: (value) {
+                  final repository = ref.read(subscriptionRepositoryProvider);
+                  if (value) {
+                    repository.setSubscription(Subscription(
+                      id: 'premium_mock',
+                      status: SubscriptionStatus.premium,
+                      expiresAt: DateTime.now().add(const Duration(days: 30)),
+                      entitlements: EntitlementType.values.map((e) => e.name).toList(),
+                    ));
+                  } else {
+                    repository.resetSubscription();
+                  }
+                },
+              ),
+            ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: ref.watch(premiumConversionMetricsProvider).when(
+                data: (metrics) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'PREMIUM TELEMETRY',
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    _buildMetricRow('Subscription Views', metrics.subscriptionViews.toString()),
+                    _buildMetricRow('Upgrade Attempts', metrics.upgradeAttempts.toString()),
+                    _buildMetricRow('Successful Purchases', metrics.successfulPurchases.toString()),
+                    _buildMetricRow('Conversion Rate', '${(metrics.conversionRate * 100).toStringAsFixed(1)}%'),
+                    const SizedBox(height: 12),
+                    HFButton(
+                      label: 'Clear Telemetry',
+                      variant: HFButtonVariant.text,
+                      onPressed: () => ref.read(premiumTelemetryServiceProvider).clear().then(
+                        (_) => ref.invalidate(premiumConversionMetricsProvider),
+                      ),
+                    ),
+                  ],
+                ),
+                loading: () => const Center(child: HFLoadingIndicator()),
+                error: (e, _) => Text('Telemetry error: $e'),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMetricRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
     );

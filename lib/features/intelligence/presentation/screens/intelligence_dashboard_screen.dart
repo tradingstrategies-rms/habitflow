@@ -8,6 +8,9 @@ import 'package:habitflow/features/intelligence/presentation/widgets/recommendat
 import 'package:habitflow/features/family/presentation/widgets/family_productivity_score_card.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_provider.dart';
 import 'package:habitflow/features/family/domain/enums/profile_type.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_feature_locked_view.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 
 class IntelligenceDashboardScreen extends ConsumerWidget {
@@ -15,6 +18,23 @@ class IntelligenceDashboardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Actually should use a more relevant one if available, but Sprint 9.4.1 defined these:
+    // advancedAnalytics, premiumRewards, premiumChallenges, unlimitedFamilies, unlimitedHabits
+    // I'll use advancedAnalytics or premiumChallenges for Intelligence for now, or just check isPremium.
+    final isPremium = ref.watch(premiumServiceProvider).isPremium;
+
+    if (!isPremium) {
+      return const Scaffold(
+        appBar: HFTopAppBar(title: 'Intelligence'),
+        body: PremiumFeatureLockedView(
+          title: 'Advanced Intelligence',
+          message: 'Unlock AI-powered habit insights and personalized recommendations.',
+          icon: Icons.auto_awesome_rounded,
+          entitlement: EntitlementType.advancedAnalytics,
+        ),
+      );
+    }
+
     final dashboardDataAsync = ref.watch(intelligenceDashboardProvider);
     final activeProfile = ref.watch(activeProfileProvider);
     final isChild = activeProfile?.profileType == ProfileType.child;

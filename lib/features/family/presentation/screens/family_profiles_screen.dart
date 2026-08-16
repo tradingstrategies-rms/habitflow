@@ -1,10 +1,19 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
+import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/features/family/domain/entities/family_profile.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
+import 'package:habitflow/features/family/domain/enums/permission_type.dart';
+import 'package:habitflow/features/family/domain/enums/profile_type.dart';
+import 'package:habitflow/features/family/domain/enums/family_role.dart';
+import 'package:habitflow/features/family/application/providers/family_permission_providers.dart';
+import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
+import 'package:habitflow/features/family/domain/entities/family_invitation.dart';
+import 'package:habitflow/features/family/domain/enums/invitation_status.dart';
 import '../providers/family_invitation_provider.dart';
 import '../widgets/family_member_card.dart';
 
@@ -78,6 +87,28 @@ class FamilyProfilesScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final familyState = ref.watch(familyProvider);
     final profilesAsync = ref.watch(familyProfilesProvider);
+    final outboundInvitationsAsync = ref.watch(familyOutboundInvitationsProvider);
+    
+    final session = ref.watch(activeProfileSessionProvider);
+    
+    // Safely determine the active profile
+    FamilyProfile activeProfile;
+    if (session != null) {
+      activeProfile = familyState.profiles.firstWhere(
+        (p) => p.id == session.profileId,
+        orElse: () => familyState.profiles.isNotEmpty 
+            ? familyState.profiles.first 
+            : _getFallbackProfile(),
+      );
+    } else {
+      activeProfile = familyState.profiles.isNotEmpty 
+          ? familyState.profiles.first 
+          : _getFallbackProfile();
+    }
+    
+    final permissionService = ref.watch(familyPermissionServiceProvider);
+    final canInvite = permissionService.hasPermission(activeProfile, PermissionType.inviteMember);
+    final canManageProfiles = permissionService.hasPermission(activeProfile, PermissionType.manageChildProfiles);
 
     return Scaffold(
       appBar: AppBar(
@@ -86,16 +117,6 @@ class FamilyProfilesScreen extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none_rounded),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.account_circle_outlined),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: profilesAsync.when(
         data: (profiles) {
@@ -147,11 +168,15 @@ class FamilyProfilesScreen extends ConsumerWidget {
               const SizedBox(height: HFSpacing.l),
               ...profiles.map((profile) => FamilyMemberCard(
                     profile: profile,
-                    onDelete: () => _showDeleteConfirmation(context, ref, profile),
-                    onEdit: () => _showEditProfileSheet(context, profile),
+                    onDelete: canManageProfiles ? () => _showDeleteConfirmation(context, ref, profile) : null,
+                    onEdit: canManageProfiles ? () => _showEditProfileSheet(context, profile) : null,
                   )),
               const SizedBox(height: HFSpacing.m),
-              _InviteMemberCard(onTap: () => _showAddMemberOptions(context)),
+              if (canInvite) ...[
+                _InviteMemberCard(onTap: () => _showAddMemberOptions(context)),
+                const SizedBox(height: HFSpacing.xl),
+                _buildPendingInvitations(context, ref, outboundInvitationsAsync),
+              ],
               const SizedBox(height: HFSpacing.xl),
             ],
           );
@@ -159,6 +184,50 @@ class FamilyProfilesScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error: $e')),
       ),
+    );
+  }
+
+  FamilyProfile _getFallbackProfile() {
+    return FamilyProfile(
+      id: 'temp',
+      familyId: 'temp',
+      displayName: 'Guest',
+      profileType: ProfileType.child,
+      role: FamilyRole.child,
+      requiresPin: false,
+      createdAt: DateTime.now(),
+    );
+  }
+
+  Widget _buildPendingInvitations(
+    BuildContext context, 
+    WidgetRef ref, 
+    AsyncValue<List<FamilyInvitation>> invitationsAsync
+  ) {
+    final theme = Theme.of(context);
+    
+    return invitationsAsync.when(
+      data: (invitations) {
+        final pending = invitations.where((i) => i.status == InvitationStatus.pending && !i.isExpired).toList();
+        if (pending.isEmpty) return const SizedBox.shrink();
+        
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Pending Invitations',
+              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: HFSpacing.m),
+            ...pending.map((invitation) => _PendingInvitationCard(invitation: invitation)),
+          ],
+        );
+      },
+      loading: () => const Padding(
+        padding: EdgeInsets.all(HFSpacing.m),
+        child: Center(child: CircularProgressIndicator()),
+      ),
+      error: (e, _) => Text('Error loading invitations: $e'),
     );
   }
 
@@ -180,6 +249,93 @@ class FamilyProfilesScreen extends ConsumerWidget {
               if (context.mounted) Navigator.pop(context);
             },
             child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PendingInvitationCard extends ConsumerWidget {
+  final FamilyInvitation invitation;
+
+  const _PendingInvitationCard({required this.invitation});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final expiresAt = invitation.expiresAt;
+    final remainingDays = expiresAt.difference(DateTime.now()).inDays;
+
+    return InkWell(
+      onTap: () => context.pushNamed(
+        RouteNames.familyInvite,
+        pathParameters: {'token': invitation.token},
+      ),
+      child: Card(
+        margin: const EdgeInsets.only(bottom: HFSpacing.m),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide(color: theme.colorScheme.outlineVariant),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: theme.colorScheme.primaryContainer,
+                    child: Icon(Icons.mail_outline, color: theme.colorScheme.primary),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          invitation.invitedEmail,
+                          style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Expires in $remainingDays days',
+                          style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.cancel_outlined, color: Colors.red),
+                    onPressed: () => _showRevokeConfirmation(context, ref),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showRevokeConfirmation(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Revoke Invitation'),
+        content: const Text('Are you sure you want to revoke this invitation?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {
+              await ref.read(invitationNotifierProvider.notifier).revokeInvitation(invitation.id);
+              if (context.mounted) Navigator.pop(context);
+            },
+            child: const Text('Revoke'),
           ),
         ],
       ),

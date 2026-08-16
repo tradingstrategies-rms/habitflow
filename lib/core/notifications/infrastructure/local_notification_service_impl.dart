@@ -8,6 +8,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../domain/notification_payload.dart';
 import '../domain/notification_priority.dart';
 import '../domain/notification_service.dart';
+import '../domain/notification_type.dart';
 
 /// [LocalNotificationServiceImpl] implements [NotificationService] using flutter_local_notifications.
 class LocalNotificationServiceImpl implements NotificationService {
@@ -35,10 +36,27 @@ class LocalNotificationServiceImpl implements NotificationService {
         if (response.payload != null) {
           try {
             final Map<String, dynamic> data = jsonDecode(response.payload!);
-            final payload = NotificationPayload.fromJson(data);
-            onNotificationTap(payload);
+            
+            // Try to parse as new NotificationPayload
+            try {
+              final payload = NotificationPayload.fromJson(data);
+              onNotificationTap(payload);
+              return;
+            } catch (_) {
+              // Not a standard NotificationPayload, handle as legacy or minimal
+              final habitId = data['habitId'] as String?;
+              if (habitId != null) {
+                onNotificationTap(NotificationPayload(
+                  id: 'legacy_${DateTime.now().millisecondsSinceEpoch}',
+                  title: '',
+                  body: '',
+                  type: NotificationType.habitReminder,
+                  metadata: {'habitId': habitId},
+                ));
+              }
+            }
           } catch (_) {
-            // Fallback or ignore
+            // Completely invalid JSON
           }
         }
       },

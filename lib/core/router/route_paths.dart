@@ -47,4 +47,6 @@ class RoutePaths {
   static const String rewardStore = '/reward-store';
   static const String rewardStoreDetail = '/reward-store/detail/:rewardId';
   static const String redemptionHistory = '/reward-store/history/:profileId';
+  static const String familyInvite = '/family/invite/:token';
+  static const String subscription = '/subscription';
 }

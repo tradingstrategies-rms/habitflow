@@ -11,6 +11,12 @@ class FamilyInvitationModel extends FamilyInvitation {
     required super.invitedByName,
     required super.invitedAt,
     required super.status,
+    required super.inviterProfileId,
+    required super.token,
+    required super.createdAt,
+    required super.expiresAt,
+    super.usedAt,
+    super.usedByProfileId,
   });
 
   factory FamilyInvitationModel.fromEntity(FamilyInvitation entity) {
@@ -23,6 +29,12 @@ class FamilyInvitationModel extends FamilyInvitation {
       invitedByName: entity.invitedByName,
       invitedAt: entity.invitedAt,
       status: entity.status,
+      inviterProfileId: entity.inviterProfileId,
+      token: entity.token,
+      createdAt: entity.createdAt,
+      expiresAt: entity.expiresAt,
+      usedAt: entity.usedAt,
+      usedByProfileId: entity.usedByProfileId,
     );
   }
 
@@ -35,7 +47,7 @@ class FamilyInvitationModel extends FamilyInvitation {
       invitedBy: json['invitedBy']?.toString() ?? '',
       invitedByName: json['invitedByName']?.toString() ?? '',
       invitedAt: json['invitedAt'] != null
-          ? (DateTime.tryParse(json['invitedAt'].toString()) ?? DateTime.now())
+          ? DateTime.parse(json['invitedAt'].toString())
           : DateTime.now(),
       status: json['status'] != null
           ? InvitationStatus.values.firstWhere(
@@ -43,6 +55,16 @@ class FamilyInvitationModel extends FamilyInvitation {
               orElse: () => InvitationStatus.pending,
             )
           : InvitationStatus.pending,
+      inviterProfileId: json['inviterProfileId']?.toString() ?? json['invitedBy']?.toString() ?? '',
+      token: json['token']?.toString() ?? '',
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'].toString())
+          : (json['invitedAt'] != null ? DateTime.parse(json['invitedAt'].toString()) : DateTime.now()),
+      expiresAt: json['expiresAt'] != null
+          ? DateTime.parse(json['expiresAt'].toString())
+          : DateTime.now().add(const Duration(days: 7)),
+      usedAt: json['usedAt'] != null ? DateTime.parse(json['usedAt'].toString()) : null,
+      usedByProfileId: json['usedByProfileId']?.toString(),
     );
   }
 
@@ -56,6 +78,12 @@ class FamilyInvitationModel extends FamilyInvitation {
       'invitedByName': invitedByName,
       'invitedAt': invitedAt.toIso8601String(),
       'status': status.name,
+      'inviterProfileId': inviterProfileId,
+      'token': token,
+      'createdAt': createdAt.toIso8601String(),
+      'expiresAt': expiresAt.toIso8601String(),
+      'usedAt': usedAt?.toIso8601String(),
+      'usedByProfileId': usedByProfileId,
     };
   }
 }

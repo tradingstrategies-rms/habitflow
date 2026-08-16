@@ -29,6 +29,7 @@ void main() {
         title: 'Title',
         body: 'Body',
         type: NotificationType.leaderboard,
+        recipientProfileId: 'p1',
       );
 
       final result = await orchestrator.notify(payload);
@@ -52,6 +53,7 @@ void main() {
         title: 'Title',
         body: 'Body',
         type: NotificationType.leaderboard,
+        recipientProfileId: 'p1',
       );
 
       final result = await orchestrator.notify(payload);
@@ -73,6 +75,7 @@ void main() {
         title: 'Title',
         body: 'Body',
         type: NotificationType.leaderboard,
+        recipientProfileId: 'p1',
       );
 
       final result = await orchestrator.notify(payload);

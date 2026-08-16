@@ -2,7 +2,8 @@ enum InvitationStatus {
   pending,
   accepted,
   declined,
-  expired;
+  expired,
+  revoked;
 
   String get displayName {
     switch (this) {
@@ -14,6 +15,8 @@ enum InvitationStatus {
         return 'Declined';
       case InvitationStatus.expired:
         return 'Expired';
+      case InvitationStatus.revoked:
+        return 'Revoked';
     }
   }
 }

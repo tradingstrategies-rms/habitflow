@@ -5,12 +5,16 @@ import 'package:habitflow/features/habits/application/providers/habit_provider.d
 import 'package:habitflow/features/habits/domain/entities/habit.dart';
 import 'package:habitflow/shared/widgets/widgets.dart';
 import 'package:habitflow/core/theme/hf_spacing.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/application/services/premium_guard.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_feature_locked_view.dart';
 import 'widgets/habit_heatmap.dart';
 import 'widgets/analytics_summary_cards.dart';
 import 'widgets/analytics_trend_section.dart';
 import 'widgets/habit_intelligence_section.dart';
 
-class AnalyticsScreen extends ConsumerWidget {
+class AnalyticsScreen extends ConsumerWidget with PremiumGuard {
   const AnalyticsScreen({super.key});
 
   @override
@@ -18,6 +22,7 @@ class AnalyticsScreen extends ConsumerWidget {
     final habitsAsync = ref.watch(activeHabitsProvider);
     final selectedHabitId = ref.watch(selectedAnalyticsHabitIdProvider);
     final period = ref.watch(analyticsPeriodProvider);
+    final isPremium = ref.watch(premiumServiceProvider).hasEntitlement(EntitlementType.advancedAnalytics);
 
     return Scaffold(
       appBar: const HFTopAppBar(title: 'Analytics'),
@@ -30,6 +35,15 @@ class AnalyticsScreen extends ConsumerWidget {
                 message: 'Start tracking habits to see your analytics here.',
                 icon: Icons.bar_chart_rounded,
               ),
+            );
+          }
+
+          if (period == const Duration(days: 90) && !isPremium) {
+            return const PremiumFeatureLockedView(
+              title: '90-Day Analytics',
+              message: 'Upgrade to see your long-term consistency and habit trends.',
+              icon: Icons.timeline_rounded,
+              entitlement: EntitlementType.advancedAnalytics,
             );
           }
 
@@ -108,18 +122,23 @@ class AnalyticsScreen extends ConsumerWidget {
       '30 Days': const Duration(days: 30),
       '90 Days': const Duration(days: 90),
     };
+    final isPremium = ref.watch(premiumServiceProvider).hasEntitlement(EntitlementType.advancedAnalytics);
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: periods.entries.map((entry) => Padding(
-          padding: const EdgeInsets.only(right: HFSpacing.s),
-          child: HFChip(
-            label: entry.key,
-            isSelected: selectedPeriod == entry.value,
-            onTap: () => ref.read(analyticsPeriodProvider.notifier).state = entry.value,
-          ),
-        )).toList(),
+        children: periods.entries.map((entry) {
+          final isLocked = entry.value == const Duration(days: 90) && !isPremium;
+          return Padding(
+            padding: const EdgeInsets.only(right: HFSpacing.s),
+            child: HFChip(
+              label: entry.key,
+              isSelected: selectedPeriod == entry.value,
+              onTap: () => ref.read(analyticsPeriodProvider.notifier).state = entry.value,
+              trailing: isLocked ? const Icon(Icons.lock_outline_rounded, size: 14) : null,
+            ),
+          );
+        }).toList(),
       ),
     );
   }

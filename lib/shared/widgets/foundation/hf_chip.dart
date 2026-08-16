@@ -20,6 +20,7 @@ class HFChip extends StatelessWidget {
     required this.label,
     this.isSelected = false,
     this.icon,
+    this.trailing,
     this.onTap,
     this.color,
     this.semanticsLabel,
@@ -33,6 +34,9 @@ class HFChip extends StatelessWidget {
 
   /// Optional icon to display before the label.
   final IconData? icon;
+
+  /// Optional widget to display after the label.
+  final Widget? trailing;
 
   /// Callback when the chip is tapped.
   final VoidCallback? onTap;
@@ -82,6 +86,19 @@ class HFChip extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                if (trailing != null) ...[
+                  const SizedBox(width: HFSpacing.xs),
+                  DefaultTextStyle(
+                    style: TextStyle(color: isSelected ? Colors.white : baseColor),
+                    child: IconTheme(
+                      data: IconThemeData(
+                        size: 14,
+                        color: isSelected ? Colors.white : baseColor,
+                      ),
+                      child: trailing!,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

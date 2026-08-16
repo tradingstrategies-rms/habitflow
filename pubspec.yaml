@@ -66,6 +66,8 @@ dependencies:
   # Charts
   fl_chart: ^0.68.0
   flutter_svg: ^2.0.10+1
+  qr_flutter: ^4.1.0
+  share_plus: ^13.3.0
 
 dev_dependencies:
   flutter_test:

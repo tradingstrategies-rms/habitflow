@@ -8,6 +8,11 @@ import '../widgets/current_user_rank_card.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
 import 'package:habitflow/features/family/presentation/providers/family_provider.dart';
 
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_feature_locked_view.dart';
+import 'package:habitflow/shared/widgets/widgets.dart';
+
 class LeaderboardScreen extends ConsumerStatefulWidget {
   const LeaderboardScreen({super.key});
 
@@ -32,6 +37,19 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> with Sing
 
   @override
   Widget build(BuildContext context) {
+    final isPremium = ref.watch(premiumServiceProvider).hasEntitlement(EntitlementType.premiumRewards);
+    
+    if (!isPremium) {
+      return const Scaffold(
+        appBar: HFTopAppBar(title: 'Leaderboard'),
+        body: PremiumFeatureLockedView(
+          title: 'Family Leaderboards',
+          message: 'Compare your progress with family members and climb the ranks.',
+          icon: Icons.leaderboard_rounded,
+        ),
+      );
+    }
+
     final session = ref.watch(activeProfileSessionProvider);
     final familyState = ref.watch(familyProvider);
     final familyId = familyState.circle?.id;
