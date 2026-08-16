@@ -182,7 +182,7 @@ class RewardsDashboardScreen extends ConsumerWidget {
           value: achievements.toString(),
           label: 'Achievements',
           icon: Icons.emoji_events_outlined,
-          iconColor: Colors.amber,
+          iconColor: Colors.amber.shade700,
         ),
       ],
     );
