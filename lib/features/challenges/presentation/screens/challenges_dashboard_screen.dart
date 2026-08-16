@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_feature_locked_view.dart';
 import '../../domain/entities/challenge_progress.dart';
 import '../providers/challenge_providers.dart';
 import '../widgets/challenge_card.dart';
@@ -13,6 +16,22 @@ class ChallengesDashboardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hasPremiumChallenges = ref.watch(premiumServiceProvider).hasEntitlement(
+      EntitlementType.premiumChallenges,
+    );
+
+    if (!hasPremiumChallenges) {
+      return const Scaffold(
+        appBar: AppBar(title: Text('Challenges')),
+        body: PremiumFeatureLockedView(
+          title: 'Premium Challenges',
+          message: 'Take on deeper challenges designed to keep your momentum strong and make progress more rewarding.',
+          icon: Icons.emoji_events_rounded,
+          entitlement: EntitlementType.premiumChallenges,
+        ),
+      );
+    }
+
     final session = ref.watch(activeProfileSessionProvider);
 
     if (session == null) {
@@ -57,7 +76,7 @@ class ChallengesDashboardScreen extends ConsumerWidget {
                     challengeId: challenge.id,
                     profileId: profileId,
                     lastUpdatedAt: DateTime.now(),
-                    periodStartDate: DateTime.now(), // This will be corrected by scheduler anyway
+                    periodStartDate: DateTime.now(),
                   ),
                 );
 
