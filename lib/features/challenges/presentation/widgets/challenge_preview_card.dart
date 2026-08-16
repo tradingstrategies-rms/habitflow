@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habitflow/core/router/route_names.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_badge.dart';
 import '../../domain/entities/challenge_progress.dart';
 import '../providers/challenge_providers.dart';
 import 'challenge_progress_card.dart';
@@ -12,12 +15,65 @@ class ChallengePreviewCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hasPremiumChallenges = ref.watch(premiumServiceProvider).hasEntitlement(
+      EntitlementType.premiumChallenges,
+    );
+    final theme = Theme.of(context);
+
+    if (!hasPremiumChallenges) {
+      return Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(color: theme.colorScheme.outlineVariant.withAlpha(80)),
+        ),
+        child: InkWell(
+          onTap: () => context.pushNamed(RouteNames.challengesDashboard),
+          borderRadius: BorderRadius.circular(24),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.emoji_events_rounded, color: theme.colorScheme.primary, size: 20),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Challenges',
+                      style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 8),
+                    const PremiumBadge(),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Take on premium challenges designed to keep your momentum strong.',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Explore Premium',
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     final session = ref.watch(activeProfileSessionProvider);
     if (session == null) return const SizedBox.shrink();
 
     final activeChallengesAsync = ref.watch(activeChallengesProvider(session.profileId));
     final profileProgressAsync = ref.watch(profileProgressProvider(session.profileId));
-    final theme = Theme.of(context);
 
     return activeChallengesAsync.when(
       data: (challenges) {
@@ -54,14 +110,11 @@ class ChallengePreviewCard extends ConsumerWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.emoji_events_rounded, 
-                               color: theme.colorScheme.primary, size: 20),
+                          Icon(Icons.emoji_events_rounded, color: theme.colorScheme.primary, size: 20),
                           const SizedBox(width: 8),
                           Text(
                             'Active Challenges',
-                            style: theme.textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -106,8 +159,7 @@ class ChallengePreviewCard extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 4),
-                      Icon(Icons.arrow_forward_rounded, 
-                           size: 16, color: theme.colorScheme.primary),
+                      Icon(Icons.arrow_forward_rounded, size: 16, color: theme.colorScheme.primary),
                     ],
                   ),
                 ],
