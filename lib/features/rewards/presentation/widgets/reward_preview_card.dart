@@ -5,18 +5,74 @@ import 'package:habitflow/core/router/route_names.dart';
 import 'package:habitflow/features/family/presentation/providers/active_profile_session_provider.dart';
 import 'package:habitflow/features/rewards/presentation/providers/reward_account_provider.dart';
 import 'package:habitflow/features/rewards/presentation/providers/reward_calculation_provider.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_badge.dart';
 
 class RewardPreviewCard extends ConsumerWidget {
   const RewardPreviewCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hasPremiumRewards = ref.watch(premiumServiceProvider).hasEntitlement(
+      EntitlementType.premiumRewards,
+    );
+    final theme = Theme.of(context);
+
+    if (!hasPremiumRewards) {
+      return Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(color: theme.colorScheme.outlineVariant.withAlpha(80)),
+        ),
+        child: InkWell(
+          onTap: () => context.goNamed(RouteNames.rewards),
+          borderRadius: BorderRadius.circular(24),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.stars_rounded, size: 20),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Rewards',
+                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 8),
+                    const PremiumBadge(),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Unlock deeper rewards, progression, and premium recognition for your consistency.',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Explore Premium',
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     final session = ref.watch(activeProfileSessionProvider);
     if (session == null) return const SizedBox.shrink();
 
     final accountAsync = ref.watch(rewardAccountProvider(session.profileId));
     final calcService = ref.watch(rewardCalculationServiceProvider);
-    final theme = Theme.of(context);
 
     return accountAsync.when(
       data: (account) {
@@ -43,7 +99,7 @@ class RewardPreviewCard extends ConsumerWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.stars_rounded, color: Colors.amber, size: 20),
+                            const Icon(Icons.stars_rounded, size: 20),
                             const SizedBox(width: 8),
                             Text(
                               '${account.points} Stars',

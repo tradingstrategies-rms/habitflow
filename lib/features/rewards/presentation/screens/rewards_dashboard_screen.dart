@@ -12,20 +12,38 @@ import 'package:habitflow/features/rewards/presentation/widgets/reward_error_car
 import 'package:habitflow/features/rewards/presentation/widgets/reward_loading_card.dart';
 import 'package:habitflow/features/rewards/presentation/widgets/reward_summary_card.dart';
 import 'package:habitflow/features/rewards/presentation/widgets/reward_transaction_tile.dart';
-
 import 'package:habitflow/features/rewards/presentation/widgets/reward_level_diamond.dart';
 import 'package:habitflow/features/habits/application/providers/habit_provider.dart';
 import 'package:habitflow/features/goals/application/providers/goal_providers.dart';
 import 'package:habitflow/features/family/presentation/providers/family_achievement_provider.dart';
+import 'package:habitflow/features/subscription/application/providers/subscription_providers.dart';
+import 'package:habitflow/features/subscription/domain/enums/entitlement_type.dart';
+import 'package:habitflow/features/subscription/presentation/widgets/premium_feature_locked_view.dart';
 
 class RewardsDashboardScreen extends ConsumerWidget {
   const RewardsDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hasPremiumRewards = ref.watch(premiumServiceProvider).hasEntitlement(
+      EntitlementType.premiumRewards,
+    );
+
+    if (!hasPremiumRewards) {
+      return const Scaffold(
+        appBar: AppBar(title: Text('Rewards')),
+        body: PremiumFeatureLockedView(
+          title: 'Premium Rewards',
+          message: 'Unlock deeper rewards, progression, and premium recognition for your consistency.',
+          icon: Icons.stars_rounded,
+          entitlement: EntitlementType.premiumRewards,
+        ),
+      );
+    }
+
     final session = ref.watch(activeProfileSessionProvider);
     final theme = Theme.of(context);
-    
+
     if (session == null) {
       return const Scaffold(body: Center(child: Text('Please select a profile')));
     }
@@ -35,7 +53,6 @@ class RewardsDashboardScreen extends ConsumerWidget {
     final transactionsAsync = ref.watch(rewardTransactionsProvider(profileId));
     final calcService = ref.watch(rewardCalculationServiceProvider);
 
-    // Real Stats
     final totalCompletions = ref.watch(allHabitCompletionsProvider).maybeWhen(
       data: (list) => list.where((c) => c.profileId == profileId).length,
       orElse: () => 0,
@@ -156,7 +173,7 @@ class RewardsDashboardScreen extends ConsumerWidget {
           iconColor: Colors.blue,
         ),
         const RewardSummaryCard(
-          value: '18d', // Mocked as streak calculation per profile is complex here
+          value: '18d',
           label: 'Current Streak',
           icon: Icons.local_fire_department_outlined,
           iconColor: Colors.orange,
