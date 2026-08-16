@@ -31,7 +31,7 @@ class MemberAvatar extends StatelessWidget {
           ),
           child: CircleAvatar(
             radius: radius,
-            backgroundColor: theme.colorScheme.surfaceContainerHighest,
+            backgroundColor: theme.colorScheme.surfaceVariant,
             backgroundImage: avatarUrl != null ? NetworkImage(avatarUrl!) : null,
             child: avatarUrl == null
                 ? Icon(

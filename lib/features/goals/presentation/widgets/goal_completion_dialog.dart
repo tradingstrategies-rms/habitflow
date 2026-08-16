@@ -38,7 +38,7 @@ class GoalCompletionDialog extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(HFSpacing.m),
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
+                  color: theme.colorScheme.primaryContainer.withAlpha(77),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(

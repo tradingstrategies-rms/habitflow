@@ -224,7 +224,7 @@ class _ActivityItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest,
+        color: theme.colorScheme.surfaceVariant,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(

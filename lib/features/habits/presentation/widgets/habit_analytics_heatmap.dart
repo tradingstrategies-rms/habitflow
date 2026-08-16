@@ -47,7 +47,7 @@ class HabitAnalyticsHeatmap extends StatelessWidget {
 
                 return Container(
                   decoration: BoxDecoration(
-                    color: isCompleted ? baseColor : theme.colorScheme.surfaceContainerHighest,
+                    color: isCompleted ? baseColor : theme.colorScheme.surfaceVariant,
                     borderRadius: BorderRadius.circular(4),
                   ),
                 );

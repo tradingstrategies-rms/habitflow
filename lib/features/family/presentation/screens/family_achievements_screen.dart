@@ -147,7 +147,7 @@ class _AchievementCard extends StatelessWidget {
                 child: LinearProgressIndicator(
                   value: achievement.progress,
                   minHeight: 4,
-                  backgroundColor: theme.colorScheme.surfaceContainerHighest,
+                  backgroundColor: theme.colorScheme.surfaceVariant,
                 ),
               ),
             ] else 

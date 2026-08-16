@@ -14,14 +14,18 @@ class Bootstrap {
   /// Initializes the application and all core services.
   /// Returns a [ProviderContainer] with initialized services.
   static Future<ProviderContainer> initialize() async {
+    debugPrint('Bootstrap: Entering initialize()');
     // 1. Ensure Flutter bindings are ready (Requirement 3: don't require in main.dart)
     WidgetsFlutterBinding.ensureInitialized();
+    debugPrint('Bootstrap: WidgetsFlutterBinding initialized');
 
     // 2. Initialize Firebase first (Requirement 7)
     await StartupTasks.initFirebase();
+    debugPrint('Bootstrap: Firebase initialized');
 
     // 3. Initialize Storage before creating ProviderContainer (Requirement 1)
     final sharedPreferences = await StartupTasks.initStorage();
+    debugPrint('Bootstrap: SharedPreferences initialized');
 
     // 4. Create ProviderContainer with required overrides (Requirement 2 & 3)
     final container = ProviderContainer(
@@ -29,9 +33,11 @@ class Bootstrap {
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
       ],
     );
+    debugPrint('Bootstrap: ProviderContainer created');
 
     // 5. Initialize application services using the overridden container (Requirement 4)
     await _initializer.initialize(container);
+    debugPrint('Bootstrap: ApplicationInitializer complete');
 
     return container;
   }

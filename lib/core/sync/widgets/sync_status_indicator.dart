@@ -64,7 +64,7 @@ class SyncStatusIndicator extends ConsumerWidget {
       case SyncStatus.syncing:
         return theme.colorScheme.primaryContainer.withAlpha(150);
       case SyncStatus.offline:
-        return theme.colorScheme.surfaceContainerHighest.withAlpha(150);
+        return theme.colorScheme.surfaceVariant.withAlpha(150);
       case SyncStatus.failed:
         return theme.colorScheme.errorContainer.withAlpha(150);
       default:

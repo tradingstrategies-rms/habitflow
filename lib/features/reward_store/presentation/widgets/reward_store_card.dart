@@ -34,7 +34,7 @@ class RewardStoreCard extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  color: theme.colorScheme.surfaceContainerHighest,
+                  color: theme.colorScheme.surfaceVariant,
                   child: item.imageUrl != null 
                       ? Image.network(item.imageUrl!, fit: BoxFit.cover)
                       : Icon(

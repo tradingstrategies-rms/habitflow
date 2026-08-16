@@ -362,7 +362,7 @@ class _HabitListItem extends ConsumerWidget {
           margin: const EdgeInsets.only(bottom: HFSpacing.s),
           padding: const EdgeInsets.all(HFSpacing.sm),
           elevation: 0,
-          border: BorderSide(color: Theme.of(context).colorScheme.outlineVariant.withValues(alpha: 0.5)),
+          border: BorderSide(color: Theme.of(context).colorScheme.outlineVariant.withAlpha(128)),
           child: Row(
             children: [
               Icon(Icons.timer_outlined, color: Theme.of(context).colorScheme.secondary),

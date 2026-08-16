@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:habitflow/app/habit_flow_app.dart';
-import 'package:habitflow/core/bootstrap/bootstrap.dart';
+import 'package:habitflow/core/bootstrap/bootstrap_gate.dart';
 
-void main() async {
-  final container = await Bootstrap.initialize();
-
-  runApp(
-    UncontrolledProviderScope(
-      container: container,
-      child: const HabitFlowApp(),
-    ),
-  );
+void main() {
+  // We call runApp immediately with the BootstrapGate to ensure the native 
+  // splash screen is replaced by our loading UI as soon as possible.
+  runApp(const BootstrapGate());
 }

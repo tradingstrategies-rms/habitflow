@@ -64,7 +64,7 @@ class RewardPreviewCard extends ConsumerWidget {
                           child: LinearProgressIndicator(
                             value: levelProgress,
                             minHeight: 4,
-                            backgroundColor: theme.colorScheme.surfaceContainerHighest,
+                            backgroundColor: theme.colorScheme.surfaceVariant,
                           ),
                         ),
                       ],

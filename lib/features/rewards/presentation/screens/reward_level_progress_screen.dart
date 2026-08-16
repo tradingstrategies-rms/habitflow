@@ -200,7 +200,7 @@ class RewardLevelProgressScreen extends ConsumerWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: theme.colorScheme.surfaceContainerHighest,
+                color: theme.colorScheme.surfaceVariant,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Center(

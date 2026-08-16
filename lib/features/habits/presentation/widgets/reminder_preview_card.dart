@@ -39,10 +39,10 @@ class ReminderPreviewCard extends StatelessWidget {
 
     return Card(
       elevation: 0,
-      color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+      color: theme.colorScheme.surfaceVariant.withAlpha(77),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
-        side: BorderSide(color: color.withValues(alpha: 0.5)),
+        side: BorderSide(color: color.withAlpha(128)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),

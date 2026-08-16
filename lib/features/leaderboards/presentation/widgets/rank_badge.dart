@@ -26,7 +26,7 @@ class RankBadge extends StatelessWidget {
         badgeColor = const Color(0xFFCD7F32); // Bronze
         break;
       default:
-        badgeColor = theme.colorScheme.surfaceContainerHighest;
+        badgeColor = theme.colorScheme.surfaceVariant;
         textColor = theme.colorScheme.onSurfaceVariant;
     }
 

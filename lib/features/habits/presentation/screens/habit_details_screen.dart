@@ -52,7 +52,7 @@ class HabitDetailsScreen extends ConsumerWidget {
                         child: Container(
                           padding: const EdgeInsets.all(24),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.2),
+                            color: Theme.of(context).colorScheme.primaryContainer.withAlpha(51),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(_mapIconToData(habit.icon), size: 64, color: Theme.of(context).colorScheme.primary),

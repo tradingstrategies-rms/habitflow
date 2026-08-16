@@ -101,7 +101,7 @@ class RewardBalanceCard extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: levelProgress,
                 minHeight: 8,
-                backgroundColor: theme.colorScheme.surfaceContainerHighest,
+                backgroundColor: theme.colorScheme.surfaceVariant,
                 valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
               ),
             ),

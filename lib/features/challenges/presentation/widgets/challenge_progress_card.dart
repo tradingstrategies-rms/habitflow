@@ -57,7 +57,7 @@ class ChallengeProgressCard extends ConsumerWidget {
           child: LinearProgressIndicator(
             value: progress,
             minHeight: isKids ? 16 : 12,
-            backgroundColor: theme.colorScheme.surfaceContainerHighest,
+            backgroundColor: theme.colorScheme.surfaceVariant,
             valueColor: AlwaysStoppedAnimation<Color>(color),
           ),
         ),

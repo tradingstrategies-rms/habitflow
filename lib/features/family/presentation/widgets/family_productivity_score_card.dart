@@ -105,7 +105,7 @@ class FamilyProductivityScoreCard extends ConsumerWidget {
                   child: CircularProgressIndicator(
                     value: score.score / 100,
                     strokeWidth: 10,
-                    backgroundColor: theme.colorScheme.surfaceContainerHighest,
+                    backgroundColor: theme.colorScheme.surfaceVariant,
                     color: theme.colorScheme.primary,
                     strokeCap: StrokeCap.round,
                   ),

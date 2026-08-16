@@ -32,7 +32,7 @@ class GoalProgressIndicator extends StatelessWidget {
           child: CircularProgressIndicator(
             value: normalizedProgress,
             strokeWidth: strokeWidth,
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+            backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
             strokeCap: StrokeCap.round,
           ),
         ),

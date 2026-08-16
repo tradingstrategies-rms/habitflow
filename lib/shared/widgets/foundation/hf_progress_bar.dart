@@ -30,7 +30,7 @@ class HFProgressBar extends StatelessWidget {
   /// The color of the progress indicator. Defaults to [ColorScheme.primary].
   final Color? color;
 
-  /// The background color of the bar. Defaults to [ColorScheme.surfaceContainerHighest].
+  /// The background color of the bar. Defaults to [ColorScheme.surfaceVariant].
   final Color? backgroundColor;
   
   /// Optional accessibility label for the progress bar.
@@ -47,7 +47,7 @@ class HFProgressBar extends StatelessWidget {
         height: height,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: backgroundColor ?? theme.colorScheme.surfaceContainerHighest,
+          color: backgroundColor ?? theme.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(height / 2),
         ),
         child: FractionallySizedBox(

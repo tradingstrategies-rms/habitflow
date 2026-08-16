@@ -18,6 +18,7 @@ class ApplicationInitializer {
   /// 
   /// Note: [container] is required to access initialized providers.
   Future<void> initialize(ProviderContainer container) async {
+    debugPrint('ApplicationInitializer: initialize() started');
     // 1. Core tasks (Logger)
     // loggerProvider is now safe to read as Firebase was initialized in Bootstrap
     final logger = container.read(loggerProvider);
@@ -34,6 +35,7 @@ class ApplicationInitializer {
       'max_family_members': 10,
     });
     await remoteConfig.initialize();
+    debugPrint('ApplicationInitializer: RemoteConfig initialized');
 
     // 4. Global Error Handling (Crashlytics)
     final crashReporting = container.read(crashReportingServiceProvider);
@@ -47,10 +49,12 @@ class ApplicationInitializer {
       crashReporting.recordError(error, stack);
       return true;
     };
+    debugPrint('ApplicationInitializer: CrashReporting initialized');
 
     // 5. Notifications
     final reminderScheduler = container.read(reminderSchedulerServiceProvider);
     await reminderScheduler.initialize();
+    debugPrint('ApplicationInitializer: ReminderScheduler initialized');
 
     final notificationRouter = container.read(notificationRouterServiceProvider);
 

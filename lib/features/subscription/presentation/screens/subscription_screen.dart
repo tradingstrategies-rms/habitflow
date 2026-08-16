@@ -318,7 +318,7 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen> {
             decoration: BoxDecoration(
               color: hasAccess 
                   ? theme.colorScheme.primaryContainer 
-                  : theme.colorScheme.surfaceContainerHighest,
+                  : theme.colorScheme.surfaceVariant,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(

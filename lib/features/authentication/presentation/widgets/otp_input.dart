@@ -37,7 +37,7 @@ class OTPInput extends StatelessWidget {
             ),
             decoration: InputDecoration(
               counterText: '',
-              fillColor: theme.colorScheme.surfaceContainerHighest.withAlpha(HFOpacity.alpha40),
+              fillColor: theme.colorScheme.surfaceVariant.withAlpha(HFOpacity.alpha40),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,

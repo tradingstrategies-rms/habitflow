@@ -135,7 +135,7 @@ class _ConsistencyScoreCardState extends State<ConsistencyScoreCard>
                             value: _animation.value / 100,
                             strokeWidth: 10,
                             strokeCap: StrokeCap.round,
-                            backgroundColor: colorScheme.surfaceContainerHighest,
+                            backgroundColor: colorScheme.surfaceVariant,
                             valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
                           );
                         },

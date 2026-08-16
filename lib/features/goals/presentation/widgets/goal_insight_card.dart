@@ -22,14 +22,14 @@ class GoalInsightCard extends ConsumerWidget {
         if (insight.isEmpty) return const SizedBox();
 
         return HFCard(
-          color: theme.colorScheme.primaryContainer.withValues(alpha: 0.1),
+          color: theme.colorScheme.primaryContainer.withAlpha(26),
           elevation: 0,
           child: Row(
             children: [
               Container(
                 padding: const EdgeInsets.all(HFSpacing.s),
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                  color: theme.colorScheme.primary.withAlpha(26),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(Icons.lightbulb_rounded, color: theme.colorScheme.primary, size: 20),

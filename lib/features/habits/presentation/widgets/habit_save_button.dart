@@ -17,7 +17,7 @@ class HabitSaveButton extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10)],
+        boxShadow: [BoxShadow(color: Colors.black.withAlpha(13), blurRadius: 10)],
       ),
       child: HFButton(
         label: label,

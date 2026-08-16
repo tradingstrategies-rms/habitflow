@@ -190,7 +190,7 @@ class _RoleBadge extends StatelessWidget {
         textColor = theme.colorScheme.onTertiaryContainer;
         break;
       case FamilyRole.child:
-        backgroundColor = theme.colorScheme.surfaceContainerHighest;
+        backgroundColor = theme.colorScheme.surfaceVariant;
         textColor = theme.colorScheme.onSurfaceVariant;
         break;
     }

@@ -97,7 +97,7 @@ class GoalCard extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(HFSpacing.s),
       decoration: BoxDecoration(
-        color: Color(goal.colorValue).withValues(alpha: 0.1),
+        color: Color(goal.colorValue).withAlpha(26),
         borderRadius: BorderRadius.circular(HFRadius.chip),
       ),
       child: Icon(

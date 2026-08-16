@@ -111,6 +111,7 @@ void main() {
           subscriptionStreamProvider.overrideWith((ref) => Stream.value(Subscription.free())),
           premiumServiceProvider.overrideWithValue(PremiumService(Subscription.free())),
           activeProfileProvider.overrideWith((ref) => FakeActiveProfileNotifier(adultProfile)),
+          availableProductsProvider.overrideWith((ref) => Future.value([mockProduct])),
         ],
         child: const MaterialApp(home: SubscriptionScreen()),
       ),
@@ -118,7 +119,9 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Upgrade for \$4.99/mo'));
+    final upgradeButton = find.text('Upgrade for \$4.99/mo');
+    await tester.ensureVisible(upgradeButton);
+    await tester.tap(upgradeButton);
     await tester.pumpAndSettle();
 
     verify(() => mockTelemetryService.recordEvent(any(that: predicate((e) => (e as PremiumTelemetryEvent).type == PremiumEventType.upgradeStarted)))).called(1);
